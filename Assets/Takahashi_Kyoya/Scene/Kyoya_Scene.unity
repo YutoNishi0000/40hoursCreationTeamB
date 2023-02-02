@@ -158,8 +158,14 @@ MonoBehaviour:
   Sections:
   - Name: 
     Clips:
-    - {fileID: 0}
-    Meters: []
+    - {fileID: 8300000, guid: b4a1673622a02224483f3c0981d411b1, type: 3}
+    Meters:
+    - StartBar: 0
+      Tempo: 65
+      UnitPerBeat: 4
+      UnitPerBar: 0
+      Numerator: 0
+      Denominator: 16
     SyncType: 0
     SyncFactor: 0
     Markers: []
