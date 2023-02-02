@@ -33,24 +33,12 @@ public class CameraController : Human
     // Update is called once per frame
     void Update()
     {
-        float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
-        float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
-
-        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
-        characterRot *= Quaternion.Euler(0, xRot, 0);
-
-        //Update‚Ì’†‚Åì¬‚µ‚½ŠÖ”‚ğŒÄ‚Ô
-        cameraRot = ClampRotation(cameraRot);
-
-        cam.transform.localRotation = cameraRot;
-        transform.localRotation = characterRot;
-
-        UpdateCursorLock();
+        RotateControl();
     }
 
     private void FixedUpdate()
     {
-
+        MoveControl();
     }
 
     public override void MoveControl()
@@ -71,6 +59,23 @@ public class CameraController : Human
 
         //ÅI“I‚ÈˆÚ“®ˆ—
         controller.Move(moveDirection * Time.deltaTime);
+    }
+
+    void RotateControl()
+    {
+        float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
+        float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
+
+        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
+        characterRot *= Quaternion.Euler(0, xRot, 0);
+
+        //Update‚Ì’†‚Åì¬‚µ‚½ŠÖ”‚ğŒÄ‚Ô
+        cameraRot = ClampRotation(cameraRot);
+
+        cam.transform.localRotation = cameraRot;
+        transform.localRotation = characterRot;
+
+        UpdateCursorLock();
     }
 
     public void UpdateCursorLock()
