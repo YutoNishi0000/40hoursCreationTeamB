@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="sceneName"></param>
     /// <param name="feeling"></param>
-    public void NextDay(string sceneName, int feeling)
+    public void NextDay(string sceneName, bool canNextDay)
     {
-
-        SceneManager.LoadScene(sceneName);
+        if (canNextDay)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
