@@ -5,41 +5,42 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : Human
 {
-    private Camera mainCam;
-
-    Vector3 targetDirection;        //移動する方向のベクトル
     Vector3 moveDirection = Vector3.zero;
-
+    Vector3 targetDirection;        //移動する方向のベクトル
     private CharacterController controller;
+    float x, z;
+    float speed = 3f;
 
-    public float speed;         //キャラクターの移動速度
-    public float jumpSpeed;     //キャラクターのジャンプ力
-    public float rotateSpeed;   //キャラクターの方向転換速度
-    public float gravity;       //キャラにかかる重力の大きさ
+    public GameObject cam;
+    Quaternion cameraRot, characterRot;
+    float Xsensityvity = 3f, Ysensityvity = 3f;
 
-    private Animator animator;
+    bool cursorLock = true;
 
-    // Start is called before the first frame update
-    void Start()
+    //変数の宣言(角度の制限用)
+    float minX = -40f, maxX = 40f;
+    Vector3 initialCamPos;
+
+    private void Start()
     {
-        speed = 3f;
-        rotateSpeed = 10f;
-        gravity = 20f;
+        cameraRot = cam.transform.localRotation;
+        characterRot = transform.localRotation;
+        initialCamPos = cam.transform.localPosition;
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
+    {
+        RotateControl();
+    }
+
+    private void FixedUpdate()
     {
         MoveControl();
     }
 
-    #region 移動関連処理
-
     public override void MoveControl()
     {
-        //★進行方向計算
         //キーボード入力を取得
         float v = Input.GetAxisRaw("Vertical");         //InputManagerの↑↓の入力       
         float h = Input.GetAxisRaw("Horizontal");       //InputManagerの←→の入力 
@@ -51,50 +52,87 @@ public class PlayerController : Human
         //カメラの方向を考慮したキャラの進行方向を計算
         targetDirection = h * right + v * forward;
 
+        AnimatioControl(v, h);
+
+        //進行方向から正規化されたベクトルを取得
         moveDirection = Vector3.Scale(targetDirection, new Vector3(1, 0, 1)).normalized;
+
+        //スピードを掛け合わせる
         moveDirection *= speed;
-
-        //走行アニメーション管理
-        AnimationControl(v, h);
-
-        //回転処理
-        RotationControl();
 
         //最終的な移動処理
         controller.Move(moveDirection * Time.deltaTime);
     }
 
-    //オーバーライド関数
-    public void AnimationControl(float vertical, float height)
+    public void AnimatioControl(float vertical, float horizon)
     {
-        //走行アニメーション管理
-        if (vertical > .1 || vertical < -.1 || height > .1 || height < -.1) //(移動入力があると)
+        if (vertical > .1 || vertical < -.1 || horizon > .1 || horizon < -.1) //(移動入力があると)
         {
-            animator.SetFloat("Speed", 1f); //キャラ走行のアニメーション開始
+            cam.transform.localPosition = new Vector3(initialCamPos.x, initialCamPos.y + Mathf.PingPong(Time.time / 2, 0.2f), initialCamPos.z);
         }
-        else    //(移動入力が無いと)
+        else
         {
-            animator.SetFloat("Speed", 0); //キャラ走行のアニメーション終了
+            cam.transform.localPosition = initialCamPos;
         }
     }
 
-    //回転処理
-    void RotationControl()  //キャラクターが移動方向を変えるときの処理
+    void RotateControl()
     {
-        Vector3 rotateDirection = moveDirection;
-        rotateDirection.y = 0;
+        float xRot = Input.GetAxis("Mouse X") * Ysensityvity;
+        float yRot = Input.GetAxis("Mouse Y") * Xsensityvity;
 
-        //それなりに移動方向が変化する場合のみ移動方向を変える
-        if (rotateDirection.sqrMagnitude > 0.01)
+        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
+        characterRot *= Quaternion.Euler(0, xRot, 0);
+
+        //Updateの中で作成した関数を呼ぶ
+        cameraRot = ClampRotation(cameraRot);
+
+        cam.transform.localRotation = cameraRot;
+        transform.localRotation = characterRot;
+
+        UpdateCursorLock();
+    }
+
+    public void UpdateCursorLock()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //緩やかに移動方向を変える
-            float step = rotateSpeed * Time.deltaTime;
-            Vector3 newDir = Vector3.Slerp(transform.forward, rotateDirection, step);
-            transform.rotation = Quaternion.LookRotation(newDir);
+            cursorLock = false;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            cursorLock = true;
+        }
+
+
+        if (cursorLock)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (!cursorLock)
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
-    #endregion
+    //角度制限関数の作成
+    public Quaternion ClampRotation(Quaternion q)
+    {
+        //q = x,y,z,w (x,y,zはベクトル（量と向き）：wはスカラー（座標とは無関係の量）)
+
+        q.x /= q.w;
+        q.y /= q.w;
+        q.z /= q.w;
+        q.w = 1f;
+
+        float angleX = Mathf.Atan(q.x) * Mathf.Rad2Deg * 2f;
+
+        angleX = Mathf.Clamp(angleX, minX, maxX);
+
+        q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);
+
+        return q;
+    }
 }
 
 
