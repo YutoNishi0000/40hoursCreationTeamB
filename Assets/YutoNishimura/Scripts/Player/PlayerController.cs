@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,7 @@ public class PlayerController : Human
     Vector3 moveDirection = Vector3.zero;
     Vector3 targetDirection;        //移動する方向のベクトル
     private CharacterController controller;
-    float x, z;
-    float speed = 3f;
+    [SerializeField] private float speed = 3f;
 
     public GameObject cam;
     Quaternion cameraRot, characterRot;
@@ -151,4 +151,14 @@ public class Human : MonoBehaviour
 
     public virtual void MoveControl() { }
     public virtual void AnimationControl() { }
+
+    /// <summary>
+    /// 指定したゲームオブジェクトを指定した方向に向かせる
+    /// </summary>
+    /// <param name="gameObject">　指定した方向に向かせたいゲームオブジェクト </param>
+    /// <param name="direction"> ゲームオブジェクトを向かせたい方向 </param>
+    public void CorrectRotation(GameObject gameObject, Vector3 direction)
+    {
+        gameObject.transform.DORotate(direction, 0.5f);
+    }
 }
