@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
     [SerializeField]private Text secondUI = null;
     [SerializeField]private Text minuteUI = null;
     //êßå¿éûä‘
-    private float timeLimit = 120.0f;
+    public float timeLimit = 120.0f;
 
     private void Update()
     {

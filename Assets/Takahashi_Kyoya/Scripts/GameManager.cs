@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     private string gameOverScene = "GameOver";
 
-
     /// <summary>
     /// Ÿ‚Ì“ú‚És‚­
     /// </summary>
