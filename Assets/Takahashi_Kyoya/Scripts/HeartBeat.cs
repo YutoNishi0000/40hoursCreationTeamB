@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class HeartBeat : MonoBehaviour
 {
+    //大きくなるスピード
+    [SerializeField] private float largeSpeed;
+    //小さくなるスピード
+    [SerializeField] private float smallSpeed;
     //最小の大きさ
     private Vector3 minSize = new Vector3(1.0f, 1.0f, 1.0f);
     //最大の大きさ
@@ -25,11 +29,11 @@ public class HeartBeat : MonoBehaviour
 
         if (isBig)
         {
-            this.transform.localScale = Vector3.Lerp(this.transform.localScale, maxSize, 0.05f);
+            this.transform.localScale = Vector3.Lerp(this.transform.localScale, maxSize, 0.01f * largeSpeed);
         }
         else
         {
-            this.transform.localScale = Vector3.Lerp(this.transform.localScale, minSize, 0.05f);
+            this.transform.localScale = Vector3.Lerp(this.transform.localScale, minSize, 0.01f * smallSpeed);
         }
     }
 }
