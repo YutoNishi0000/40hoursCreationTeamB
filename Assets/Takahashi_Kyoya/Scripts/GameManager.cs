@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private string gameOverScene = "GameOver";
     /// <summary>
     /// Ÿ‚Ì“ú‚És‚­
     /// </summary>
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour
         if (canNextDay)
         {
             SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene(gameOverScene);
         }
     }
 }
