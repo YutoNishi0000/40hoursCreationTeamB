@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //ゲームオーバーシーン
     private string gameOverScene = "GameOver";
+    
 
     /// <summary>
     /// 次の日に行く
@@ -23,6 +25,4 @@ public class GameManager : MonoBehaviour
             FadeManager.Instance.LoadScene(gameOverScene, 1.0f);
         }
     }
-
-
 }
