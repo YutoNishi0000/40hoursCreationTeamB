@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 4858995573611448610}
   - component: {fileID: 4858995573611448607}
   - component: {fileID: 2006376807637385821}
+  - component: {fileID: 4981951370293593660}
   m_Layer: 0
   m_Name: TT_demo_male_B
   m_TagString: Untagged
@@ -380,6 +381,20 @@ MonoBehaviour:
   RECOGNIZE_DISTANCE: 10
   timerText: {fileID: 0}
   time: 0
+--- !u!136 &4981951370293593660
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609622049361771148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.94
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!1 &2609622049361771264
 GameObject:
   m_ObjectHideFlags: 0
