@@ -90,7 +90,7 @@ public class PlayerController : Human
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
-        UpdateCursorLock();
+        //UpdateCursorLock();
     }
 
     public void UpdateCursorLock()
