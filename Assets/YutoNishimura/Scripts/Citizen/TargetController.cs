@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class TargetController : Human
 {
@@ -110,9 +111,13 @@ public class TargetController : Human
 
             if (_lockedOnTime > RECOGNIZE_TIME)
             {
+                //移動ロックオン
                 _moveLock = true;
-                transform.LookAt(playerInstance.gameObject.transform.position);
-                transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+
+                //y軸だけプレイヤーの方向を向かせたい
+                Vector3 target = playerInstance.gameObject.transform.position;
+                target.y = this.transform.position.y;
+                this.transform.LookAt(target);
                 Debug.Log("プレイヤーに気づいた");
             }
         }
