@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class HeartBeat : MonoBehaviour
 {
     //大きくなるスピード
-    [SerializeField] private float largeSpeed;
+    private float largeSpeed = 0.01f;
     //小さくなるスピード
-    [SerializeField] private float smallSpeed;
+    private float smallSpeed = 0.01f;
     //止まる時間
-    [SerializeField] private float stopTime;
+    private float stopTime = 0.01f;
     //止まる時間の経過時間
     private float time;
     //最小の大きさ
@@ -28,6 +28,7 @@ public class HeartBeat : MonoBehaviour
     private void Update()
     {
         BeatUpdate();
+        FastBeat();
     }
 
     /// <summary>
@@ -83,5 +84,13 @@ public class HeartBeat : MonoBehaviour
             state = STATE.large;
         }
     }
-
+    /// <summary>
+    /// 拍動を早くする
+    /// </summary>
+    void FastBeat()
+    {
+        largeSpeed = 0.01f + ((RayTest.lockonTime / 3.0f) / 100);
+        smallSpeed = 0.01f + ((RayTest.lockonTime / 3.0f) / 100);
+        stopTime = 0.1f - (((RayTest.lockonTime * 5.0f) / 3.0f) / 100);
+    }
 }

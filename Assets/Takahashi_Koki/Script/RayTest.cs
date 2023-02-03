@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RayTest : MonoBehaviour
 {
-    float lockonTime;
+    public static float lockonTime = 0.0f;
     public float maxLockonTime = 3.0f;
     public static bool lockon;
     // Start is called before the first frame update
@@ -29,10 +29,9 @@ public class RayTest : MonoBehaviour
             }
             else
             {
-                lockonTime = 0;
+                lockonTime = 0.0f;
             }
         }
 
-        Debug.Log(lockonTime);
     }
 }
