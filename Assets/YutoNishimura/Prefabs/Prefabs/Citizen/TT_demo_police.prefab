@@ -1143,6 +1143,7 @@ GameObject:
   - component: {fileID: 7784377772243763162}
   - component: {fileID: 1988797340802755765}
   - component: {fileID: 1988797340802755762}
+  - component: {fileID: 5111901221693729759}
   m_Layer: 0
   m_Name: TT_demo_police
   m_TagString: Untagged
@@ -1223,3 +1224,17 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &5111901221693729759
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7784377772253138428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.94
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88, z: 0}

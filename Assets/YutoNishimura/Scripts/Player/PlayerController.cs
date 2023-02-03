@@ -17,6 +17,8 @@ public class PlayerController : Human
 
     bool cursorLock = true;
 
+    public GameObject targetCenter;
+
     //ïœêîÇÃêÈåæ(äpìxÇÃêßå¿óp)
     float minX = -40f, maxX = 40f;
     Vector3 initialCamPos;
@@ -36,7 +38,14 @@ public class PlayerController : Human
 
     private void FixedUpdate()
     {
-        MoveControl();
+        if (RayTest.lockon)
+        {
+            lockOnTargetObject(targetCenter);
+        }
+        else
+        {
+            MoveControl();
+        }
     }
 
     public override void MoveControl()
@@ -90,7 +99,7 @@ public class PlayerController : Human
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
 
-        UpdateCursorLock();
+        //UpdateCursorLock();
     }
 
     public void UpdateCursorLock()
@@ -132,6 +141,11 @@ public class PlayerController : Human
         q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);
 
         return q;
+    }
+
+    private void lockOnTargetObject(GameObject target)
+    {
+        transform.LookAt(target.transform, transform.up);
     }
 }
 
