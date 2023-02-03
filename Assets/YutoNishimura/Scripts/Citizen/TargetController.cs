@@ -10,6 +10,9 @@ public class TargetController : Human
     public GameObject[] passingPoints;     //市民の通過ポイント
     private bool _passAllPoints;           //全ての通貨ポイントを通過したかどうか
     private int _pointIndex;
+    private float _lockedOnTime;
+    [SerializeField] private float RECOGNIZE_TIME = 3;
+    private bool _moveLock;               //移動を制限するためのフラグ
 
     //=====================================================================
     // 通過ポイントに関して
@@ -21,6 +24,8 @@ public class TargetController : Human
     // Start is called before the first frame update
     void Start()
     {
+        _moveLock = false;
+        _lockedOnTime = 0;
         _pointIndex = 0;
         _passAllPoints = false;
         _navmeshAgent = GetComponent<NavMeshAgent>();
@@ -34,10 +39,18 @@ public class TargetController : Human
     void Update()
     {
         MoveControl();
+
+        CheckPlayer();
     }
 
     public override void MoveControl()
     {
+        if (_moveLock)
+        {
+            StopMove();
+            return;
+        }
+
         //アニメーション関連処理
         AnimationControl(_navmeshAgent.velocity.magnitude);
 
@@ -84,5 +97,33 @@ public class TargetController : Human
             //アニメーションを止める
             _animator.SetFloat("Speed", 0);
         }
+    }
+
+    /// <summary>
+    /// プレイヤーに視点をロックされていたらカウントを開始し、プレイヤーの方向を向くようにする
+    /// </summary>
+    void CheckPlayer()
+    {
+        if (RayTest.lockon)
+        {
+            _lockedOnTime += Time.deltaTime;
+
+            if (_lockedOnTime > RECOGNIZE_TIME)
+            {
+                _moveLock = true;
+                transform.LookAt(playerInstance.gameObject.transform.position);
+                transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+                Debug.Log("プレイヤーに気づいた");
+            }
+        }
+    }
+
+    /// <summary>
+    /// 移動、アニメーション全ての処理を止める
+    /// </summary>
+    void StopMove()
+    {
+        _navmeshAgent.isStopped = true;     //移動をやめさせる
+        AnimationControl(0);                //アニメーション再生を止める
     }
 }
