@@ -20,6 +20,14 @@ public class ScreenShot : MonoBehaviour
         targetImage = GameObject.Find("RawImage");
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            ClickShootButton();
+        }
+    }
+
     private string GetScreenShotPath()
     {
         string path = "";
@@ -64,6 +72,8 @@ public class ScreenShot : MonoBehaviour
 
         Debug.Log("Done!");
         UIStateChange();
+
+        ShowSSImage();
     }
 
     Texture2D ResizeTexture(Texture2D src, int dst_w, int dst_h)
