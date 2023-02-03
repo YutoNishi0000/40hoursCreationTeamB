@@ -64,6 +64,8 @@ public class ScreenShot : MonoBehaviour
 
         Debug.Log("Done!");
         UIStateChange();
+
+        ShowSSImage();
     }
 
     Texture2D ResizeTexture(Texture2D src, int dst_w, int dst_h)
