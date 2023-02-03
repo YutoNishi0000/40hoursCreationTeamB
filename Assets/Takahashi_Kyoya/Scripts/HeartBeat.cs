@@ -14,9 +14,9 @@ public class HeartBeat : MonoBehaviour
     //~‚Ü‚éŠÔ‚ÌŒo‰ßŠÔ
     private float time;
     //Å¬‚Ì‘å‚«‚³
-    private Vector3 minSize = new Vector3(1.0f, 1.0f, 1.0f);
+    private Vector3 minSize = new Vector3(0.4f, 0.4f, 0.4f);
     //Å‘å‚Ì‘å‚«‚³
-    private Vector3 maxSize = new Vector3(2.0f, 2.0f, 2.0f);
+    private Vector3 maxSize = new Vector3(0.7f, 0.7f, 0.7f);
     private enum STATE
     {
         large,
@@ -89,8 +89,8 @@ public class HeartBeat : MonoBehaviour
     /// </summary>
     void FastBeat()
     {
-        largeSpeed = 0.01f + ((RayTest.lockonTime / 3.0f) / 100);
-        smallSpeed = 0.01f + ((RayTest.lockonTime / 3.0f) / 100);
+        largeSpeed = 0.005f + ((RayTest.lockonTime / 2.0f) / 1000);
+        smallSpeed = 0.005f + ((RayTest.lockonTime / 2.0f) / 1000);
         stopTime = 0.1f - (((RayTest.lockonTime * 5.0f) / 3.0f) / 100);
     }
 }
