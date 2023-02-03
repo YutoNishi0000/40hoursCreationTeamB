@@ -17,12 +17,12 @@ public class HertBeatController : Human
     // Update is called once per frame
     void Update()
     {
-        HeartBeatControl(playerInstance.gameObject.transform.position, playerInstance.targetCenter.transform.position);
+        HeartBeatControl();
     }
 
-    public void HeartBeatControl(Vector3 playerPos, Vector3 targetPos)
+    public void HeartBeatControl()
     {
-        if(Vector3.Distance(playerPos, targetPos) <= HERT_BEAT_DISTANCE)
+        if(RayTest.lockon)
         {
             GetComponent<HertBeatManager>().BeatUpdate();
             GetComponent<HertBeatManager>().FastBeat();

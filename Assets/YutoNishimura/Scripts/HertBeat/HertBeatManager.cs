@@ -16,6 +16,8 @@ public class HertBeatManager : MonoBehaviour
     private Vector3 minSize = new Vector3(0.4f, 0.4f, 0.4f);
     //Å‘å‚Ì‘å‚«‚³
     private Vector3 maxSize = new Vector3(0.7f, 0.7f, 0.7f);
+
+    private float LockOnTime = 0;
     private enum STATE
     {
         large,
