@@ -10,6 +10,7 @@ public class PlayerController : Human
     Vector3 targetDirection;        //ˆÚ“®‚·‚é•ûŒü‚ÌƒxƒNƒgƒ‹
     private CharacterController controller;
     [SerializeField] private float speed = 3f;
+    private PlayerStateController playerState;
 
     public GameObject cam;
     Quaternion cameraRot, characterRot;
@@ -29,23 +30,25 @@ public class PlayerController : Human
         characterRot = transform.localRotation;
         initialCamPos = cam.transform.localPosition;
         controller = GetComponent<CharacterController>();
+        playerState = GetComponent<PlayerStateController>();
     }
 
     private void Update()
     {
-        RotateControl();
+        switch (playerState.GetPlayerState())
+        {
+            case PlayerStateController.PlayerState.Move:
+                RotateControl();
+                break;
+            case PlayerStateController.PlayerState.ViewportLocked:
+                lockOnTargetObject(targetCenter);
+                break;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (RayTest.lockon)
-        {
-            lockOnTargetObject(targetCenter);
-        }
-        else
-        {
-            MoveControl();
-        }
+        MoveControl();
     }
 
     public override void MoveControl()
@@ -145,7 +148,7 @@ public class PlayerController : Human
 
     private void lockOnTargetObject(GameObject target)
     {
-        transform.LookAt(target.transform, transform.up);
+        transform.LookAt(target.transform.position);
     }
 }
 
