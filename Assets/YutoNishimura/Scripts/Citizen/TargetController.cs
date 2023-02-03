@@ -21,6 +21,7 @@ public class TargetController : Human
     //
     //EŒü‚©‚¢‚½‚¢‡”Ô‚ÉGameobject”z—ñ‚ÉGameObject‚ğ“ü‚ê‚Ä‰º‚³‚¢
     //
+    //=====================================================================
 
     // Start is called before the first frame update
     void Start()

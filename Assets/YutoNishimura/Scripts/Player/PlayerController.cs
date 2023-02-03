@@ -19,6 +19,8 @@ public class PlayerController : Human
     bool cursorLock = true;
 
     public GameObject targetCenter;
+    private float jumpSpeed = 5f;
+    private float gravity = 20f;
 
     //変数の宣言(角度の制限用)
     float minX = -40f, maxX = 40f;
@@ -66,11 +68,28 @@ public class PlayerController : Human
 
         AnimatioControl(v, h);
 
-        //進行方向から正規化されたベクトルを取得
-        moveDirection = Vector3.Scale(targetDirection, new Vector3(1, 0, 1)).normalized;
+        //地上にいる場合の処理
+        if (controller.isGrounded)
+        {
+            Debug.Log("地面についています");
+            //移動のベクトルを計算
+            moveDirection = targetDirection * speed;
 
-        //スピードを掛け合わせる
-        moveDirection *= speed;
+            //Jumpボタンでジャンプ処理
+            if (Input.GetButton("Jump"))
+            {
+                Debug.Log("ジャンプ");
+                moveDirection.y = jumpSpeed;
+            }
+        }
+        else        //空中操作の処理（重力加速度等）
+        {
+            float tempy = moveDirection.y;
+            //(↓の２文の処理があると空中でも入力方向に動けるようになる)
+            //moveDirection = Vector3.Scale(targetDirection, new Vector3(1, 0, 1)).normalized;
+            //moveDirection *= speed;
+            moveDirection.y = tempy - gravity * Time.deltaTime;
+        }
 
         //最終的な移動処理
         controller.Move(moveDirection * Time.deltaTime);

@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 3380659950580171349}
   - component: {fileID: 3380659950580171348}
   - component: {fileID: 3380659950580171339}
-  - component: {fileID: 3380659950580171350}
   - component: {fileID: 3380659950580171351}
+  - component: {fileID: 4425286338006373413}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -171,7 +171,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!143 &3380659950580171350
+--- !u!114 &3380659950580171351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380659950580171337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebcfc324d9d0f342b63b30ae7bf22b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  cam: {fileID: 3380659951560453423}
+  targetCenter: {fileID: 0}
+--- !u!143 &4425286338006373413
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,20 +204,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3380659950580171351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3380659950580171337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ebcfc324d9d0f342b63b30ae7bf22b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  cam: {fileID: 3380659951560453423}
 --- !u!1 &3380659951560453423
 GameObject:
   m_ObjectHideFlags: 0

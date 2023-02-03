@@ -21,10 +21,14 @@ public class RayTest : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, 100))
             {
-                lockonTime += Time.deltaTime;
-                if (lockonTime >= maxLockonTime)
+                //レイにヒットしたオブジェクトがターゲットならば
+                if (hit.collider.gameObject.CompareTag("Target"))
                 {
-                    lockon = true;
+                    lockonTime += Time.deltaTime;
+                    if (lockonTime >= maxLockonTime)
+                    {
+                        lockon = true;
+                    }
                 }
             }
             else
