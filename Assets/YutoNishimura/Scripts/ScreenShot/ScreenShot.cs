@@ -20,6 +20,14 @@ public class ScreenShot : MonoBehaviour
         targetImage = GameObject.Find("RawImage");
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            ClickShootButton();
+        }
+    }
+
     private string GetScreenShotPath()
     {
         string path = "";
