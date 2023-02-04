@@ -5,27 +5,47 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
-public class ScreenShot : MonoBehaviour
+public class ScreenShot : Human
 {
     Camera cam;
     GameObject canvas;
     GameObject targetImage;
     string screenShotPath;
     string timeStamp;
+    public RawImage preview;
+
+    [SerializeField]
+    private Image _image = null;
+
+    private PlayerStateController playerState;
+    private ChangeCameraAngle _changeCamera;
 
     void Awake()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas = GameObject.Find("Canvas");
         targetImage = GameObject.Find("RawImage");
+        preview.enabled = false;
+        _image.enabled = false;
+        playerState = FindObjectOfType<PlayerStateController>();
+        _changeCamera= FindObjectOfType<ChangeCameraAngle>();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && playerState.GetPlayerState() == PlayerStateController.PlayerState.Voyeurism)
         {
             ClickShootButton();
+            FadeIn(0.5f);
+            preview.enabled = true;
+            Invoke(nameof(OffPreview), 1f);
         }
+    }
+
+    void OffPreview()
+    {
+        preview.enabled = false;
+        _changeCamera.ExitVoyeurism();
     }
 
     private string GetScreenShotPath()
@@ -111,5 +131,59 @@ public class ScreenShot : MonoBehaviour
             RawImage target = targetImage.GetComponent<RawImage>();
             target.texture = tex;
         }
+    }
+
+    /// <summary>
+    /// 規定値に戻す
+    /// </summary>
+    private void Reset()
+    {
+        _image = GetComponent<Image>();
+    }
+
+    /// <summary>
+    /// フェードインする
+    /// </summary>
+    public void FadeIn(float duration, Action on_completed = null)
+    {
+        _image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, on_completed, true));
+    }
+
+    /// <summary>
+    /// フェードアウトする
+    /// </summary>
+    public void FadeOut(float duration, Action on_completed = null)
+    {
+        _image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, on_completed));
+    }
+
+    /// <summary>
+    /// 時間経過でアルファ値を「0」から「1」に変更
+    /// </summary>
+    private IEnumerator ChangeAlphaValueFrom0To1OverTime(
+        float duration,
+        Action on_completed,
+        bool is_reversing = false
+    )
+    {
+        if (!is_reversing) _image.enabled = true;
+
+        var elapsed_time = 0.0f;
+        var color = _image.color;
+
+        while (elapsed_time < duration)
+        {
+            var elapsed_rate = Mathf.Min(elapsed_time / duration, 1.0f);
+            color.a = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
+            _image.color = color;
+
+            yield return null;
+            elapsed_time += Time.deltaTime;
+        }
+
+        if (is_reversing) _image.enabled = false;
+        if (on_completed != null) on_completed();
     }
 }
