@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using DG.Tweening;
 
 public class ScreenShot : Human
 {
@@ -20,6 +21,11 @@ public class ScreenShot : Human
     private PlayerStateController playerState;
     private ChangeCameraAngle _changeCamera;
 
+    public Image prevPos;
+    public Image prevPos2;
+    public Vector3 InitialPrevPos;
+    public Vector3 InitialPrevscale;
+
     void Awake()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -29,6 +35,8 @@ public class ScreenShot : Human
         _image.enabled = false;
         playerState = FindObjectOfType<PlayerStateController>();
         _changeCamera= FindObjectOfType<ChangeCameraAngle>();
+        InitialPrevPos = preview.rectTransform.position;
+        InitialPrevscale = preview.rectTransform.localScale;
     }
 
     private void Update()
@@ -36,16 +44,32 @@ public class ScreenShot : Human
         if (Input.GetKeyDown(KeyCode.LeftShift) && playerState.GetPlayerState() == PlayerStateController.PlayerState.Voyeurism)
         {
             ClickShootButton();
-            FadeIn(0.5f);
+            FadeIn(0.5f, _image);
             preview.enabled = true;
-            Invoke(nameof(OffPreview), 1f);
+            Invoke(nameof(MovePreview), 1f);
         }
     }
 
     void OffPreview()
     {
+        //FadeIn(0.5f, preview);
         preview.enabled = false;
+        preview.rectTransform.position = InitialPrevPos;
+        preview.rectTransform.localScale = InitialPrevscale;
+    }
+
+    void MovePreview()
+    {
         _changeCamera.ExitVoyeurism();
+        preview.rectTransform.DOScale(transform.localScale / 3, 0.5f);
+        preview.rectTransform.DOMove(prevPos.rectTransform.position, 0.5f);
+        Invoke(nameof(SlideMovePreview), 1f);
+    }
+
+    void SlideMovePreview()
+    {
+        preview.transform.DOMoveX(prevPos2.rectTransform.position.x, 0.3f);
+        Invoke(nameof(OffPreview), 0.3f);
     }
 
     private string GetScreenShotPath()
@@ -142,21 +166,39 @@ public class ScreenShot : Human
     }
 
     /// <summary>
+    /// フェードインする(オーバーロード関数)
+    /// </summary>
+    public void FadeIn(float duration, RawImage image, Action on_completed = null)
+    {
+        image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed, true));
+    }
+
+    /// <summary>
     /// フェードインする
     /// </summary>
-    public void FadeIn(float duration, Action on_completed = null)
+    public void FadeIn(float duration, Image image, Action on_completed = null)
     {
-        _image.enabled = true;
-        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, on_completed, true));
+        image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed, true));
     }
 
     /// <summary>
     /// フェードアウトする
     /// </summary>
-    public void FadeOut(float duration, Action on_completed = null)
+    public void FadeOut(float duration, Image image, Action on_completed = null)
     {
-        _image.enabled = true;
-        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, on_completed));
+        image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed));
+    }
+
+    /// <summary>
+    /// フェードアウトする(オーバーロード関数)
+    /// </summary>
+    public void FadeOut(float duration, RawImage image, Action on_completed = null)
+    {
+        image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed));
     }
 
     /// <summary>
@@ -164,26 +206,56 @@ public class ScreenShot : Human
     /// </summary>
     private IEnumerator ChangeAlphaValueFrom0To1OverTime(
         float duration,
+        Image image,
         Action on_completed,
         bool is_reversing = false
     )
     {
-        if (!is_reversing) _image.enabled = true;
+        if (!is_reversing) image.enabled = true;
 
         var elapsed_time = 0.0f;
-        var color = _image.color;
+        var color = image.color;
 
         while (elapsed_time < duration)
         {
             var elapsed_rate = Mathf.Min(elapsed_time / duration, 1.0f);
             color.a = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
-            _image.color = color;
+            image.color = color;
 
             yield return null;
             elapsed_time += Time.deltaTime;
         }
 
-        if (is_reversing) _image.enabled = false;
+        if (is_reversing) image.enabled = false;
+        if (on_completed != null) on_completed();
+    }
+
+    /// <summary>
+    /// 時間経過でアルファ値を「0」から「1」に変更(オーバーロード関数)
+    /// </summary>
+    private IEnumerator ChangeAlphaValueFrom0To1OverTime(
+        float duration,
+        RawImage image,
+        Action on_completed,
+        bool is_reversing = false
+    )
+    {
+        if (!is_reversing) image.enabled = true;
+
+        var elapsed_time = 0.0f;
+        var color = image.color;
+
+        while (elapsed_time < duration)
+        {
+            var elapsed_rate = Mathf.Min(elapsed_time / duration, 1.0f);
+            color.a = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
+            image.color = color;
+
+            yield return null;
+            elapsed_time += Time.deltaTime;
+        }
+
+        if (is_reversing) image.enabled = false;
         if (on_completed != null) on_completed();
     }
 }
