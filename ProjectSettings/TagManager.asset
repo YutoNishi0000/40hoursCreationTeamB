@@ -6,7 +6,13 @@ TagManager:
   tags:
   - Ground
   - Target
+<<<<<<< Updated upstream
   - ShutterPoint
+=======
+  - Event
+  - ShutterPoint
+  - ShutterChanceArea
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
