@@ -17,10 +17,16 @@ public class Message : MonoBehaviour
 
     List<MessageData> meslist = new List<MessageData>()
     {
+        //day1
         new MessageData{ massage = "うぅ...", color = Color.magenta },
         new MessageData{ massage = "早く”あの人”を見つけなくちゃ…", color = Color.magenta },
         new MessageData{ massage = "でも気づかれないようにしないと…", color = Color.magenta },
         new MessageData{ massage = "だって私は…", color = Color.magenta },
+        //day2
+        new MessageData{ massage = "今日もまず”あの人”を見つけるところから始めなきゃ…", color = Color.magenta },
+        new MessageData{ massage = "あの人はどこに向かってるのかな…？", color = Color.magenta },
+        new MessageData{ massage = "「お店から出てきたところ」を激写しちゃおう！", color = Color.magenta },
+        new MessageData{ massage = "隠れながら写真を撮れる場所あるかな…", color = Color.magenta },
     };
 
     private void Update()
