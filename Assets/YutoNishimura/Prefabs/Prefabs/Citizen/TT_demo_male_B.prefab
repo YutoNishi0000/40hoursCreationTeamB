@@ -282,7 +282,6 @@ GameObject:
   - component: {fileID: 2609622049369180330}
   - component: {fileID: 4858995573611448610}
   - component: {fileID: 4858995573611448607}
-  - component: {fileID: 2006376807637385821}
   - component: {fileID: 4981951370293593660}
   m_Layer: 0
   m_Name: TT_demo_male_B
@@ -366,21 +365,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2006376807637385821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2609622049361771148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e364ed868f084f54d9ab2b181c86de1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RECOGNIZE_DISTANCE: 10
-  timerText: {fileID: 0}
-  time: 0
 --- !u!136 &4981951370293593660
 CapsuleCollider:
   m_ObjectHideFlags: 0
