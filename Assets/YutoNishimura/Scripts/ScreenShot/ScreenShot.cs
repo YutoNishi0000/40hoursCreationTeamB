@@ -25,6 +25,8 @@ public class ScreenShot : Human
     public Image prevPos2;
     public Vector3 InitialPrevPos;
     public Vector3 InitialPrevscale;
+    public Text SucceededShutter;
+    public Text FailedShutter;
 
     void Awake()
     {
@@ -33,6 +35,8 @@ public class ScreenShot : Human
         targetImage = GameObject.Find("RawImage");
         preview.enabled = false;
         _image.enabled = false;
+        SucceededShutter.enabled = false;
+        FailedShutter.enabled = false;
         playerState = FindObjectOfType<PlayerStateController>();
         _changeCamera= FindObjectOfType<ChangeCameraAngle>();
         InitialPrevPos = preview.rectTransform.position;
@@ -43,19 +47,20 @@ public class ScreenShot : Human
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && playerState.GetPlayerState() == PlayerStateController.PlayerState.Voyeurism)
         {
+            if (ShutterChanceController._shutterChance)
+            {
+                StartCoroutine(nameof(HiddonText), SucceededShutter);
+            }
+            else
+            {
+                StartCoroutine(nameof(HiddonText), FailedShutter);
+            }
+
             ClickShootButton();
             FadeIn(0.5f, _image);
             preview.enabled = true;
             Invoke(nameof(MovePreview), 1f);
         }
-    }
-
-    void OffPreview()
-    {
-        //FadeIn(0.5f, preview);
-        preview.enabled = false;
-        preview.rectTransform.position = InitialPrevPos;
-        preview.rectTransform.localScale = InitialPrevscale;
     }
 
     void MovePreview()
@@ -70,6 +75,28 @@ public class ScreenShot : Human
     {
         preview.transform.DOMoveX(prevPos2.rectTransform.position.x, 0.3f);
         Invoke(nameof(OffPreview), 0.3f);
+    }
+
+    /// <summary>
+    /// テキストを非表示にします
+    /// </summary>
+    /// <param name="text">非表示にしたいテキスト</param>
+    /// <param name="timne">何秒後に非表示にするか</param>
+    IEnumerator HiddonText(Text text)
+    {
+        text.enabled = true;
+
+        yield return new WaitForSeconds(2);
+
+        text.enabled = false;
+     }
+
+    void OffPreview()
+    {
+        //FadeIn(0.5f, preview);
+        preview.enabled = false;
+        preview.rectTransform.position = InitialPrevPos;
+        preview.rectTransform.localScale = InitialPrevscale;
     }
 
     private string GetScreenShotPath()
