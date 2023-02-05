@@ -24,7 +24,7 @@ public class PlayerStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(RayTest.lockon)
+        if(RaycastController.Lockon)
         {
             SetPlayerState(PlayerState.ViewportLocked);
         }

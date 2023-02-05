@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class HandkerchiefEventController : MonoBehaviour
 {
+    private FrontSidePlayerChecker _frontChecker;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _frontChecker = GetComponent<FrontSidePlayerChecker>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(_frontChecker.CheckPlayerFront())
+        {
+            _frontChecker.CountTimer();
+        }
+        else
+        {
+            _frontChecker.OffTimer();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,5 +42,6 @@ public class HandkerchiefEventController : MonoBehaviour
         //
         //=================================================================================================
         //=================================================================================================
+        Debug.Log("ハンカチイベント発生");
     }
 }
