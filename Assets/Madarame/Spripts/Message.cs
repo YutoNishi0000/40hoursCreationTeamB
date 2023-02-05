@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System;
 
 public class MessageData
 {
@@ -11,42 +13,71 @@ public class MessageData
 public class Message : MonoBehaviour
 {
     public Text messageText;
-    public GameObject Panel;
+    private GameObject Panel;
     private int count = 0;
+    int DayNumber = 0;
+    List<MessageData> TodayMes = null;
     [SerializeField] private Text text;
+    [SerializeField] string DebugDayNumber = "何日目のメッセージを表示しますか？";
 
-    List<MessageData> meslist = new List<MessageData>()
+    static List<List<MessageData>> list = new List<List<MessageData>>()
     {
-        //day1
-        new MessageData{ massage = "うぅ...", color = Color.magenta },
-        new MessageData{ massage = "早く”あの人”を見つけなくちゃ…", color = Color.magenta },
-        new MessageData{ massage = "でも気づかれないようにしないと…", color = Color.magenta },
-        new MessageData{ massage = "だって私は…", color = Color.magenta },
-        //day2
-        new MessageData{ massage = "今日もまず”あの人”を見つけるところから始めなきゃ…", color = Color.magenta },
-        new MessageData{ massage = "あの人はどこに向かってるのかな…？", color = Color.magenta },
-        new MessageData{ massage = "「お店から出てきたところ」を激写しちゃおう！", color = Color.magenta },
-        new MessageData{ massage = "隠れながら写真を撮れる場所あるかな…", color = Color.magenta },
+        Scenario.meslist_day1,
+        Scenario.meslist_day2,
+        Scenario.meslist_day3,
     };
 
+    private void Start()
+    {
+        Panel = transform.GetChild(0).gameObject;
+        DayNumber = GetDayNamber();
+#if UNITY_EDITOR
+        TodayMes = GetMesList(int.Parse(DebugDayNumber));
+#else
+        TodayMes = GetMesList(DayNumber);
+#endif
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+        if (!Input.GetKeyDown(KeyCode.Space))
         {
-            if(meslist.Count > count)
+            //Debug.Log("押されてない");
+            return;
+        }
+
+        if (TodayMes.Count > count)
+        {
+            if (GetMes(count).massage == "#")
             {
-                SetMes(count);
                 count++;
+                Panel.SetActive(false);
+                return;
             }
-            else
-            {
-                gameObject.SetActive(false);
-            }
+            SetMes(count);
+            count++;
+        }
+        else
+        {
+            Panel.SetActive(false);
         }
     }
     public void SetMes(int num)
     {
-        text.text = meslist[num].massage;
-        text.color = meslist[num].color;
+        text.text = GetMes(num).massage;
+        text.color = GetMes(num).color;
+    }
+    private MessageData GetMes(int num)
+    {
+        return TodayMes[num];
+    }
+    private List<MessageData> GetMesList(int DayNumber)
+    {
+        return list[DayNumber - 1];
+    }
+    private int GetDayNamber()
+    {
+        string ActiveScene = SceneManager.GetActiveScene().name;
+        return Convert.ToInt32(ActiveScene[3]);
     }
 }
