@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //今日のタスクの処理してるオブジェクトとスクリプト
+    GameObject task;
+    TodayTask todayTask;
+    private void Start()
     {
-        
+        task = GameObject.Find("TodayTask");
+        todayTask = task.GetComponent<TodayTask>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //ゲーム終わるときの判定
 }
