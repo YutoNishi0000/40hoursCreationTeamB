@@ -4,28 +4,99 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using DG.Tweening;
 
-public class ScreenShot : MonoBehaviour
+public class ScreenShot : Human
 {
     Camera cam;
     GameObject canvas;
     GameObject targetImage;
     string screenShotPath;
     string timeStamp;
+    public RawImage preview;
+
+    [SerializeField]
+    private Image _image = null;
+
+    private PlayerStateController playerState;
+    private ChangeCameraAngle _changeCamera;
+
+    public Image prevPos;
+    public Image prevPos2;
+    public Vector3 InitialPrevPos;
+    public Vector3 InitialPrevscale;
+    public Text SucceededShutter;
+    public Text FailedShutter;
 
     void Awake()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas = GameObject.Find("Canvas");
         targetImage = GameObject.Find("RawImage");
+        preview.enabled = false;
+        _image.enabled = false;
+        SucceededShutter.enabled = false;
+        FailedShutter.enabled = false;
+        playerState = FindObjectOfType<PlayerStateController>();
+        _changeCamera= FindObjectOfType<ChangeCameraAngle>();
+        InitialPrevPos = preview.rectTransform.position;
+        InitialPrevscale = preview.rectTransform.localScale;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && playerState.GetPlayerState() == PlayerStateController.PlayerState.Voyeurism)
         {
+            if (ShutterChanceController._shutterChance)
+            {
+                StartCoroutine(nameof(HiddonText), SucceededShutter);
+            }
+            else
+            {
+                StartCoroutine(nameof(HiddonText), FailedShutter);
+            }
+
             ClickShootButton();
+            FadeIn(0.5f, _image);
+            preview.enabled = true;
+            Invoke(nameof(MovePreview), 1f);
         }
+    }
+
+    void MovePreview()
+    {
+        _changeCamera.ExitVoyeurism();
+        preview.rectTransform.DOScale(transform.localScale / 3, 0.5f);
+        preview.rectTransform.DOMove(prevPos.rectTransform.position, 0.5f);
+        Invoke(nameof(SlideMovePreview), 1f);
+    }
+
+    void SlideMovePreview()
+    {
+        preview.transform.DOMoveX(prevPos2.rectTransform.position.x, 0.3f);
+        Invoke(nameof(OffPreview), 0.3f);
+    }
+
+    /// <summary>
+    /// テキストを非表示にします
+    /// </summary>
+    /// <param name="text">非表示にしたいテキスト</param>
+    /// <param name="timne">何秒後に非表示にするか</param>
+    IEnumerator HiddonText(Text text)
+    {
+        text.enabled = true;
+
+        yield return new WaitForSeconds(2);
+
+        text.enabled = false;
+     }
+
+    void OffPreview()
+    {
+        //FadeIn(0.5f, preview);
+        preview.enabled = false;
+        preview.rectTransform.position = InitialPrevPos;
+        preview.rectTransform.localScale = InitialPrevscale;
     }
 
     private string GetScreenShotPath()
@@ -111,5 +182,107 @@ public class ScreenShot : MonoBehaviour
             RawImage target = targetImage.GetComponent<RawImage>();
             target.texture = tex;
         }
+    }
+
+    /// <summary>
+    /// 規定値に戻す
+    /// </summary>
+    private void Reset()
+    {
+        _image = GetComponent<Image>();
+    }
+
+    /// <summary>
+    /// フェードインする(オーバーロード関数)
+    /// </summary>
+    public void FadeIn(float duration, RawImage image, Action on_completed = null)
+    {
+        image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed, true));
+    }
+
+    /// <summary>
+    /// フェードインする
+    /// </summary>
+    public void FadeIn(float duration, Image image, Action on_completed = null)
+    {
+        image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed, true));
+    }
+
+    /// <summary>
+    /// フェードアウトする
+    /// </summary>
+    public void FadeOut(float duration, Image image, Action on_completed = null)
+    {
+        image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed));
+    }
+
+    /// <summary>
+    /// フェードアウトする(オーバーロード関数)
+    /// </summary>
+    public void FadeOut(float duration, RawImage image, Action on_completed = null)
+    {
+        image.enabled = true;
+        StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed));
+    }
+
+    /// <summary>
+    /// 時間経過でアルファ値を「0」から「1」に変更
+    /// </summary>
+    private IEnumerator ChangeAlphaValueFrom0To1OverTime(
+        float duration,
+        Image image,
+        Action on_completed,
+        bool is_reversing = false
+    )
+    {
+        if (!is_reversing) image.enabled = true;
+
+        var elapsed_time = 0.0f;
+        var color = image.color;
+
+        while (elapsed_time < duration)
+        {
+            var elapsed_rate = Mathf.Min(elapsed_time / duration, 1.0f);
+            color.a = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
+            image.color = color;
+
+            yield return null;
+            elapsed_time += Time.deltaTime;
+        }
+
+        if (is_reversing) image.enabled = false;
+        if (on_completed != null) on_completed();
+    }
+
+    /// <summary>
+    /// 時間経過でアルファ値を「0」から「1」に変更(オーバーロード関数)
+    /// </summary>
+    private IEnumerator ChangeAlphaValueFrom0To1OverTime(
+        float duration,
+        RawImage image,
+        Action on_completed,
+        bool is_reversing = false
+    )
+    {
+        if (!is_reversing) image.enabled = true;
+
+        var elapsed_time = 0.0f;
+        var color = image.color;
+
+        while (elapsed_time < duration)
+        {
+            var elapsed_rate = Mathf.Min(elapsed_time / duration, 1.0f);
+            color.a = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
+            image.color = color;
+
+            yield return null;
+            elapsed_time += Time.deltaTime;
+        }
+
+        if (is_reversing) image.enabled = false;
+        if (on_completed != null) on_completed();
     }
 }

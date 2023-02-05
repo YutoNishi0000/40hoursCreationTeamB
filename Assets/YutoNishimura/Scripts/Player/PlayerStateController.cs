@@ -9,6 +9,7 @@ public class PlayerStateController : MonoBehaviour
     {
         Move,                    //ˆÚ“®ó‘Ô
         ViewportLocked,          //‹“_‚ªŒÅ’è‚³‚ê‚Ä‚¢‚éó‘Ô
+        Voyeurism                //“Bó‘Ô
     }
 
     private PlayerState playerState;
@@ -26,6 +27,10 @@ public class PlayerStateController : MonoBehaviour
         if(RayTest.lockon)
         {
             SetPlayerState(PlayerState.ViewportLocked);
+        }
+        else if(ChangeCameraAngle._voyeurism)
+        {
+            SetPlayerState(PlayerState.Voyeurism);
         }
         else
         {

@@ -10,13 +10,14 @@ public class PlayerController : Human
     Vector3 targetDirection;        //移動する方向のベクトル
     private CharacterController controller;
     [SerializeField] private float speed = 3f;
-    private PlayerStateController playerState;
+    public PlayerStateController playerState;
 
     public GameObject cam;
     Quaternion cameraRot, characterRot;
     float Xsensityvity = 3f, Ysensityvity = 3f;
 
     bool cursorLock = true;
+    public bool _moveLock;                           //行動を制限するかどうか
 
     public GameObject targetCenter;
     private float jumpSpeed = 5f;
@@ -37,6 +38,8 @@ public class PlayerController : Human
 
     private void Update()
     {
+        MoveLock();
+
         switch (playerState.GetPlayerState())
         {
             case PlayerStateController.PlayerState.Move:
@@ -55,6 +58,11 @@ public class PlayerController : Human
 
     public override void MoveControl()
     {
+        if(_moveLock)
+        {
+            return;
+        }
+
         //キーボード入力を取得
         float v = Input.GetAxisRaw("Vertical");         //InputManagerの↑↓の入力       
         float h = Input.GetAxisRaw("Horizontal");       //InputManagerの←→の入力 
@@ -168,6 +176,14 @@ public class PlayerController : Human
     private void lockOnTargetObject(GameObject target)
     {
         transform.LookAt(target.transform.position);
+    }
+
+    void MoveLock()
+    {
+        if(_moveLock)
+        {
+            return;
+        }
     }
 }
 

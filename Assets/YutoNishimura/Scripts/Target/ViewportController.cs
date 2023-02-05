@@ -8,9 +8,11 @@ public class ViewportController : Human
     [SerializeField] private float RECOGNIZE_DISTANCE = 10;       //プレイヤーを認識できる距離
     [SerializeField] private Text timerText;
     [SerializeField] private float time;
+    private bool _isRecognize;                                    //プレイヤーを認識しているかどうか
 
     private void Start()
     {
+        _isRecognize = false;
         timerText.enabled = false;
         time = 0;
     }
@@ -26,7 +28,7 @@ public class ViewportController : Human
         Vector3 targetToCameraDirection_N = (transform.position - playerInstance.gameObject.transform.position).normalized;
 
         //正規化したベクトルの内積が一定以下なら見たことにする
-        if (Vector3.Dot(targetToCameraDirection_N, transform.forward.normalized) < -0.5 && Vector3.Distance(transform.position, playerInstance.gameObject.transform.position) <= RECOGNIZE_DISTANCE)
+        if (_isRecognize)
         {
             print("見た！");
 
@@ -38,6 +40,22 @@ public class ViewportController : Human
         else
         {
             OffTimer();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            _isRecognize = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            _isRecognize = false;
         }
     }
 
