@@ -22,7 +22,7 @@ public class HertBeatController : Human
 
     public void HeartBeatControl()
     {
-        if(RayTest.lockon)
+        if(RaycastController.BeatHeart)
         {
             GetComponent<HertBeatManager>().BeatUpdate();
             GetComponent<HertBeatManager>().FastBeat();

@@ -106,7 +106,7 @@ public class TargetController : Human
     /// </summary>
     void CheckPlayer()
     {
-        if (RayTest.lockon)
+        if (RaycastController.Lockon)
         {
             _lockedOnTime += Time.deltaTime;
 

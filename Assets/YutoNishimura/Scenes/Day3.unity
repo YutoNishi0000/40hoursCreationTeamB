@@ -41008,9 +41008,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2928369858869889516, guid: 690a76803d82962499426e47e646a7e5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3163194472465746092, guid: 690a76803d82962499426e47e646a7e5, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163194472465746092, guid: 690a76803d82962499426e47e646a7e5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3163194472465746096, guid: 690a76803d82962499426e47e646a7e5, type: 3}
       propertyPath: m_RootOrder
@@ -41060,6 +41068,10 @@ PrefabInstance:
       propertyPath: targetCenter
       value: 
       objectReference: {fileID: 8032692297868402684}
+    - target: {fileID: 3163194473380456394, guid: 690a76803d82962499426e47e646a7e5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 690a76803d82962499426e47e646a7e5, type: 3}
 --- !u!114 &1748494927430849672 stripped
