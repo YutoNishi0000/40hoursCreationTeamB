@@ -12,6 +12,7 @@ static public class Scenario
         new MessageData{ massage = "早く“あの人”を見つけなくちゃ…", color = Color.magenta },
         new MessageData{ massage = "でも気づかれないようにしないと…", color = Color.magenta },
         new MessageData{ massage = "だって私は…", color = Color.magenta },
+        new MessageData{ massage = "#", color = Color.magenta },
     };
     // day2
     static public readonly List<MessageData> meslist_day2 = new List<MessageData>()
@@ -21,6 +22,7 @@ static public class Scenario
         new MessageData{ massage = "あの人はどこに向かってるのかな…？", color = Color.magenta },
         new MessageData{ massage = "「お店から出てきたところ」を激写しちゃおう！", color = Color.magenta },
         new MessageData{ massage = "隠れながら写真を撮れる場所あるかな…", color = Color.magenta },
+        new MessageData{ massage = "#", color = Color.magenta },
     };
     // day3
     static public readonly List<MessageData> meslist_day3 = new List<MessageData>()
