@@ -97,7 +97,7 @@ public class Message : MonoBehaviour
     private int GetDayNamber()
     {
         // GameManagerから現在のDay番号（0-4）を取得
-        return EventManager.DATE;
+        return GameManager.Instance.GetDate();
     }
    
     // デバッグ用
