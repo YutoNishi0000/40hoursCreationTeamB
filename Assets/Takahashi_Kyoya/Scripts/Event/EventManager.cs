@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+    //プレイヤーオブジェクト
+    GameObject player = null;
+    //ターゲットオブジェクト
+    GameObject target = null;
+
     //インゲームイベントの種類
     public enum EVENTTYPE
     {
@@ -21,6 +26,9 @@ public class EventManager : MonoBehaviour
     {
         task = GameObject.Find("TodayTask");
         todayTask = task.GetComponent<TodayTask>();
+        player = GameObject.FindWithTag("Player");
+        target = GameObject.FindWithTag("Target");
+        eventType = EVENTTYPE.handkerchief;
     }
     private void Update()
     {
@@ -32,6 +40,7 @@ public class EventManager : MonoBehaviour
             case EVENTTYPE.fled:
                 break;
             case EVENTTYPE.handkerchief:
+                HandkerchiefEvent();
                 break;
             case EVENTTYPE.negotiation:
                 break;
@@ -42,6 +51,6 @@ public class EventManager : MonoBehaviour
     /// </summary>
     void HandkerchiefEvent()
     {
-
+        target.transform.LookAt(player.transform.position);
     }
 }
