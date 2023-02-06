@@ -19,7 +19,7 @@ public class ChangeCameraAngle : Human
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.Q))
         {
             subCamera.enabled = false;
             mainCamera.enabled = true;
