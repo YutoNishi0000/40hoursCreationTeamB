@@ -19,7 +19,13 @@ public class ChangeCameraAngle : Human
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.E))
+        {
+            subCamera.enabled = false;
+            mainCamera.enabled = true;
+            playerInstance._moveLock = false;
+            UIController._talkStart = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +38,13 @@ public class ChangeCameraAngle : Human
             subCamera.enabled = true;
             mainCamera.enabled = false;
             Debug.Log("ìêéBÉÇÅ[ÉhÇÕÇ¢ÇËÇ‹ÇµÇΩ");
+        }
+        if (other.gameObject.CompareTag("Handkerchief"))
+        {
+            playerInstance._moveLock = true;
+            subCamera = other.GetComponentInChildren<Camera>();
+            subCamera.enabled = true;
+            mainCamera.enabled = false;
         }
     }
 
