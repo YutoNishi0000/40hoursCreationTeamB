@@ -32,14 +32,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             FadeManager.Instance.LoadScene(gameOverScene, 1.0f);
         }
     }
+
     /// <summary>
-    /// ゲームスタート
+    /// アウトゲームのシーン切り替え
     /// </summary>
-    public void GameStart(string name)
+    public void OutGameNextScene(string name)
     {
         FadeManager.Instance.LoadScene(name, 1.0f);
     }
-    //ゲッター
+    //===== ゲッター =====
     public int GetDate()
     {
         return Date;
@@ -48,7 +49,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         return CanNextDay;
     }
-    //セッター
+    //===== セッター =====
     public void SetDate(int i)
     {
         Date = i;
