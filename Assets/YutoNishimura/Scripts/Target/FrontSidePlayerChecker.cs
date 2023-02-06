@@ -9,11 +9,15 @@ public class FrontSidePlayerChecker : Human
     [SerializeField] private Text timerText;
     [SerializeField] private float time;
     [SerializeField] private float RECOGNIZE_PLAYER_TIME = 3f;          //ターゲットがプレイヤーを認識するまでの時間
+    private TargetController targetController;
+    private bool _isEscape;                                       //今逃走中かどうか
 
     private void Start()
     {
+        _isEscape = false;
         timerText.enabled = false;
         time = 0;
+        targetController = GetComponent<TargetController>();
     }
 
     //前方を
@@ -59,6 +63,19 @@ public class FrontSidePlayerChecker : Human
         //====================================================================
         //====================================================================
 
+        if (!_isEscape)
+        {
+            targetController.SettargetState(TargetController.TargetState.LookPlayer);
+        }
+
+        Invoke(nameof(SetTargetStateEscape), 2);
+
         Debug.Log("逃走イベント発生！");
+    }
+
+    void SetTargetStateEscape()
+    {
+        _isEscape = true;
+        targetController.SettargetState(TargetController.TargetState.Escape);
     }
 }
