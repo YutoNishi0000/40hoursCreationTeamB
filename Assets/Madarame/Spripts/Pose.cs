@@ -31,8 +31,6 @@ public class Pose : MonoBehaviour
     }
     public void ClickCalled()
     {
-        GameManager.Instance.
-        //SceneManager.GetInstance().LoadScene("Title_Madarame", 2.0f);
-        //SceneManager.GetInstance().ChangeBGM(2.0f, BGMType.Title, true);
+        GameManager.Instance.OutGameNextScene("Title");
     }
 }
