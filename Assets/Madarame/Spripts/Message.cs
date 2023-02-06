@@ -14,7 +14,7 @@ public class Message : MonoBehaviour
 {
     public Text messageText;
     private GameObject Panel;   // UIを表示/非表示させる
-    private GameObject Player;   // プレイヤーのアクティブをtrue/falseさせる
+    //private GameObject Player;   // プレイヤーのアクティブをtrue/falseさせる
     public int count = 0;       // デバッグのためpublic
     public int DayNumber = 0;   // デバッグのためpublic
     List<MessageData> TodayMes = null;
