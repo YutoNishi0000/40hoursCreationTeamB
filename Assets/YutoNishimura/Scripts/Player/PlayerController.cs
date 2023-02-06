@@ -38,7 +38,10 @@ public class PlayerController : Human
 
     private void Update()
     {
-        MoveLock();
+        if (_moveLock || !Message.PlayerMoveFlag)
+        {
+            return;
+        }
 
         switch (playerState.GetPlayerState())
         {
@@ -58,7 +61,7 @@ public class PlayerController : Human
 
     public override void MoveControl()
     {
-        if(_moveLock)
+        if(_moveLock || !Message.PlayerMoveFlag)
         {
             return;
         }
@@ -176,14 +179,6 @@ public class PlayerController : Human
     private void lockOnTargetObject(GameObject target)
     {
         transform.LookAt(target.transform.position);
-    }
-
-    void MoveLock()
-    {
-        if(_moveLock)
-        {
-            return;
-        }
     }
 }
 
