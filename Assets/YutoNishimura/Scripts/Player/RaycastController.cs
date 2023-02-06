@@ -34,7 +34,7 @@ public class RaycastController : MonoBehaviour
 
                     //=============================================================================
                     //
-                    if (GameManager.Instance.GetDate() != 1)
+                    if (GameManager.Instance.GetDate() != 0)
                     {
                         return;
                     }
