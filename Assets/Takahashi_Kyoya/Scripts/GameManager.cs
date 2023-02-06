@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     //ゲームオーバーシーン
     private string gameOverScene = "GameOver";
-    
+    //今日の日付
+    public static int DATE = 0;
 
     /// <summary>
     /// 次の日に行く
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     {
         if (canNextDay)
         {
+            DATE++;
             FadeManager.Instance.LoadScene(sceneName, 1.0f);
         }
         else
