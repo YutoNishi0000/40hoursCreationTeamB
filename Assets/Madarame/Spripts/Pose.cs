@@ -7,7 +7,6 @@ public class Pose : MonoBehaviour
     [SerializeField] GameObject PoseCanvas;
     [SerializeField] GameObject Player;
     bool isPoseing = false;
-
     public bool GetIsPoseing() { return isPoseing; }
 
     private void Update()
@@ -16,20 +15,13 @@ public class Pose : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Tab) && !PoseCanvas.activeSelf)
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
-            PoseCanvas.SetActive(true);
-            //Player.SetActive(false);
-            Message.PlayerMoveFlag = false;
-            isPoseing = true;
+            PoseCanvas.SetActive(isPoseing);
+            //Player.SetActive(true);
+            Message.PlayerMoveFlag = true;
+            isPoseing = !isPoseing;
         }
-    }
-    public void OnClick()
-    {
-        PoseCanvas.SetActive(false);
-        //Player.SetActive(true);
-        Message.PlayerMoveFlag = true;
-        isPoseing = false;
     }
     public void ClickCalled()
     {
