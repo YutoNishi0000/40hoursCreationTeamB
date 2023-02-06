@@ -21,6 +21,9 @@ public class Message : MonoBehaviour
     [SerializeField] private Text text;
     [SerializeField] string DebugDayNumber = "何日目のメッセージを表示しますか？";
 
+    // テキストイベント中か
+    public static bool TextEventFlag = false;
+
     // テキストイベント時false
     public static bool PlayerMoveFlag = false;
 
@@ -49,7 +52,6 @@ public class Message : MonoBehaviour
 
     private void Update()
     {
-
         if (!Input.GetKeyDown(KeyCode.E))
         {
             //Debug.Log("押されてない");
@@ -61,7 +63,9 @@ public class Message : MonoBehaviour
             if (GetMes(count).massage == "#")
             {
                 count++;
-                Panel.SetActive(false);
+                TextEventFlag = false;
+                Panel.SetActive(TextEventFlag);
+                
                 //プレイヤーの移動が可能
                 PlayerMoveFlag = true;
                 return;
@@ -71,7 +75,8 @@ public class Message : MonoBehaviour
         }
         else
         {
-            Panel.SetActive(false);
+            TextEventFlag = false;
+            Panel.SetActive(TextEventFlag);
         }
     }
 

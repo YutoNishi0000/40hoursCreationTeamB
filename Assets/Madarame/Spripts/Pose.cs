@@ -19,7 +19,7 @@ public class Pose : MonoBehaviour
         {
             PoseCanvas.SetActive(isPoseing);
             //Player.SetActive(true);
-            Message.PlayerMoveFlag = true;
+            Message.PlayerMoveFlag = !Message.PlayerMoveFlag;
             isPoseing = !isPoseing;
         }
     }
