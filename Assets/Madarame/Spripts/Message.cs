@@ -13,7 +13,7 @@ public class MessageData
 public class Message : MonoBehaviour
 {
     public Text messageText;
-    private GameObject Panel;
+    private GameObject Panel;   // UIを表示/非表示させるオブジェクト
     public int count = 0;       // デバッグのためpublic
     public int DayNumber = 0;   // デバッグのためpublic
     List<MessageData> TodayMes = null;
@@ -36,12 +36,10 @@ public class Message : MonoBehaviour
 
         Panel = transform.GetChild(0).gameObject;
         DayNumber = GetDayNamber();
-#if !UNITY_EDITOR
-        TodayMes = GetMesList(int.Parse(DebugDayNumber));
-#else
+
         TodayMes = GetMesList(DayNumber);
-#endif
     }
+
     private void Update()
     {
 
@@ -85,21 +83,12 @@ public class Message : MonoBehaviour
     }
     private List<MessageData> GetMesList(int DayNumber)
     {
-#if !UNITY_EDITOR
-        return list[DayNumber - 1];
-#else
         return list[DayNumber];
-#endif
     }
     private int GetDayNamber()
     {
-#if !UNITY_EDITOR
-        string ActiveScene = SceneManager.GetActiveScene().name;
-        return Convert.ToInt32(ActiveScene[3]);
-#else
         // GameManagerから現在のDay番号（0-4）を取得
         return DayNumber;
-#endif
     }
     // デバッグ用
     //public void DebugMessageDisplayDay1()
