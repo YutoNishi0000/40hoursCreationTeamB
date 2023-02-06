@@ -8,6 +8,10 @@ public class RaycastController : MonoBehaviour
     private float maxLockonTime;
     public static bool Lockon;
     public static bool BeatHeart;
+
+    //
+    GameObject todayTaskUI = null;
+    TodayTask todayTask = null; 
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +19,8 @@ public class RaycastController : MonoBehaviour
         Lockon = false;
         BeatHeart = false;
         maxLockonTime = 1;
+        todayTaskUI = GameObject.Find("TodayTask");
+        todayTask = todayTaskUI.GetComponent<TodayTask>();
     }
 
     private void FixedUpdate()
@@ -46,6 +52,8 @@ public class RaycastController : MonoBehaviour
                     {
                         Debug.Log("ÉçÉbÉNÉIÉì");
                         Lockon = true;
+                        todayTask.TaskCompletion(0);
+                        GameManager.Instance.NextDay("Day 2_k");
                     }
                 }
             }
