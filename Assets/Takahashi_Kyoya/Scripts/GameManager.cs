@@ -11,6 +11,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int Date = 0;
     //次の日に行けるか
     public bool CanNextDay = false;
+    //接触範囲に入っているか
+    public bool inContactArea = false;
 
     /// <summary>
     /// 次の日に行く
@@ -49,6 +51,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         return CanNextDay;
     }
+    public bool GetInContactArea()
+    {
+        return inContactArea;
+    }
     //===== セッター =====
     public void SetDate(int i)
     {
@@ -57,5 +63,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void SetCanNextDay(bool b)
     {
         CanNextDay = b;
+    }
+    public void SetInContactArea(bool b)
+    {
+        inContactArea = b;
     }
 }
