@@ -8,7 +8,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //ゲームオーバーシーン
     private string gameOverScene = "GameOver";
     //今日の日付
-    public static int DATE = 0;
+    public int Date = 0;
 
     /// <summary>
     /// 次の日に行く
@@ -19,12 +19,17 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (canNextDay)
         {
-            DATE++;
+            Date++;
             FadeManager.Instance.LoadScene(sceneName, 1.0f);
         }
         else
         {
             FadeManager.Instance.LoadScene(gameOverScene, 1.0f);
         }
+    }
+    //ゲッター
+    public int GetDate()
+    {
+        return Date;
     }
 }
