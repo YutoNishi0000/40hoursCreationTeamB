@@ -32,6 +32,7 @@ public class EventManager : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(GameManager.Instance.GetInContactArea());
         //インゲームイベントごとの処理
         switch(eventType)
         {
@@ -56,8 +57,12 @@ public class EventManager : MonoBehaviour
     /// </summary>
     void HandkerchiefEvent()
     {
-
-        Debug.Log("こっち見てる");
-        target.transform.LookAt(player.transform.position);
+        if (GameManager.Instance.GetInContactArea())
+        {
+            Debug.Log("こっち見てる");
+            player.transform.LookAt(target.transform.position);
+            target.transform.LookAt(player.transform.position);
+            Message.PlayerMoveFlag = false;
+        }
     }
 }

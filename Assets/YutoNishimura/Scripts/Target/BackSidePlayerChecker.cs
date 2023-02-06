@@ -16,10 +16,12 @@ public class BackSidePlayerChecker : MonoBehaviour
     {
         if(_frontChecker.CheckPlayerFront() || _isRecognizeBack)
         {
+            GameManager.Instance.SetInContactArea(true);
             _frontChecker.CountTimer();
         }
         else
         {
+            GameManager.Instance.SetInContactArea(false);
             _frontChecker.OffTimer();
         }
     }
