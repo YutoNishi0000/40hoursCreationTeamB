@@ -32,8 +32,6 @@ public class EventManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(GameManager.Instance.GetInContactArea());
-        Debug.Log(Message.PlayerMoveFlag);
         //インゲームイベントごとの処理
         switch(eventType)
         {

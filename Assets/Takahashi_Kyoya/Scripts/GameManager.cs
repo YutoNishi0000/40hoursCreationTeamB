@@ -13,7 +13,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool CanNextDay = false;
     //ÚG”ÍˆÍ‚É“ü‚Á‚Ä‚¢‚é‚©
     public bool inContactArea = false;
-
     /// <summary>
     /// Ÿ‚Ì“ú‚És‚­
     /// </summary>
