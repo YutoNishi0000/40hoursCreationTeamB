@@ -30,9 +30,6 @@ public class TASK
 }
 public class TodayTask : MonoBehaviour
 {
-    //日にち
-    public static int Date = 2;
-
     //タスククラス
     List<TASK> tasks = new List<TASK>()
     {
@@ -74,10 +71,10 @@ public class TodayTask : MonoBehaviour
         for (int i = 0; i < tasks.Count; i++)
         {
             //前の日があるかどうかの確認
-            if (Date - 1 > 0)
+            if (GameManager.Instance.GetDate() - 1 > 0)
             {
                 //前日の終わってないタスクの確認
-                if (Date - 1 == tasks[i].date)
+                if (GameManager.Instance.GetDate() - 1 == tasks[i].date)
                 {
                     //持ち越せるタスクかの確認
                     if (tasks[i].takeOver == true)
@@ -89,7 +86,7 @@ public class TodayTask : MonoBehaviour
                 }
             }
             //今日のタスクの確認
-            if (Date == tasks[i].date)
+            if (GameManager.Instance.GetDate() == tasks[i].date)
                 todayTask.Add(tasks[i].taskName);
         }
     }
