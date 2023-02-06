@@ -9,19 +9,22 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private string gameOverScene = "GameOver";
     //今日の日付
     public int Date = 0;
+    //次の日に行けるか
+    public bool CanNextDay = false;
 
     /// <summary>
     /// 次の日に行く
     /// </summary>
     /// <param name="sceneName"></param>次のシーンの名前
-    /// <param name="canNextDay"></param>次の日に行けるか(タスクが終わっているか)
-    public void NextDay(string sceneName, bool canNextDay)
+    /// <param name="canNextDay"></param>次の日に行けるか
+    public void NextDay(string name, bool can)
     {
         //次の日に行けるか
-        if (canNextDay)
+        if (can)
         {
             Date++;
-            FadeManager.Instance.LoadScene(sceneName, 1.0f);
+            CanNextDay = false;
+            FadeManager.Instance.LoadScene(name, 1.0f);
         }
         else
         {
@@ -29,9 +32,29 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             FadeManager.Instance.LoadScene(gameOverScene, 1.0f);
         }
     }
+    /// <summary>
+    /// ゲームスタート
+    /// </summary>
+    public void GameStart(string name)
+    {
+        FadeManager.Instance.LoadScene(name, 1.0f);
+    }
     //ゲッター
     public int GetDate()
     {
         return Date;
+    }
+    public bool GetCanNextDay()
+    {
+        return CanNextDay;
+    }
+    //セッター
+    public void SetDate(int i)
+    {
+        Date = i;
+    }
+    public void SetCanNextDay(bool b)
+    {
+        CanNextDay = b;
     }
 }
