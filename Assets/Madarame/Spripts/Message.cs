@@ -13,12 +13,16 @@ public class MessageData
 public class Message : MonoBehaviour
 {
     public Text messageText;
-    private GameObject Panel;   // UIを表示/非表示させるオブジェクト
+    private GameObject Panel;   // UIを表示/非表示させる
+    private GameObject Player;   // プレイヤーのアクティブをtrue/falseさせる
     public int count = 0;       // デバッグのためpublic
     public int DayNumber = 0;   // デバッグのためpublic
     List<MessageData> TodayMes = null;
     [SerializeField] private Text text;
     [SerializeField] string DebugDayNumber = "何日目のメッセージを表示しますか？";
+
+    // テキストイベント時false
+    public static bool PlayerMoveFlag = false;
 
     static List<List<MessageData>> list = new List<List<MessageData>>()
     {
@@ -31,6 +35,9 @@ public class Message : MonoBehaviour
 
     private void Start()
     {
+        //ゲームスタート時、プレイヤーの移動が不可
+        PlayerMoveFlag = false;
+
         // 各種初期化
         Init();
 
@@ -43,7 +50,7 @@ public class Message : MonoBehaviour
     private void Update()
     {
 
-        if (!Input.GetKeyDown(KeyCode.Space))
+        if (!Input.GetKeyDown(KeyCode.E))
         {
             //Debug.Log("押されてない");
             return;
@@ -55,6 +62,8 @@ public class Message : MonoBehaviour
             {
                 count++;
                 Panel.SetActive(false);
+                //プレイヤーの移動が可能
+                PlayerMoveFlag = true;
                 return;
             }
             SetMes(count);
@@ -88,8 +97,9 @@ public class Message : MonoBehaviour
     private int GetDayNamber()
     {
         // GameManagerから現在のDay番号（0-4）を取得
-        return DayNumber;
+        return EventManager.DATE;
     }
+   
     // デバッグ用
     //public void DebugMessageDisplayDay1()
     //{
