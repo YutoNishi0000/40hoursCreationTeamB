@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Madarame/Scenes/Title.unity
     guid: ecf5c356cb0b9a24694feaab50588f97
+  - enabled: 1
+    path: Assets/Madarame/Scenes/Day 1.unity
+    guid: 532f304a3b07f5b4094130aadc1774cf
   m_configObjects: {}
