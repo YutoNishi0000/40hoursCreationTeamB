@@ -19,14 +19,16 @@ public class Pose : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) && !PoseCanvas.activeSelf)
         {
             PoseCanvas.SetActive(true);
-            Player.SetActive(false);
+            //Player.SetActive(false);
+            Message.PlayerMoveFlag = false;
             isPoseing = true;
         }
     }
     public void OnClick()
     {
         PoseCanvas.SetActive(false);
-        Player.SetActive(true);
+        //Player.SetActive(true);
+        Message.PlayerMoveFlag = true;
         isPoseing = false;
     }
     public void ClickCalled()
