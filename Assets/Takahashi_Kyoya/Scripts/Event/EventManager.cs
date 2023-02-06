@@ -5,9 +5,9 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     //プレイヤーオブジェクト
-    GameObject player = null;
+    private GameObject player = null;
     //ターゲットオブジェクト
-    GameObject target = null;
+    private GameObject target = null;
 
     //インゲームイベントの種類
     public enum EVENTTYPE
@@ -40,7 +40,12 @@ public class EventManager : MonoBehaviour
             case EVENTTYPE.fled:
                 break;
             case EVENTTYPE.handkerchief:
-                HandkerchiefEvent();
+                Debug.Log("handkerchiefイベント中");
+                if (GameManager.Instance.GetInContactArea())
+                {
+                    Debug.Log("InContactAreaの中");
+                    HandkerchiefEvent();
+                }
                 break;
             case EVENTTYPE.negotiation:
                 break;
@@ -51,6 +56,8 @@ public class EventManager : MonoBehaviour
     /// </summary>
     void HandkerchiefEvent()
     {
+
+        Debug.Log("こっち見てる");
         target.transform.LookAt(player.transform.position);
     }
 }
