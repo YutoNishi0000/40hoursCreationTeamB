@@ -9,7 +9,8 @@ public class PlayerStateController : MonoBehaviour
     {
         Move,                    //移動状態
         ViewportLocked,          //視点が固定されている状態
-        Voyeurism                //盗撮状態
+        Voyeurism,               //盗撮状態
+        TalkEvent                //会話イベントが発生したときの状態
     }
 
     private PlayerState playerState;
@@ -31,6 +32,10 @@ public class PlayerStateController : MonoBehaviour
         else if(ChangeCameraAngle._voyeurism)
         {
             SetPlayerState(PlayerState.Voyeurism);
+        }
+        else if(UIController._talkStart)
+        {
+            SetPlayerState(PlayerState.TalkEvent);
         }
         else
         {
