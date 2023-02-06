@@ -13,10 +13,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     /// <summary>
     /// 次の日に行く
     /// </summary>
-    /// <param name="sceneName"></param>
-    /// <param name="feeling"></param>
+    /// <param name="sceneName"></param>次のシーンの名前
+    /// <param name="canNextDay"></param>次の日に行けるか(タスクが終わっているか)
     public void NextDay(string sceneName, bool canNextDay)
     {
+        //次の日に行けるか
         if (canNextDay)
         {
             Date++;
@@ -24,6 +25,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
         else
         {
+            Date = 0;
             FadeManager.Instance.LoadScene(gameOverScene, 1.0f);
         }
     }
