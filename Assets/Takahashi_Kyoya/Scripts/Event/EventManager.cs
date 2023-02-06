@@ -22,13 +22,17 @@ public class EventManager : MonoBehaviour
     //今日のタスクの処理してるオブジェクトとスクリプト
     GameObject task;
     TodayTask todayTask;
+    private void Awake()
+    {
+        Message.PlayerMoveFlag = true;
+    }
     private void Start()
     {
         task = GameObject.Find("TodayTask");
         todayTask = task.GetComponent<TodayTask>();
         player = GameObject.FindWithTag("Player");
         target = GameObject.FindWithTag("Target");
-        eventType = EVENTTYPE.handkerchief;
+        eventType = EVENTTYPE.noEvent;
     }
     private void Update()
     {
@@ -58,9 +62,9 @@ public class EventManager : MonoBehaviour
         if (GameManager.Instance.GetInContactArea())
         {
             Debug.Log("こっち見てる");
-            player.transform.LookAt(target.transform.position);
-            target.transform.LookAt(player.transform.position);
-            Message.PlayerMoveFlag = false;
+            //player.transform.LookAt(target.transform.position);
+            //target.transform.LookAt(player.transform.position);
+            //Message.PlayerMoveFlag = false;
         }
     }
 }
