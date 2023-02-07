@@ -38,7 +38,7 @@ public class TodayTask : MonoBehaviour
     void CheckTodayTask()
     {
         //前の日があるかどうかの確認
-        if (GameManager.Instance.GetDate() - 1 > 0)
+        if (GameManager.Instance.GetDate() > 0)
         {
             //前日の終わってないタスクの確認
             //前日のタスクが終わっていなかったら
@@ -57,6 +57,14 @@ public class TodayTask : MonoBehaviour
             if (GameManager.Instance.GetTaskDate(i) == GameManager.Instance.GetDate())
                 todayTask.Add(GameManager.Instance.GetTaskName(i));
         }
+
+        Debug.Log("タスクの達成深度は" + GameManager.Instance.tasks[0].isCompletion);
+
+        if (GameManager.Instance.GetIsCompletion(0))
+        {
+            Debug.Log("Day1のタスクは達成したそうです");
+        }
+
     }
     /// <summary>
     /// 今日のタスクを表示
