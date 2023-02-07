@@ -61,7 +61,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         return tasks.Count;
     }
-    public int GetDate(int idx)
+    public int GetTaskDate(int idx)
     {
         return tasks[idx].date;
     }
