@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Takahashi_Kyoya/Nisi/Day 5_k.unity
     guid: c06dd660a333dfc4693a7dc48c82495a
+  - enabled: 1
+    path: Assets/Takahashi_Kyoya/Scene/GameClear.unity
+    guid: 55259cd2361e2534fbbc186a45e3c040
+  - enabled: 1
+    path: Assets/Takahashi_Kyoya/Scene/GameOver.unity
+    guid: 98d5e14e48510f647a1b22f75b26595c
   m_configObjects: {}

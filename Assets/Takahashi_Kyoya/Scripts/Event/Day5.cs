@@ -18,6 +18,7 @@ public class Day5 : MonoBehaviour
         if(day5)
         {
             GameManager.Instance.GameClear();
+            day5 = false;
         }
     }
 }
