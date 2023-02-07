@@ -34,6 +34,8 @@ public class Message : MonoBehaviour
         Scenario.meslist_day3,
         Scenario.meslist_day4,
         Scenario.meslist_day5,
+        Scenario.meslist_GameClear,
+        Scenario.meslist_GameOver,
     };
 
     private void Start()
@@ -84,7 +86,6 @@ public class Message : MonoBehaviour
         Debug.Log("");
     }
     
-
     private void Init()
     {
         count = 0;
@@ -117,6 +118,15 @@ public class Message : MonoBehaviour
         //プレイヤーの移動が可能
         PlayerMoveFlag = false;
     }
+    
+    public void StartMes()
+    {
+        if (TodayMes.Count > count)
+        {
+            SetMes(count);
+            count++;
+        }
+    }
     // デバッグ用
     //public void DebugMessageDisplayDay1()
     //{
@@ -131,27 +141,4 @@ public class Message : MonoBehaviour
     //    DayNumber = 1;
     //    TodayMes = GetMesList(DayNumber);
     //}
-    public void StartMes()
-    {
-        if (TodayMes.Count > count)
-        {
-            //if (GetMes(count).massage == "#")
-            //{
-            //    count++;
-            //    TextEventFlag = false;
-            //    Panel.SetActive(TextEventFlag);
-
-            //    //プレイヤーの移動が可能
-            //    PlayerMoveFlag = true;
-            //    return;
-            //}
-            SetMes(count);
-            count++;
-        }
-        //else
-        //{
-        //    TextEventFlag = false;
-        //    Panel.SetActive(TextEventFlag);
-        //}
-    }
 }

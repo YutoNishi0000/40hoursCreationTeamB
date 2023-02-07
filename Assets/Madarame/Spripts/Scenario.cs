@@ -9,7 +9,7 @@ static public class Scenario
     {
         // 開始時
         new MessageData{ massage = "うぅ...", color = Color.magenta },
-        new MessageData{ massage = "早く<color=#0000ff>“あの人”</color>を見つけなくちゃ…", color = Color.magenta },
+        new MessageData{ massage = "早く<color=#ffff00>“あの人”</color>を見つけなくちゃ…", color = Color.magenta },
         new MessageData{ massage = "でも気づかれないようにしないと…", color = Color.magenta },
         new MessageData{ massage = "だって私は…", color = Color.magenta },
         new MessageData{ massage = "#", color = Color.magenta },
@@ -62,6 +62,17 @@ static public class Scenario
         new MessageData{ massage = "ダメもとで明日話しかけちゃおうかな…", color = Color.magenta },
         new MessageData{ massage = "#", color = Color.magenta },
         //ハンカチイベント
+        new MessageData{ massage = "あ、あの！", color = Color.magenta },
+        new MessageData{ massage = "は、はい？", color = Color.cyan },
+        new MessageData{ massage = "これ落としましたか？あなたのだと思って・・・", color = Color.magenta },
+        new MessageData{ massage = "あ・・ち、違います", color = Color.cyan },
+        new MessageData{ massage = "そうですか…私の方で持ち主さん探してみますね！", color = Color.magenta },
+        new MessageData{ massage = "きっと困っているだろうし…", color = Color.magenta },
+        new MessageData{ massage = "そうですね…持ち主見つかるといいですね！", color = Color.cyan },
+        new MessageData{ massage = "心優しい方に拾ってもらえたようで良かったです", color = Color.cyan },
+        new MessageData{ massage = "では、無事持ち主が見つかることを祈ってます！", color = Color.cyan },
+        new MessageData{ massage = "#", color = Color.cyan },
+
     };
     // day5
     static public readonly List<MessageData> meslist_day5 = new List<MessageData>()
@@ -70,17 +81,43 @@ static public class Scenario
         new MessageData{ massage = "今日こそ“あの人”に話しかけるんだ…！", color = Color.magenta },
         new MessageData{ massage = "少し怖いけどきっと大丈夫だよね…", color = Color.magenta },
         new MessageData{ massage = "…　…", color = Color.magenta },
-        new MessageData{ massage = "よし、行こう", color = Color.cyan },
+        new MessageData{ massage = "よし、行こう", color = Color.magenta },
         new MessageData{ massage = "#", color = Color.magenta },
-        // ハンカチを渡していた場合
-        new MessageData{ massage = "　", color = Color.magenta },
-        new MessageData{ massage = "　", color = Color.magenta },
-        new MessageData{ massage = "　", color = Color.magenta },
+        
+        
+    };
+    // day5 ハンカチを渡していた場合
+    static public readonly List<MessageData> meslist_GameClear = new List<MessageData>()
+    {
+        new MessageData{ massage = "あ、あの！", color = Color.magenta },
+        new MessageData{ massage = "は、はい…", color = Color.cyan },
+        new MessageData{ massage = "あ！あなたは昨日の！", color = Color.cyan },
+        new MessageData{ massage = "覚えてくれてて良かったです！", color = Color.magenta },
+        new MessageData{ massage = "ハンカチの持ち主は見つかりましたか？", color = Color.cyan },
+        new MessageData{ massage = "あー、は、はい！見つかりました！", color = Color.magenta },
+        new MessageData{ massage = "それは良かったです", color = Color.cyan },
+        new MessageData{ massage = "…　…", color = Color.magenta },
+        new MessageData{ massage = "あのー。そのキーホルダーって…", color = Color.magenta },
+        new MessageData{ massage = "これですか？この前駅前で落ちてるのを拾ったんですよね～", color = Color.cyan },
+        new MessageData{ massage = "そ、そうだったんですか…実はそれ生産が世界で1つだけの激レア品で…", color = Color.magenta },
+        new MessageData{ massage = "そ、そうなんですか！？", color = Color.cyan },
+        new MessageData{ massage = "はい…私が作った「ミラクルダブルバイセップスキーホルダー」なので…", color = Color.magenta },
+        new MessageData{ massage = "あ、あなたが作ったものだったんですね…", color = Color.cyan },
+        new MessageData{ massage = "自作の物だとは思いませんでした！完成度高くてびっくりです！", color = Color.cyan },
+        new MessageData{ massage = "そうなんです…もしよければ返してもらってよろしいですか？", color = Color.magenta },
+        new MessageData{ massage = "あ、はい…大丈夫です。ダサいんで…", color = Color.cyan },
+        new MessageData{ massage = "え…？", color = Color.magenta },
         new MessageData{ massage = "#", color = Color.magenta },
-        // ハンカチを渡していない場合
-        new MessageData{ massage = "　", color = Color.magenta },
-        new MessageData{ massage = "　", color = Color.magenta },
-        new MessageData{ massage = "　", color = Color.magenta },
+    };
+    // day5 ハンカチを渡していない場合
+    static public readonly List<MessageData> meslist_GameOver = new List<MessageData>()
+    {
+        new MessageData{ massage = "あ、あの！", color = Color.magenta },
+        new MessageData{ massage = "は、はい・・・", color = Color.magenta },
+        new MessageData{ massage = "わ、わたし・・・その・・・", color = Color.magenta },
+        new MessageData{ massage = "あー、多分人違いだと思いますので・・・", color = Color.magenta },
+        new MessageData{ massage = "い、いや、その・・・", color = Color.magenta },
+        new MessageData{ massage = "それじゃ、失礼します", color = Color.magenta },
         new MessageData{ massage = "#", color = Color.magenta },
     };
 }
