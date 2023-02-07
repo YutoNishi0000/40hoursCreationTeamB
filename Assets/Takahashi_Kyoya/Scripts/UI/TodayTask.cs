@@ -31,7 +31,7 @@ public class TASK
 public class TodayTask : MonoBehaviour
 {
     //タスククラス
-    List<TASK> tasks = new List<TASK>()
+    public static List<TASK> tasks = new List<TASK>()
     {
         //day1
         new TASK { taskName = "”あの人”を見つけよう\n(でも見つかるな！)",
@@ -59,6 +59,7 @@ public class TodayTask : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(this);
         Initialize();
         CheckTodayTask();
         DisplayTask();

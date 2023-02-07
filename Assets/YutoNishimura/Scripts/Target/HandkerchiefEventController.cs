@@ -6,6 +6,9 @@ public class HandkerchiefEventController : MonoBehaviour
 {
     private FrontSidePlayerChecker _frontChecker;
 
+    Message message = null;
+    GameObject messageUI = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +46,8 @@ public class HandkerchiefEventController : MonoBehaviour
         //=================================================================================================
         //=================================================================================================
         Debug.Log("ハンカチイベント発生");
-        GameManager.Instance.SetInContactArea(true);
-        Debug.Log(GameManager.Instance.GetInContactArea());
+        
+        //GameManager.Instance.SetInContactArea(true);
+        //Debug.Log(GameManager.Instance.GetInContactArea());
     }
 }

@@ -104,7 +104,14 @@ public class Message : MonoBehaviour
         // GameManagerから現在のDay番号（0-4）を取得
         return GameManager.Instance.GetDate();
     }
-   
+    public void EventText()
+    {
+        count++;
+        TextEventFlag = true;
+        Panel.SetActive(TextEventFlag);
+        //プレイヤーの移動が可能
+        PlayerMoveFlag = false;
+    }
     // デバッグ用
     //public void DebugMessageDisplayDay1()
     //{
