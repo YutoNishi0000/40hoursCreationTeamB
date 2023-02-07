@@ -6,9 +6,9 @@ using UnityEngine.UI;
 //ƒQ[ƒ€“à‚ÌŠÔ‚ğ§Œä‚·‚éŠÖ”
 public class TimeController : MonoBehaviour
 {
-    private bool _isTimePassed;
+    public static bool _isTimePassed;
     public Text timeText;
-    [SerializeField] private float TimeLeft = 120;      //c‚èŠÔ
+    [SerializeField] private float TimeLeft = 8;      //c‚èŠÔ
     private float _time;
 
     // Start is called before the first frame update

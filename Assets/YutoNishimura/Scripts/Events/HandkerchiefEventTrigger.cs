@@ -19,7 +19,7 @@ public class HandkerchiefEventTrigger : MonoBehaviour
     {
         if(!Message.TextEventFlag && _hankatiEventStart)
         {
-            GameManager.Instance.NextDay("Day 4_k");
+            Day3.day3 = true;
             _hankatiEventStart = false;
         }
     }

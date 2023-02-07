@@ -64050,6 +64050,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2890656219000568153, guid: 295904eadf73df34a844a46fa2edc265, type: 3}
+      propertyPath: TimeLeft
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890656219000568153, guid: 295904eadf73df34a844a46fa2edc265, type: 3}
       propertyPath: timeText
       value: 
       objectReference: {fileID: 497748153}

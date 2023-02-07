@@ -36,7 +36,7 @@ public class HandkerchiefEventController : MonoBehaviour
 
         if(!Message.TextEventFlag && _hankatiEventStart)
         {
-            GameManager.Instance.NextDay("Day 5_k");
+            Day4.day4 = true;
             _hankatiEventStart = false;
         }
     }

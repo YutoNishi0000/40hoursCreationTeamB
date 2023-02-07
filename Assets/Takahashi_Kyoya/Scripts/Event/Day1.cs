@@ -20,5 +20,10 @@ public class Day1 : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if(TimeController._isTimePassed)
+        {
+            GameManager.Instance.NextDay("Day 2_k");
+            Destroy(gameObject);
+        }
     }
 }
