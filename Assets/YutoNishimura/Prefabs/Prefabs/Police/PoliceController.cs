@@ -40,6 +40,13 @@ public class PoliceController : MonoBehaviour
             for (int i = 0; i < _dangerDetectionGauge.Length; i++)
             {
                 _dangerDetectionGauge[i].value -= Time.deltaTime;
+
+                //もしもスライダーの値が０より小さくなったら
+                if(_dangerDetectionGauge[i].value <= 0)
+                {
+                    Debug.Log("職質開始！！");
+                    PoliceEvent();
+                }
             }
         }
         //職質危険察知フラグがオフだった場合は
@@ -51,6 +58,20 @@ public class PoliceController : MonoBehaviour
                 _dangerDetectionGauge[i].DOValue(_dangerDetectionGauge[i].maxValue, CAUGHT_TIME / 3);
             }
         }
+    }
+
+    /// <summary>
+    /// 警官に職質された時のイベント
+    /// </summary>
+    void PoliceEvent()
+    {
+        //====================================================================================
+        //====================================================================================
+        //
+        // ここに警官から職質された際の処理を記述してください
+        //
+        //====================================================================================
+        //====================================================================================
     }
 
     private void OnTriggerEnter(Collider other)
