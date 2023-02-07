@@ -13,26 +13,19 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool CanNextDay = false;
     //接触範囲に入っているか
     public bool inContactArea = false;
-
     /// <summary>
     /// 次の日に行く
     /// </summary>
     /// <param name="sceneName"></param>次のシーンの名前
-    /// <param name="canNextDay"></param>次の日に行けるか
-    public void NextDay(string name, bool can)
+    public void NextDay(string name)
     {
-        //次の日に行けるか
-        if (can)
-        {
-            Date++;
-            CanNextDay = false;
-            FadeManager.Instance.LoadScene(name, 1.0f);
-        }
-        else
-        {
-            Date = 0;
-            FadeManager.Instance.LoadScene(gameOverScene, 1.0f);
-        }
+        Date++;
+        FadeManager.Instance.LoadScene(name, 1.0f);
+    }
+    public void GameOver()
+    {
+        Date = 0;
+        FadeManager.Instance.LoadScene(name, 1.0f);
     }
 
     /// <summary>

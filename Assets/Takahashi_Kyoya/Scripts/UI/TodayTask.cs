@@ -35,19 +35,19 @@ public class TodayTask : MonoBehaviour
     {
         //day1
         new TASK { taskName = "”あの人”を見つけよう\n(でも見つかるな！)",
-            isCompletion = false, takeOver = true , date = 1 },
+            isCompletion = false, takeOver = true , date = 0 },
         //day2
         new TASK { taskName = "ばれなように写真を\n撮ろう",                 
-            isCompletion = false, takeOver = true , date = 2 },
+            isCompletion = false, takeOver = true , date = 1 },
         //day3
         new TASK { taskName = "？？？\n(とりあえず”あの人”を探そう)", 
-            isCompletion = false, takeOver = false, date = 3 },
+            isCompletion = false, takeOver = false, date = 2 },
         //day4
         new TASK { taskName = "ハンカチを返そう",                       
-            isCompletion = false, takeOver = false, date = 4 },
+            isCompletion = false, takeOver = false, date = 3 },
         //day5
         new TASK { taskName = "”あの人”に話しかけよう",               
-            isCompletion = false, takeOver = false, date = 5 },
+            isCompletion = false, takeOver = false, date = 4 },
     };
     //タスクが完了しているかのUI
     [SerializeField] List<Toggle> toggle = new List<Toggle>();
@@ -120,6 +120,7 @@ public class TodayTask : MonoBehaviour
     /// </summary>
     public void TaskCompletion(int taskIndex)
     {
+        Debug.Log("タスク完了");
         tasks[taskIndex].CompletionTask();
         for (int i = 0; i < todayTask.Count; i++)
         {

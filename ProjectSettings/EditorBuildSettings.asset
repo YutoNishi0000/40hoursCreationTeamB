@@ -11,4 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Madarame/Scenes/Day 1.unity
     guid: 532f304a3b07f5b4094130aadc1774cf
+  - enabled: 1
+    path: Assets/Takahashi_Kyoya/Nisi/Day 1_k.unity
+    guid: fbd04c4dcfeb42a4bbceecce98f2ec85
+  - enabled: 1
+    path: Assets/Takahashi_Kyoya/Nisi/Day 2_k.unity
+    guid: 25fc15d0dd08c4c43a2e55556af6e8a9
+  - enabled: 1
+    path: Assets/Takahashi_Kyoya/Nisi/Day 3_k.unity
+    guid: 80d5b7b09a3610b47b02a477afd3651d
+  - enabled: 1
+    path: Assets/Takahashi_Kyoya/Nisi/Day 4_k.unity
+    guid: dd9997bd5b4e1dd4aa2d8334f027cf5d
+  - enabled: 1
+    path: Assets/Takahashi_Kyoya/Nisi/Day 5_k.unity
+    guid: c06dd660a333dfc4693a7dc48c82495a
   m_configObjects: {}

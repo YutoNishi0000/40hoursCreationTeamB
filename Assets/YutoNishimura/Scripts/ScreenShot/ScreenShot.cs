@@ -50,6 +50,7 @@ public class ScreenShot : Human
             if (ShutterChanceController._shutterChance)
             {
                 StartCoroutine(nameof(HiddonText), SucceededShutter);
+                GameManager.Instance.NextDay("Day 3_k");
             }
             else
             {
@@ -88,7 +89,7 @@ public class ScreenShot : Human
 
         yield return new WaitForSeconds(2);
 
-        text.enabled = false;
+        text.enabled = false;            
      }
 
     void OffPreview()

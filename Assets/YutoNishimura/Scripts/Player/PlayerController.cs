@@ -38,6 +38,7 @@ public class PlayerController : Human
 
     private void Update()
     {
+        Debug.Log(Message.PlayerMoveFlag);
         if (_moveLock || !Message.PlayerMoveFlag)
         {
             return;
