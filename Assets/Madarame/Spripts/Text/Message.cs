@@ -119,9 +119,9 @@ public class Message : MonoBehaviour
     public void EventText(int num)
     {
         count = 0;
-        //count++;
         SetEvent(num);
         SetMes(count);
+        count++;
         TextEventFlag = true;
         Panel.SetActive(TextEventFlag);
         //プレイヤーの移動が可能
