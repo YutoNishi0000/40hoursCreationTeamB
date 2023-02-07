@@ -48,6 +48,9 @@ public class Message : MonoBehaviour
         DayNumber = GetDayNamber();
 
         TodayMes = GetMesList(DayNumber);
+
+        //最初にメッセージを表示
+        StartMes();
     }
 
     private void Update()
@@ -128,4 +131,27 @@ public class Message : MonoBehaviour
     //    DayNumber = 1;
     //    TodayMes = GetMesList(DayNumber);
     //}
+    public void StartMes()
+    {
+        if (TodayMes.Count > count)
+        {
+            //if (GetMes(count).massage == "#")
+            //{
+            //    count++;
+            //    TextEventFlag = false;
+            //    Panel.SetActive(TextEventFlag);
+
+            //    //プレイヤーの移動が可能
+            //    PlayerMoveFlag = true;
+            //    return;
+            //}
+            SetMes(count);
+            count++;
+        }
+        //else
+        //{
+        //    TextEventFlag = false;
+        //    Panel.SetActive(TextEventFlag);
+        //}
+    }
 }
