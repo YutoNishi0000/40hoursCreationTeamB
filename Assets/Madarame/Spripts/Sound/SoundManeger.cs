@@ -102,28 +102,21 @@ public class SoundManager : MonoBehaviour
 			GameOverBGM.Play();
 		}
 		//GameClearからTitlerへ
-		if (beforeScene == "Day5" && nextScene.name == "GameClear")
+		if (beforeScene == "GameClear" && nextScene.name == "Title")
 		{
-			OutGameBGM.Stop();
+			OutGameBGM.Play();
 			InGameBGM.Stop();
-			GameClearBGM.Play();
+			GameClearBGM.Stop();
 			GameOverBGM.Stop();
 		}
 		//GameOverからTitler
-		if (beforeScene == "Day5" && nextScene.name == "GameOver")
+		if (beforeScene == "GameOver" && nextScene.name == "Title")
 		{
-			OutGameBGM.Stop();
+			OutGameBGM.Play();
 			InGameBGM.Stop();
 			GameClearBGM.Stop();
-			GameOverBGM.Play();
+			GameOverBGM.Stop();
 		}
-		//リザルトからタイトルへ
-		//if (beforeScene == "Result_Hiro" && nextScene.name == "Title_Madarame")
-		//{
-		//	Title_BGM.Play();
-		//	Game_BGM.Stop();
-		//	Result_BGM.Stop();
-		//}
 
 		//遷移後のシーン名を「１つ前のシーン名」として保持
 		beforeScene = nextScene.name;

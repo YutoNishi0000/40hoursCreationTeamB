@@ -9,7 +9,7 @@ static public class Scenario
     {
         // 開始時
         new MessageData{ massage = "うぅ...", color = Color.magenta },
-        new MessageData{ massage = "早く<color=#ffff00>“あの人”</color>を見つけなくちゃ…", color = Color.magenta },
+        new MessageData{ massage = "早く“あの人”を見つけなくちゃ…", color = Color.magenta },
         new MessageData{ massage = "でも気づかれないようにしないと…", color = Color.magenta },
         new MessageData{ massage = "だって私は…", color = Color.magenta },
         new MessageData{ massage = "#", color = Color.magenta },
@@ -107,7 +107,6 @@ static public class Scenario
         new MessageData{ massage = "そうなんです…もしよければ返してもらってよろしいですか？", color = Color.magenta },
         new MessageData{ massage = "あ、はい…大丈夫です。ダサいんで…", color = Color.cyan },
         new MessageData{ massage = "え…？", color = Color.magenta },
-        new MessageData{ massage = "#", color = Color.magenta },
     };
     // day5 ハンカチを渡していない場合
     static public readonly List<MessageData> meslist_GameOver = new List<MessageData>()
@@ -118,6 +117,5 @@ static public class Scenario
         new MessageData{ massage = "あー、多分人違いだと思いますので・・・", color = Color.magenta },
         new MessageData{ massage = "い、いや、その・・・", color = Color.magenta },
         new MessageData{ massage = "それじゃ、失礼します", color = Color.magenta },
-        new MessageData{ massage = "#", color = Color.magenta },
     };
 }
