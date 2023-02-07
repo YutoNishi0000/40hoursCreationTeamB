@@ -21,7 +21,17 @@ public class TodayTask : MonoBehaviour
         Initialize();
         CheckTodayTask();
         DisplayTask();
+        for (int i = 0; i < toggle.Count; i++)
+        {
+            //ここでタスク
+            GameManager.Instance.tasks[i].isCompletion = false;
+        }
     }
+    private void Update()
+    {
+        UpdateTodayTasks();
+    }
+
     /// <summary>
     /// 今日のタスクの確認
     /// </summary>
@@ -31,6 +41,7 @@ public class TodayTask : MonoBehaviour
         if (GameManager.Instance.GetDate() - 1 > 0)
         {
             //前日の終わってないタスクの確認
+            //前日のタスクが終わっていなかったら
             if (!GameManager.Instance.GetIsCompletion(GameManager.Instance.GetDate() - 1))
             {
                 //持ち越せるタスクかの確認
@@ -55,11 +66,21 @@ public class TodayTask : MonoBehaviour
         for (int i = 0; i < todayTask.Count; i++)
         { 
             taskText[i].gameObject.SetActive(true);
-            toggle[i].gameObject.SetActive(true);
+            //toggle[i].gameObject.SetActive(true);
             taskText[i].text = todayTask[i].ToString();
+            //toggle[i].isOn = GameManager.Instance.GetIsCompletion(i);
+        }
+    }
+
+    private void UpdateTodayTasks()
+    {
+        for (int i = 0; i < todayTask.Count; i++)
+        {
+            toggle[i].gameObject.SetActive(true);
             toggle[i].isOn = GameManager.Instance.GetIsCompletion(i);
         }
     }
+
     /// <summary>
     /// 初期化
     /// </summary>
@@ -82,6 +103,7 @@ public class TodayTask : MonoBehaviour
         GameManager.Instance.SetCompletionTask(taskIndex);
         for (int i = 0; i < toggle.Count; i++)
         {
+            GameManager.Instance.tasks[i].isCompletion = true;
             toggle[i].isOn = GameManager.Instance.GetIsCompletion(i);
         }
     }

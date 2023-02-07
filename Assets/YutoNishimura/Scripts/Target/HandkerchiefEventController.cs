@@ -5,6 +5,7 @@ using UnityEngine;
 public class HandkerchiefEventController : MonoBehaviour
 {
     private FrontSidePlayerChecker _frontChecker;
+    private TodayTask todayTask;
 
     Message message = null;
     GameObject messageUI = null;
@@ -16,6 +17,7 @@ public class HandkerchiefEventController : MonoBehaviour
         _frontChecker = GameObject.Find("Collider").GetComponent<FrontSidePlayerChecker>();
         messageUI = GameObject.Find("MessageUI");
         message = messageUI.GetComponent<Message>();
+        todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
     }
 
     // Update is called once per frame
@@ -49,6 +51,7 @@ public class HandkerchiefEventController : MonoBehaviour
         //=================================================================================================
         //=================================================================================================
         Debug.Log("ハンカチイベント発生");
+        todayTask.TaskCompletion(3);
         GameManager.Instance.NextDay("Day 5_k");
         //GameManager.Instance.SetInContactArea(true);
         //Debug.Log(GameManager.Instance.GetInContactArea());

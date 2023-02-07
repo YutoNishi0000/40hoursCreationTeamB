@@ -20,6 +20,7 @@ public class ScreenShot : Human
 
     private PlayerStateController playerState;
     private ChangeCameraAngle _changeCamera;
+    private TodayTask todayTask;
 
     public Image prevPos;
     public Image prevPos2;
@@ -33,6 +34,7 @@ public class ScreenShot : Human
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas = GameObject.Find("Canvas");
         targetImage = GameObject.Find("RawImage");
+        todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
         preview.enabled = false;
         _image.enabled = false;
         SucceededShutter.enabled = false;
@@ -49,6 +51,7 @@ public class ScreenShot : Human
         {
             if (ShutterChanceController._shutterChance)
             {
+                todayTask.TaskCompletion(1);
                 StartCoroutine(nameof(HiddonText), SucceededShutter);
                 GameManager.Instance.NextDay("Day 3_k");
             }
