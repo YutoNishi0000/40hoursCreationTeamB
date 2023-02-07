@@ -62,7 +62,7 @@ public class SoundManager : MonoBehaviour
 			GameOverBGM.Stop();
 		}
 		//Day2からDay3へ
-		if (beforeScene == "Day1" && nextScene.name == "Day2")
+		if (beforeScene == "Day2" && nextScene.name == "Day3")
 		{
 			OutGameBGM.Stop();
 			InGameBGM.Play();
@@ -70,7 +70,7 @@ public class SoundManager : MonoBehaviour
 			GameOverBGM.Stop();
 		}
 		//Day3からDay4へ
-		if (beforeScene == "Day1" && nextScene.name == "Day2")
+		if (beforeScene == "Day3" && nextScene.name == "Day4")
 		{
 			OutGameBGM.Stop();
 			InGameBGM.Play();
@@ -78,23 +78,44 @@ public class SoundManager : MonoBehaviour
 			GameOverBGM.Stop();
 		}
 		//Day4からDay5へ
-		if (beforeScene == "Day1" && nextScene.name == "Day2")
+		if (beforeScene == "Day4" && nextScene.name == "Day5")
 		{
 			OutGameBGM.Stop();
 			InGameBGM.Play();
 			GameClearBGM.Stop();
 			GameOverBGM.Stop();
 		}
-		//Day5からリザルトへ
-		if (beforeScene == "MainGame" && nextScene.name == "Result_Hiro")
+		//Day5からGameClearへ
+		if (beforeScene == "Day5" && nextScene.name == "GameClear")
 		{
-			//Title_BGM.Stop();
-			//Game_BGM.Stop();
-			//Result_BGM.Play();
 			OutGameBGM.Stop();
-			InGameBGM.Play();
-			GameClearBGM.Stop();
+			InGameBGM.Stop();
+			GameClearBGM.Play();
 			GameOverBGM.Stop();
+		}
+		//Day5からGameClearへ
+		if (beforeScene == "Day5" && nextScene.name == "GameOver")
+		{
+			OutGameBGM.Stop();
+			InGameBGM.Stop();
+			GameClearBGM.Stop();
+			GameOverBGM.Play();
+		}
+		//GameClearからTitlerへ
+		if (beforeScene == "Day5" && nextScene.name == "GameClear")
+		{
+			OutGameBGM.Stop();
+			InGameBGM.Stop();
+			GameClearBGM.Play();
+			GameOverBGM.Stop();
+		}
+		//Day5からGameClearへ
+		if (beforeScene == "Day5" && nextScene.name == "GameOver")
+		{
+			OutGameBGM.Stop();
+			InGameBGM.Stop();
+			GameClearBGM.Stop();
+			GameOverBGM.Play();
 		}
 		//リザルトからタイトルへ
 		//if (beforeScene == "Result_Hiro" && nextScene.name == "Title_Madarame")
