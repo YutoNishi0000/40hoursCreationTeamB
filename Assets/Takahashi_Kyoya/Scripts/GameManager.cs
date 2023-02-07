@@ -3,8 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public class TASK
+{
+    //表示するタスクテキスト
+    public string taskName;
+    //タスクが完了しているか
+    public bool isCompletion;
+    //次の日に持ち越せるか
+    public bool takeOver;
+    //何日目のタスクか
+    public int date;
+
+    public string GetTaskName()
+    {
+        return taskName;
+    }
+    public bool GetIsCompletion()
+    {
+        return isCompletion;
+    }
+    public void CompletionTask()
+    {
+        isCompletion = true;
+    }
+}
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    //タスククラス
+    public List<TASK> tasks = new List<TASK>()
+    {
+        //day1
+        new TASK { taskName = "”あの人”を見つけよう\n(でも見つかるな！)",
+            isCompletion = false, takeOver = true , date = 0 },
+        //day2
+        new TASK { taskName = "ばれなように写真を\n撮ろう",
+            isCompletion = false, takeOver = true , date = 1 },
+        //day3
+        new TASK { taskName = "？？？\n(とりあえず”あの人”を探そう)",
+            isCompletion = false, takeOver = false, date = 2 },
+        //day4
+        new TASK { taskName = "ハンカチを返そう",
+            isCompletion = false, takeOver = false, date = 3 },
+        //day5
+        new TASK { taskName = "”あの人”に話しかけよう",
+            isCompletion = false, takeOver = false, date = 4 },
+    };
+    //ゲッター
+    public bool GetTakeOver(int idx)
+    {
+        return tasks[idx].takeOver;
+    }
+    public bool GetIsCompletion(int idx)
+    {
+        return tasks[idx].isCompletion;
+    }
+    public int GetCount()
+    {
+        return tasks.Count;
+    }
+    public int GetDate(int idx)
+    {
+        return tasks[idx].date;
+    }
+    public string GetTaskName(int idx)
+    {
+        return tasks[idx].taskName;
+    }
+    public void SetCompletionTask(int idx)
+    {
+        tasks[idx].CompletionTask();
+    }
+
+    //セッター
+
     //ゲームオーバーシーン
     private string gameOverScene = "GameOver";
     //ゲームクリアシーン
@@ -75,4 +146,5 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         inContactArea = b;
     }
+
 }

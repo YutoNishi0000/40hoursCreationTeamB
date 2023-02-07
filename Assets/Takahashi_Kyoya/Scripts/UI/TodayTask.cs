@@ -4,51 +4,10 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 
-public class TASK
-{
-    //表示するタスクテキスト
-    public string taskName;
-    //タスクが完了しているか
-    public bool isCompletion;
-    //次の日に持ち越せるか
-    public bool takeOver;
-    //何日目のタスクか
-    public int date;
 
-    public string GetTaskName()
-    {
-        return taskName;
-    }
-    public bool GetIsCompletion()
-    {
-        return isCompletion;
-    }
-    public void CompletionTask()
-    {
-        isCompletion = true;
-    }
-}
 public class TodayTask : MonoBehaviour
 {
-    //タスククラス
-    public static List<TASK> tasks = new List<TASK>()
-    {
-        //day1
-        new TASK { taskName = "”あの人”を見つけよう\n(でも見つかるな！)",
-            isCompletion = false, takeOver = true , date = 0 },
-        //day2
-        new TASK { taskName = "ばれなように写真を\n撮ろう",                 
-            isCompletion = false, takeOver = true , date = 1 },
-        //day3
-        new TASK { taskName = "？？？\n(とりあえず”あの人”を探そう)", 
-            isCompletion = false, takeOver = false, date = 2 },
-        //day4
-        new TASK { taskName = "ハンカチを返そう",                       
-            isCompletion = false, takeOver = false, date = 3 },
-        //day5
-        new TASK { taskName = "”あの人”に話しかけよう",               
-            isCompletion = false, takeOver = false, date = 4 },
-    };
+    
     //タスクが完了しているかのUI
     [SerializeField] List<Toggle> toggle = new List<Toggle>();
     //タスクを表示するテキストUI
@@ -69,26 +28,26 @@ public class TodayTask : MonoBehaviour
     /// </summary>
     void CheckTodayTask()
     {
-        for (int i = 0; i < tasks.Count; i++)
+        for (int i = 0; i < GameManager.Instance.GetCount(); i++)
         {
             //前の日があるかどうかの確認
             if (GameManager.Instance.GetDate() - 1 > 0)
             {
                 //前日の終わってないタスクの確認
-                if (GameManager.Instance.GetDate() - 1 == tasks[i].date)
+                if (GameManager.Instance.GetDate() - 1 == GameManager.Instance.GetDate())
                 {
                     //持ち越せるタスクかの確認
-                    if (tasks[i].takeOver == true)
+                    if (GameManager.Instance.GetTakeOver(i))
                     {
                         //終わってるかの確認
-                        if (tasks[i].isCompletion == false)
-                            todayTask.Add(tasks[i].taskName);
+                        if (!GameManager.Instance.GetIsCompletion(i))
+                            todayTask.Add(GameManager.Instance.GetTaskName(i));
                     }
                 }
             }
             //今日のタスクの確認
-            if (GameManager.Instance.GetDate() == tasks[i].date)
-                todayTask.Add(tasks[i].taskName);
+            if (GameManager.Instance.GetDate() == GameManager.Instance.GetDate())
+                todayTask.Add(GameManager.Instance.GetTaskName(i));
         }
     }
     /// <summary>
@@ -101,7 +60,7 @@ public class TodayTask : MonoBehaviour
             taskText[i].gameObject.SetActive(true);
             toggle[i].gameObject.SetActive(true);
             taskText[i].text = todayTask[i].ToString();
-            toggle[i].isOn = tasks[i].GetIsCompletion();
+            toggle[i].isOn = GameManager.Instance.GetIsCompletion(i);
         }
     }
     /// <summary>
@@ -122,10 +81,10 @@ public class TodayTask : MonoBehaviour
     public void TaskCompletion(int taskIndex)
     {
         Debug.Log("タスク完了");
-        tasks[taskIndex].CompletionTask();
+        GameManager.Instance.SetCompletionTask(taskIndex);
         for (int i = 0; i < todayTask.Count; i++)
         {
-            toggle[i].isOn = tasks[i].GetIsCompletion();
+            toggle[i].isOn = GameManager.Instance.GetIsCompletion(i);
         }
     }
     /// <summary>
@@ -143,7 +102,7 @@ public class TodayTask : MonoBehaviour
                 Comletion++;
             }
         }
-        if(tasks.Count == Comletion)
+        if(GameManager.Instance.GetCount() == Comletion)
         {
             return true;
         }
