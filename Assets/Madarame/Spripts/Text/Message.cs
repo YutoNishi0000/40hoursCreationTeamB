@@ -18,6 +18,7 @@ public class Message : MonoBehaviour
     public int count = 0;       // デバッグのためpublic
     public int DayNumber = 0;   // デバッグのためpublic
     List<MessageData> TodayMes = null;
+
     [SerializeField] private Text text;
     [SerializeField] string DebugDayNumber = "何日目のメッセージを表示しますか？";
 
@@ -34,8 +35,8 @@ public class Message : MonoBehaviour
         Scenario.meslist_day3,
         Scenario.meslist_day4,
         Scenario.meslist_day5,
-        Scenario.meslist_GameClear,
-        Scenario.meslist_GameOver,
+        Scenario.meslist_GameClear, //5
+        Scenario.meslist_GameOver,  //6
     };
 
     private void Start()
@@ -62,6 +63,7 @@ public class Message : MonoBehaviour
             //Debug.Log("押されてない");
             return;
         }
+        
 
         if (TodayMes.Count > count)
         {
@@ -126,6 +128,34 @@ public class Message : MonoBehaviour
             SetMes(count);
             count++;
         }
+    }
+    // ゲームクリアテキストを呼ぶ
+    public List<MessageData> GetGameClearText()
+    {
+        int GameClear = 5;
+        return list[GameClear];
+    }
+    // ゲームクリアテキストを表示
+    public void DrawGC_Text()
+    { 
+        TodayMes = GetGameClearText();
+        Panel.SetActive(true);
+        //プレイヤーの移動が不可能
+        PlayerMoveFlag = false;
+    }
+    // ゲームオーバーテキストを呼ぶ
+    public List<MessageData> GameOverText()
+    {
+        int GameOver = 6;
+        return list[GameOver];
+    }
+    // ゲームオーバーテキストを表示
+    public void DrawGO_Text()
+    {
+        TodayMes = GameOverText();
+        Panel.SetActive(true);
+        //プレイヤーの移動が不可能
+        PlayerMoveFlag = false;
     }
     // デバッグ用
     //public void DebugMessageDisplayDay1()

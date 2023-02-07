@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class UIText : MonoBehaviour
 {
-    
-    
     // 喋っている人の名前
     public Text nameText;
     // 喋っている内容やナレーション
