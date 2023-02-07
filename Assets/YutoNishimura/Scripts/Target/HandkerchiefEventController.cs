@@ -13,6 +13,8 @@ public class HandkerchiefEventController : MonoBehaviour
     void Start()
     {
         _frontChecker = GetComponent<FrontSidePlayerChecker>();
+        messageUI = GameObject.Find("MessageUI");
+        message = messageUI.GetComponent<Message>();
     }
 
     // Update is called once per frame
@@ -46,7 +48,7 @@ public class HandkerchiefEventController : MonoBehaviour
         //=================================================================================================
         //=================================================================================================
         Debug.Log("ハンカチイベント発生");
-        
+        GameManager.Instance.NextDay("Day 5_k");
         //GameManager.Instance.SetInContactArea(true);
         //Debug.Log(GameManager.Instance.GetInContactArea());
     }

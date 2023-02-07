@@ -53,7 +53,7 @@ public class RaycastController : MonoBehaviour
                         Debug.Log("ÉçÉbÉNÉIÉì");
                         Lockon = true;
                         todayTask.TaskCompletion(0);
-                        GameManager.Instance.NextDay("Day 2_k");
+                        Day1.day1 = true;
                     }
                 }
             }
