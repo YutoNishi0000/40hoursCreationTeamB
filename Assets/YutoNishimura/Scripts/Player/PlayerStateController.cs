@@ -27,18 +27,24 @@ public class PlayerStateController : MonoBehaviour
     {
         if(RaycastController.Lockon)
         {
+            Debug.Log("ビューポートロック状態 ");
             SetPlayerState(PlayerState.ViewportLocked);
         }
         else if(ChangeCameraAngle._voyeurism)
         {
+            Debug.Log("盗撮状態");
             SetPlayerState(PlayerState.Voyeurism);
         }
         else if(UIController._talkStart)
         {
+            Debug.Log("ハンカチイベント開始状態 ");
+
             SetPlayerState(PlayerState.TalkEvent);
         }
         else
         {
+            Debug.Log("動ける状態 ");
+
             SetPlayerState(PlayerState.Move);
         }
     }

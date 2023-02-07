@@ -46,11 +46,11 @@ public class PlayerController : Human
 
         switch (playerState.GetPlayerState())
         {
-            case PlayerStateController.PlayerState.Move:
-                RotateControl();
-                break;
             case PlayerStateController.PlayerState.ViewportLocked:
                 lockOnTargetObject(targetCenter);
+                break;
+            default:
+                RotateControl();
                 break;
         }
     }
@@ -179,6 +179,7 @@ public class PlayerController : Human
 
     private void lockOnTargetObject(GameObject target)
     {
+        Debug.Log("âÊñ ÉçÉbÉNíÜÇ≈Ç∑");
         transform.LookAt(target.transform.position);
     }
 }
