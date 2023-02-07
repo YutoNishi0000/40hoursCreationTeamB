@@ -17,6 +17,7 @@ public class Day1 : MonoBehaviour
         if (day1)
         {
             GameManager.Instance.NextDay("Day 2_k");
+            day1 = false;
         }
     }
 }

@@ -78,7 +78,9 @@ public class Message : MonoBehaviour
             TextEventFlag = false;
             Panel.SetActive(TextEventFlag);
         }
+        Debug.Log("");
     }
+    
 
     private void Init()
     {
