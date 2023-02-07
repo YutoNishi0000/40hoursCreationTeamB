@@ -12,9 +12,11 @@ public class Day3 : MonoBehaviour
 
     private TodayTask todayTask;
     private Message message;
+    private bool once;
 
     private void Start()
     {
+        once = false;
         todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
         message = GameObject.Find("MessageUI").GetComponent<Message>();
     }
@@ -35,7 +37,11 @@ public class Day3 : MonoBehaviour
             //タスクが一つでも残っていたら
             if(todayTask.todayTask.Count > 0)
             {
-                message.EventText((int)Scenario.MessageState.DAY3_TIMEOVER);
+                if (!once)
+                {
+                    message.EventText((int)Scenario.MessageState.DAY3_TIMEOVER);
+                    once = true;
+                }
 
                 //このフラグは絶対にオフになるのでバグは心配しくてよい
                 if (Message.PlayerMoveFlag)
@@ -43,12 +49,12 @@ public class Day3 : MonoBehaviour
                     GameManager.Instance.GameOver();
                     Destroy(gameObject);
                 }
-
-                return;
             }
-
-            GameManager.Instance.NextDay("Day 4_k");
-            Destroy(gameObject);
+            else
+            {
+                GameManager.Instance.NextDay("Day 4_k");
+                Destroy(gameObject);
+            }
         }
     }
 }

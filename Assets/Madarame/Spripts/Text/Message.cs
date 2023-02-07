@@ -71,6 +71,7 @@ public class Message : MonoBehaviour
 
         if (TodayMes.Count > count)
         {
+            Debug.Log("osareta ");
             if (GetMes(count).massage == "#")
             {
                 count++;

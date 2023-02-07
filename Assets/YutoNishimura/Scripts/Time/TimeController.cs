@@ -8,7 +8,7 @@ public class TimeController : MonoBehaviour
 {
     public static bool _isTimePassed;
     public Text timeText;
-    private float TimeLeft = 20;      //残り時間
+    private float TimeLeft = 3;      //残り時間
     private float _time;
 
     // Start is called before the first frame update
@@ -29,12 +29,18 @@ public class TimeController : MonoBehaviour
     //残り時間を表示
     void OnTime(float leftTime, Text time)
     {
+        if(!Message.PlayerMoveFlag)
+        {
+            return;
+        }
+
         if(leftTime <= 0)
         {
             _isTimePassed = true;
             time.text = "TIME OVER...";
             return;
         }
+
 
         time.text = "残り" + Mathf.FloorToInt(leftTime / 60) + "分" + Mathf.FloorToInt(leftTime % 60) + "秒";
     }

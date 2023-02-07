@@ -12,6 +12,7 @@ public class Day4 : MonoBehaviour
     float faidOutTime = 5;
 
     private Message message;
+    private bool once;
 
     private void Start()
     {
@@ -33,8 +34,11 @@ public class Day4 : MonoBehaviour
         else if (TimeController._isTimePassed)
         {
             //時間切れになったらゲームオーバー
-
-            message.EventText((int)Scenario.MessageState.DAY4_TIMEOVER);
+            if (!once)
+            {
+                message.EventText((int)Scenario.MessageState.DAY4_TIMEOVER);
+                once = true;
+            }
 
             //このフラグは絶対にオフになるのでバグは心配しくてよい
             if (Message.PlayerMoveFlag)
