@@ -8,7 +8,6 @@ public class RaycastController : MonoBehaviour
     private float maxLockonTime;
     public static bool Lockon;
     public static bool BeatHeart;
-    private bool _lock;
 
     //ターゲット
     GameObject target = null;
@@ -18,7 +17,6 @@ public class RaycastController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _lock = false;
         lockonTime = 0;
         Lockon = false;
         BeatHeart = false;
@@ -30,7 +28,6 @@ public class RaycastController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("ロックオンの状態はぁぁぁぁl" + Lockon);
         if (!Lockon)
         {
             RaycastHit hit;
@@ -46,7 +43,6 @@ public class RaycastController : MonoBehaviour
 
                     //=============================================================================
                     //
-                    Debug.Log("今の日にちはぁぁぁぁヵ" + GameManager.Instance.GetDate());
                     if (GameManager.Instance.GetDate() != 0)
                     {
                         return;
