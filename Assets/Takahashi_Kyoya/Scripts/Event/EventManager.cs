@@ -19,6 +19,7 @@ public class EventManager : MonoBehaviour
     }
     public static EVENTTYPE eventType;
 
+
     //今日のタスクの処理してるオブジェクトとスクリプト
     GameObject task;
     TodayTask todayTask;
@@ -36,23 +37,45 @@ public class EventManager : MonoBehaviour
     }
     private void Update()
     {
-        //インゲームイベントごとの処理
-        switch(eventType)
-        {
-            case EVENTTYPE.noEvent:
-                    break;
-            case EVENTTYPE.fled:
-                break;
-            case EVENTTYPE.handkerchief:
-                if (GameManager.Instance.GetInContactArea())
-                {
-                    Debug.Log("InContactAreaの中");
-                    HandkerchiefEvent();
-                }
-                break;
-            case EVENTTYPE.negotiation:
-                break;
-        }
+        ////インゲームイベントごとの処理
+        //switch(eventType)
+        //{
+        //    case EVENTTYPE.noEvent:
+        //            break;
+        //    case EVENTTYPE.fled:
+
+        //        break;
+        //    case EVENTTYPE.handkerchief:
+        //        if (GameManager.Instance.GetInContactArea())
+        //        {
+        //            Debug.Log("InContactAreaの中");
+        //            HandkerchiefEvent();
+        //        }
+        //        break;
+        //    case EVENTTYPE.negotiation:
+        //        break;
+        //}
+        //switch (GameManager.Instance.GetDate())
+        //{
+        //    case 0:
+        //        break;
+        //    case 1:
+        //        break;
+        //    case 2:
+        //        break;
+        //    case 3:
+        //        break;
+        //    case 4:
+        //        break;
+        //}
+
+    }
+    /// <summary>
+    /// 逃げられイベント
+    /// </summary>
+    void FledEvent()
+    {
+        //GameManager.Instance.NextDay();
     }
     /// <summary>
     /// ハンカチイベント
@@ -66,5 +89,12 @@ public class EventManager : MonoBehaviour
             //target.transform.LookAt(player.transform.position);
             //Message.PlayerMoveFlag = false;
         }
+    }
+    /// <summary>
+    /// 交渉イベント
+    /// </summary>
+    void NegotiationEvent()
+    {
+        GameManager.Instance.GameClear();
     }
 }

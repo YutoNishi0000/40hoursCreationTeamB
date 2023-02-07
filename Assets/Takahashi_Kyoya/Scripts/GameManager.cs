@@ -7,6 +7,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     //ゲームオーバーシーン
     private string gameOverScene = "GameOver";
+    //ゲームクリアシーン
+    private string gameClearScene = "GameClear";
     //今日の日付
     public int Date = 0;
     //次の日に行けるか
@@ -22,11 +24,23 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Date++;
         FadeManager.Instance.LoadScene(name, 1.0f);
     }
+    /// <summary>
+    /// ゲームオーバーシーンに切り替え
+    /// </summary>
     public void GameOver()
     {
         Date = 0;
-        FadeManager.Instance.LoadScene(name, 1.0f);
+        FadeManager.Instance.LoadScene(gameOverScene, 1.0f);
     }
+    /// <summary>
+    /// ゲームクリアシーンに切り替え
+    /// </summary>
+    public void GameClear()
+    {
+        Date = 0;
+        FadeManager.Instance.LoadScene(gameClearScene, 1.0f);
+    }
+
 
     /// <summary>
     /// アウトゲームのシーン切り替え
