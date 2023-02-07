@@ -9,6 +9,8 @@ public class RaycastController : MonoBehaviour
     public static bool Lockon;
     public static bool BeatHeart;
 
+    //ターゲット
+    GameObject target = null;
     //
     GameObject todayTaskUI = null;
     TodayTask todayTask = null; 
@@ -21,6 +23,7 @@ public class RaycastController : MonoBehaviour
         maxLockonTime = 1;
         todayTaskUI = GameObject.Find("TodayTask");
         todayTask = todayTaskUI.GetComponent<TodayTask>();
+        target = GameObject.FindGameObjectWithTag("Target");
     }
 
     private void FixedUpdate()
