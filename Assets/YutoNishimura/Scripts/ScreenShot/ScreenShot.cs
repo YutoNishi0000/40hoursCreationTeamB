@@ -53,7 +53,7 @@ public class ScreenShot : Human
             {
                 todayTask.TaskCompletion(1);
                 StartCoroutine(nameof(HiddonText), SucceededShutter);
-                GameManager.Instance.NextDay("Day 3_k");
+                Day2.day2 = true;
             }
             else
             {
