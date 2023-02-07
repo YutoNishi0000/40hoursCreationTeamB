@@ -12,7 +12,8 @@ public class HandkerchiefEventController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _frontChecker = GetComponent<FrontSidePlayerChecker>();
+        //_frontChecker = GetComponentInParent<FrontSidePlayerChecker>();
+        _frontChecker = GameObject.Find("Collider").GetComponent<FrontSidePlayerChecker>();
         messageUI = GameObject.Find("MessageUI");
         message = messageUI.GetComponent<Message>();
     }
