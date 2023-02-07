@@ -93,7 +93,7 @@ public class SoundManager : MonoBehaviour
 			GameClearBGM.Play();
 			GameOverBGM.Stop();
 		}
-		//Day5‚©‚çGameClear‚Ö
+		//Day5‚©‚çGameOver‚Ö
 		if (beforeScene == "Day5" && nextScene.name == "GameOver")
 		{
 			OutGameBGM.Stop();
@@ -109,7 +109,7 @@ public class SoundManager : MonoBehaviour
 			GameClearBGM.Play();
 			GameOverBGM.Stop();
 		}
-		//Day5‚©‚çGameClear‚Ö
+		//GameOver‚©‚çTitler
 		if (beforeScene == "Day5" && nextScene.name == "GameOver")
 		{
 			OutGameBGM.Stop();
