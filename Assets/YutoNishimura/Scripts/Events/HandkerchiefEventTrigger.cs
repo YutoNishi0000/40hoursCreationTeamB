@@ -46,7 +46,7 @@ public class HandkerchiefEventTrigger : MonoBehaviour
         //======================================================================
 
         Debug.Log("ハンカチを拾った時のイベント発生");
-        _message.EventText();
+        _message.EventText((int)Scenario.MessageState.DAY3_GET);
         _todayTask.TaskCompletion(2);
         UIController._talkStart = false;
         _hankatiEventStart = true;

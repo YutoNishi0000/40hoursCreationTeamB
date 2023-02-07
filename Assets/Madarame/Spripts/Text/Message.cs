@@ -37,6 +37,10 @@ public class Message : MonoBehaviour
         Scenario.meslist_day5,
         Scenario.meslist_GameClear, //5
         Scenario.meslist_GameOver,  //6
+        Scenario.meslist_day3_gethankati,
+        Scenario.meslist_day3_timeover,
+        Scenario.meslist_day4_gethankati,
+        Scenario.meslist_day4_timeover
     };
 
     private void Start()
@@ -112,15 +116,24 @@ public class Message : MonoBehaviour
         // GameManagerから現在のDay番号（0-4）を取得
         return GameManager.Instance.GetDate();
     }
-    public void EventText()
+    public void EventText(int num)
     {
-        count++;
-        TextEventFlag = true;        
+        count = 0;
+        //count++;
+        SetEvent(num);
+        SetMes(count);
+        TextEventFlag = true;
         Panel.SetActive(TextEventFlag);
-        count++;
         //プレイヤーの移動が可能
         PlayerMoveFlag = false;
     }
+
+    public void SetEvent(int num)
+    {
+        TodayMes = null;
+        TodayMes = list[num + 7];
+    }
+
     
     public void StartMes()
     {
