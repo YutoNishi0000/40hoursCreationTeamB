@@ -362,6 +362,10 @@ PrefabInstance:
       propertyPath: passingPoints.Array.data[2]
       value: 
       objectReference: {fileID: 580453819}
+    - target: {fileID: 6158400415750646475, guid: cecb79687dada7449b51a4ebb5922655, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 528507618}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cecb79687dada7449b51a4ebb5922655, type: 3}
 --- !u!1 &10559512 stripped
@@ -1031,15 +1035,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 767715085194132483, guid: 3da2fa8fd77c0c5468437405d225ecc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.9
+      value: 33.6
       objectReference: {fileID: 0}
     - target: {fileID: 767715085194132483, guid: 3da2fa8fd77c0c5468437405d225ecc5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 54.21
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 767715085194132483, guid: 3da2fa8fd77c0c5468437405d225ecc5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.1
+      value: 15.2
       objectReference: {fileID: 0}
     - target: {fileID: 767715085194132483, guid: 3da2fa8fd77c0c5468437405d225ecc5, type: 3}
       propertyPath: m_LocalRotation.w

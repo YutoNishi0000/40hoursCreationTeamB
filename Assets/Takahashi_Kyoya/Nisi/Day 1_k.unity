@@ -2813,6 +2813,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6101318946856536923, guid: 03af8fc29172ee44e88a8c0a655bf579, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6335008882168220165, guid: 03af8fc29172ee44e88a8c0a655bf579, type: 3}
       propertyPath: targetCenter
       value: 
@@ -2866,8 +2870,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6335008882168220187, guid: 03af8fc29172ee44e88a8c0a655bf579, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335008882168220187, guid: 03af8fc29172ee44e88a8c0a655bf579, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335008882545010045, guid: 03af8fc29172ee44e88a8c0a655bf579, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03af8fc29172ee44e88a8c0a655bf579, type: 3}

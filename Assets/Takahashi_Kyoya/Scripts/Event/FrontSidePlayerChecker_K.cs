@@ -11,20 +11,34 @@ public class FrontSidePlayerChecker_K : Human
     [SerializeField] private float RECOGNIZE_PLAYER_TIME = 3f;          //ターゲットがプレイヤーを認識するまでの時間
     private TargetController targetController;
     private bool _isEscape;                                       //今逃走中かどうか
+    private bool _isRecognizeBack;                                    //プレイヤーを認識しているかどうか(後方範囲)
 
     private void Start()
     {
         _isEscape = false;
         timerText.enabled = false;
         time = 0;
-        targetController = GetComponent<TargetController>();
+        targetController = GetComponentInParent<TargetController>();
+    }
+
+    private void Update()
+    {
+        if (/*_frontChecker.CheckPlayerFront() || */_isRecognizeBack)
+        {
+            GameManager.Instance.SetInContactArea(true);
+            CountTimer();
+        }
+        else
+        {
+            GameManager.Instance.SetInContactArea(false);
+            OffTimer();
+        }
     }
 
     //前方を
     public bool CheckPlayerFront()
     {
-        RaycastHit hit;
-        if (Physics.BoxCast(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), new Vector3(2, 2, 4), transform.forward, out hit, Quaternion.identity, 10f, LayerMask.GetMask("Player")))
+        if (_isRecognizeBack)
         {
             return true;
         }
@@ -71,5 +85,29 @@ public class FrontSidePlayerChecker_K : Human
     {
         _isEscape = true;
         targetController.SettargetState(TargetController.TargetState.Escape);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //レイをプレイヤーの方向に飛ばして何も当たらなかったら
+            if (Physics.Raycast(transform.position, other.gameObject.transform.position - transform.position, 10f, LayerMask.GetMask("Player")))
+            {
+                _isRecognizeBack = true;
+            }
+            else
+            {
+                _isRecognizeBack = false;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _isRecognizeBack = false;
+        }
     }
 }

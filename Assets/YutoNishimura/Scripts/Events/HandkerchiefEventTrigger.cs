@@ -27,6 +27,6 @@ public class HandkerchiefEventTrigger : MonoBehaviour
 
         Debug.Log("ハンカチを拾った時のイベント発生");
         GameManager.Instance.NextDay("Day 4_k");
-        UIController._talkStart = true;
+        UIController._talkStart = false;
     }
 }
