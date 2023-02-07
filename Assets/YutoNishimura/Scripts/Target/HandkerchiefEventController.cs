@@ -60,7 +60,7 @@ public class HandkerchiefEventController : MonoBehaviour
         //=================================================================================================
         Debug.Log("ハンカチイベント発生DAY4");
         todayTask.TaskCompletion(3);
-        message.EventText();
+        message.EventText((int)Scenario.MessageState.DAY4_GET);
         _hankatiEventStart = true;
         //GameManager.Instance.SetInContactArea(true);
         //Debug.Log(GameManager.Instance.GetInContactArea());
