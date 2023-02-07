@@ -8,7 +8,7 @@ public class TimeController : MonoBehaviour
 {
     public static bool _isTimePassed;
     public Text timeText;
-    private float TimeLeft = 3;      //c‚èŠÔ
+    private float TimeLeft = 120;      //c‚èŠÔ
     private float _time;
 
     // Start is called before the first frame update
