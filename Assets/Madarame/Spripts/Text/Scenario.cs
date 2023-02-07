@@ -55,12 +55,7 @@ static public class Scenario
         new MessageData{ massage = "予行練習はこんな感じでよしと", color = Color.magenta },
         new MessageData{ massage = "今日こそ“あの人”に話しかけるんだ…！", color = Color.magenta },
         new MessageData{ massage = "でも正面からは恥ずかしいから「後ろから」話しかけよう…", color = Color.magenta },
-        new MessageData{ massage = "#", color = Color.magenta },
-        // 時間切れ
-        new MessageData{ massage = "やっぱりこんな汚い手を使って話しかけようなんて…", color = Color.magenta },
-        new MessageData{ massage = "…いや、ただ話しかけることすらできない自分への言い訳だよ…", color = Color.magenta },
-        new MessageData{ massage = "ダメもとで明日話しかけちゃおうかな…", color = Color.magenta },
-        new MessageData{ massage = "#", color = Color.magenta },
+        new MessageData{ massage = "#", color = Color.magenta },        
         //ハンカチイベント
         new MessageData{ massage = "あ、あの！", color = Color.magenta },
         new MessageData{ massage = "は、はい？", color = Color.cyan },
@@ -72,6 +67,11 @@ static public class Scenario
         new MessageData{ massage = "心優しい方に拾ってもらえたようで良かったです", color = Color.cyan },
         new MessageData{ massage = "では、無事持ち主が見つかることを祈ってます！", color = Color.cyan },
         new MessageData{ massage = "#", color = Color.cyan },
+        // 時間切れ
+        new MessageData{ massage = "やっぱりこんな汚い手を使って話しかけようなんて…", color = Color.magenta },
+        new MessageData{ massage = "…いや、ただ話しかけることすらできない自分への言い訳だよ…", color = Color.magenta },
+        new MessageData{ massage = "ダメもとで明日話しかけちゃおうかな…", color = Color.magenta },
+        new MessageData{ massage = "#", color = Color.magenta },
 
     };
     // day5

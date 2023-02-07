@@ -115,8 +115,9 @@ public class Message : MonoBehaviour
     public void EventText()
     {
         count++;
-        TextEventFlag = true;
+        TextEventFlag = true;        
         Panel.SetActive(TextEventFlag);
+        count++;
         //プレイヤーの移動が可能
         PlayerMoveFlag = false;
     }
