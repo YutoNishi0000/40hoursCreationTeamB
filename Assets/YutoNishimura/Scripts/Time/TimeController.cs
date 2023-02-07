@@ -8,7 +8,7 @@ public class TimeController : MonoBehaviour
 {
     public static bool _isTimePassed;
     public Text timeText;
-    [SerializeField] private float TimeLeft = 8;      //c‚èŠÔ
+    private float TimeLeft = 20;      //c‚èŠÔ
     private float _time;
 
     // Start is called before the first frame update

@@ -14,7 +14,7 @@ public class TodayTask : MonoBehaviour
     [SerializeField] List<Text> taskText = new List<Text>();
 
     //¡“ú‚Ìƒ^ƒXƒN
-    List<string> todayTask = new List<string>();
+    public List<string> todayTask = new List<string>();
 
     private void Start()
     {

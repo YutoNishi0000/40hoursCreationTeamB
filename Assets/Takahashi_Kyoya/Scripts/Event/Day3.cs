@@ -10,6 +10,15 @@ public class Day3 : MonoBehaviour
     //フェイドアウトするまでの時間
     float faidOutTime = 5;
 
+    private TodayTask todayTask;
+    private Message message;
+
+    private void Start()
+    {
+        todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
+        message = GameObject.Find("MessageUI").GetComponent<Message>();
+    }
+
     void Update()
     {
         if (day3)
@@ -23,6 +32,21 @@ public class Day3 : MonoBehaviour
         }
         else if (TimeController._isTimePassed)
         {
+            //タスクが一つでも残っていたら
+            if(todayTask.todayTask.Count > 0)
+            {
+                message.EventText((int)Scenario.MessageState.DAY3_TIMEOVER);
+
+                //このフラグは絶対にオフになるのでバグは心配しくてよい
+                if (Message.PlayerMoveFlag)
+                {
+                    GameManager.Instance.GameOver();
+                    Destroy(gameObject);
+                }
+
+                return;
+            }
+
             GameManager.Instance.NextDay("Day 4_k");
             Destroy(gameObject);
         }
