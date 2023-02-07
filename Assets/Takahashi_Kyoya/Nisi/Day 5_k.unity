@@ -446,6 +446,14 @@ PrefabInstance:
       propertyPath: passingPoints.Array.data[2]
       value: 
       objectReference: {fileID: 580453819}
+    - target: {fileID: 6158400415750646475, guid: cecb79687dada7449b51a4ebb5922655, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 528507618}
+    - target: {fileID: 7606322077008440437, guid: cecb79687dada7449b51a4ebb5922655, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cecb79687dada7449b51a4ebb5922655, type: 3}
 --- !u!1 &10559512 stripped
@@ -24286,7 +24294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RECOGNIZE_DISTANCE: 10
-  timerText: {fileID: 0}
+  timerText: {fileID: 528507618}
   time: 0
   RECOGNIZE_PLAYER_TIME: 3
 --- !u!1 &1025656894 stripped
@@ -33451,6 +33459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793851, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: Date
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -33932,6 +33944,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6839806758083486199, guid: 3c7d5dece75cf9845ad850601668e7d8, type: 3}
+--- !u!1 &1461179383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4964017955345903362, guid: cecb79687dada7449b51a4ebb5922655, type: 3}
+  m_PrefabInstance: {fileID: 10056928}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1461179385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461179383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a839c4b1ef1f42d40b356c7f0c88f6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1463003533 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3390795694630277352, guid: df911a3613ea3f84b81a905161036f2b, type: 3}
@@ -40790,7 +40819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RECOGNIZE_DISTANCE: 10
-  timerText: {fileID: 0}
+  timerText: {fileID: 528507618}
   time: 0
   RECOGNIZE_PLAYER_TIME: 3
 --- !u!1 &1770798718
