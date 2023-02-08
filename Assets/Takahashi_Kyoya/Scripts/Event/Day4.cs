@@ -27,7 +27,7 @@ public class Day4 : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > faidOutTime)
             {
-                GameManager.Instance.NextDay("Day 5_k");
+                GameManager.Instance.NextDay("Negotiation");
                 Destroy(gameObject);
             }
         }
