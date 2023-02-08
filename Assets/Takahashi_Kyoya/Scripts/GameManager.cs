@@ -89,7 +89,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start()
     {
-        Date = 0;
+        //Date = 0;
     }
 
     /// <summary>

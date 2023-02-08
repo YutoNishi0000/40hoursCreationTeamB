@@ -152,11 +152,11 @@ public class Message : MonoBehaviour
     }
     // ゲームクリアテキストを表示
     public void DrawGC_Text()
-    { 
+    {
         TodayMes = GetGameClearText();
         Panel.SetActive(true);
         //プレイヤーの移動が不可能
-        PlayerMoveFlag = false;
+        //PlayerMoveFlag = false;
     }
     // ゲームオーバーテキストを呼ぶ
     public List<MessageData> GameOverText()
