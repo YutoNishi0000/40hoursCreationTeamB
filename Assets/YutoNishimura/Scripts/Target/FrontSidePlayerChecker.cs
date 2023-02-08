@@ -13,11 +13,13 @@ public class FrontSidePlayerChecker : Human
     private bool _isEscape;                                       //今逃走中かどうか
     private bool _isRecognizeBack;                                    //プレイヤーを認識しているかどうか(後方範囲)
     private bool _isEvent;                                      //今イベント中かどうか
-    public static bool _isEscape;
+    //public static bool _isEscape;
+    public static bool _Escaped;                                        //逃走されたかどうか
 
 
     private void Start()
     {
+        _isEscape = false;
         _isEvent = false;
         _isEscape = false;
         timerText.enabled = false;
@@ -86,11 +88,12 @@ public class FrontSidePlayerChecker : Human
     {
         _isEscape = true;
         targetController.SettargetState(TargetController.TargetState.Escape);
+        Invoke(nameof(GameOver), 1);
     }
 
     void GameOver()
     {
-
+        _Escaped = true;
     }
 
     private void OnTriggerStay(Collider other)
