@@ -71,6 +71,7 @@ public class FrontSidePlayerChecker : Human
 
         if (!_isEscape)
         {
+            RaycastController.Lockon = true;
             targetController.SettargetState(TargetController.TargetState.LookPlayer);
         }
 
@@ -88,7 +89,7 @@ public class FrontSidePlayerChecker : Human
     {
         _isEscape = true;
         targetController.SettargetState(TargetController.TargetState.Escape);
-        Invoke(nameof(GameOver), 1);
+        Invoke(nameof(GameOver), 0.5f);
     }
 
     void GameOver()
