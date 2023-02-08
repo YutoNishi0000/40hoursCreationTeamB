@@ -8,10 +8,14 @@ public class EscapeTarget : MonoBehaviour
     private FailedNegotiationEvent _fail;
     private NavMeshAgent _navmesh;
     public GameObject _escapePoint;
+    private Animator _animator;
+    private bool once;
 
     // Start is called before the first frame update
     void Start()
     {
+        once = false;
+        _animator = GetComponent<Animator>();
         _navmesh = GetComponent<NavMeshAgent>();
         _fail = GameObject.Find("NegotiationEvent").GetComponent<FailedNegotiationEvent>();
     }
@@ -22,8 +26,20 @@ public class EscapeTarget : MonoBehaviour
         if(FailedNegotiationEvent._escaprFromPlayer)
         {
             //ここに逃げる処理を追加
-            GameManager.Instance.GameOver();
+            _navmesh.destination = _escapePoint.transform.position;
+            _animator.SetFloat("Speed", _navmesh.velocity.magnitude);
             Debug.Log("ターゲットがミゲルはず");
+
+            if (!once)
+            {
+                Invoke(nameof(GoToGameOver), 2);
+                once = true;
+            }
         }
+    }
+
+    void GoToGameOver()
+    {
+        GameManager.Instance.GameOver();
     }
 }
