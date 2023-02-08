@@ -153,4 +153,21 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         inContactArea = b;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Quit();
+        }
+    }
+
+    // アプリケーションを終了させる(アプリケーション終了のコードが分散するの防ぐためにpublic関数)
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+        UnityEngine.Application.Quit();
+#endif        
+    }
 }
