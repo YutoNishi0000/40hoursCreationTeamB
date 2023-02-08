@@ -13,7 +13,6 @@ public class TASK
     public bool takeOver;
     //何日目のタスクか
     public int date;
-
     public string GetTaskName()
     {
         return taskName;
@@ -29,6 +28,10 @@ public class TASK
 }
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+
+    //タイトルの割れる画像
+    public GameObject TitleUI;
+
     //タスククラス
     public List<TASK> tasks = new List<TASK>()
     {
@@ -160,6 +163,20 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             Quit();
         }
     }
+
+    public void InGameSceneChenge()
+    {
+        TitleUI.SetActive(true);
+        Invoke("InGame", 1);
+    }
+    private void InGame()
+    {
+        FadeManager.Instance.LoadScene("Day 1_k", 3.0f);
+    }
+    //private void PlaySE()
+    //{
+
+    //}
 
     // アプリケーションを終了させる(アプリケーション終了のコードが分散するの防ぐためにpublic関数)
     public void Quit()
