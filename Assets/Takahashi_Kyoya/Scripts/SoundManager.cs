@@ -13,6 +13,8 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     [SerializeField] AudioClip screamSE;
     [SerializeField] AudioClip badSE;
     [SerializeField] AudioClip gameoverSE;
+    //BGM
+    [SerializeField] AudioClip gameClearBGM;
 
     void Start()
     {
@@ -46,5 +48,9 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     public void PlayGameOverSE()
     {
         audioSource.PlayOneShot(gameoverSE);
+    }
+    public void PlayGameClearBGM()
+    {
+        audioSource.PlayOneShot(gameClearBGM);
     }
 }

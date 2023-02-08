@@ -8,24 +8,33 @@ public class NegotiaationEvent : MonoBehaviour
     [SerializeField]GameObject MessgeUI;
 
     //何回押されたときにカメラを切り替えるか
-    const int count = 8;
+    const int countCamere = 8;
+    //何回押されたらBGM再生するのか
+    const int countBGM = 18;
     //カウンター
     int counter = 0;
+    //カメラオブジェクト
+    [SerializeField] GameObject obj;
 
 
     private void Start()
     {
         message = MessgeUI.GetComponent<Message>();
-        message.DrawGC_Text();
     }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
             counter++;
-            if (counter == count)
+            if (counter == countCamere)
             {
-                this.gameObject.SetActive(false);
+                Debug.Log("通った");
+                obj.gameObject.SetActive(true);
+            }
+            if(counter == countBGM)
+            {
+                SoundManager.Instance.PlayGameClearBGM();
+                GameManager.Instance.OutGameNextScene("");
             }
         }
     }
