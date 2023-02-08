@@ -13,10 +13,12 @@ public class Day4 : MonoBehaviour
 
     private Message message;
     private bool once;
+    private TodayTask todayTask;
 
     private void Start()
     {
         message = GameObject.Find("MessageUI").GetComponent<Message>();
+        todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
     }
 
     // Update is called once per frame
@@ -33,17 +35,27 @@ public class Day4 : MonoBehaviour
         }
         else if (TimeController._isTimePassed)
         {
-            //時間切れになったらゲームオーバー
-            if (!once)
+            //タスクが一つでも残っていたら
+            if (todayTask.todayTask.Count > 0)
             {
-                message.EventText((int)Scenario.MessageState.DAY4_TIMEOVER);
-                once = true;
-            }
+                //時間切れになったらゲームオーバー
+                if (!once)
+                {
+                    message.EventText((int)Scenario.MessageState.DAY4_TIMEOVER);
+                    once = true;
+                }
 
-            //このフラグは絶対にオフになるのでバグは心配しくてよい
-            if (Message.PlayerMoveFlag)
+                //このフラグは絶対にオフになるのでバグは心配しくてよい
+                if (Message.PlayerMoveFlag)
+                {
+                    GameManager.Instance.NextDay("FailedNegotiation");
+                    Destroy(gameObject);
+                }
+            }
+            //タスクが一つも残っていなかったら
+            else
             {
-                GameManager.Instance.GameOver();
+                GameManager.Instance.NextDay("Negotiation");
                 Destroy(gameObject);
             }
 
