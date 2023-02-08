@@ -14,7 +14,7 @@ public class BackSidePlayerChecker : MonoBehaviour
 
     private void Update()
     {
-        if(_frontChecker.CheckPlayerFront() || _isRecognizeBack)
+        if(_frontChecker.CheckPlayerFront())
         {
             GameManager.Instance.SetInContactArea(true);
             _frontChecker.CountTimer();
@@ -23,22 +23,6 @@ public class BackSidePlayerChecker : MonoBehaviour
         {
             GameManager.Instance.SetInContactArea(false);
             _frontChecker.OffTimer();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            _isRecognizeBack = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            _isRecognizeBack = false;
         }
     }
 }

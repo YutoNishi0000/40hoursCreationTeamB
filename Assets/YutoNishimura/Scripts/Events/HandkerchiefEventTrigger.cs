@@ -4,6 +4,26 @@ using UnityEngine;
 
 public class HandkerchiefEventTrigger : MonoBehaviour
 {
+    private TodayTask _todayTask;
+    private Message _message;
+    private bool _hankatiEventStart;
+
+    private void Start()
+    {
+        _hankatiEventStart = false;
+        _todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
+        _message = GameObject.Find("MessageUI").GetComponent<Message>();
+    }
+
+    private void Update()
+    {
+        if(!Message.TextEventFlag && _hankatiEventStart)
+        {
+            Day3.day3 = true;
+            _hankatiEventStart = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Handkerchief"))
@@ -26,7 +46,9 @@ public class HandkerchiefEventTrigger : MonoBehaviour
         //======================================================================
 
         Debug.Log("ハンカチを拾った時のイベント発生");
-
-        UIController._talkStart = true;
+        _message.EventText((int)Scenario.MessageState.DAY3_GET);
+        _todayTask.TaskCompletion(2);
+        UIController._talkStart = false;
+        _hankatiEventStart = true;
     }
 }

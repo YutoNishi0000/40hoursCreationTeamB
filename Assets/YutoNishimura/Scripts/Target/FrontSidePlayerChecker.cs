@@ -11,20 +11,26 @@ public class FrontSidePlayerChecker : Human
     [SerializeField] private float RECOGNIZE_PLAYER_TIME = 3f;          //ターゲットがプレイヤーを認識するまでの時間
     private TargetController targetController;
     private bool _isEscape;                                       //今逃走中かどうか
+    private bool _isRecognizeBack;                                    //プレイヤーを認識しているかどうか(後方範囲)
+    private bool _isEvent;                                      //今イベント中かどうか
+    //public static bool _isEscape;
+    public static bool _Escaped;                                        //逃走されたかどうか
+
 
     private void Start()
     {
         _isEscape = false;
+        _isEvent = false;
+        _isEscape = false;
         timerText.enabled = false;
         time = 0;
-        targetController = GetComponent<TargetController>();
+        targetController = GetComponentInParent<TargetController>();
     }
 
     //前方を
     public bool CheckPlayerFront()
     {
-        RaycastHit hit;
-        if (Physics.BoxCast(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), new Vector3(2, 2, 4), transform.forward, out hit, Quaternion.identity, 10f, LayerMask.GetMask("Player")))
+        if (_isRecognizeBack)
         {
             return true;
         }
@@ -65,7 +71,13 @@ public class FrontSidePlayerChecker : Human
 
         if (!_isEscape)
         {
+            RaycastController.Lockon = true;
             targetController.SettargetState(TargetController.TargetState.LookPlayer);
+        }
+
+        if(_isEvent)
+        {
+            return;
         }
 
         Invoke(nameof(SetTargetStateEscape), 2);
@@ -77,5 +89,41 @@ public class FrontSidePlayerChecker : Human
     {
         _isEscape = true;
         targetController.SettargetState(TargetController.TargetState.Escape);
+        Invoke(nameof(GameOver), 0.5f);
+    }
+
+    void GameOver()
+    {
+        _Escaped = true;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("プレイy－検知");
+            //レイをプレイヤーの方向に飛ばして何も当たらなかったら
+            if (Physics.Raycast(transform.position, other.gameObject.transform.position - transform.position, 10f, LayerMask.GetMask("Player")))
+            {
+                _isRecognizeBack = true;
+            }
+            else
+            {
+                _isRecognizeBack = false;
+            }
+        }
+    }
+
+    public void TriggerEvent()
+    {
+        _isEvent = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _isRecognizeBack = false;
+        }
     }
 }

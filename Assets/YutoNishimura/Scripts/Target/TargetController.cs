@@ -122,6 +122,12 @@ public class TargetController : Human
 
             //目的地は配列の一個前の要素を指定して来た道を戻るようにする
             _pointIndex--;
+
+            if(_pointIndex <= 0)
+            {
+                _pointIndex = 0;
+            }
+
             _navmeshAgent.SetDestination(passingPoints[_pointIndex].transform.position);
 
             Debug.Log("今のインデックスは" + _pointIndex);
