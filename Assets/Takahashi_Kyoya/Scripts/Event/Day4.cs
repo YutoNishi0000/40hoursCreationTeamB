@@ -50,5 +50,10 @@ public class Day4 : MonoBehaviour
             //GameManager.Instance.NextDay("Day 5_k");
             //Destroy(gameObject);
         }
+        else if (FrontSidePlayerChecker._Escaped)
+        {
+            GameManager.Instance.GameOver();
+            Destroy(gameObject);
+        }
     }
 }
