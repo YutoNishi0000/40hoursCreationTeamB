@@ -154,7 +154,15 @@ public class Message : MonoBehaviour
     public void DrawGC_Text()
     {
         TodayMes = GetGameClearText();
-        Panel.SetActive(true);
+        gameObject.SetActive(true);
+        //プレイヤーの移動が不可能
+        //PlayerMoveFlag = false;
+    }
+    //ゲームオーバーテキストを表示
+    public void DrawGO_Text()
+    {
+        TodayMes = GetGameClearText();
+        gameObject.SetActive(true);
         //プレイヤーの移動が不可能
         //PlayerMoveFlag = false;
     }
@@ -163,14 +171,6 @@ public class Message : MonoBehaviour
     {
         int GameOver = 6;
         return list[GameOver];
-    }
-    // ゲームオーバーテキストを表示
-    public void DrawGO_Text()
-    {
-        TodayMes = GameOverText();
-        Panel.SetActive(true);
-        //プレイヤーの移動が不可能
-        PlayerMoveFlag = false;
     }
     // デバッグ用
     //public void DebugMessageDisplayDay1()
