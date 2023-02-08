@@ -17,10 +17,10 @@ public class Pose : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Tab))
         {
+            isPoseing = !isPoseing;
             PoseCanvas.SetActive(isPoseing);
             //Player.SetActive(true);
             Message.PlayerMoveFlag = !Message.PlayerMoveFlag;
-            isPoseing = !isPoseing;
         }
     }
     public void ClickCalled()
