@@ -9,17 +9,11 @@ EditorBuildSettings:
     path: Assets/Madarame/Scenes/Title.unity
     guid: ecf5c356cb0b9a24694feaab50588f97
   - enabled: 1
-    path: Assets/Madarame/Scenes/Day 1.unity
-    guid: 532f304a3b07f5b4094130aadc1774cf
-  - enabled: 0
-    path: Assets/Takahashi_Kyoya/Nisi/Day 1_klate.unity
-    guid: fbd04c4dcfeb42a4bbceecce98f2ec85
-  - enabled: 1
     path: Assets/Takahashi_Kyoya/Nisi/Day 1_k.unity
     guid: d405bdb4444a2a5459af20b6cba12d7f
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Takahashi_Kyoya/Nisi/Day 2_k.unity
+    guid: e06a87944d776cc49a7eff1efee7a828
   - enabled: 1
     path: Assets/Takahashi_Kyoya/Nisi/Day 3_k.unity
     guid: 80d5b7b09a3610b47b02a477afd3651d
@@ -35,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Takahashi_Kyoya/Nisi/Day3Resources/GameOver.unity
     guid: 98d5e14e48510f647a1b22f75b26595c
-  - enabled: 1
-    path: Assets/Takahashi_Kyoya/Nisi/Day 2_k.unity
-    guid: e06a87944d776cc49a7eff1efee7a828
   - enabled: 1
     path: Assets/YutoNishimura/Scenes/FailedNegotiation.unity
     guid: ec00f6ba34eedad40bdac10c5f576011
