@@ -12,10 +12,13 @@ public class FrontSidePlayerChecker : Human
     private TargetController targetController;
     private bool _isEscape;                                       //今逃走中かどうか
     private bool _isRecognizeBack;                                    //プレイヤーを認識しているかどうか(後方範囲)
+    private bool _isEvent;                                      //今イベント中かどうか
+    public static bool _isEscape;
 
 
     private void Start()
     {
+        _isEvent = false;
         _isEscape = false;
         timerText.enabled = false;
         time = 0;
@@ -69,6 +72,11 @@ public class FrontSidePlayerChecker : Human
             targetController.SettargetState(TargetController.TargetState.LookPlayer);
         }
 
+        if(_isEvent)
+        {
+            return;
+        }
+
         Invoke(nameof(SetTargetStateEscape), 2);
 
         Debug.Log("逃走イベント発生！");
@@ -78,6 +86,11 @@ public class FrontSidePlayerChecker : Human
     {
         _isEscape = true;
         targetController.SettargetState(TargetController.TargetState.Escape);
+    }
+
+    void GameOver()
+    {
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -95,6 +108,11 @@ public class FrontSidePlayerChecker : Human
                 _isRecognizeBack = false;
             }
         }
+    }
+
+    public void TriggerEvent()
+    {
+        _isEvent = true;
     }
 
     private void OnTriggerExit(Collider other)
