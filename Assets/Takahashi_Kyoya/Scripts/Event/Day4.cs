@@ -9,7 +9,7 @@ public class Day4 : MonoBehaviour
     //タイマー
     float timer = 0;
     //フェイドアウトするまでの時間
-    float faidOutTime = 5;
+    float faidOutTime = 2;
 
     private Message message;
     private bool once;
@@ -29,7 +29,7 @@ public class Day4 : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > faidOutTime)
             {
-                GameManager.Instance.NextDay("Negotiation");
+                GameManager.Instance.NextDay("Day 5_k");
                 Destroy(gameObject);
             }
         }
