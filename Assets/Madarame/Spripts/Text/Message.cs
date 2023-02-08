@@ -144,6 +144,8 @@ public class Message : MonoBehaviour
             count++;
         }
     }
+    //統一性ないです頑張って直してください
+
     // ゲームクリアテキストを呼ぶ
     public List<MessageData> GetGameClearText()
     {
@@ -161,7 +163,7 @@ public class Message : MonoBehaviour
     //ゲームオーバーテキストを表示
     public void DrawGO_Text()
     {
-        TodayMes = GetGameClearText();
+        TodayMes = GameOverText();
         gameObject.SetActive(true);
         //プレイヤーの移動が不可能
         //PlayerMoveFlag = false;

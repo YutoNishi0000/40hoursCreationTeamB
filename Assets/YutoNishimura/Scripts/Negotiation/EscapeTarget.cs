@@ -40,6 +40,6 @@ public class EscapeTarget : MonoBehaviour
 
     void GoToGameOver()
     {
-        GameManager.Instance.GameOver();
+        GameManager.Instance.OutGameNextScene("Title");
     }
 }
