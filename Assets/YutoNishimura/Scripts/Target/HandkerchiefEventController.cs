@@ -7,6 +7,7 @@ public class HandkerchiefEventController : MonoBehaviour
     private FrontSidePlayerChecker _frontChecker;
     private TodayTask todayTask;
     private bool _hankatiEventStart;
+    private TargetController target;
 
     Message message = null;
     GameObject messageUI = null;
@@ -20,6 +21,7 @@ public class HandkerchiefEventController : MonoBehaviour
         message = messageUI.GetComponent<Message>();
         todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
         _hankatiEventStart = false;
+        target = GetComponentInParent<TargetController>();
     }
 
     // Update is called once per frame
@@ -62,6 +64,8 @@ public class HandkerchiefEventController : MonoBehaviour
         todayTask.TaskCompletion(3);
         message.EventText((int)Scenario.MessageState.DAY4_GET);
         _hankatiEventStart = true;
+        target.SettargetState(TargetController.TargetState.LookPlayer);
+        _frontChecker.TriggerEvent();
         //GameManager.Instance.SetInContactArea(true);
         //Debug.Log(GameManager.Instance.GetInContactArea());
     }
