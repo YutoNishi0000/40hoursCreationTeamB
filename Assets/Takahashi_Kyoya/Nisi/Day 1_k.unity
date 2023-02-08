@@ -2877,6 +2877,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6335008882545010043, guid: 03af8fc29172ee44e88a8c0a655bf579, type: 3}
+      propertyPath: field of view
+      value: 127.24286
+      objectReference: {fileID: 0}
     - target: {fileID: 6335008882545010045, guid: 03af8fc29172ee44e88a8c0a655bf579, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -37238,6 +37242,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5800271103341588144, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800271103341588144, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800271103341588144, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800271103341588144, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -37285,9 +37301,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5800271103341588145, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5800271103341588148, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800271103341588150, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800271103341588150, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8519634760825099705, guid: c4605b0d862ba2649a1c40679be1b4e9, type: 3}
       propertyPath: m_IsActive
