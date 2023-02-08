@@ -8,6 +8,7 @@ TagManager:
   - ShutterPoint
   - ShutterChanceArea
   - Handkerchief
+  - SE
   layers:
   - Default
   - TransparentFX

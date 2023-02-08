@@ -20,10 +20,18 @@ public class ShutterChanceController : MonoBehaviour
         if(_shutterChance)
         {
             Debug.Log("シャッターチャンス");
+            if(Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Invoke("Good", 0.9f);
+            }
         }
         else
         {
             Debug.Log("のっとシャッターチャンス");
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Invoke("Bad", 0.9f);
+            }
         }
     }
 
@@ -46,4 +54,13 @@ public class ShutterChanceController : MonoBehaviour
             _shutterChance = false;
         }
     }
+    void Good()
+    {
+        SoundManager.Instance.PlayGoodSE();
+    }
+    void Bad()
+    {
+        SoundManager.Instance.PlayBadSE();
+    }
+
 }
