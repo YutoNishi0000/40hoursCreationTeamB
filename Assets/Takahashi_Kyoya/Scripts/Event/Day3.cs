@@ -56,5 +56,10 @@ public class Day3 : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if (FrontSidePlayerChecker._Escaped)
+        {
+            GameManager.Instance.GameOver();
+            Destroy(gameObject);
+        }
     }
 }
