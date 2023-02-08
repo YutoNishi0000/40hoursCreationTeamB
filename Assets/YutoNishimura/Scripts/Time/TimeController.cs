@@ -22,6 +22,11 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Message.PlayerMoveFlag)
+        {
+            return;
+        }
+
         _time -= Time.deltaTime;
         OnTime(_time, timeText);
     }
@@ -29,11 +34,6 @@ public class TimeController : MonoBehaviour
     //Žc‚èŽžŠÔ‚ð•\Ž¦
     void OnTime(float leftTime, Text time)
     {
-        if(!Message.PlayerMoveFlag)
-        {
-            return;
-        }
-
         if(leftTime <= 0)
         {
             _isTimePassed = true;
