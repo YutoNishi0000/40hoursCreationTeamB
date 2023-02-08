@@ -29,6 +29,7 @@ public class ScreenShot : Human
     public Text SucceededShutter;
     public Text FailedShutter;
 
+
     void Awake()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -170,6 +171,7 @@ public class ScreenShot : Human
 
     public void ClickShootButton()
     {
+        SoundManager.Instance.PlayCameraSE();
         StartCoroutine(CreateScreenShot());
     }
 

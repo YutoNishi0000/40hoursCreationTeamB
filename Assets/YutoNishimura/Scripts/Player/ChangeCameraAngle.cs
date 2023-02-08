@@ -9,6 +9,8 @@ public class ChangeCameraAngle : Human
     public Camera mainCamera;
     private Camera subCamera;
 
+    GameObject SE = null;
+
     // Start is called before the first frame update
     void Start()
     {
