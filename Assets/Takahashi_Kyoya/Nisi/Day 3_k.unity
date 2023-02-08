@@ -42490,7 +42490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9208284581053010779, guid: 4ff0ca3e2ebd7fc4a8a975d2a8cdd2a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.769093
+      value: 117.5
       objectReference: {fileID: 0}
     - target: {fileID: 9208284581053010779, guid: 4ff0ca3e2ebd7fc4a8a975d2a8cdd2a7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -42498,7 +42498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9208284581053010779, guid: 4ff0ca3e2ebd7fc4a8a975d2a8cdd2a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 35.10951
+      value: -106
       objectReference: {fileID: 0}
     - target: {fileID: 9208284581053010779, guid: 4ff0ca3e2ebd7fc4a8a975d2a8cdd2a7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -96333,7 +96333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bb56e8a7302705d4599dac69750667f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c219715b64224e4ca8f028fb8f466f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -100569,7 +100569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8648296528744370193
 RectTransform:
   m_ObjectHideFlags: 0
