@@ -27,14 +27,14 @@ public class HeartBeat : MonoBehaviour
     /// <summary>
     /// ”“®SE‚Ì‚Ç‚Á‚ğ–Â‚ç‚·
     /// </summary>
-    public void HeartBeatSEF()
+    public void PlayHeartBeatSEF()
     {
         audioSource.PlayOneShot(heartBeatF);
     }
     /// <summary>
     /// ”“®SE‚Ì‚­‚ñ‚ğ–Â‚ç‚·
     /// </summary>
-    public void HeartBeatSES()
+    public void PlayHeartBeatSES()
     {
         audioSource.PlayOneShot(heartBeatS);
     }

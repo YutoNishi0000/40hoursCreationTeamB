@@ -791,5 +791,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeartBeat
       objectReference: {fileID: 0}
+    - target: {fileID: 6687069337604827294, guid: 4d2e281a6f0081c4c84376f39409ce4e, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687069337604827294, guid: 4d2e281a6f0081c4c84376f39409ce4e, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687069337604827294, guid: 4d2e281a6f0081c4c84376f39409ce4e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2e281a6f0081c4c84376f39409ce4e, type: 3}
