@@ -17,6 +17,8 @@ public class Timer : MonoBehaviour
     void TextUpdate()
     {
         timeLimit -= Time.deltaTime;
+        if(timeLimit < 0)
+            timeLimit = 0;
         secondUI.text = ((int)timeLimit % 60.0f).ToString("00");
         minuteUI.text = ((int)(timeLimit / 60)).ToString("00");
     }
