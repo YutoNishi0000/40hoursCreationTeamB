@@ -52,6 +52,8 @@ MonoBehaviour:
   screamSE: {fileID: 8300000, guid: 3800d67d18b6bd742a6bf1adeb7d501f, type: 3}
   badSE: {fileID: 8300000, guid: 8d00267817f778344bb072efaa778a7d, type: 3}
   gameoverSE: {fileID: 8300000, guid: 7a959b82014c1e947ae97727a1a85110, type: 3}
+  titleStartSE: {fileID: 8300000, guid: d519f64def53acf49b6698a2cd929aa5, type: 3}
+  gameClearBGM: {fileID: 0}
 --- !u!82 &8226227334692317445
 AudioSource:
   m_ObjectHideFlags: 0
