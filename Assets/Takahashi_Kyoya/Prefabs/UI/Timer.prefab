@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondUI: {fileID: 5083556247573689462}
   minuteUI: {fileID: 5083556248118134771}
-  timeLimit: 120
+  timeLimit: 300
 --- !u!1 &5083556247573689460
 GameObject:
   m_ObjectHideFlags: 0
