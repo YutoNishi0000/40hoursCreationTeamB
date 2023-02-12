@@ -9,7 +9,7 @@ public class PlayerController : Human
     Vector3 moveDirection = Vector3.zero;
     Vector3 targetDirection;        //ˆÚ“®‚·‚é•ûŒü‚ÌƒxƒNƒgƒ‹
     private CharacterController controller;
-    [SerializeField] private float speed = 3f;
+    [SerializeField] private float speed = 5f;
     public PlayerStateController playerState;
 
     public GameObject cam;
