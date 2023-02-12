@@ -7,23 +7,25 @@ public class RaycastController : MonoBehaviour
     public static float lockonTime = 0.0f;
     private float maxLockonTime;
     public static bool Lockon;
-    public static bool BeatHeart;
 
     //ターゲット
     GameObject target = null;
     //
     GameObject todayTaskUI = null;
     TodayTask todayTask = null; 
+
+    //拍動アニメーション
+    HeartBeat heartBeat = null;
     // Start is called before the first frame update
     void Start()
     {
         lockonTime = 0;
         Lockon = false;
-        BeatHeart = false;
         maxLockonTime = 1;
         todayTaskUI = GameObject.Find("TodayTask");
         todayTask = todayTaskUI.GetComponent<TodayTask>();
         target = GameObject.FindGameObjectWithTag("Target");
+        heartBeat = GameObject.FindGameObjectWithTag("HeartBeat").GetComponent<HeartBeat>();
     }
 
     private void FixedUpdate()
@@ -37,9 +39,9 @@ public class RaycastController : MonoBehaviour
                 //レイにヒットしたオブジェクトがターゲットならば
                 //if (hit.collider.gameObject.CompareTag("Target"))
                 {
-                    BeatHeart = true;
 
                     Debug.Log("ハートが鼓動中です");
+                    heartBeat.FastHeartBeat();
 
                     //=============================================================================
                     //
@@ -63,8 +65,8 @@ public class RaycastController : MonoBehaviour
             else
             {
                 Debug.Log("他のものに当たってます");
+                heartBeat.IdleHeartBeat();
                 lockonTime = 0.0f;
-                BeatHeart = false;
             }
         }
     }

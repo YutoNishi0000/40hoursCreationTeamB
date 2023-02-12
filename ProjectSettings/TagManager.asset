@@ -9,6 +9,7 @@ TagManager:
   - ShutterChanceArea
   - Handkerchief
   - SE
+  - HeartBeat
   layers:
   - Default
   - TransparentFX

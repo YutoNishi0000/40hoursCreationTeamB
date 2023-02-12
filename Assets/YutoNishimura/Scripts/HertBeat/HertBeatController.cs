@@ -22,10 +22,10 @@ public class HertBeatController : Human
 
     public void HeartBeatControl()
     {
-        if(RaycastController.BeatHeart)
-        {
-            GetComponent<HertBeatManager>().BeatUpdate();
-            GetComponent<HertBeatManager>().FastBeat();
-        }
+        //if(RaycastController.BeatHeart)
+        //{
+        //    GetComponent<HertBeatManager>().BeatUpdate();
+        //    GetComponent<HertBeatManager>().FastBeat();
+        //}
     }
 }
