@@ -45,10 +45,35 @@ public class HandkerchiefEventTrigger : MonoBehaviour
         //======================================================================
         //======================================================================
 
-        Debug.Log("ハンカチを拾った時のイベント発生");
+        //イベント時のテキストを表示
         _message.EventText((int)Scenario.MessageState.DAY3_GET);
-        _todayTask.TaskCompletion(2);
+
+        //イベントがどれぐらい達成されているかチェック
+        for(int i = 0; i < GameManager.Instance.tasks.Count; i++)
+        {
+            //もしもタスクがDay3のタスクであれば
+            if (GameManager.Instance.tasks[i].date == 2)
+            {
+                //そのタスクがクリアされた状態にする
+                GameManager.Instance.tasks[i].isCompletion = true;
+            }
+        }
+
+        int j = 0;
+
+        //ここでもし全てのタスクがクリアされていたら
+        if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
+        {
+            //次のDayに移行
+            _hankatiEventStart = true;
+        }
+        //そうでなければ
+        else
+        {
+
+        }
+
+        //_todayTask.TaskCompletion(2);
         UIController._talkStart = false;
-        _hankatiEventStart = true;
     }
 }
