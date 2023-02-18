@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Madarame/Scenes/Title.unity
+    path: Assets/Main/Scenes/Outgame/Title.unity
     guid: ecf5c356cb0b9a24694feaab50588f97
   - enabled: 1
     path: Assets/Takahashi_Kyoya/Nisi/Day 1_k.unity
