@@ -66,6 +66,32 @@ public class ScreenShot : Human
 
                 int j = 0;
 
+                //タスクが二つあって
+                if(todayTask.todayTask.Count == 2)
+                {
+                    //二つともタスクをクリアしているならば
+                    if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
+                    {
+                        //条件に沿って次の日に移行
+                        switch(GameManager.Instance.GetDate())
+                        {
+                            case 1:
+                                Day2.day2 = true;
+                                break;
+
+                            case 2:
+                                Day3.day3 = true;
+                                break;
+                        }
+                    }
+                }
+                //タスクが一つだけであってその日がDay2だったら
+                else if(todayTask.todayTask.Count == 1 && GameManager.Instance.GetDate() == 2 && GameManager.Instance.tasks[j].isCompletion)
+                {
+                    //三日目に移行
+                    Day2.day2 = true;
+                }
+
                 //その日のタスクが全てクリアされていたら次のDayに移行
                 if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
                 {
@@ -120,8 +146,8 @@ public class ScreenShot : Human
 
         yield return new WaitForSeconds(2);
 
-        text.enabled = false;            
-     }
+        text.enabled = false;
+    }
 
     void OffPreview()
     {

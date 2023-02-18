@@ -46,20 +46,11 @@ public class RaycastController : MonoBehaviour
                     Debug.Log("ハートが鼓動中です");
                     heartBeat.FastHeartBeat();
 
-                    //=============================================================================
-                    //
-                    if (GameManager.Instance.GetDate() != 0)
-                    {
-                        return;
-                    }
-                    //
-                    //=============================================================================
-
                     lockonTime += Time.deltaTime;
+
                     if (lockonTime >= maxLockonTime)
                     {
                         Debug.Log("ロックオン");
-                        Lockon = true;
 
                         //ここから下の処理は一回でも実行したらそれ以降実行しない
                         if(passCount >= 1)
@@ -78,17 +69,24 @@ public class RaycastController : MonoBehaviour
 
                         int j = 0;
 
-                        //その日のタスクが全てクリアされていたら次のDayに移行
-                        if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
+                        //もし、今のDayが1日目であれば
+                        if (GameManager.Instance.GetDate() == 0)
                         {
-                            //もし、今のDayが1日目であれば
-                            if (GameManager.Instance.GetDate() == 0)
-                            {
-                                //2日目に移行
-                                Day1.day1 = true;
-                            }
-                            //もし、今のDayが2日目であれば
-                            else if (GameManager.Instance.GetDate() == 1)
+                            //ロックオンを行う
+                            Lockon = true;
+
+                            //2日目に移行
+                            Day1.day1 = true;
+                        }
+
+                        //もし、今のDayが2日目であれば
+                        if (GameManager.Instance.GetDate() == 1)
+                        {
+                            //カメラのロックオンは行わない
+                            Lockon = false;
+
+                            //その日のタスクが全てクリアされていたら次のDayに移行
+                            if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
                             {
                                 //3日目に移行
                                 Day2.day2 = true;
