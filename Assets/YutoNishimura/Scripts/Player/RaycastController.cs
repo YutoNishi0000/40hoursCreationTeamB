@@ -16,10 +16,13 @@ public class RaycastController : MonoBehaviour
 
     //拍動アニメーション
     HeartBeat heartBeat = null;
+
+    private int passCount;
     // Start is called before the first frame update
     void Start()
     {
         lockonTime = 0;
+        passCount = 0;
         Lockon = false;
         maxLockonTime = 1;
         todayTaskUI = GameObject.Find("TodayTask");
@@ -57,8 +60,43 @@ public class RaycastController : MonoBehaviour
                     {
                         Debug.Log("ロックオン");
                         Lockon = true;
-                        todayTask.TaskCompletion(0);
-                        Day1.day1 = true;
+
+                        //ここから下の処理は一回でも実行したらそれ以降実行しない
+                        if(passCount >= 1)
+                        {
+                            return;
+                        }
+
+                        for (int i = 0; i < todayTask.todayTask.Count; i++)
+                        {
+                            //タスクが1日目のタスク内容であれば
+                            if (GameManager.Instance.tasks[i].date == 0)
+                            {
+                                GameManager.Instance.tasks[i].isCompletion = true;
+                            }
+                        }
+
+                        int j = 0;
+
+                        //その日のタスクが全てクリアされていたら次のDayに移行
+                        if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
+                        {
+                            //もし、今のDayが1日目であれば
+                            if (GameManager.Instance.GetDate() == 0)
+                            {
+                                //2日目に移行
+                                Day1.day1 = true;
+                            }
+                            //もし、今のDayが2日目であれば
+                            else if (GameManager.Instance.GetDate() == 1)
+                            {
+                                //3日目に移行
+                                Day2.day2 = true;
+                            }
+                        }
+
+                        //パスカウントをインクリメントする
+                        passCount++;
                     }
                 }
             }

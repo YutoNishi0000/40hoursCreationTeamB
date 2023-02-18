@@ -7,10 +7,12 @@ public class HandkerchiefEventTrigger : MonoBehaviour
     private TodayTask _todayTask;
     private Message _message;
     private bool _hankatiEventStart;
+    private ChangeCameraAngle changeCamera;
 
     private void Start()
     {
         _hankatiEventStart = false;
+        changeCamera = GetComponent<ChangeCameraAngle>();
         _todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
         _message = GameObject.Find("MessageUI").GetComponent<Message>();
     }
@@ -49,7 +51,7 @@ public class HandkerchiefEventTrigger : MonoBehaviour
         _message.EventText((int)Scenario.MessageState.DAY3_GET);
 
         //イベントがどれぐらい達成されているかチェック
-        for(int i = 0; i < GameManager.Instance.tasks.Count; i++)
+        for(int i = 0; i < _todayTask.todayTask.Count; i++)
         {
             //もしもタスクがDay3のタスクであれば
             if (GameManager.Instance.tasks[i].date == 2)
@@ -70,7 +72,8 @@ public class HandkerchiefEventTrigger : MonoBehaviour
         //そうでなければ
         else
         {
-
+            //プレイヤーの元の視点に戻す
+            changeCamera.ExitVoyeurism();
         }
 
         //_todayTask.TaskCompletion(2);
