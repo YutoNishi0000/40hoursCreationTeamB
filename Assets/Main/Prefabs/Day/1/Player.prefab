@@ -98,9 +98,13 @@ GameObject:
   - component: {fileID: 6335008882168220165}
   - component: {fileID: 4929536317574749303}
   - component: {fileID: 3010640559593580348}
+<<<<<<< HEAD
   - component: {fileID: 8719247414428569129}
   - component: {fileID: 3574497807614068819}
   - component: {fileID: 1417182838011368053}
+=======
+  - component: {fileID: 3574497807614068819}
+>>>>>>> origin/YutoNishimura
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -222,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6f78758b6d604408b670efc2aa3262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &8719247414428569129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6f78758b6d604408b670efc2aa3262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> origin/YutoNishimura
 --- !u!114 &3574497807614068819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4fcdcc91241fd49ba5d4509d8cc3b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!81 &1417182838011368053
 AudioListener:
   m_ObjectHideFlags: 0
@@ -254,6 +262,8 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6335008882168220187}
   m_Enabled: 1
+=======
+>>>>>>> origin/YutoNishimura
 --- !u!1 &6335008882545010045
 GameObject:
   m_ObjectHideFlags: 0
