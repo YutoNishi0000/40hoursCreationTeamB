@@ -1029,11 +1029,14 @@ GameObject:
   - component: {fileID: 7402940875077231942}
   - component: {fileID: 2751767086587959247}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 2567040658326811051}
   - component: {fileID: 6807669913922616625}
   - component: {fileID: 5532161994080697395}
 =======
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   m_Layer: 7
   m_Name: Target
   m_TagString: Target
@@ -1057,10 +1060,15 @@ Transform:
   - {fileID: 551911464963130380}
   - {fileID: 1939919607722236400}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - {fileID: 1448487939525743328}
   - {fileID: 825893533215442526}
 >>>>>>> origin/YutoNishimura
+=======
+  - {fileID: 1448487939525743328}
+  - {fileID: 825893533215442526}
+>>>>>>> origin/main
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1138,6 +1146,7 @@ MonoBehaviour:
   - {fileID: 0}
   RECOGNIZE_TIME: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &2567040658326811051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,6 +1190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 =======
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 --- !u!1 &551911464962644472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,7 +1224,10 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/main
 --- !u!1 &2764195557542921900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,7 +1348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7972d57aced7a7c4b8c1bf291588de91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 --- !u!1 &5541168021863208317
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,14 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5800271103341588148
 =======
 --- !u!1 &1952127542855539190
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!1 &1952127542855539190
+>>>>>>> origin/main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,11 +17,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 5800271103341588144}
   - component: {fileID: 5800271103341588145}
   - component: {fileID: 5800271103341588150}
   - component: {fileID: 5800271103341588151}
 =======
+=======
+>>>>>>> origin/main
   - component: {fileID: 4822005227892522169}
   - component: {fileID: 5253416234657358968}
   - component: {fileID: 6292781402734064895}
@@ -98,7 +105,10 @@ GameObject:
   - component: {fileID: 2037014709562977924}
   - component: {fileID: 2037014709562977923}
   - component: {fileID: 2037014709562977922}
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -107,35 +117,49 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &5800271103341588144
 =======
 --- !u!224 &2037014709562977925
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!224 &2037014709562977925
+>>>>>>> origin/main
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5800271103341588148}
 =======
   m_GameObject: {fileID: 2037014709562977921}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 2037014709562977921}
+>>>>>>> origin/main
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 9057153371291575554}
   - {fileID: 8863115940440989928}
   - {fileID: 5521990970747692728}
 =======
+=======
+>>>>>>> origin/main
   - {fileID: 4104539910276453002}
   - {fileID: 4822005227892522169}
   - {fileID: 4456594155810560397}
   - {fileID: 3859739193250676356}
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,20 +169,28 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!223 &5800271103341588145
 =======
 --- !u!223 &2037014709562977924
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!223 &2037014709562977924
+>>>>>>> origin/main
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5800271103341588148}
 =======
   m_GameObject: {fileID: 2037014709562977921}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 2037014709562977921}
+>>>>>>> origin/main
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
@@ -174,30 +206,42 @@ Canvas:
   m_SortingOrder: 0
   m_TargetDisplay: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &5800271103341588150
 =======
 --- !u!114 &2037014709562977923
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!114 &2037014709562977923
+>>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5800271103341588148}
 =======
   m_GameObject: {fileID: 2037014709562977921}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 2037014709562977921}
+>>>>>>> origin/main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_UiScaleMode: 0
 =======
   m_UiScaleMode: 1
 >>>>>>> origin/YutoNishimura
+=======
+  m_UiScaleMode: 1
+>>>>>>> origin/main
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -209,20 +253,28 @@ MonoBehaviour:
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &5800271103341588151
 =======
 --- !u!114 &2037014709562977922
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!114 &2037014709562977922
+>>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5800271103341588148}
 =======
   m_GameObject: {fileID: 2037014709562977921}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 2037014709562977921}
+>>>>>>> origin/main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
@@ -234,10 +286,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &8519634760825099705
 =======
 --- !u!1 &2928521845699474450
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!1 &2928521845699474450
+>>>>>>> origin/main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,33 +302,44 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 8863115940440989928}
   - component: {fileID: 1842098542992739659}
   - component: {fileID: 812002844949868777}
   m_Layer: 5
   m_Name: Image
 =======
+=======
+>>>>>>> origin/main
   - component: {fileID: 4456594155810560397}
   - component: {fileID: 4908465997650845860}
   - component: {fileID: 7180151264512249728}
   m_Layer: 5
   m_Name: Image (1)
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &8863115940440989928
 =======
 --- !u!224 &4456594155810560397
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!224 &4456594155810560397
+>>>>>>> origin/main
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 8519634760825099705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -280,10 +347,15 @@ RectTransform:
   m_GameObject: {fileID: 2928521845699474450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 2928521845699474450}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+>>>>>>> origin/main
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_Father: {fileID: 5800271103341588144}
   m_RootOrder: 1
@@ -295,6 +367,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1842098542992739659
 =======
+=======
+>>>>>>> origin/main
   m_Father: {fileID: 2037014709562977925}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -304,12 +378,16 @@ RectTransform:
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4908465997650845860
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 8519634760825099705}
   m_CullTransparentMesh: 1
@@ -319,16 +397,25 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!114 &7180151264512249728
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 2928521845699474450}
+  m_CullTransparentMesh: 1
+--- !u!114 &7180151264512249728
+>>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 8519634760825099705}
 =======
   m_GameObject: {fileID: 2928521845699474450}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 2928521845699474450}
+>>>>>>> origin/main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -343,10 +430,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Sprite: {fileID: 0}
 =======
   m_Sprite: {fileID: 21300000, guid: 974aca2513d65e54da7e8f3b1afb14e9, type: 3}
 >>>>>>> origin/YutoNishimura
+=======
+  m_Sprite: {fileID: 21300000, guid: 974aca2513d65e54da7e8f3b1afb14e9, type: 3}
+>>>>>>> origin/main
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -357,10 +448,14 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &9057153371291575581
 =======
 --- !u!1 &3859739193250676379
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!1 &3859739193250676379
+>>>>>>> origin/main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,6 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 9057153371291575554}
   - component: {fileID: 9057153371291575553}
   - component: {fileID: 9057153371291575552}
@@ -376,12 +472,17 @@ GameObject:
   - component: {fileID: 5800271102213667370}
   - component: {fileID: 5800271102213667381}
 =======
+=======
+>>>>>>> origin/main
   - component: {fileID: 3859739193250676356}
   - component: {fileID: 3859739193250676359}
   - component: {fileID: 3859739193250676358}
   - component: {fileID: 2006780199933278708}
   - component: {fileID: 9026972515350062441}
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   m_Layer: 5
   m_Name: HeartBeat
   m_TagString: Untagged
@@ -390,25 +491,34 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &9057153371291575554
 =======
 --- !u!224 &3859739193250676356
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!224 &3859739193250676356
+>>>>>>> origin/main
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 9057153371291575581}
 =======
   m_GameObject: {fileID: 3859739193250676379}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 3859739193250676379}
+>>>>>>> origin/main
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.39999998}
   m_ConstrainProportionsScale: 1
   m_Children: []
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_Father: {fileID: 5800271103341588144}
   m_RootOrder: 0
@@ -420,6 +530,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9057153371291575553
 =======
+=======
+>>>>>>> origin/main
   m_Father: {fileID: 2037014709562977925}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -429,12 +541,16 @@ RectTransform:
   m_SizeDelta: {x: 550, y: 464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3859739193250676359
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 9057153371291575581}
   m_CullTransparentMesh: 1
@@ -444,16 +560,25 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!114 &3859739193250676358
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 3859739193250676379}
+  m_CullTransparentMesh: 1
+--- !u!114 &3859739193250676358
+>>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 9057153371291575581}
 =======
   m_GameObject: {fileID: 3859739193250676379}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 3859739193250676379}
+>>>>>>> origin/main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -478,15 +603,20 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &9057153371291575555
 =======
 --- !u!114 &2006780199933278708
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!114 &2006780199933278708
+>>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 9057153371291575581}
   m_Enabled: 0
@@ -504,32 +634,44 @@ MonoBehaviour:
 =======
   m_GameObject: {fileID: 3859739193250676379}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 3859739193250676379}
+>>>>>>> origin/main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 821532a081a4351479fe56c1d69c374b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &5800271102213667381
 =======
 --- !u!114 &9026972515350062441
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!114 &9026972515350062441
+>>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 9057153371291575581}
 =======
   m_GameObject: {fileID: 3859739193250676379}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 3859739193250676379}
+>>>>>>> origin/main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00496418abe8d6b46be63f588f6b3fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HERT_BEAT_DISTANCE: 10
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1001 &8050192844628517837
 PrefabInstance:
@@ -634,6 +776,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 8050192844628517837}
   m_PrefabAsset: {fileID: 0}
 =======
+=======
+>>>>>>> origin/main
 --- !u!1 &7723227867713659847
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,4 +854,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main

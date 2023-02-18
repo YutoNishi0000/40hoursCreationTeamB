@@ -1062,10 +1062,14 @@ GameObject:
   - component: {fileID: 6628554714151987046}
   - component: {fileID: 2745820504902364156}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 2786839011573660994}
 =======
   - component: {fileID: 3772307312734103250}
 >>>>>>> origin/YutoNishimura
+=======
+  - component: {fileID: 3772307312734103250}
+>>>>>>> origin/main
   m_Layer: 7
   m_Name: Target
   m_TagString: Target
@@ -1204,6 +1208,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Size: {x: 4, y: 4, z: 3}
   m_Center: {x: 0, y: 1.95, z: -1.5}
 --- !u!114 &2786839011573660994
@@ -1212,6 +1217,11 @@ BoxCollider:
   m_Center: {x: 0, y: 1.95, z: 3}
 --- !u!114 &3772307312734103250
 >>>>>>> origin/YutoNishimura
+=======
+  m_Size: {x: 4, y: 4, z: 11}
+  m_Center: {x: 0, y: 1.95, z: 3}
+--- !u!114 &3772307312734103250
+>>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

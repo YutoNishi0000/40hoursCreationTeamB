@@ -99,12 +99,16 @@ GameObject:
   - component: {fileID: 4929536317574749303}
   - component: {fileID: 3010640559593580348}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 8719247414428569129}
   - component: {fileID: 3574497807614068819}
   - component: {fileID: 1417182838011368053}
 =======
   - component: {fileID: 3574497807614068819}
 >>>>>>> origin/YutoNishimura
+=======
+  - component: {fileID: 3574497807614068819}
+>>>>>>> origin/main
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -227,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &8719247414428569129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 =======
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 --- !u!114 &3574497807614068819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!81 &1417182838011368053
 AudioListener:
   m_ObjectHideFlags: 0
@@ -264,6 +272,8 @@ AudioListener:
   m_Enabled: 1
 =======
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 --- !u!1 &6335008882545010045
 GameObject:
   m_ObjectHideFlags: 0

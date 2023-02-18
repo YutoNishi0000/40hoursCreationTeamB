@@ -12,10 +12,14 @@ GameObject:
   - component: {fileID: 6853321060219940626}
   - component: {fileID: 3870461440927637381}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Layer: 0
 =======
   m_Layer: 3
 >>>>>>> origin/YutoNishimura
+=======
+  m_Layer: 3
+>>>>>>> origin/main
   m_Name: SubCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,10 +106,14 @@ GameObject:
   - component: {fileID: 695008377098307652}
   - component: {fileID: 5081759001964053895}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Layer: 0
 =======
   m_Layer: 3
 >>>>>>> origin/YutoNishimura
+=======
+  m_Layer: 3
+>>>>>>> origin/main
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -219,10 +227,14 @@ GameObject:
   - component: {fileID: 8397788809212055864}
   - component: {fileID: 1672233525362598746}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Layer: 0
 =======
   m_Layer: 3
 >>>>>>> origin/YutoNishimura
+=======
+  m_Layer: 3
+>>>>>>> origin/main
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

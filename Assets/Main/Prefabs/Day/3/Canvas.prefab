@@ -1,6 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1888815329425610467
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,6 +80,8 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 =======
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 --- !u!1 &3439641238449211561
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,10 +114,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8648296528010923642}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 8
 =======
   m_RootOrder: 10
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 10
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -195,10 +202,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8648296528010923642}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 3
 =======
   m_RootOrder: 5
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 5
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -248,7 +259,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: New Text
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/main
 --- !u!1 &5149559936775500192
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +339,10 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 --- !u!1 &5214792265719973431
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,10 +375,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8648296528010923642}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 5
 =======
   m_RootOrder: 7
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 7
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -407,7 +428,10 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/main
 --- !u!1 &5639520324759284096
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +508,10 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 --- !u!1 &6182071233482737111
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,10 +648,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8648296528010923642}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 1
 =======
   m_RootOrder: 4
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 4
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -755,14 +786,20 @@ RectTransform:
   m_Children:
   - {fileID: 6182071233482737096}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 8648296527998593116}
   - {fileID: 4735220061819257251}
 =======
+=======
+>>>>>>> origin/main
   - {fileID: 8798722185186278418}
   - {fileID: 2243826690832809532}
   - {fileID: 8995889025736880080}
   - {fileID: 8648296527998593116}
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   - {fileID: 5519087247399984595}
   - {fileID: 8648296528014760860}
   - {fileID: 6861821908839358974}
@@ -870,10 +907,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8648296528010923642}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 4
 =======
   m_RootOrder: 6
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 6
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -950,10 +991,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8648296528010923642}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 6
 =======
   m_RootOrder: 8
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 8
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1030,10 +1075,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8648296528010923642}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 7
 =======
   m_RootOrder: 9
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 9
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1083,7 +1132,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u76D7\u64AE\u6210\u529F"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/main
 --- !u!1 &9059626792889114837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,4 +1212,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main

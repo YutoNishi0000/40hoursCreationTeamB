@@ -32,10 +32,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6793715737159071584}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 2
 =======
   m_RootOrder: 9
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 9
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -85,10 +89,14 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\u76D7\u64AE\u5931\u6557"
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5136042466841668891
 =======
 --- !u!1 &914717096809707374
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!1 &914717096809707374
+>>>>>>> origin/main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,44 +105,59 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 7842012362473921092}
   - component: {fileID: 1573779548245247101}
   - component: {fileID: 6922196271219067497}
   m_Layer: 5
   m_Name: Image (2)
 =======
+=======
+>>>>>>> origin/main
   - component: {fileID: 3016130440929875336}
   - component: {fileID: 7366763380418421037}
   - component: {fileID: 8074450035446320218}
   m_Layer: 5
   m_Name: Image (4)
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &7842012362473921092
 =======
 --- !u!224 &3016130440929875336
 >>>>>>> origin/YutoNishimura
+=======
+--- !u!224 &3016130440929875336
+>>>>>>> origin/main
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5136042466841668891}
 =======
   m_GameObject: {fileID: 914717096809707374}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 914717096809707374}
+>>>>>>> origin/main
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6793715737159071584}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,6 +168,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1573779548245247101
 =======
+=======
+>>>>>>> origin/main
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -153,12 +178,16 @@ RectTransform:
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7366763380418421037
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 5136042466841668891}
   m_CullTransparentMesh: 1
@@ -168,16 +197,25 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!114 &8074450035446320218
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 914717096809707374}
+  m_CullTransparentMesh: 1
+--- !u!114 &8074450035446320218
+>>>>>>> origin/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5136042466841668891}
 =======
   m_GameObject: {fileID: 914717096809707374}
 >>>>>>> origin/YutoNishimura
+=======
+  m_GameObject: {fileID: 914717096809707374}
+>>>>>>> origin/main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -192,8 +230,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: 632129fb331f9a543a8346f47ac04212, type: 3}
 =======
+=======
+>>>>>>> origin/main
   m_Sprite: {fileID: 21300000, guid: 974aca2513d65e54da7e8f3b1afb14e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -271,7 +312,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: bb56e8a7302705d4599dac69750667f5, type: 3}
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -313,10 +357,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6793715737159071584}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 6
 =======
   m_RootOrder: 8
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 8
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -397,10 +445,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6793715737159071584}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 5
 =======
   m_RootOrder: 7
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 7
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -478,10 +530,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6793715737159071584}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 1
 =======
   m_RootOrder: 4
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 4
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -612,24 +668,34 @@ RectTransform:
   m_Children:
   - {fileID: 8324880411916991698}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 6793715737079091526}
   - {fileID: 997129226365100590}
 =======
+=======
+>>>>>>> origin/main
   - {fileID: 3985641340160902664}
   - {fileID: 545236178690351518}
   - {fileID: 3016130440929875336}
   - {fileID: 6793715737079091526}
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
   - {fileID: 6793715737163555462}
   - {fileID: 8752425932646635748}
   - {fileID: 6793715736243000711}
   - {fileID: 456357020457532311}
+<<<<<<< HEAD
 <<<<<<< HEAD
   - {fileID: 7842012362473921092}
   - {fileID: 7110651094931543141}
 =======
   - {fileID: 997129226365100590}
 >>>>>>> origin/YutoNishimura
+=======
+  - {fileID: 997129226365100590}
+>>>>>>> origin/main
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -731,10 +797,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6793715737159071584}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 3
 =======
   m_RootOrder: 5
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 5
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -811,10 +881,14 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6793715737159071584}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 4
 =======
   m_RootOrder: 6
 >>>>>>> origin/YutoNishimura
+=======
+  m_RootOrder: 6
+>>>>>>> origin/main
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -860,7 +934,10 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/main
 --- !u!1 &7976470116665704499
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,7 +1014,10 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
 --- !u!1 &8324880411916991693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821532a081a4351479fe56c1d69c374b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1001 &4734428097633243408
 PrefabInstance:
@@ -1146,3 +1227,5 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> origin/YutoNishimura
+=======
+>>>>>>> origin/main
