@@ -63,14 +63,21 @@ public class HandkerchiefEventTrigger : MonoBehaviour
 
         int j = 0;
 
-        //ここでもし全てのタスクがクリアされていたら
-        if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
+        if (_todayTask.todayTask.Count == 2 && GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
         {
+            //ここでもし全てのタスクがクリアされていたら
             //次のDayに移行
             _hankatiEventStart = true;
         }
-        //そうでなければ
-        else
+        //タスクの数が一個で
+        else if (_todayTask.todayTask.Count == 1 && GameManager.Instance.tasks[j].isCompletion)
+        {
+            //ここでもし全てのタスクがクリアされていたら
+            //次のDayに移行
+            _hankatiEventStart = true;
+        }
+        //どの条件にも当てはまらず、テキスト表示が終了していたら
+        else if(!Message.PlayerMoveFlag)
         {
             //プレイヤーの元の視点に戻す
             changeCamera.ExitVoyeurism();

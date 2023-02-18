@@ -86,7 +86,7 @@ public class ScreenShot : Human
                     }
                 }
                 //タスクが一つだけであってその日がDay2だったら
-                else if(todayTask.todayTask.Count == 1 && GameManager.Instance.GetDate() == 2 && GameManager.Instance.tasks[j].isCompletion)
+                else if(todayTask.todayTask.Count == 1 && GameManager.Instance.GetDate() == 1 && GameManager.Instance.tasks[j].isCompletion)
                 {
                     //三日目に移行
                     Day2.day2 = true;
