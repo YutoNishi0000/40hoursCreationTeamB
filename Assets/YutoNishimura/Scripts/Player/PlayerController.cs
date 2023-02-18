@@ -34,6 +34,7 @@ public class PlayerController : Human
         initialCamPos = cam.transform.localPosition;
         controller = GetComponent<CharacterController>();
         playerState = GetComponent<PlayerStateController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
