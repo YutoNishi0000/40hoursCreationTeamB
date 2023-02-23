@@ -50,38 +50,42 @@ public class HandkerchiefEventTrigger : MonoBehaviour
         //イベント時のテキストを表示
         _message.EventText((int)Scenario.MessageState.DAY3_GET);
 
-        //イベントがどれぐらい達成されているかチェック
-        for(int i = 0; i < _todayTask.todayTask.Count; i++)
-        {
-            //もしもタスクがDay3のタスクであれば
-            if (GameManager.Instance.tasks[i].date == 2)
-            {
-                //そのタスクがクリアされた状態にする
-                GameManager.Instance.tasks[i].isCompletion = true;
-            }
-        }
+        _hankatiEventStart = true;
 
-        int j = 0;
+        _todayTask.TaskCompletion(2);
 
-        if (_todayTask.todayTask.Count == 2 && GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
-        {
-            //ここでもし全てのタスクがクリアされていたら
-            //次のDayに移行
-            _hankatiEventStart = true;
-        }
-        //タスクの数が一個で
-        else if (_todayTask.todayTask.Count == 1 && GameManager.Instance.tasks[j].isCompletion)
-        {
-            //ここでもし全てのタスクがクリアされていたら
-            //次のDayに移行
-            _hankatiEventStart = true;
-        }
-        //どの条件にも当てはまらず、テキスト表示が終了していたら
-        else if(!Message.PlayerMoveFlag)
-        {
-            //プレイヤーの元の視点に戻す
-            changeCamera.ExitVoyeurism();
-        }
+        ////イベントがどれぐらい達成されているかチェック
+        //for(int i = 0; i < _todayTask.todayTask.Count; i++)
+        //{
+        //    //もしもタスクがDay3のタスクであれば
+        //    if (GameManager.Instance.tasks[i].date == 2)
+        //    {
+        //        //そのタスクがクリアされた状態にする
+        //        GameManager.Instance.tasks[i].isCompletion = true;
+        //    }
+        //}
+
+        //int j = 0;
+
+        //if (_todayTask.todayTask.Count == 2 && GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
+        //{
+        //    //ここでもし全てのタスクがクリアされていたら
+        //    //次のDayに移行
+        //    _hankatiEventStart = true;
+        //}
+        ////タスクの数が一個で
+        //else if (_todayTask.todayTask.Count == 1 && GameManager.Instance.tasks[j].isCompletion)
+        //{
+        //    //ここでもし全てのタスクがクリアされていたら
+        //    //次のDayに移行
+        //    _hankatiEventStart = true;
+        //}
+        ////どの条件にも当てはまらず、テキスト表示が終了していたら
+        //else if(!Message.PlayerMoveFlag)
+        //{
+        //    //プレイヤーの元の視点に戻す
+        //    changeCamera.ExitVoyeurism();
+        //}
 
         //_todayTask.TaskCompletion(2);
         UIController._talkStart = false;

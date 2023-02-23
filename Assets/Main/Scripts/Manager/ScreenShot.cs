@@ -55,59 +55,8 @@ public class ScreenShot : Human
                 StartCoroutine(nameof(HiddonText), SucceededShutter);
                 //todayTask.TaskCompletion(1);
 
-                for(int i = 0; i < todayTask.todayTask.Count; i++)
-                {
-                    //タスクが二日目のタスク内容であれば
-                    if (GameManager.Instance.tasks[i].date == 1)
-                    {
-                        GameManager.Instance.tasks[i].isCompletion = true;
-                    }
-                }
-
-                int j = 0;
-
-                //タスクが二つあって
-                if(todayTask.todayTask.Count == 2)
-                {
-                    //二つともタスクをクリアしているならば
-                    if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
-                    {
-                        //条件に沿って次の日に移行
-                        switch(GameManager.Instance.GetDate())
-                        {
-                            case 1:
-                                Day2.day2 = true;
-                                break;
-
-                            case 2:
-                                Day3.day3 = true;
-                                break;
-                        }
-                    }
-                }
-                //タスクが一つだけであってその日がDay2だったら
-                else if(todayTask.todayTask.Count == 1 && GameManager.Instance.GetDate() == 1 && GameManager.Instance.tasks[j].isCompletion)
-                {
-                    //三日目に移行
-                    Day2.day2 = true;
-                }
-
-                //その日のタスクが全てクリアされていたら次のDayに移行
-                if (GameManager.Instance.tasks[j].isCompletion && GameManager.Instance.tasks[j + 1].isCompletion)
-                {
-                    //もし、今のDayが二日目であれば
-                    if (GameManager.Instance.Date == 1)
-                    {
-                        //三日目に移行
-                        Day2.day2 = true;
-                    }
-                    //もし、今のDayが三日目であれば
-                    else if(GameManager.Instance.Date == 2)
-                    {
-                        //四日目に移行
-                        Day3.day3 = true;
-                    }
-                }
+                Day2.day2 = true;
+                todayTask.TaskCompletion(1);
             }
             else
             {
