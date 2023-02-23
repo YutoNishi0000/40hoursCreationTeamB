@@ -23,10 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main/Scenes/Ingame/Day 5.unity
     guid: c06dd660a333dfc4693a7dc48c82495a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Takahashi_Kyoya/Scene/GameClear.unity
     guid: 55259cd2361e2534fbbc186a45e3c040
-  - enabled: 1
+  - enabled: 0
     path: Assets/Takahashi_Kyoya/Nisi/Day3Resources/GameOver.unity
     guid: 98d5e14e48510f647a1b22f75b26595c
   - enabled: 1
@@ -35,4 +35,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main/Scenes/Ingame/SucsessNegotiation.unity
     guid: 592e5248913891f47ac2ce3ad98f9964
+  - enabled: 1
+    path: Assets/Main/Scenes/Ingame/Day 2_k.unity
+    guid: 93948a496b5dc7e4eb55eeff25dc4435
+  - enabled: 1
+    path: Assets/Main/Scenes/Ingame/Day 1_k.unity
+    guid: 87cc63907d397f946ba24ca18a7dfbd1
+  - enabled: 1
+    path: Assets/Main/Scenes/Ingame/Day 3_k.unity
+    guid: 6ad9b21c2e2a62a4ea8114bbe4b44859
+  - enabled: 1
+    path: Assets/Main/Scenes/Ingame/Day 4_k.unity
+    guid: 0d6fbcad60f26984ca293a8b5c919786
+  - enabled: 1
+    path: Assets/Main/Scenes/Ingame/Day 5_k.unity
+    guid: b19d458d2c4db9b42bec7487613ec18e
   m_configObjects: {}
