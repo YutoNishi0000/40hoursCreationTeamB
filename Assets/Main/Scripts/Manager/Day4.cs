@@ -43,7 +43,23 @@ public class Day4 : MonoBehaviour
                     message.EventText((int)Scenario.MessageState.DAY4_TIMEOVER);
                     once = true;
                 }
+
+                //このフラグは絶対にオフになるのでバグは心配しくてよい
+                if (Message.PlayerMoveFlag)
+                {
+                    GameManager.Instance.NextDay("FailedNegotiation");
+                    Destroy(gameObject);
+                }
             }
+            //タスクが一つも残っていなかったら
+            else
+            {
+                GameManager.Instance.NextDay("Negotiation");
+                Destroy(gameObject);
+            }
+
+            //GameManager.Instance.NextDay("Day 5_k");
+            //Destroy(gameObject);
         }
         else if (FrontSidePlayerChecker._Escaped)
         {

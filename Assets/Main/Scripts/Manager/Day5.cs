@@ -33,14 +33,12 @@ public class Day5 : MonoBehaviour
             //タスクが一つでも残っていたら
             if (todayTask.todayTask.Count > 0)
             {
-                Debug.Log("トゥルーエンド");
-                GameManager.Instance.NextDay("SucsessNegotiation");
+                GameManager.Instance.NextDay("FailedNegotiation");
                 Destroy(gameObject);
             }
             else
             {
-                Debug.Log("バッドエンド");
-                GameManager.Instance.NextDay("FailedNegotiation");
+                GameManager.Instance.NextDay("SucsessNegotiation");
                 Destroy(gameObject);
             }
         }
