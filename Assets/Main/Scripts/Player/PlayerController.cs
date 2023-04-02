@@ -19,7 +19,7 @@ public class PlayerController : Human
     bool cursorLock = true;
     public bool _moveLock;                           //çsìÆÇêßå¿Ç∑ÇÈÇ©Ç«Ç§Ç©
 
-    public GameObject targetCenter;
+    //public GameObject targetCenter;
     private float jumpSpeed = 5f;
     private float gravity = 20f;
 
@@ -48,7 +48,7 @@ public class PlayerController : Human
         switch (playerState.GetPlayerState())
         {
             case PlayerStateController.PlayerState.ViewportLocked:
-                lockOnTargetObject(targetCenter);
+                //lockOnTargetObject(targetCenter);
                 break;
             default:
                 RotateControl();
