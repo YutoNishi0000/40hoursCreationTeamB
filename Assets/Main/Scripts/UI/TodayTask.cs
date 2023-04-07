@@ -58,7 +58,7 @@ public class TodayTask : MonoBehaviour
                 todayTask.Add(GameManager.Instance.GetTaskName(i));
         }
 
-        Debug.Log("タスクの達成深度は" + GameManager.Instance.tasks[0].isCompletion);
+        //Debug.Log("タスクの達成深度は" + GameManager.Instance.tasks[0].isCompletion);
 
         if (GameManager.Instance.GetIsCompletion(0))
         {

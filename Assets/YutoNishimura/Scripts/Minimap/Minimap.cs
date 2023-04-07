@@ -11,23 +11,21 @@ public class Minimap : Actor
     [SerializeField] private GameObject fieldObj;        //フィールドの親オブジェクト
     [SerializeField] private Image basePos;              //ミニマップのUIイメージ
     [SerializeField] private Image player;               //プレイヤーのUIイメージ
-    [SerializeField] private Image target;               //対象のUIイメージ
+    //[SerializeField] private Image target;               //対象のUIイメージ
 
     //メモ
     //プレイヤーと対象ののx座標、z座標をそれぞれ求めフィールドの幅、高さでそれぞれ割ると-1から1の範囲で表現することができるのでそれを利用する
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
         //プレイヤーと対象の位置を常に更新して表示する
         //最終的にはピクセル計算になる
         player.rectTransform.position = GetMinimapPos(playerInstance.transform.position);
-        target.rectTransform.position = GetMinimapPos(targetInstance.transform.position);
-        Debug.Log(GetMinimapPos(playerInstance.transform.position));
+        //if (DestroyTarget.target != null)
+        //{
+        //    target.rectTransform.position = GetMinimapPos(DestroyTarget.target.transform.position);
+        //}
+        //Debug.Log(GetMinimapPos(playerInstance.transform.position));
     }
 
     //UI上でのプレイヤーと対象の位置を取得

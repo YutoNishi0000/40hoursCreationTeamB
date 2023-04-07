@@ -43,7 +43,7 @@ public class PlayerStateController : MonoBehaviour
         }
         else
         {
-            Debug.Log("“®‚¯‚éó‘Ô ");
+            //Debug.Log("“®‚¯‚éó‘Ô ");
 
             SetPlayerState(PlayerState.Move);
         }

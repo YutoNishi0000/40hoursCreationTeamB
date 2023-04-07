@@ -58,6 +58,10 @@ public class TargetController : Human
         transform.position = passingPoints[_pointIndex].transform.position;
         routDir = new RouteDirection();
     }
+    private void OnEnable()
+    {
+        passingPoints = GameObject.FindGameObjectsWithTag("dest");
+    }
 
     // Update is called once per frame
     void Update()

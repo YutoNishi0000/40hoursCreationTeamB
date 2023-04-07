@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TASK
 {
+   
     //表示するタスクテキスト
     public string taskName;
     //タスクが完了しているか
@@ -29,6 +30,8 @@ public class TASK
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
 
+    //写真を撮ったか
+    public bool IsPhoto = false;
     //タイトルの割れる画像
     public GameObject TitleUI;
 

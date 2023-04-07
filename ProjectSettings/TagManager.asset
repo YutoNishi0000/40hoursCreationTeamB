@@ -10,6 +10,9 @@ TagManager:
   - Handkerchief
   - SE
   - HeartBeat
+  - target
+  - subCamera
+  - dest
   layers:
   - Default
   - TransparentFX
