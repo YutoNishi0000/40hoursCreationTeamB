@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// <summary>
 /// 対象が画面の中心にどれだけ近さによってスコアを出す
 /// </summary>
-public class CameraScore : MonoBehaviour
+public class CameraScore : ScoreManger
 {
     //ビュー座標に変換したいオブジェクトポジション
     [SerializeField] private GameObject obj = null;
@@ -22,7 +22,6 @@ public class CameraScore : MonoBehaviour
         low   = 10,
         outOfScreen = 0,
     };
-    public static int Score = 0;
     //それぞれの判定の幅
     private float areaWidth = 192;      //(960 / 5) 画面5等分
     private float areaHeight = 216;     //(1080 / 5) 画面5等分
@@ -43,7 +42,7 @@ public class CameraScore : MonoBehaviour
 
         if (GameManager.Instance.IsPhoto)
         {
-            Score = checkScore(WorldToScreenPoint(cam, DestroyTarget.target.transform.position));
+            Score += checkScore(WorldToScreenPoint(cam, DestroyTarget.target.transform.position));
             Debug.Log(Score);
             
         }
