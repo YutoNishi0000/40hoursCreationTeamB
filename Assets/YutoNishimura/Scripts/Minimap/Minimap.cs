@@ -32,6 +32,6 @@ public class Minimap : Actor
     private Vector2 GetMinimapPos(Vector3 pos)
     {
         //-1‚©‚ç1‚Ì”ÍˆÍ‚Éûk‚µAUI‚æ‚¤‚É‘å‚«‚³‚ğ‡‚í‚¹‚é
-        return (new Vector2(pos.x - fieldObj.transform.position.x, pos.z - fieldObj.transform.position.z) / (fieldParam / 2)) * (minimapParam / 2) + (Vector2)basePos.rectTransform.position;
+        return (new Vector2(pos.x/* - fieldObj.transform.position.x*/, pos.z/* - fieldObj.transform.position.z*/) / (fieldParam / 2)) * (minimapParam / 2) + (Vector2)basePos.rectTransform.position;
     }
 }

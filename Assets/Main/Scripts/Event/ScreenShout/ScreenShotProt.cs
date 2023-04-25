@@ -35,7 +35,7 @@ public class ScreenShotProt : Human
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas = GameObject.Find("Canvas");
         targetImage = GameObject.Find("RawImage");
-        todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
+        //todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
         preview.enabled = false;
         _image.enabled = false;
         SucceededShutter.enabled = false;
@@ -50,7 +50,9 @@ public class ScreenShotProt : Human
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameManager.Instance.IsPhoto = true;
+            //preview.transform.position = Vector3.zero;
+            //GameManager.Instance.IsPhoto = true;
+            OffPreview();
             StartCoroutine(nameof(HiddonText), SucceededShutter);
             //todayTask.TaskCompletion(1);
             ClickShootButton();
@@ -62,7 +64,7 @@ public class ScreenShotProt : Human
 
     void MovePreview()
     {
-        preview.rectTransform.DOScale(transform.localScale / 3, 0.5f);
+        preview.rectTransform.DOScale(transform.localScale / 5, 0.5f);
         preview.rectTransform.DOMove(prevPos.rectTransform.position, 0.5f);
         Invoke(nameof(SlideMovePreview), 1f);
     }
@@ -70,7 +72,7 @@ public class ScreenShotProt : Human
     void SlideMovePreview()
     {
         preview.transform.DOMoveX(prevPos2.rectTransform.position.x, 0.3f);
-        Invoke(nameof(OffPreview), 0.3f);
+        //Invoke(nameof(OffPreview), 0.3f);
     }
 
     /// <summary>
@@ -121,9 +123,9 @@ public class ScreenShotProt : Human
         RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
         cam.targetTexture = renderTexture;
 
-        Texture2D texture = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.RGB24, false);
+        Texture2D texture = new Texture2D(cam.targetTexture.width / 2, cam.targetTexture.height, TextureFormat.RGB24, false);
 
-        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
+        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width / 2, cam.targetTexture.height), 0, 0);
         texture.Apply();
 
         // 保存する画像のサイズを変えるならResizeTexture()を実行
@@ -162,7 +164,7 @@ public class ScreenShotProt : Human
 
     public void ClickShootButton()
     {
-        SoundManager.Instance.PlayCameraSE();
+        //SoundManager.Instance.PlayCameraSE();
         StartCoroutine(CreateScreenShot());
     }
 

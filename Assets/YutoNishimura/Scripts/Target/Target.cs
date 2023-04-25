@@ -19,19 +19,20 @@ public class Target : Actor
         //目標地点の間を継続的に移動
         agent.autoBraking = false;
     }
-    private void OnEnable()
-    {
-        targetCamera = GameObject.FindWithTag("subCamera");
-        points = GameObject.FindGameObjectsWithTag("dest");
-    }
+    //private void OnEnable()
+    //{
+    //    targetCamera = GameObject.FindWithTag("subCamera");
+    //    points = GameObject.FindGameObjectsWithTag("dest");
+    //}
+
     // Update is called once per frame
     void Update()
     {
-        targetCamera.transform.position = new Vector3(
-            this.transform.position.x,
-            this.transform.position.y + 1.0f,
-            this.transform.position.z);
-        targetCamera.transform.eulerAngles = this.transform.eulerAngles;
+        //targetCamera.transform.position = new Vector3(
+        //    this.transform.position.x,
+        //    this.transform.position.y + 1.0f,
+        //    this.transform.position.z);
+        //targetCamera.transform.eulerAngles = this.transform.eulerAngles;
         //エージェントが現目標地点に近づいたら次の目標地点を設定
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
@@ -48,7 +49,7 @@ public class Target : Actor
         }
 
         //エージェントが現在設定された目標地点に行くように設定
-        agent.destination = points[destPoint].transform.position;
+        agent.destination = new Vector3(points[destPoint].transform.position.x, transform.position.y, points[destPoint].transform.position.z);
 
         //配列内の次の位置を目標地点に設定し、必要ならば出発地点に戻る
         destPoint = (destPoint + 1) % points.Length;
