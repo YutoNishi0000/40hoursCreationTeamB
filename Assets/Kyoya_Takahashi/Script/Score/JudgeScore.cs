@@ -1,25 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-/// <summary>
-/// 対象が画面の中心にどれだけ近さによってスコアを出す
-/// </summary>
-public class CameraScore : ScoreManger
+public class JudgeScore : ScoreManger
 {
     //ビュー座標に変換したいオブジェクトポジション
     [SerializeField] private GameObject obj = null;
-    [SerializeField] private GameObject obj2 = null;
+    //[SerializeField] private GameObject obj2 = null;
 
     [SerializeField] private Camera cam = null;
 
     //それぞれのスコアの値
     enum ScoreType
     {
-        high  = 50,
+        high = 50,
         midle = 30,
-        low   = 10,
+        low = 10,
         outOfScreen = 0,
     };
     //それぞれの判定の幅
@@ -38,17 +34,14 @@ public class CameraScore : ScoreManger
     }
     private void Update()
     {
-        obj2.transform.position = WorldToScreenPoint(cam, DestroyTarget.target.transform.position);
-
+        //obj2.transform.position = WorldToScreenPoint(cam, DestroyTarget.target.transform.position);
+        Debug.Log(ScoreManger.Score);
         if (GameManager.Instance.IsPhoto)
         {
-            Score += checkScore(WorldToScreenPoint(cam, DestroyTarget.target.transform.position));
-            Debug.Log(Score);
-            
+            Debug.Log("通ってる");
+            ScoreManger.Score += checkScore(WorldToScreenPoint(cam, DestroyTarget.target.transform.position));
+            GameManager.Instance.IsPhoto = false;
         }
-
-        //なんかマウスボタンとれないからぶん回す
-
     }
     /// <summary>
     /// ワールド座標をスクリーン座標に
@@ -81,6 +74,16 @@ public class CameraScore : ScoreManger
     /// <returns>スコアの値</returns>
     private int checkScore(Vector3 scrPoint)
     {
+        return lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
+    }
+    /// <summary>
+    /// スコアの判定(横)
+    /// </summary>
+    /// <param name="scrPoint">スクリーン座標</param>
+    /// <param name="score">タテだけで見たときのスコア</param>
+    /// <returns>スコア</returns>
+    private int checkScoreHori(Vector3 scrPoint)
+    {
         if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2)
         {
             return (int)ScoreType.high;
@@ -95,4 +98,43 @@ public class CameraScore : ScoreManger
         }
         return (int)ScoreType.outOfScreen;
     }
+    /// <summary>
+    /// スコアの判定(縦)
+    /// </summary>
+    /// <param name="scrPoint">スクリーン座標</param>
+    /// <param name="score">タテだけで見たときのスコア</param>
+    /// <returns>スコア</returns>
+    private int checkScoreVart(Vector3 scrPoint)
+    {
+        if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2)
+        {
+            return (int)ScoreType.high;
+        }
+        if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2 + areaHeight)
+        {
+            return (int)ScoreType.midle;
+        }
+        if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2 + areaHeight * 2)
+        {
+            return (int)ScoreType.low;
+        }
+        return (int)ScoreType.outOfScreen;
+    }
+    /// <summary>
+    /// 低いほうの値をを求める
+    /// </summary>
+    /// <param name="v">片方のスコア</param>
+    /// <returns>スコア</returns>
+    private int lower(int v1, int v2)
+    {
+        if(v1 < v2)
+        {
+            return v1;
+        }
+        else
+        {
+            return v2;
+        }
+    }
+
 }

@@ -51,7 +51,7 @@ public class ScreenShotProt : Human
         if (Input.GetMouseButtonDown(0))
         {
             //preview.transform.position = Vector3.zero;
-            //GameManager.Instance.IsPhoto = true;
+            GameManager.Instance.IsPhoto = true;
             OffPreview();
             StartCoroutine(nameof(HiddonText), SucceededShutter);
             //todayTask.TaskCompletion(1);

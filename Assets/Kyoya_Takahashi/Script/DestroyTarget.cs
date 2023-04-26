@@ -17,7 +17,7 @@ public class DestroyTarget : MonoBehaviour
         {
             return;
         }
-        if(CameraScore.Score == 0)
+        if(ScoreManger.Score == 0)
         {
             return;
         }
