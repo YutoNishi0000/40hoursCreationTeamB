@@ -20458,6 +20458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1675277306}
+  obj2: {fileID: 0}
   cam: {fileID: 1588506719}
 --- !u!1 &983144652 stripped
 GameObject:
