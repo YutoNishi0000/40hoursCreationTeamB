@@ -6,7 +6,7 @@ public class JudgeScore : ScoreManger
 {
     //ビュー座標に変換したいオブジェクトポジション
     [SerializeField] private GameObject obj = null;
-    //[SerializeField] private GameObject obj2 = null;
+    [SerializeField] private GameObject obj2 = null;
 
     [SerializeField] private Camera cam = null;
 
@@ -34,12 +34,12 @@ public class JudgeScore : ScoreManger
     }
     private void Update()
     {
-        //obj2.transform.position = WorldToScreenPoint(cam, DestroyTarget.target.transform.position);
+        obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
         Debug.Log(ScoreManger.Score);
         if (GameManager.Instance.IsPhoto)
         {
             Debug.Log("通ってる");
-            ScoreManger.Score += checkScore(WorldToScreenPoint(cam, DestroyTarget.target.transform.position));
+            ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
             GameManager.Instance.IsPhoto = false;
         }
     }
@@ -63,7 +63,7 @@ public class JudgeScore : ScoreManger
         Vector3 deviceSpace = new Vector3(clipSpace.x / clipSpace.w, clipSpace.y / clipSpace.w, clipSpace.z / clipSpace.w);
 
         // スクリーン座標系に変換
-        Vector3 screenSpace = new Vector3((deviceSpace.x + 1f) * 0.5f * Screen.width, (deviceSpace.y + 1f) * 0.5f * Screen.height, deviceSpace.z);
+        Vector3 screenSpace = new Vector3((deviceSpace.x + 1f) * 0.25f * Screen.width, (deviceSpace.y + 1f) * 0.5f * Screen.height, deviceSpace.z);
 
         return screenSpace;
     }
