@@ -27,22 +27,22 @@ public class Day5 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance = Vector3.Distance(player.transform.position, target.transform.position);
-        if (distance < area)
-        {
-            //タスクが一つでも残っていたら
-            if (todayTask.todayTask.Count > 0)
-            {
-                Debug.Log("トゥルーエンド");
-                GameManager.Instance.NextDay("SucsessNegotiation");
-                Destroy(gameObject);
-            }
-            else
-            {
-                Debug.Log("バッドエンド");
-                GameManager.Instance.NextDay("FailedNegotiation");
-                Destroy(gameObject);
-            }
-        }
+        //distance = Vector3.Distance(player.transform.position, target.transform.position);
+        //if (distance < area)
+        //{
+        //    //タスクが一つでも残っていたら
+        //    if (todayTask.todayTask.Count > 0)
+        //    {
+        //        Debug.Log("トゥルーエンド");
+        //        GameManager.Instance.NextDay("SucsessNegotiation");
+        //        Destroy(gameObject);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("バッドエンド");
+        //        GameManager.Instance.NextDay("FailedNegotiation");
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 }

@@ -10,11 +10,14 @@ public class Target : Actor
     private int destPoint = 0;
     private NavMeshAgent agent;
     private GameObject targetCamera = null;
+    private float initialTargetSpeed;       //移動速度
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        initialTargetSpeed = agent.speed;
 
         //目標地点の間を継続的に移動
         agent.autoBraking = false;
@@ -54,4 +57,10 @@ public class Target : Actor
         //配列内の次の位置を目標地点に設定し、必要ならば出発地点に戻る
         destPoint = (destPoint + 1) % points.Length;
     }
+
+    public float GetTargetSpeed() { return agent.speed; }
+
+    public float GetInitialTargetSpeed() { return initialTargetSpeed; }
+
+    public void SetTargetSpeed(float speed) { agent.speed = speed; }
 }
