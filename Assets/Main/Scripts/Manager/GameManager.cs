@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-<<<<<<< HEAD
 public class TASK
 {
     
@@ -29,7 +27,6 @@ public class TASK
         isCompletion = true;
     }
 }
-=======
 //public class TASK
 //{
 
@@ -56,7 +53,6 @@ public class TASK
 //}
 
 [RequireComponent(typeof(SkillManager))]
->>>>>>> origin/main
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     public enum GameMode
@@ -70,7 +66,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool IsPhoto = false;
     //タイトルの割れる画像
     public GameObject TitleUI;
-<<<<<<< HEAD
     //ゲームオーバーかどうか
     public bool gameOver = false;
 
@@ -78,7 +73,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if(gameOver)
         {
-            NextDay("Result");
+            //NextDay("Result");
         }
     }
 
@@ -148,10 +143,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool CanNextDay = false;
     //接触範囲に入っているか
     public bool inContactArea = false;
-=======
+
     public GameMode gameMode;
     public SkillManager skillManager;
->>>>>>> origin/main
 
     private void Start()
     {
