@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/Ingame/Prot.unity
     guid: 4f361397cee963143a79e452b9213163
   - enabled: 0
@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Main/Scenes/Ingame/Day 4_k.unity
     guid: 0d6fbcad60f26984ca293a8b5c919786
+  - enabled: 1
+    path: Assets/Main/Scenes/Ingame/Result.unity
+    guid: 740473f99c963f646be782c79147ced0
   - enabled: 0
     path: Assets/Main/Scenes/Ingame/Day 5_k.unity
     guid: b19d458d2c4db9b42bec7487613ec18e

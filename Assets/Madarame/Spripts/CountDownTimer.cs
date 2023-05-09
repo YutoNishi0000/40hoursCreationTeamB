@@ -23,6 +23,7 @@ public class CountDownTimer : MonoBehaviour
 		//　制限時間が0秒以下なら何もしない
 		if (_totalTime <= 0f)
 		{
+			GameManager.Instance.SetGameOver(true);
 			return;
 		}
 		//　一旦トータルの制限時間を計測；

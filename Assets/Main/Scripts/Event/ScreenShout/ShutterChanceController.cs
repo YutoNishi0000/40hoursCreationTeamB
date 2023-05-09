@@ -27,7 +27,7 @@ public class ShutterChanceController : MonoBehaviour
         }
         else
         {
-            Debug.Log("のっとシャッターチャンス");
+            //Debug.Log("のっとシャッターチャンス");
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Invoke("Bad", 0.9f);

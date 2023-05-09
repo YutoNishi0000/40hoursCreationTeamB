@@ -35,7 +35,7 @@ public class DestroyTarget : MonoBehaviour
     }
     private void Respawntarget()
     {
-        //ターゲットが存在してたらターゲット生成
+        //ターゲットが存在なかったらターゲット生成
         target = Instantiate(respawnTarget,
             this.transform.position,
             Quaternion.Euler(0.0f, 0.0f, 0.0f));

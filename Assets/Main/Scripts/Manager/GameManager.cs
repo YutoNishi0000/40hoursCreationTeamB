@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TASK
 {
-   
+    
     //表示するタスクテキスト
     public string taskName;
     //タスクが完了しているか
@@ -34,6 +34,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool IsPhoto = false;
     //タイトルの割れる画像
     public GameObject TitleUI;
+    //ゲームオーバーかどうか
+    public bool gameOver = false;
+
+    private void LateUpdate()
+    {
+        if(gameOver)
+        {
+            NextDay("Result");
+        }
+    }
 
     //タスククラス
     public List<TASK> tasks = new List<TASK>()
@@ -75,12 +85,21 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         return tasks[idx].taskName;
     }
+    public bool GetGameOver()
+    {
+        return gameOver;
+    }
+    //セッター
     public void SetCompletionTask(int idx)
     {
         tasks[idx].CompletionTask();
     }
+    public void SetGameOver(bool b)
+    {
+        gameOver = b;
+    }
 
-    //セッター
+
 
     //ゲームオーバーシーン
     private string gameOverScene = "GameOver";

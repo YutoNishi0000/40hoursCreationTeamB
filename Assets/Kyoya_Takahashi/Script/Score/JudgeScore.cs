@@ -19,8 +19,9 @@ public class JudgeScore : ScoreManger
         outOfScreen = 0,
     };
     //それぞれの判定の幅
-    private float areaWidth = 192;      //(960 / 5) 画面5等分
-    private float areaHeight = 216;     //(1080 / 5) 画面5等分
+    private const float areaWidth = 192;      //(960 / 5) 画面5等分
+    private const float areaHeight = 216;     //(1080 / 5) 画面5等分
+
     //画面の中心
     private Vector3 center = Vector3.zero;
 
@@ -32,14 +33,21 @@ public class JudgeScore : ScoreManger
             areaHeight * 2 + areaHeight * 0.5f,
             0.0f);
     }
-    private void Update()
+    private void LateUpdate()
     {
-        //obj2.transform.position = WorldToScreenPoint(cam, DestroyTarget.target.transform.position);
-        Debug.Log(ScoreManger.Score);
+        //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
         if (GameManager.Instance.IsPhoto)
         {
             Debug.Log("通ってる");
-            ScoreManger.Score += checkScore(WorldToScreenPoint(cam, DestroyTarget.target.transform.position));
+            if (obj.CompareTag("main"))
+            {
+                ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
+            }
+            else
+            {
+
+            }
+            Debug.Log(ScoreManger.Score);
             GameManager.Instance.IsPhoto = false;
         }
     }
@@ -58,12 +66,12 @@ public class JudgeScore : ScoreManger
         Vector4 clipSpace = cam.projectionMatrix * new Vector4(cameraSpace.x, cameraSpace.y, cameraSpace.z, 1f);
 
         //デバイス座標：左下ー1　右上＋1
-        //割ってるのは正規
+        //割ってるのは正規化
         // デバイス座標系に変換
         Vector3 deviceSpace = new Vector3(clipSpace.x / clipSpace.w, clipSpace.y / clipSpace.w, clipSpace.z / clipSpace.w);
 
         // スクリーン座標系に変換
-        Vector3 screenSpace = new Vector3((deviceSpace.x + 1f) * 0.5f * Screen.width, (deviceSpace.y + 1f) * 0.5f * Screen.height, deviceSpace.z);
+        Vector3 screenSpace = new Vector3((deviceSpace.x + 1f) * 0.25f * Screen.width, (deviceSpace.y + 1f) * 0.5f * Screen.height, deviceSpace.z);
 
         return screenSpace;
     }
