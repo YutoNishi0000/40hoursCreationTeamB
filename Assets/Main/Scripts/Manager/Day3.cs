@@ -21,45 +21,45 @@ public class Day3 : MonoBehaviour
         message = GameObject.Find("MessageUI").GetComponent<Message>();
     }
 
-    void Update()
-    {
-        if (day3)
-        {
-            timer += Time.deltaTime;
-            if (timer > faidOutTime)
-            {
-                GameManager.Instance.NextDay("Day 4_k");
-                Destroy(gameObject);
-            }
-        }
-        else if (TimeController._isTimePassed)
-        {
-            //タスクが一つでも残っていたら
-            if(todayTask.todayTask.Count > 0)
-            {
-                if (!once)
-                {
-                    message.EventText((int)Scenario.MessageState.DAY3_TIMEOVER);
-                    once = true;
-                }
+    //void Update()
+    //{
+    //    if (day3)
+    //    {
+    //        timer += Time.deltaTime;
+    //        if (timer > faidOutTime)
+    //        {
+    //            GameManager.Instance.NextDay("Day 4_k");
+    //            Destroy(gameObject);
+    //        }
+    //    }
+    //    else if (TimeController._isTimePassed)
+    //    {
+    //        //タスクが一つでも残っていたら
+    //        if(todayTask.todayTask.Count > 0)
+    //        {
+    //            if (!once)
+    //            {
+    //                message.EventText((int)Scenario.MessageState.DAY3_TIMEOVER);
+    //                once = true;
+    //            }
 
-                //このフラグは絶対にオフになるのでバグは心配しくてよい
-                if (Message.PlayerMoveFlag)
-                {
-                    GameManager.Instance.GameOver();
-                    Destroy(gameObject);
-                }
-            }
-            else
-            {
-                GameManager.Instance.NextDay("Day 4_k");
-                Destroy(gameObject);
-            }
-        }
-        else if (FrontSidePlayerChecker._Escaped)
-        {
-            GameManager.Instance.GameOver();
-            Destroy(gameObject);
-        }
-    }
+    //            //このフラグは絶対にオフになるのでバグは心配しくてよい
+    //            if (Message.PlayerMoveFlag)
+    //            {
+    //                GameManager.Instance.GameOver();
+    //                Destroy(gameObject);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            GameManager.Instance.NextDay("Day 4_k");
+    //            Destroy(gameObject);
+    //        }
+    //    }
+    //    else if (FrontSidePlayerChecker._Escaped)
+    //    {
+    //        GameManager.Instance.GameOver();
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

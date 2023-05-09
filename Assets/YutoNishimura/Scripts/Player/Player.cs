@@ -23,6 +23,8 @@ public class Player : Actor
     float minX = -40f, maxX = 40f;
     Vector3 initialCamPos;
 
+    private float initialPlayerSpeed;   //ゲーム開始時のプレイヤーのデフォルトスピード
+
     private void Start()
     {
         cameraRot = cam.transform.localRotation;
@@ -30,6 +32,7 @@ public class Player : Actor
         initialCamPos = cam.transform.localPosition;
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        initialPlayerSpeed = speed;
     }
 
     private void Update()
@@ -164,6 +167,16 @@ public class Player : Actor
 
         return q;
     }
+
+    #region ゲッター、セッター
+
+    public float GetPlayerSpeed() { return speed; }
+
+    public float GetInitialPlayerSpeed() { return initialPlayerSpeed; }
+
+    public void SetPlayerSpeed(float playerSpeed) { speed = playerSpeed; }
+
+    #endregion
 }
 
 public class Actor : MonoBehaviour

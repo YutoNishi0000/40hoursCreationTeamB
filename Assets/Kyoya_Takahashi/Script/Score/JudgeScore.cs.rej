@@ -1,0 +1,10 @@
+diff a/Assets/Kyoya_Takahashi/Script/Score/JudgeScore.cs b/Assets/Kyoya_Takahashi/Script/Score/JudgeScore.cs	(rejected hunks)
+@@ -6,7 +6,7 @@
+ {
+     //�r���[���W�ɕϊ��������I�u�W�F�N�g�|�W�V����
+     [SerializeField] private GameObject obj = null;
+-    //[SerializeField] private GameObject obj2 = null;
++    [SerializeField] private GameObject obj2 = null;
+ 
+     [SerializeField] private Camera cam = null;
+ 

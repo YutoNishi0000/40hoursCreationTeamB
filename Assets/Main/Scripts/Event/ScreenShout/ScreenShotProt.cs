@@ -12,6 +12,7 @@ public class ScreenShotProt : Human
     GameObject canvas;
     GameObject targetImage;
     string screenShotPath;
+    List<string> filePathes;
     string timeStamp;
     public RawImage preview;
 
@@ -32,6 +33,7 @@ public class ScreenShotProt : Human
 
     void Awake()
     {
+        filePathes = new List<string>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         canvas = GameObject.Find("Canvas");
         targetImage = GameObject.Find("RawImage");
@@ -60,6 +62,11 @@ public class ScreenShotProt : Human
             preview.enabled = true;
             Invoke(nameof(MovePreview), 1f);
         }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            ClearCash(filePathes);
+        }
     }
 
     void MovePreview()
@@ -72,7 +79,6 @@ public class ScreenShotProt : Human
     void SlideMovePreview()
     {
         preview.transform.DOMoveX(prevPos2.rectTransform.position.x, 0.3f);
-        //Invoke(nameof(OffPreview), 0.3f);
     }
 
     /// <summary>
@@ -99,10 +105,9 @@ public class ScreenShotProt : Human
 
     private string GetScreenShotPath()
     {
-        string path = "";
-        // プロジェクトファイル直下に作成
-        path = timeStamp + ".png";
-        //		path = Application.persistentDataPath+timeStamp + ".png";
+        //Picturesフォルダの中に撮った写真を置くようにする
+        string path = "Assets/Pictures/" + timeStamp + ".png";
+
         return path;
     }
 
@@ -115,8 +120,11 @@ public class ScreenShotProt : Human
     private IEnumerator CreateScreenShot()
     {
         UIStateChange();
+
+        //テクスチャの名前を現在時刻に設定
         DateTime date = DateTime.Now;
         timeStamp = date.ToString("yyyy-MM-dd-HH-mm-ss-fff");
+
         // レンダリング完了まで待機
         yield return new WaitForEndOfFrame();
 
@@ -132,10 +140,12 @@ public class ScreenShotProt : Human
         //		texture = ResizeTexture(texture,320,240);
 
         byte[] pngData = texture.EncodeToPNG();
-        screenShotPath = GetScreenShotPath();
+        //screenShotPath = ;
 
         // ファイルとして保存するならFile.WriteAllBytes()を実行
-        File.WriteAllBytes(screenShotPath, pngData);
+        File.WriteAllBytes(GetScreenShotPath(), pngData);
+
+        filePathes.Add(GetScreenShotPath());
 
         cam.targetTexture = null;
 
@@ -181,6 +191,21 @@ public class ScreenShotProt : Human
             RawImage target = targetImage.GetComponent<RawImage>();
             target.texture = tex;
         }
+    }
+
+    private void ClearCash(List<string> pathes)
+    {
+        //パスが入ったリストを動的にコピー
+        var numPathes = pathes;
+
+        //撮った写真は全て削除
+        for(int i = 0; i  < numPathes.Count; i++)
+        {
+            File.Delete(pathes[i]);
+        }
+
+        //パスが入ったリストは中身を空にする
+        pathes.Clear();
     }
 
     /// <summary>

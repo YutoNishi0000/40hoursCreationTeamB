@@ -6,7 +6,7 @@ public class JudgeScore : ScoreManger
 {
     //ビュー座標に変換したいオブジェクトポジション
     [SerializeField] private GameObject obj = null;
-    //[SerializeField] private GameObject obj2 = null;
+    [SerializeField] private GameObject obj2 = null;
 
     [SerializeField] private Camera cam = null;
 
@@ -48,6 +48,14 @@ public class JudgeScore : ScoreManger
 
             }
             Debug.Log(ScoreManger.Score);
+=======
+        obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
+        Debug.Log(ScoreManger.Score);
+        if (GameManager.Instance.IsPhoto)
+        {
+            Debug.Log("通ってる");
+            ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
+>>>>>>> origin/main
             GameManager.Instance.IsPhoto = false;
         }
     }

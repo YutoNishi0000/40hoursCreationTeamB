@@ -34,7 +34,7 @@ public class NegotiaationEvent : MonoBehaviour
             if(counter == countBGM)
             {
                 SoundManager.Instance.PlayGameClearBGM();
-                GameManager.Instance.OutGameNextScene("Title");
+                //GameManager.Instance.OutGameNextScene("Title");
                 counter++;
             }
         }

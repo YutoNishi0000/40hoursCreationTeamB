@@ -115,8 +115,10 @@ public class Message : MonoBehaviour
     private int GetDayNamber()
     {
         // GameManager‚©‚çŒ»İ‚ÌDay”Ô†i0-4j‚ğæ“¾
-        return GameManager.Instance.GetDate();
+        //return GameManager.Instance.GetDate();
+        return 0;
     }
+
     public void EventText(int num)
     {
         count = 0;

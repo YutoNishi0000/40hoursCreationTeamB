@@ -166,18 +166,18 @@ public class TargetController : Human
     /// </summary>
     void CheckPlayer()
     {
-        if (RaycastController.Lockon)
-        {
-            _lockedOnTime += Time.deltaTime;
+        //if (RaycastController.Lockon)
+        //{
+        //    _lockedOnTime += Time.deltaTime;
 
-            if (_lockedOnTime > RECOGNIZE_TIME)
-            {
-                //移動ロックオン
-                _moveLock = true;
-                LookPlayer();
-                //Debug.Log("プレイヤーに気づいた");
-            }
-        }
+        //    if (_lockedOnTime > RECOGNIZE_TIME)
+        //    {
+        //        //移動ロックオン
+        //        _moveLock = true;
+        //        LookPlayer();
+        //        //Debug.Log("プレイヤーに気づいた");
+        //    }
+        //}
     }
 
     /// <summary>

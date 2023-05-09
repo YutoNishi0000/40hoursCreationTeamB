@@ -21,34 +21,34 @@ public class Day4 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (day4)
-        {
-            timer += Time.deltaTime;
-            if (timer > faidOutTime)
-            {
-                GameManager.Instance.NextDay("Day 5_k");
-                Destroy(gameObject);
-            }
-        }
-        else if (TimeController._isTimePassed)
-        {
-            //タスクが一つでも残っていたら
-            if (todayTask.todayTask.Count > 0)
-            {
-                //時間切れになったらゲームオーバー
-                if (!once)
-                {
-                    message.EventText((int)Scenario.MessageState.DAY4_TIMEOVER);
-                    once = true;
-                }
-            }
-        }
-        else if (FrontSidePlayerChecker._Escaped)
-        {
-            GameManager.Instance.GameOver();
-            Destroy(gameObject);
-        }
-    }
+    //void Update()
+    //{
+    //    if (day4)
+    //    {
+    //        timer += Time.deltaTime;
+    //        if (timer > faidOutTime)
+    //        {
+    //            GameManager.Instance.NextDay("Day 5_k");
+    //            Destroy(gameObject);
+    //        }
+    //    }
+    //    else if (TimeController._isTimePassed)
+    //    {
+    //        //タスクが一つでも残っていたら
+    //        if (todayTask.todayTask.Count > 0)
+    //        {
+    //            //時間切れになったらゲームオーバー
+    //            if (!once)
+    //            {
+    //                message.EventText((int)Scenario.MessageState.DAY4_TIMEOVER);
+    //                once = true;
+    //            }
+    //        }
+    //    }
+    //    else if (FrontSidePlayerChecker._Escaped)
+    //    {
+    //        GameManager.Instance.GameOver();
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

@@ -14,15 +14,15 @@ public class BackSidePlayerChecker : MonoBehaviour
 
     private void Update()
     {
-        if(_frontChecker.CheckPlayerFront())
-        {
-            GameManager.Instance.SetInContactArea(true);
-            _frontChecker.CountTimer();
-        }
-        else
-        {
-            GameManager.Instance.SetInContactArea(false);
-            _frontChecker.OffTimer();
-        }
+        //if(_frontChecker.CheckPlayerFront())
+        //{
+        //    GameManager.Instance.SetInContactArea(true);
+        //    _frontChecker.CountTimer();
+        //}
+        //else
+        //{
+        //    GameManager.Instance.SetInContactArea(false);
+        //    _frontChecker.OffTimer();
+        //}
     }
 }

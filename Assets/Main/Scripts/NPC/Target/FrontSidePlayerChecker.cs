@@ -71,7 +71,7 @@ public class FrontSidePlayerChecker : Human
 
         if (!_isEscape)
         {
-            RaycastController.Lockon = true;
+            //RaycastController.Lockon = true;
             targetController.SettargetState(TargetController.TargetState.LookPlayer);
         }
 

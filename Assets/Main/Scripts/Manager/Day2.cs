@@ -17,32 +17,32 @@ public class Day2 : MonoBehaviour
         todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
     }
 
-    void Update()
-    {
-        if (day2)
-        {
-            timer += Time.deltaTime;
-            if (timer > faidOutTime)
-            {
-                GameManager.Instance.NextDay("Day 3_k");
-                Destroy(gameObject);
-            }
-        }
-        else if(TimeController._isTimePassed)
-        {
-            //もしもDay1のタスクが終わっていなければ
-            for(int i = 0; i < todayTask.todayTask.Count; i++) 
-            {
-                if (todayTask.todayTask[i] == GameManager.Instance.GetTaskName(GameManager.Instance.GetDate() - 1))
-                {
-                    GameManager.Instance.GameOver();
-                    Destroy(gameObject);
-                    return;
-                }
-            }
+    //void Update()
+    //{
+    //    if (day2)
+    //    {
+    //        timer += Time.deltaTime;
+    //        if (timer > faidOutTime)
+    //        {
+    //            GameManager.Instance.NextDay("Day 3_k");
+    //            Destroy(gameObject);
+    //        }
+    //    }
+    //    else if(TimeController._isTimePassed)
+    //    {
+    //        //もしもDay1のタスクが終わっていなければ
+    //        for(int i = 0; i < todayTask.todayTask.Count; i++) 
+    //        {
+    //            if (todayTask.todayTask[i] == GameManager.Instance.GetTaskName(GameManager.Instance.GetDate() - 1))
+    //            {
+    //                GameManager.Instance.GameOver();
+    //                Destroy(gameObject);
+    //                return;
+    //            }
+    //        }
 
-            GameManager.Instance.NextDay("Day 3_k");
-            Destroy(gameObject);
-        }
-    }
+    //        GameManager.Instance.NextDay("Day 3_k");
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

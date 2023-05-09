@@ -9,22 +9,22 @@ public class Pose : MonoBehaviour
     bool isPoseing = false;
     public bool GetIsPoseing() { return isPoseing; }
 
-    private void Update()
-    {
-        if (!Player.activeSelf)
-        {
-            return;
-        }
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            isPoseing = !isPoseing;
-            PoseCanvas.SetActive(isPoseing);
-            //Player.SetActive(true);
-            Message.PlayerMoveFlag = !Message.PlayerMoveFlag;
-        }
-    }
-    public void ClickCalled()
-    {
-        GameManager.Instance.OutGameNextScene("Title");
-    }
+    //private void Update()
+    //{
+    //    if (!Player.activeSelf)
+    //    {
+    //        return;
+    //    }
+    //    if(Input.GetKeyDown(KeyCode.Tab))
+    //    {
+    //        isPoseing = !isPoseing;
+    //        PoseCanvas.SetActive(isPoseing);
+    //        //Player.SetActive(true);
+    //        Message.PlayerMoveFlag = !Message.PlayerMoveFlag;
+    //    }
+    //}
+    //public void ClickCalled()
+    //{
+    //    GameManager.Instance.OutGameNextScene("Title");
+    //}
 }

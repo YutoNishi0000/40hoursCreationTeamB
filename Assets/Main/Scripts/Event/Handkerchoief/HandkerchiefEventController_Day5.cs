@@ -51,7 +51,7 @@ public class HandkerchiefEventController_Day5 : MonoBehaviour
         //=================================================================================================
         //=================================================================================================
         Debug.Log("ハンカチイベント発生");
-        todayTask.TaskCompletion(3);
+        //todayTask.TaskCompletion(3);
         Day5.day5 = true;
         //GameManager.Instance.SetInContactArea(true);
         //Debug.Log(GameManager.Instance.GetInContactArea());
