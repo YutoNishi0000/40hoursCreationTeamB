@@ -63,6 +63,11 @@ public class JudgeScore : ScoreManger
             if (obj.CompareTag("main"))
             {
                 ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
+
+                //スコア倍率をリセット
+                SetOddsType(OddsType.NONE);
+
+                GameManager.Instance.IsPhoto = false;
             }
             else
             {
@@ -72,17 +77,6 @@ public class JudgeScore : ScoreManger
 
             obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
             Debug.Log(ScoreManger.Score);
-            if (GameManager.Instance.IsPhoto)
-            {
-                Debug.Log("通ってる");
-                ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
-
-                //ここで、スコア倍率をリセット
-                SetOddsType(OddsType.NONE);
-
-
-                GameManager.Instance.IsPhoto = false;
-            }
         }
     }
         /// <summary>
