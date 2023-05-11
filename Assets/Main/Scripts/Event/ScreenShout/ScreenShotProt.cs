@@ -30,6 +30,8 @@ public class ScreenShotProt : Human
     public Text SucceededShutter;
     public Text FailedShutter;
 
+    private int numShutter;           //サブカメラでシャッターを切った回数
+
 
     void Awake()
     {
@@ -46,6 +48,7 @@ public class ScreenShotProt : Human
         _changeCamera = FindObjectOfType<ChangeCameraAngle>();
         InitialPrevPos = preview.rectTransform.position;
         InitialPrevscale = preview.rectTransform.localScale;
+        numShutter = 0;
     }
 
     private void Update()
@@ -54,19 +57,38 @@ public class ScreenShotProt : Human
         {
             //preview.transform.position = Vector3.zero;
             GameManager.Instance.IsPhoto = true;
-            OffPreview();
-            StartCoroutine(nameof(HiddonText), SucceededShutter);
-            //todayTask.TaskCompletion(1);
-            ClickShootButton();
-            FadeIn(0.5f, _image);
-            preview.enabled = true;
-            Invoke(nameof(MovePreview), 1f);
+            Shutter();
+            //OffPreview();
+            //StartCoroutine(nameof(HiddonText), SucceededShutter);
+            ////todayTask.TaskCompletion(1);
+            //ClickShootButton();
+            //FadeIn(0.5f, _image);
+            //preview.enabled = true;
+            //Invoke(nameof(MovePreview), 1f);
+        }
+        else if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Shutter();
+            GameManager.Instance.IsSubPhoto = true;
         }
 
         if(Input.GetKeyDown(KeyCode.E))
         {
+            //フォルダ内の写真を全て削除
             ClearCash(filePathes);
         }
+    }
+
+    //撮影関数
+    private void Shutter()
+    {
+        OffPreview();
+        StartCoroutine(nameof(HiddonText), SucceededShutter);
+        //todayTask.TaskCompletion(1);
+        ClickShootButton();
+        FadeIn(0.5f, _image);
+        preview.enabled = true;
+        Invoke(nameof(MovePreview), 1f);
     }
 
     void MovePreview()

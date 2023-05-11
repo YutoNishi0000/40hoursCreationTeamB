@@ -6,6 +6,8 @@ using UnityEngine;
 //スキルに関する関数
 
 //メモ：スコア加算はきょうやに任せたい
+
+//JudgeScoreコンポーネントを動的に追加したい <- ゲームシーンに移動したとき
 public class SkillManager : Actor
 {
     private enum SkillType
@@ -24,10 +26,11 @@ public class SkillManager : Actor
         Failed
     }
 
+    private JudgeScore judgeScore;
     private SkillType skillType;
     private SkillLevel skillLevel;
     private bool countflag;           //スキル取得カウントフラグ
-    private bool targetMinimapFlag;
+    private bool targetMinimapFlag;     //ターゲットのミニマップを表示するかどうか
     private readonly float level1_buf = 1.2f;
     private readonly float level2_buf = 1.5f;
     private readonly float level3_buf = 2.0f;
@@ -40,6 +43,7 @@ public class SkillManager : Actor
     void Start()
     {
         time = 0;
+        judgeScore = GetComponent<JudgeScore>();
         skillType = new SkillType();
         skillLevel = new SkillLevel();
         countflag = false;
@@ -56,6 +60,21 @@ public class SkillManager : Actor
     }
 
     /// <summary>
+    /// スキルカウント開始時この関数を必ず呼び出す
+    /// </summary>
+    public void StartCount()
+    {
+        countflag = true;
+    }
+
+    public void EndCount()
+    {
+        countflag = false;
+
+        //time = 0;
+    }
+
+    /// <summary>
     /// スキル発動関数（１フレームだけ呼び出す）
     /// </summary>
     public void SkillImposition()
@@ -63,6 +82,8 @@ public class SkillManager : Actor
         switch(GetSkillType())
         {
             case SkillType.AddScore:
+                AddScore();
+                SkillReset();     //念のためスキルリセットを行っておく
                 break;
             case SkillType.SpeedUp:
                 PlayerSpeedUp();
@@ -86,21 +107,6 @@ public class SkillManager : Actor
     }
 
     /// <summary>
-    /// カウント開始時この関数を必ず呼び出す
-    /// </summary>
-    public void StartCount()
-    {
-        countflag = true;
-    }
-
-    public void EndCount()
-    {
-        countflag = false;
-
-        //time = 0;
-    }
-
-    /// <summary>
     /// メモ：Invokeで呼び出す
     /// スキルが重複しないように全てのスキルをリセットする
     /// </summary>
@@ -112,7 +118,7 @@ public class SkillManager : Actor
     }
 
     /// <summary>
-    /// スキルの種類を確立に応じて取得
+    /// スキルの種類を確率に応じて取得
     /// </summary>
     /// <returns></returns>
     private SkillType GetSkillType()
@@ -141,10 +147,20 @@ public class SkillManager : Actor
     /// <summary>
     /// スコア関係をいじりたい
     /// </summary>
-    /// <param name="score"></param>
-    private void AddScore(float score)
+    private void AddScore()
     {
-
+        switch (GetSkillLevel(ref time))
+        {
+            case SkillLevel.Level1:
+                judgeScore.SetOddsType(JudgeScore.OddsType.LEVEL1);
+                break;
+            case SkillLevel.Level2:
+                judgeScore.SetOddsType(JudgeScore.OddsType.LEVEL2);
+                break;
+            case SkillLevel.Level3:
+                judgeScore.SetOddsType(JudgeScore.OddsType.LEVEL3);
+                break;
+        }
     }
 
     private void TargetSpeedDown()
