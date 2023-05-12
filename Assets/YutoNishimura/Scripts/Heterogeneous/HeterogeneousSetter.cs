@@ -47,7 +47,7 @@ public class HeterogeneousSetter : MonoBehaviour
     {
         List<int> rnd = new List<int>();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 8; i++)
         {
             rnd.Add(Random.Range(0, points.Count()));
 
@@ -75,7 +75,7 @@ public class HeterogeneousSetter : MonoBehaviour
         }
 
         //足りない分を補うような形で異質なものを動的に配置する
-        for (int j = 0; j < 3 - fieldObjectsNum; j++)
+        for (int j = 0; j < 8 - fieldObjectsNum; j++)
         {
             int rand = Random.Range(0, points.Count());
 

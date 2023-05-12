@@ -59,9 +59,10 @@ public class JudgeScore : ScoreManger
         //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
         if (GameManager.Instance.IsPhoto)
         {
-            Debug.Log("通ってる");
+            Debug.Log("通ってる(1)");
             if (obj.CompareTag("main"))
             {
+                Debug.Log("通ってる(2)");
                 ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
 
                 //スコア倍率をリセット
