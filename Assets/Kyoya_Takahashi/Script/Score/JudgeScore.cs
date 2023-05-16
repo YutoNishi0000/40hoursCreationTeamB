@@ -9,7 +9,6 @@ public class JudgeScore : ScoreManger
     //[SerializeField] private GameObject obj2 = null;
 
     [SerializeField] private Camera cam = null;
-    private bool addScoreFlag;                      //スキルによってスコアを加算するかどうかのフラグ
 
     //それぞれのスコアの値
     public enum ScoreType
@@ -20,21 +19,10 @@ public class JudgeScore : ScoreManger
         outOfScreen = 0,
     };
 
-    //スキルのスコア倍率
-    public enum OddsType
-    {     
-        NONE,               //何もなし
-        LEVEL1,
-        LEVEL2,
-        LEVEL3,
-    }
-
     //スコア倍率(レベルに応じて値が異なる)
     private readonly float Odds_Level1 = 1.2f;
     private readonly float Odds_Level2 = 1.5f;
     private readonly float Odds_Level3 = 2.0f;
-
-    private OddsType oddsType;
 
     //それぞれの判定の幅
     private const float areaWidth = 192;      //(960 / 5) 画面5等分
@@ -45,9 +33,6 @@ public class JudgeScore : ScoreManger
 
     private void Start()
     {
-        oddsType = new OddsType();
-        SetOddsType(OddsType.NONE);
-
         //画面の中心を求める
         center = new Vector3(
             areaWidth * 2 + areaWidth * 0.5f,
@@ -63,10 +48,12 @@ public class JudgeScore : ScoreManger
             if (obj.CompareTag("main"))
             {
                 Debug.Log("通ってる(2)");
-                ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
 
-                //スコア倍率をリセット
-                SetOddsType(OddsType.NONE);
+                //対象を撮影した回数をインクリメント
+                GameManager.Instance.numTargetShutter++;
+
+                //スコア加算
+                ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
 
                 GameManager.Instance.IsPhoto = false;
             }
@@ -113,27 +100,15 @@ public class JudgeScore : ScoreManger
         //return lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
         int defaultScore = lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
 
-        //スコア加算フラグがtrueだったらif内の処理を実行
-
-        //============================================================================================
-        //
-        // 異質なものは3つ写真を撮っている間にもポイントが加算されるのか？？<- 一応この仕様で実装する
-        //
-        //============================================================================================
-        //スキルレベルに応じて得られるスコアが異なる
-        switch (GetOddsType())
+        //スキルによるスコア加算フラグがオンだったらif内の処理を実行
+        if(GameManager.Instance.skillManager.GetAddScoreFlag())
         {
-            case OddsType.LEVEL1:
-                SetAddScoreFlag(false);
-                return defaultScore * Odds_Level1;
-            case OddsType.LEVEL2:
-                SetAddScoreFlag(false);
-                return defaultScore * Odds_Level2;
-            case OddsType.LEVEL3:
-                SetAddScoreFlag(false);
-                return defaultScore * Odds_Level3;
-            default:
-                return defaultScore;
+            //フラグがオンだったら1.5倍のスコアを返す
+            return defaultScore * 1.5f;
+        }
+        else
+        {
+            return defaultScore;
         }
         }
         /// <summary>
@@ -196,18 +171,6 @@ public class JudgeScore : ScoreManger
                 return v2;
             }
         }
-
-    #region ゲッター、セッター
-
-    public bool GetAddScoreFlag() { return addScoreFlag; }
-
-    public void SetAddScoreFlag(bool flag) { addScoreFlag = flag; }
-
-    public OddsType GetOddsType() { return oddsType; }
-
-    public void SetOddsType(OddsType type) { oddsType = type; }
-
-    #endregion
 }
 
 

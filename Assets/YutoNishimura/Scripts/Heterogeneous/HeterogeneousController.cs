@@ -9,9 +9,11 @@ public class HeterogeneousController : Actor
     private readonly float destroyTime = 1;
     private float color_a;
     public bool takenPicFlag;       //写真を撮られたかどうか
+    public bool enableTakePicFlag;  //サブカメラで写真を撮ることが可能かどうかを表すフラグ
 
     void Start()
     {
+        enableTakePicFlag = false;
         takenPicFlag = false;
         material = GetComponent<Material>();
         color_a = destroyTime;
@@ -28,6 +30,8 @@ public class HeterogeneousController : Actor
         //メインカメラから見えたときだけ処理を行う
         if (Camera.current.name == "Main Camera")
         {
+            Debug.Log("サブカメラ処理が行われています");
+
             Vector3 strangeObjVec = transform.position - playerInstance.transform.position;
             Vector3 playerForwardVec = playerInstance.transform.forward;
 
@@ -38,34 +42,37 @@ public class HeterogeneousController : Actor
 
             float judgeDis = strangeObjVec.magnitude * Mathf.Cos((angle / 360) * Mathf.PI * 2);
 
-            if (judgeDis <= enableSeeDis && GameManager.Instance.IsSubPhoto)
+            if (judgeDis <= enableSeeDis)
             {
-                //異質なものを撮った回数のカウントをインクリメント＋スコアに+10する
-                GameManager.Instance.numSubShutter++;
-                ScoreManger.Score += 10;
+                enableTakePicFlag = true;
 
-                if(GameManager.Instance.numSubShutter == 1)
-                {
-                    //タイムカウント開始
-                    GameManager.Instance.skillManager.StartCount();
-                }
-                else if(GameManager.Instance.numSubShutter == 3)
-                {
-                    //スキル発動
-                    GameManager.Instance.skillManager.SkillImposition();
+                ////異質なものを撮った回数のカウントをインクリメント＋スコアに+10する
+                //GameManager.Instance.numSubShutter++;
+                //ScoreManger.Score += 10;
 
-                    GameManager.Instance.numSubShutter = 0;
-                }
+                //if (GameManager.Instance.numSubShutter == 1)
+                //{
+                //    //タイムカウント開始
+                //    //GameManager.Instance.skillManager.StartCount();
+                //}
+                //else if (GameManager.Instance.numSubShutter == 3)
+                //{
+                //    //スキル発動
+                //    GameManager.Instance.skillManager.SkillImposition();
 
-                //念のためここでもフラグはオフにしておく
-                GameManager.Instance.IsSubPhoto = false;
+                //    GameManager.Instance.numSubShutter = 0;
+                //}
+
+                ////念のためここでもフラグはオフにしておく
+                //GameManager.Instance.IsSubPhoto = false;
 
                 //自信を消滅させるフラグをオンに
-                takenPicFlag = true;
+                //takenPicFlag = true;
             }
-
-            //一応ここでフラグはオフにしておく
-            GameManager.Instance.IsSubPhoto = false;
+            else
+            {
+                enableTakePicFlag = false;
+            }
         }
     }
 
@@ -88,4 +95,12 @@ public class HeterogeneousController : Actor
 
         GetComponent<Renderer>().material.color -= new Color(0, 0, 0, color_a);
     }
+
+    public void SetEnableTakePicFlag(bool flag) { enableTakePicFlag = flag; }
+
+    public bool GetEnableTakePicFlag() { return enableTakePicFlag; }
+
+    public void SetTakenPicFlag(bool flag) { takenPicFlag = flag; }
+
+    public bool GetTakenPicFlag() { return takenPicFlag; }
 }

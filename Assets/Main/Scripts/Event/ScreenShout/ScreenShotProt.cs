@@ -69,7 +69,25 @@ public class ScreenShotProt : Human
         else if(Input.GetKeyDown(KeyCode.Q))
         {
             Shutter();
-            GameManager.Instance.IsSubPhoto = true;
+
+            //メモリ節約のためにnewせずに参照型を使用
+            ref List<GameObject> tempList = ref GameManager.Instance.strangeSetter.objSpawnPos;
+
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                if (tempList[i] != null && tempList[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
+                {
+                    //サブカメラカウントをインクリメント
+                    GameManager.Instance.numSubShutter++;
+                    //スコアを加算
+                    ScoreManger.Score += 10;
+                    //tempList[i]のオブジェクトの消滅フラグをオンにする
+                    tempList[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                }
+            }
+
+            //tempListを初期化
+            tempList = null;
         }
 
         if(Input.GetKeyDown(KeyCode.E))

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(SkillManager))]
+[RequireComponent(typeof(HeterogeneousSetter))]
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     public enum GameMode
@@ -25,6 +26,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //サブカメラで写真を撮ったか
     public bool IsSubPhoto = false;
 
+    public int numTargetShutter = 0;   //ターゲットを撮影した回数
+
     public int numSubShutter = 0;       //サブカメラで撮影した異質なものの数
 
     //タイトルの割れる画像
@@ -41,11 +44,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public GameMode gameMode;
     public SkillManager skillManager;
+    public HeterogeneousSetter strangeSetter;
 
     private void Start()
     {
         gameMode = new GameMode();
         skillManager = GetComponent<SkillManager>();
+        strangeSetter = GetComponent<HeterogeneousSetter>();
     }
 
 
