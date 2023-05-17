@@ -6,18 +6,24 @@ public class JudgeScore : ScoreManger
 {
     //ビュー座標に変換したいオブジェクトポジション
     [SerializeField] private GameObject obj = null;
-    [SerializeField] private GameObject obj2 = null;
+    //[SerializeField] private GameObject obj2 = null;
 
     [SerializeField] private Camera cam = null;
 
     //それぞれのスコアの値
-    enum ScoreType
+    public enum ScoreType
     {
         high = 50,
         midle = 30,
         low = 10,
         outOfScreen = 0,
     };
+
+    //スコア倍率(レベルに応じて値が異なる)
+    private readonly float Odds_Level1 = 1.2f;
+    private readonly float Odds_Level2 = 1.5f;
+    private readonly float Odds_Level3 = 2.0f;
+
     //それぞれの判定の幅
     private const float areaWidth = 192;      //(960 / 5) 画面5等分
     private const float areaHeight = 216;     //(1080 / 5) 画面5等分
@@ -38,25 +44,26 @@ public class JudgeScore : ScoreManger
         //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
         if (GameManager.Instance.IsPhoto)
         {
-            Debug.Log("通ってる");
+            Debug.Log("通ってる(1)");
             if (obj.CompareTag("main"))
             {
+                Debug.Log("通ってる(2)");
+
+                //対象を撮影した回数をインクリメント
+                GameManager.Instance.numTargetShutter++;
+
+                //スコア加算
                 ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
+
+                GameManager.Instance.IsPhoto = false;
             }
             else
             {
 
             }
-            Debug.Log(ScoreManger.Score);
 
-            obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
+            //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
             Debug.Log(ScoreManger.Score);
-            if (GameManager.Instance.IsPhoto)
-            {
-                Debug.Log("通ってる");
-                ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
-                GameManager.Instance.IsPhoto = false;
-            }
         }
     }
         /// <summary>
@@ -88,9 +95,21 @@ public class JudgeScore : ScoreManger
         /// </summary>
         /// <param name="scrPoint">スクリーン座標</param>
         /// <returns>スコアの値</returns>
-        private int checkScore(Vector3 scrPoint)
+        private float checkScore(Vector3 scrPoint)
         {
-            return lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
+        //return lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
+        int defaultScore = lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
+
+        //スキルによるスコア加算フラグがオンだったらif内の処理を実行
+        if(GameManager.Instance.skillManager.GetAddScoreFlag())
+        {
+            //フラグがオンだったら1.5倍のスコアを返す
+            return defaultScore * 1.5f;
+        }
+        else
+        {
+            return defaultScore;
+        }
         }
         /// <summary>
         /// スコアの判定(横)

@@ -30,6 +30,8 @@ public class ScreenShotProt : Human
     public Text SucceededShutter;
     public Text FailedShutter;
 
+    private int numShutter;           //サブカメラでシャッターを切った回数
+
 
     void Awake()
     {
@@ -46,6 +48,7 @@ public class ScreenShotProt : Human
         _changeCamera = FindObjectOfType<ChangeCameraAngle>();
         InitialPrevPos = preview.rectTransform.position;
         InitialPrevscale = preview.rectTransform.localScale;
+        numShutter = 0;
     }
 
     private void Update()
@@ -54,19 +57,56 @@ public class ScreenShotProt : Human
         {
             //preview.transform.position = Vector3.zero;
             GameManager.Instance.IsPhoto = true;
-            OffPreview();
-            StartCoroutine(nameof(HiddonText), SucceededShutter);
-            //todayTask.TaskCompletion(1);
-            ClickShootButton();
-            FadeIn(0.5f, _image);
-            preview.enabled = true;
-            Invoke(nameof(MovePreview), 1f);
+            Shutter();
+            //OffPreview();
+            //StartCoroutine(nameof(HiddonText), SucceededShutter);
+            ////todayTask.TaskCompletion(1);
+            //ClickShootButton();
+            //FadeIn(0.5f, _image);
+            //preview.enabled = true;
+            //Invoke(nameof(MovePreview), 1f);
+        }
+        else if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Shutter();
+
+            //メモリ節約のためにnewせずに参照型を使用
+            ref List<GameObject> tempList = ref GameManager.Instance.strangeSetter.objSpawnPos;
+
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                if (tempList[i] != null && tempList[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
+                {
+                    //サブカメラカウントをインクリメント
+                    GameManager.Instance.numSubShutter++;
+                    //スコアを加算
+                    ScoreManger.Score += 10;
+                    //tempList[i]のオブジェクトの消滅フラグをオンにする
+                    tempList[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                }
+            }
+
+            //tempListを初期化
+            tempList = null;
         }
 
         if(Input.GetKeyDown(KeyCode.E))
         {
+            //フォルダ内の写真を全て削除
             ClearCash(filePathes);
         }
+    }
+
+    //撮影関数
+    private void Shutter()
+    {
+        OffPreview();
+        StartCoroutine(nameof(HiddonText), SucceededShutter);
+        //todayTask.TaskCompletion(1);
+        ClickShootButton();
+        FadeIn(0.5f, _image);
+        preview.enabled = true;
+        Invoke(nameof(MovePreview), 1f);
     }
 
     void MovePreview()

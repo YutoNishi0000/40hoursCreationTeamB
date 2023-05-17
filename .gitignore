@@ -70,3 +70,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/GhostlyHand/Built-In Render Pipeline/Ghostly Hands For Built-In Renderer.unitypackage.meta
+Assets/GhostlyHand/URP/Ghostly Hands For URP.unitypackage.meta

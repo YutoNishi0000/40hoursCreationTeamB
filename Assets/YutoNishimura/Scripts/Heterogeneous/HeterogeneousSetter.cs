@@ -12,7 +12,8 @@ public class HeterogeneousSetter : MonoBehaviour
     [SerializeField] private GameObject ObjectC;
     [SerializeField] private GameObject ObjectD;
     private Queue<GameObject> queue;
-    private List<GameObject> objSpawnPos;
+    public List<GameObject> objSpawnPos;
+    private List<int> pos;
     private int rand;                    //ランダムな数字
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
 
@@ -21,6 +22,7 @@ public class HeterogeneousSetter : MonoBehaviour
         fieldObjectsNum = 0;
         objSpawnPos = new List<GameObject>();
         queue = new Queue<GameObject>();
+        pos = new List<int>();
         queue.Enqueue(ObjectA);
         queue.Enqueue(ObjectB);
         queue.Enqueue(ObjectC);
@@ -43,37 +45,49 @@ public class HeterogeneousSetter : MonoBehaviour
     //ゲーム開始時８か所あるポイントにランダムに３か所オブジェクトを配置する
     private void InitialSetObjects()
     {
-        for(int i = 0; i < 3; i++)
-        {
-            int rnd = Random.Range(0, 8);
+        List<int> rnd = new List<int>();
 
-            while(rand == rnd)
+        for (int i = 0; i < 8; i++)
+        {
+            rnd.Add(Random.Range(0, points.Count()));
+
+            for(int j = 0; j < rnd.Count(); j++)
             {
-                rnd = Random.Range(0, 8);
+                while(rnd[i] == rnd[j] && i != j)
+                {
+                    rnd[i] = Random.Range(0, points.Count());
+                }
             }
 
-            objSpawnPos[rnd] = Instantiate(GetNextObject(), points[rnd].transform.position, Quaternion.identity);
+            objSpawnPos[rnd[i]] = Instantiate(GetNextObject(), points[rnd[i]].transform.position, Quaternion.identity);
         }
     }
 
     private void SetObjects()
     {
+        //今異質なものが何個配置されているのかを確認
         for(int i = 0; i < points.Count(); i++)
         {
             if (objSpawnPos[i] != null)
             {
                 fieldObjectsNum++;
             }
-            else
-            {
-                if(fieldObjectsNum >= 3)
-                {
-                    return;
-                }
-
-                objSpawnPos[i] = Instantiate(GetNextObject(), points[i].transform.position, Quaternion.identity);
-            }
         }
+
+        //足りない分を補うような形で異質なものを動的に配置する
+        for (int j = 0; j < 8 - fieldObjectsNum; j++)
+        {
+            int rand = Random.Range(0, points.Count());
+
+            while (objSpawnPos[rand] != null)
+            {
+                rand = Random.Range(0, points.Count());
+            }
+
+            objSpawnPos[rand] = Instantiate(GetNextObject(), points[rand].transform.position, Quaternion.identity);
+        }
+
+        fieldObjectsNum = 0;
     }
 
     //キューを使用して次のオブジェクトをキューにセット、取得する関数
