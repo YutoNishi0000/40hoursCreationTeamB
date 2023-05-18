@@ -9,7 +9,6 @@ using DG.Tweening;
 public class ScreenShotProt : Human
 {
     Camera cam;
-    GameObject canvas;
     GameObject targetImage;
     string screenShotPath;
     List<string> filePathes;
@@ -18,10 +17,6 @@ public class ScreenShotProt : Human
 
     [SerializeField]
     private Image _image = null;
-
-    private PlayerStateController playerState;
-    private ChangeCameraAngle _changeCamera;
-    private TodayTask todayTask;
 
     public Image prevPos;
     public Image prevPos2;
@@ -38,15 +33,12 @@ public class ScreenShotProt : Human
     {
         filePathes = new List<string>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        canvas = GameObject.Find("Canvas");
         targetImage = GameObject.Find("RawImage");
         //todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
         preview.enabled = false;
         _image.enabled = false;
         SucceededShutter.enabled = false;
         FailedShutter.enabled = false;
-        playerState = FindObjectOfType<PlayerStateController>();
-        _changeCamera = FindObjectOfType<ChangeCameraAngle>();
         InitialPrevPos = preview.rectTransform.position;
         InitialPrevscale = preview.rectTransform.localScale;
         numShutter = 0;
@@ -58,7 +50,7 @@ public class ScreenShotProt : Human
         {
             //preview.transform.position = Vector3.zero;
             GameManager.Instance.IsPhoto = true;
-            Shutter();
+            //Shutter();
             OffPreview();
             StartCoroutine(nameof(HiddonText), SucceededShutter);
             //todayTask.TaskCompletion(1);
@@ -69,6 +61,14 @@ public class ScreenShotProt : Human
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
+            OffPreview();
+            //StartCoroutine(nameof(HiddonText), SucceededShutter);
+            //todayTask.TaskCompletion(1);
+            ClickShootButton();
+            FadeIn(0.5f, _image);
+            preview.enabled = true;
+            Invoke(nameof(MovePreview), 1f);
+
             Debug.Log(setterObj.Count);
 
             for (int i = 0; i < setterObj.Count; i++)
@@ -86,14 +86,6 @@ public class ScreenShotProt : Human
                     Debug.Log("処理完了");
                 }
             }
-
-            OffPreview();
-            //StartCoroutine(nameof(HiddonText), SucceededShutter);
-            //todayTask.TaskCompletion(1);
-            ClickShootButton();
-            FadeIn(0.5f, _image);
-            preview.enabled = true;
-            Invoke(nameof(MovePreview), 1f);
         }
 
         if(Input.GetKeyDown(KeyCode.E))
@@ -159,16 +151,8 @@ public class ScreenShotProt : Human
         return path;
     }
 
-    // UIを消したい場合はcanvasを非アクティブにする
-    private void UIStateChange()
-    {
-        canvas.SetActive(!canvas.activeSelf);
-    }
-
     private IEnumerator CreateScreenShot()
     {
-        UIStateChange();
-
         //テクスチャの名前を現在時刻に設定
         DateTime date = DateTime.Now;
         timeStamp = date.ToString("yyyy-MM-dd-HH-mm-ss-fff");
@@ -196,9 +180,6 @@ public class ScreenShotProt : Human
         filePathes.Add(GetScreenShotPath());
 
         cam.targetTexture = null;
-
-        //Debug.Log("Done!");
-        UIStateChange();
 
         ShowSSImage();
     }
