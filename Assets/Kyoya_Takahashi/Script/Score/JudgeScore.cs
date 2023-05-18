@@ -57,10 +57,6 @@ public class JudgeScore : ScoreManger
 
                 GameManager.Instance.IsPhoto = false;
             }
-            else
-            {
-                GameManager.Instance.numTargetShutter++;
-            }
             //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
             //Debug.Log(ScoreManger.Score);
         }

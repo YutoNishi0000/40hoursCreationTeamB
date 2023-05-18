@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8675915457954794082}
   - component: {fileID: 8675915457954794083}
+  - component: {fileID: -5305298031926898111}
   - component: {fileID: 608258904}
   m_Layer: 0
   m_Name: Mimic
@@ -63,7 +64,21 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: 0.051775977, y: 0, z: 0.4935444}
+  velocity: {x: -0.6129531, y: 0, z: 0.23044924}
+--- !u!114 &-5305298031926898111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675915457954794080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd1acf7ce8ac69d4f8677154207cae57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takenPicFlag: 0
+  enableTakePicFlag: 0
 --- !u!114 &608258904
 MonoBehaviour:
   m_ObjectHideFlags: 0

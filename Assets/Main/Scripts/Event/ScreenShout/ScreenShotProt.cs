@@ -71,7 +71,8 @@ public class ScreenShotProt : Human
             Shutter();
 
             //ƒƒ‚ƒŠß–ñ‚Ì‚½‚ß‚Énew‚¹‚¸‚ÉQÆŒ^‚ğg—p
-            ref List<GameObject> tempList = ref GameManager.Instance.strangeSetter.objSpawnPos;
+            //ref List<GameObject> tempList = ref GameManager.Instance.strangeSetter.objSpawnPos;
+            List<GameObject> tempList = GameManager.Instance.strangeSetter.objSpawnPos;
 
             for (int i = 0; i < tempList.Count; i++)
             {
