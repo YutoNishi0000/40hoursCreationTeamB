@@ -6,7 +6,7 @@ using UnityEngine;
 public class HeterogeneousController : Actor
 {
     private Material material;
-    private readonly float destroyTime = 1;
+    private readonly float destroyTime = 10;
     private float color_a;
     public bool takenPicFlag;       //写真を撮られたかどうか
     public bool enableTakePicFlag;  //サブカメラで写真を撮ることが可能かどうかを表すフラグ
@@ -45,29 +45,6 @@ public class HeterogeneousController : Actor
             if (judgeDis <= enableSeeDis)
             {
                 enableTakePicFlag = true;
-
-                ////異質なものを撮った回数のカウントをインクリメント＋スコアに+10する
-                //GameManager.Instance.numSubShutter++;
-                //ScoreManger.Score += 10;
-
-                //if (GameManager.Instance.numSubShutter == 1)
-                //{
-                //    //タイムカウント開始
-                //    //GameManager.Instance.skillManager.StartCount();
-                //}
-                //else if (GameManager.Instance.numSubShutter == 3)
-                //{
-                //    //スキル発動
-                //    GameManager.Instance.skillManager.SkillImposition();
-
-                //    GameManager.Instance.numSubShutter = 0;
-                //}
-
-                ////念のためここでもフラグはオフにしておく
-                //GameManager.Instance.IsSubPhoto = false;
-
-                //自信を消滅させるフラグをオンに
-                //takenPicFlag = true;
             }
             else
             {
@@ -84,6 +61,8 @@ public class HeterogeneousController : Actor
         {
             return;
         }
+
+        Debug.Log("異質なもの削除");
 
         //アルファ値が０以下になったら自身を削除
         if (color_a < 0)
