@@ -71,16 +71,6 @@ public class ScreenShotProt : Human
         {
             Debug.Log(setterObj.Count);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            //ƒƒ‚ƒŠß–ñ‚Ì‚½‚ß‚Énew‚¹‚¸‚ÉŽQÆŒ^‚ðŽg—p
-            //ref List<GameObject> tempList = ref GameManager.Instance.strangeSetter.objSpawnPos;
-            List<GameObject> tempList = GameManager.Instance.strangeSetter.objSpawnPos;
-
-            for (int i = 0; i < tempList.Count; i++)
-=======
-=======
->>>>>>> Stashed changes
             for (int i = 0; i < setterObj.Count; i++)
             {
                 if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
