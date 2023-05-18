@@ -16,7 +16,7 @@ public class NowTime : MonoBehaviour
         // ”N
         text.text = dt.Year.ToString() + " / ";
         // ŒŽ
-        text.text = text.text + dt.Month.ToString() + "\n";
+        text.text = text.text + dt.Month.ToString() + " . ";
         // Žž
         text.text = text.text + dt.Hour.ToString() + " : ";
         // •ª
