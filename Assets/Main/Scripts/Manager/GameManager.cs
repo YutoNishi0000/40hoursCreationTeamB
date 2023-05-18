@@ -30,6 +30,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public int numSubShutter = 0;       //サブカメラで撮影した異質なものの数
 
+    //ゲームが始まっているか
+    public bool StartGame = false;
+
     //タイトルの割れる画像
     public GameObject TitleUI;
     //ゲームオーバーかどうか
