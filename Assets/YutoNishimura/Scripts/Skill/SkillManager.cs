@@ -17,6 +17,9 @@ public class SkillManager : Actor
     [SerializeField] private readonly float interval = 5.0f;
     private int shutterTimeStamp;
     private bool minimapSkillFlag;         //ターゲットのミニマップの表示フラグのために使う
+    private const int skillLevel1 = 15;
+    private const int skillLevel2 = 25;
+    private const int skillLevel3 = 40;
 
     // Start is called before the first frame update
     void Start()
@@ -44,13 +47,13 @@ public class SkillManager : Actor
     {
         switch(GameManager.Instance.numSubShutter)
         {
-            case 15:
+            case skillLevel1:
                 skillBlock_player = false;
                 break;
-            case 25:
+            case skillLevel2:
                 skillBlock_addScore = false;
                 break;
-            case 40:
+            case skillLevel3:
                 skillBlock_seeTarget = false;
                 break;
         }
