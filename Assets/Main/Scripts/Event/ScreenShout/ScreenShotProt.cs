@@ -31,6 +31,7 @@ public class ScreenShotProt : Human
     public Text FailedShutter;
 
     private int numShutter;           //サブカメラでシャッターを切った回数
+    private List<GameObject> setterObj;
 
 
     void Awake()
@@ -58,37 +59,49 @@ public class ScreenShotProt : Human
             //preview.transform.position = Vector3.zero;
             GameManager.Instance.IsPhoto = true;
             Shutter();
-            //OffPreview();
-            //StartCoroutine(nameof(HiddonText), SucceededShutter);
-            ////todayTask.TaskCompletion(1);
-            //ClickShootButton();
-            //FadeIn(0.5f, _image);
-            //preview.enabled = true;
-            //Invoke(nameof(MovePreview), 1f);
+            OffPreview();
+            StartCoroutine(nameof(HiddonText), SucceededShutter);
+            //todayTask.TaskCompletion(1);
+            ClickShootButton();
+            FadeIn(0.5f, _image);
+            preview.enabled = true;
+            Invoke(nameof(MovePreview), 1f);
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
-            Shutter();
+            Debug.Log(setterObj.Count);
 
+<<<<<<< Updated upstream
             //メモリ節約のためにnewせずに参照型を使用
             //ref List<GameObject> tempList = ref GameManager.Instance.strangeSetter.objSpawnPos;
             List<GameObject> tempList = GameManager.Instance.strangeSetter.objSpawnPos;
 
             for (int i = 0; i < tempList.Count; i++)
+=======
+            for (int i = 0; i < setterObj.Count; i++)
+>>>>>>> Stashed changes
             {
-                if (tempList[i] != null && tempList[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
+                if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
                 {
                     //サブカメラカウントをインクリメント
                     GameManager.Instance.numSubShutter++;
+                    Debug.Log("1");
                     //スコアを加算
                     ScoreManger.Score += 10;
+                    Debug.Log("2");
                     //tempList[i]のオブジェクトの消滅フラグをオンにする
-                    tempList[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                    setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                    Debug.Log("処理完了");
                 }
             }
 
-            //tempListを初期化
-            tempList = null;
+            OffPreview();
+            //StartCoroutine(nameof(HiddonText), SucceededShutter);
+            //todayTask.TaskCompletion(1);
+            ClickShootButton();
+            //FadeIn(0.5f, _image);
+            preview.enabled = true;
+            Invoke(nameof(MovePreview), 1f);
         }
 
         if(Input.GetKeyDown(KeyCode.E))
@@ -97,6 +110,8 @@ public class ScreenShotProt : Human
             ClearCash(filePathes);
         }
     }
+
+    public void SetList(List<GameObject> list) { setterObj = list; }
 
     //撮影関数
     private void Shutter()

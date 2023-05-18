@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6164918350687002688}
   - component: {fileID: 2512604949561864013}
   - component: {fileID: 2336278065694270157}
+  - component: {fileID: 2473467677843723306}
   m_Layer: 0
   m_Name: Leg
   m_TagString: Untagged
@@ -245,3 +246,17 @@ MonoBehaviour:
   minOscillationSpeed: 20
   maxOscillationSpeed: 100
   myColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &2473467677843723306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682633662898237459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd1acf7ce8ac69d4f8677154207cae57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takenPicFlag: 0
+  enableTakePicFlag: 0
