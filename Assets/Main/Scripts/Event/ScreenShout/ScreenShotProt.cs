@@ -72,13 +72,15 @@ public class ScreenShotProt : Human
             Debug.Log(setterObj.Count);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             //ƒƒ‚ƒŠß–ñ‚Ì‚½‚ß‚Énew‚¹‚¸‚ÉŽQÆŒ^‚ðŽg—p
             ref List<GameObject> tempList = ref GameManager.Instance.strangeSetter.objSpawnPos;
 
             for (int i = 0; i < tempList.Count; i++)
 =======
-            for (int i = 0; i < setterObj.Count; i++)
+=======
 >>>>>>> Stashed changes
+            for (int i = 0; i < setterObj.Count; i++)
             {
                 if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
                 {
@@ -98,7 +100,7 @@ public class ScreenShotProt : Human
             //StartCoroutine(nameof(HiddonText), SucceededShutter);
             //todayTask.TaskCompletion(1);
             ClickShootButton();
-            //FadeIn(0.5f, _image);
+            FadeIn(0.5f, _image);
             preview.enabled = true;
             Invoke(nameof(MovePreview), 1f);
         }
