@@ -59,11 +59,10 @@ public class JudgeScore : ScoreManger
             }
             else
             {
-
+                GameManager.Instance.numTargetShutter++;
             }
-
             //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
-            Debug.Log(ScoreManger.Score);
+            //Debug.Log(ScoreManger.Score);
         }
     }
         /// <summary>
