@@ -16,9 +16,11 @@ public class HeterogeneousSetter : MonoBehaviour
     private List<int> pos;
     private int rand;                    //ランダムな数字
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
+    ScreenShotProt screen;
 
     void Start()
     {
+        screen = GameObject.FindObjectOfType<ScreenShotProt>();
         fieldObjectsNum = 0;
         objSpawnPos = new List<GameObject>();
         queue = new Queue<GameObject>();
@@ -39,7 +41,9 @@ public class HeterogeneousSetter : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("1isitunamono" + objSpawnPos.Count);
         SetObjects();
+        screen.SetList(objSpawnPos);
     }
 
     //ゲーム開始時８か所あるポイントにランダムに３か所オブジェクトを配置する
@@ -104,4 +108,6 @@ public class HeterogeneousSetter : MonoBehaviour
 
         return queue.Dequeue();
     }
+
+    public ref List<GameObject> GetObjSpawnPos() { return ref objSpawnPos; }
 }
