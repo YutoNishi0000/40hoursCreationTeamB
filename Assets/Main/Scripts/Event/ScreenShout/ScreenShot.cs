@@ -37,8 +37,15 @@ public class ScreenShot : MonoBehaviour
         {
             InitializeRawImage();
             ClickShootButton();
+<<<<<<< HEAD
             Invoke(nameof(MovePreview), 1f);
             GameManager.Instance.IsPhoto = true;
+=======
+<<<<<<< Updated upstream
+=======
+            Invoke(nameof(MovePreview), 1f);
+            //GameManager.Instance.IsPhoto = true;
+>>>>>>> YutoNishimura
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
@@ -61,6 +68,10 @@ public class ScreenShot : MonoBehaviour
                     Debug.Log("èàóùäÆóπ");
                 }
             }
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> YutoNishimura
         }
     }
 
