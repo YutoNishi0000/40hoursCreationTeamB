@@ -31,6 +31,11 @@ public class JudgeScore : ScoreManger
     //画面の中心
     private Vector3 center = Vector3.zero;
 
+    //カメラのクールタイム
+    private float coolTime = 3;
+    //カメラ使用可能か
+    private bool cameraEnable = true;
+
     private void Start()
     {
         //画面の中心を求める
@@ -41,24 +46,40 @@ public class JudgeScore : ScoreManger
     }
     private void LateUpdate()
     {
-        //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
-        if (GameManager.Instance.IsPhoto)
+        if (cameraEnable)
         {
-            Debug.Log("通ってる(1)");
-            if (obj.CompareTag("main"))
+            cameraEnable = false;
+            if (GameManager.Instance.IsPhoto)
             {
-                Debug.Log("通ってる(2)");
+                Debug.Log("通ってる(1)");
+                if (obj.CompareTag("main"))
+                {
+                    Debug.Log("通ってる(2)");
 
-                //対象を撮影した回数をインクリメント
-                GameManager.Instance.numTargetShutter++;
+                    //対象を撮影した回数をインクリメント
+                    GameManager.Instance.numTargetShutter++;
 
-                //スコア加算
-                ScoreManger.Score += checkScore(WorldToScreenPoint(cam, obj.transform.position));
+                    //スコア加算
+                    ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
 
-                GameManager.Instance.IsPhoto = false;
+                    if (checkScore(WorldToScreenPoint(cam,TargetManager.target.transform.position)) != 0)
+                    {
+                        ScoreManger.ShotMainTarget = true;
+                        TargetManager.IsSpawn = true;
+                    }
+                    GameManager.Instance.IsPhoto = false;
+                }
+                //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
+                //Debug.Log(ScoreManger.Score);
             }
-            //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
-            //Debug.Log(ScoreManger.Score);
+        }
+        else
+        {
+            coolTime -= Time.deltaTime;
+        }
+        if(coolTime < 0)
+        {
+            cameraEnable = true;
         }
     }
         /// <summary>

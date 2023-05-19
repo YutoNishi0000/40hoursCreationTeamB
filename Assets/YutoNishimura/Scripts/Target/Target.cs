@@ -11,6 +11,7 @@ public class Target : Actor
     private NavMeshAgent agent;
     private GameObject targetCamera = null;
     private float initialTargetSpeed;       //移動速度
+    private GameObject pointParent = null;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,19 @@ public class Target : Actor
 
         //目標地点の間を継続的に移動
         agent.autoBraking = false;
+    }
+    private void OnEnable()
+    {
+        pointParent = GameObject.FindGameObjectWithTag("TargetPoint");
+        // 子オブジェクトの数を取得
+        int childCount = pointParent.transform.childCount;
+
+        // 子オブジェクトを順に取得する
+        for (int i = 0; i < childCount; i++)
+        {
+            Transform childTransform = pointParent.transform.GetChild(i);
+            points[i] = childTransform.gameObject;
+        }
     }
     //private void OnEnable()
     //{
@@ -46,7 +60,7 @@ public class Target : Actor
     void GoNextPoint()
     {
         //地点が何も設定されていない場合
-        if(points.Length == 0)
+        if (points.Length == 0)
         {
             return;
         }

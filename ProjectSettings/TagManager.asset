@@ -15,6 +15,7 @@ TagManager:
   - dest
   - main
   - sub
+  - TargetPoint
   layers:
   - Default
   - TransparentFX

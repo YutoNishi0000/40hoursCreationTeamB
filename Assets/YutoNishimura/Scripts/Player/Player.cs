@@ -37,7 +37,7 @@ public class Player : Actor
 
     private void Update()
     {
-        if (_moveLock)
+        if (!GameManager.Instance.StartGame)
         {
             return;
         }
@@ -47,7 +47,7 @@ public class Player : Actor
 
     private void FixedUpdate()
     {
-        if (_moveLock)
+        if (!GameManager.Instance.StartGame)
         {
             return;
         }
