@@ -6,70 +6,74 @@ using UnityEngine.UI;
 using System.IO;
 using DG.Tweening;
 
-public class ScreenShot : Human
+public class ScreenShot : MonoBehaviour
 {
-    [Header("保存先の設定")]
-    [SerializeField]
-    string timeStamp;
-
-    bool isCreatingScreenShot = false;
-    SoundManager soundManager;
-
+    Camera cam;
+    //GameObject targetImage;
     [SerializeField] private RawImage targetImage;
+    private string screenShotPath;
+    private string timeStamp;
 
-    void Start()
+    void Awake()
     {
-
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            PrintScreen();
-            ShowSSImage();
+            ClickShootButton();
         }
     }
 
     private string GetScreenShotPath()
     {
-        //Picturesフォルダの中に撮った写真を置くようにする
         string path = "Assets/Pictures/" + timeStamp + ".png";
 
         return path;
     }
 
-    public void PrintScreen()
+    private IEnumerator CreateScreenShot()
     {
-        StartCoroutine("PrintScreenInternal");
+        DateTime date = DateTime.Now;
+        timeStamp = date.ToString("yyyy-MM-dd-HH-mm-ss-fff");
+        // レンダリング完了まで待機
+        yield return new WaitForEndOfFrame();
+
+        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        cam.targetTexture = renderTexture;
+
+        Texture2D texture = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.RGB24, false);
+
+        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
+        texture.Apply();
+
+        // 保存する画像のサイズを変えるならResizeTexture()を実行
+        //		texture = ResizeTexture(texture,320,240);
+
+        byte[] pngData = texture.EncodeToPNG();
+        screenShotPath = GetScreenShotPath();
+
+        // ファイルとして保存するならFile.WriteAllBytes()を実行
+        File.WriteAllBytes(screenShotPath, pngData);
+
+        cam.targetTexture = null;
+
+        //生成したテクスチャファイルから情報を読み込んでRawImageに出力
+        ShowSSImage();
     }
 
-    IEnumerator PrintScreenInternal()
+    public void ClickShootButton()
     {
-        if (isCreatingScreenShot)
-        {
-            yield break;
-        }
-
-        isCreatingScreenShot = true;
-
-        yield return null;
-
-        string date = DateTime.Now.ToString("yy-MM-dd_HH-mm-ss");
-        timeStamp = date;
-
-        ScreenCapture.CaptureScreenshot(GetScreenShotPath());
-
-        yield return new WaitUntil(() => File.Exists(GetScreenShotPath()));
-
-        isCreatingScreenShot = false;
+        StartCoroutine(CreateScreenShot());
     }
 
     public void ShowSSImage()
     {
-        if (!String.IsNullOrEmpty(GetScreenShotPath()))
+        if (!String.IsNullOrEmpty(screenShotPath))
         {
-            byte[] image = File.ReadAllBytes(GetScreenShotPath());
+            byte[] image = File.ReadAllBytes(screenShotPath);
 
             Texture2D tex = new Texture2D(0, 0);
             tex.LoadImage(image);
@@ -80,276 +84,3 @@ public class ScreenShot : Human
         }
     }
 }
-
-
-//Camera cam;
-//GameObject canvas;
-//GameObject targetImage;
-//string screenShotPath;
-//string timeStamp;
-//public RawImage preview;
-
-//[SerializeField]
-//private Image _image = null;
-
-//private PlayerStateController playerState;
-//private ChangeCameraAngle _changeCamera;
-//private TodayTask todayTask;
-
-//public Image prevPos;
-//public Image prevPos2;
-//public Vector3 InitialPrevPos;
-//public Vector3 InitialPrevscale;
-//public Text SucceededShutter;
-//public Text FailedShutter;
-
-
-//void Awake()
-//{
-//    cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-//    canvas = GameObject.Find("Canvas");
-//    targetImage = GameObject.Find("RawImage");
-//    //todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
-//    preview.enabled = false;
-//    _image.enabled = false;
-//    SucceededShutter.enabled = false;
-//    FailedShutter.enabled = false;
-//    playerState = FindObjectOfType<PlayerStateController>();
-//    _changeCamera= FindObjectOfType<ChangeCameraAngle>();
-//    InitialPrevPos = preview.rectTransform.position;
-//    InitialPrevscale = preview.rectTransform.localScale;
-//}
-
-//private void Update()
-//{
-//    //StartCoroutine(nameof(HiddonText), FailedShutter);
-//    OffPreview();
-//    ClickShootButton();
-//    FadeIn(0.5f, _image);
-//    preview.enabled = true;
-//    Invoke(nameof(MovePreview), 1f);
-//}
-
-//void MovePreview()
-//{
-//    _changeCamera.ExitVoyeurism();
-//    preview.rectTransform.DOScale(transform.localScale / 3, 0.5f);
-//    preview.rectTransform.DOMove(prevPos.rectTransform.position, 0.5f);
-//    Invoke(nameof(SlideMovePreview), 1f);
-//}
-
-//void SlideMovePreview()
-//{
-//    preview.transform.DOMoveX(prevPos2.rectTransform.position.x, 0.3f);
-//    Invoke(nameof(OffPreview), 0.3f);
-//}
-
-///// <summary>
-///// テキストを非表示にします
-///// </summary>
-///// <param name="text">非表示にしたいテキスト</param>
-///// <param name="timne">何秒後に非表示にするか</param>
-//IEnumerator HiddonText(Text text)
-//{
-//    text.enabled = true;
-
-//    yield return new WaitForSeconds(2);
-
-//    text.enabled = false;
-//}
-
-//void OffPreview()
-//{
-//    //FadeIn(0.5f, preview);
-//    preview.enabled = false;
-//    preview.rectTransform.position = InitialPrevPos;
-//    preview.rectTransform.localScale = InitialPrevscale;
-//}
-
-//private string GetScreenShotPath()
-//{
-//    string path = "";
-//    // プロジェクトファイル直下に作成
-//    path = "Assets/Pictures/" + timeStamp + ".png";
-//    //		path = Application.persistentDataPath+timeStamp + ".png";
-//    return path;
-//}
-
-//// UIを消したい場合はcanvasを非アクティブにする
-//private void UIStateChange()
-//{
-//    canvas.SetActive(!canvas.activeSelf);
-//}
-
-//private IEnumerator CreateScreenShot()
-//{
-//    UIStateChange();
-//    DateTime date = DateTime.Now;
-//    timeStamp = date.ToString("yyyy-MM-dd-HH-mm-ss-fff");
-//    // レンダリング完了まで待機
-//    yield return new WaitForEndOfFrame();
-
-//    RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
-//    cam.targetTexture = renderTexture;
-
-//    Texture2D texture = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.RGB24, false);
-
-//    texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
-//    texture.Apply();
-
-//    // 保存する画像のサイズを変えるならResizeTexture()を実行
-//    //		texture = ResizeTexture(texture,320,240);
-
-//    byte[] pngData = texture.EncodeToPNG();
-//    screenShotPath = GetScreenShotPath();
-
-//    // ファイルとして保存するならFile.WriteAllBytes()を実行
-//    File.WriteAllBytes(screenShotPath, pngData);
-
-//    cam.targetTexture = null;
-
-//    Debug.Log("Done!");
-//    UIStateChange();
-
-//    ShowSSImage();
-//}
-
-//Texture2D ResizeTexture(Texture2D src, int dst_w, int dst_h)
-//{
-//    Texture2D dst = new Texture2D(dst_w, dst_h, src.format, false);
-
-//    float inv_w = 1f / dst_w;
-//    float inv_h = 1f / dst_h;
-
-//    for (int y = 0; y < dst_h; ++y)
-//    {
-//        for (int x = 0; x < dst_w; ++x)
-//        {
-//            dst.SetPixel(x, y, src.GetPixelBilinear((float)x * inv_w, (float)y * inv_h));
-//        }
-//    }
-//    return dst;
-//}
-
-//public void ClickShootButton()
-//{
-//    SoundManager.Instance.PlayCameraSE();
-//    StartCoroutine(CreateScreenShot());
-//}
-
-//public void ShowSSImage()
-//{
-//    if (!String.IsNullOrEmpty(screenShotPath))
-//    {
-//        byte[] image = File.ReadAllBytes(screenShotPath);
-
-//        Texture2D tex = new Texture2D(0, 0);
-//        tex.LoadImage(image);
-
-//        // NGUI の UITexture に表示
-//        RawImage target = targetImage.GetComponent<RawImage>();
-//        target.texture = tex;
-//    }
-//}
-
-///// <summary>
-///// 規定値に戻す
-///// </summary>
-//private void Reset()
-//{
-//    _image = GetComponent<Image>();
-//}
-
-///// <summary>
-///// フェードインする(オーバーロード関数)
-///// </summary>
-//public void FadeIn(float duration, RawImage image, Action on_completed = null)
-//{
-//    image.enabled = true;
-//    StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed, true));
-//}
-
-///// <summary>
-///// フェードインする
-///// </summary>
-//public void FadeIn(float duration, Image image, Action on_completed = null)
-//{
-//    image.enabled = true;
-//    StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed, true));
-//}
-
-///// <summary>
-///// フェードアウトする
-///// </summary>
-//public void FadeOut(float duration, Image image, Action on_completed = null)
-//{
-//    image.enabled = true;
-//    StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed));
-//}
-
-///// <summary>
-///// フェードアウトする(オーバーロード関数)
-///// </summary>
-//public void FadeOut(float duration, RawImage image, Action on_completed = null)
-//{
-//    image.enabled = true;
-//    StartCoroutine(ChangeAlphaValueFrom0To1OverTime(duration, image, on_completed));
-//}
-
-///// <summary>
-///// 時間経過でアルファ値を「0」から「1」に変更
-///// </summary>
-//private IEnumerator ChangeAlphaValueFrom0To1OverTime(
-//    float duration,
-//    Image image,
-//    Action on_completed,
-//    bool is_reversing = false
-//)
-//{
-//    if (!is_reversing) image.enabled = true;
-
-//    var elapsed_time = 0.0f;
-//    var color = image.color;
-
-//    while (elapsed_time < duration)
-//    {
-//        var elapsed_rate = Mathf.Min(elapsed_time / duration, 1.0f);
-//        color.a = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
-//        image.color = color;
-
-//        yield return null;
-//        elapsed_time += Time.deltaTime;
-//    }
-
-//    if (is_reversing) image.enabled = false;
-//    if (on_completed != null) on_completed();
-//}
-
-///// <summary>
-///// 時間経過でアルファ値を「0」から「1」に変更(オーバーロード関数)
-///// </summary>
-//private IEnumerator ChangeAlphaValueFrom0To1OverTime(
-//    float duration,
-//    RawImage image,
-//    Action on_completed,
-//    bool is_reversing = false
-//)
-//{
-//    if (!is_reversing) image.enabled = true;
-
-//    var elapsed_time = 0.0f;
-//    var color = image.color;
-
-//    while (elapsed_time < duration)
-//    {
-//        var elapsed_rate = Mathf.Min(elapsed_time / duration, 1.0f);
-//        color.a = is_reversing ? 1.0f - elapsed_rate : elapsed_rate;
-//        image.color = color;
-
-//        yield return null;
-//        elapsed_time += Time.deltaTime;
-//    }
-
-//    if (is_reversing) image.enabled = false;
-//    if (on_completed != null) on_completed();
-//}
