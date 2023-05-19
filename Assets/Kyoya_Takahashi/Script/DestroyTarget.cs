@@ -23,7 +23,7 @@ public class DestroyTarget : MonoBehaviour
         }
         Debug.Log("’Ê‚Á‚Ä‚é");
         StartCoroutine(destroy());
-        //GameManager.Instance.IsPhoto = false;
+        GameManager.Instance.IsPhoto = false;
     }
     private IEnumerator destroy()
     {
