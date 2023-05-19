@@ -31,6 +31,33 @@ public class ScreenShot : MonoBehaviour
         {
             InitializeRawImage();
             ClickShootButton();
+<<<<<<< Updated upstream
+=======
+            Invoke(nameof(MovePreview), 1f);
+            //GameManager.Instance.IsPhoto = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Q))
+        {
+            InitializeRawImage();
+            ClickShootButton();
+            Invoke(nameof(MovePreview), 1f);
+
+            for (int i = 0; i < setterObj.Count; i++)
+            {
+                if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
+                {
+                    //サブカメラカウントをインクリメント
+                    GameManager.Instance.numSubShutter++;
+                    Debug.Log("1");
+                    //スコアを加算
+                    ScoreManger.Score += 10;
+                    Debug.Log("2");
+                    //tempList[i]のオブジェクトの消滅フラグをオンにする
+                    setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                    Debug.Log("処理完了");
+                }
+            }
+>>>>>>> Stashed changes
         }
     }
 

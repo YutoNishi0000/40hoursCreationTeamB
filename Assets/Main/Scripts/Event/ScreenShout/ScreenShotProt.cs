@@ -48,8 +48,13 @@ public class ScreenShotProt : Human
         if (Input.GetMouseButtonDown(0))
         {
             preview.enabled = true;
+<<<<<<< Updated upstream
             preview.transform.position = Vector3.zero;
             GameManager.Instance.IsPhoto = true;
+=======
+            //preview.transform.position = Vector3.zero;
+            //GameManager.Instance.IsPhoto = true;
+>>>>>>> Stashed changes
             Shutter();
             OffPreview();
             //todayTask.TaskCompletion(1);
