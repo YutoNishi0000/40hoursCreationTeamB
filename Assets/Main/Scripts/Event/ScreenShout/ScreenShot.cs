@@ -29,6 +29,7 @@ public class ScreenShot : MonoBehaviour
         InitialPrevPos = targetImage.rectTransform.position;
         InitialPrevscale = targetImage.rectTransform.localScale;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        targetImage.enabled = false;
     }
 
     private void Update()
@@ -66,6 +67,8 @@ public class ScreenShot : MonoBehaviour
 
     private void InitializeRawImage()
     {
+        targetImage.texture = null;
+        targetImage.enabled = true;
         targetImage.rectTransform.position = InitialPrevPos;
         targetImage.rectTransform.localScale = InitialPrevscale;
     }
