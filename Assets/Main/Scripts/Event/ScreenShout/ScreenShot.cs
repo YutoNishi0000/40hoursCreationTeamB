@@ -8,20 +8,26 @@ using DG.Tweening;
 
 public class ScreenShot : MonoBehaviour
 {
-    private Camera cam;                                //プレイヤーのカメラ
-    [SerializeField] private RawImage targetImage;     //テクスチャを表示するための物
+    //入力が必要なもの
+    [SerializeField] private RawImage targetImage;     //テクスチャを表示するためのRawImage
     [SerializeField] private Image point1;             //スクショした画像の１番目の移動先
     [SerializeField] private Image point2;             //スクショした画像の２番目の移動先
-    [SerializeField] private Image point3;             //スクショした画像の３番目の移動先
+
+    //内部処理で使うもの
+    private Camera cam;                                //プレイヤーのカメラ
     private string screenShotPath;                     //スクリーンショットして生成されたテクスチャのファイルパス
     private string timeStamp;                          //現在時刻を表すためのもの
     private const float firstScale = 0.8f;             //一回目移動するときにどれだけRawImnageが縮小されるか（何倍の大きさになるか）
     private const float secondScale = 0.2f;            //二回目縮小するときにどれだけRawImageが縮小されるか（何倍の大きさになるか）
-    private RawImage initialTargetImage;               //RawImageの初期値
+    private Vector3 InitialPrevPos;                    //RawImageの初期位置
+    private Vector3 InitialPrevscale;                  //RawImageの初期スケール
+    private List<GameObject> setterObj;                //毎フレーム送られてくる異質なものの情報を取得するためのもの
 
     void Awake()
     {
-        initialTargetImage = targetImage;
+        setterObj = new List<GameObject>();
+        InitialPrevPos = targetImage.rectTransform.position;
+        InitialPrevscale = targetImage.rectTransform.localScale;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
@@ -31,12 +37,37 @@ public class ScreenShot : MonoBehaviour
         {
             InitializeRawImage();
             ClickShootButton();
+            Invoke(nameof(MovePreview), 1f);
+            GameManager.Instance.IsPhoto = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Q))
+        {
+            InitializeRawImage();
+            ClickShootButton();
+            Invoke(nameof(MovePreview), 1f);
+
+            for (int i = 0; i < setterObj.Count; i++)
+            {
+                if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
+                {
+                    //サブカメラカウントをインクリメント
+                    GameManager.Instance.numSubShutter++;
+                    Debug.Log("1");
+                    //スコアを加算
+                    ScoreManger.Score += 10;
+                    Debug.Log("2");
+                    //tempList[i]のオブジェクトの消滅フラグをオンにする
+                    setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                    Debug.Log("処理完了");
+                }
+            }
         }
     }
 
     private void InitializeRawImage()
     {
-        targetImage = initialTargetImage;
+        targetImage.rectTransform.position = InitialPrevPos;
+        targetImage.rectTransform.localScale = InitialPrevscale;
     }
 
     private string GetScreenShotPath()
@@ -56,9 +87,21 @@ public class ScreenShot : MonoBehaviour
         RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
         cam.targetTexture = renderTexture;
 
-        Texture2D texture = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.RGB24, false);
 
-        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
+
+
+        //================================================================================================================================================
+        //
+        //   もし。テクスチャが縮められている状態だったら下のコメント化している部分（「 / 2」）のところをはずしてみて）
+        //
+        //================================================================================================================================================
+
+
+
+
+        Texture2D texture = new Texture2D(cam.targetTexture.width/* / 2*/, cam.targetTexture.height, TextureFormat.RGB24, false);
+
+        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width/* / 2*/, cam.targetTexture.height), 0, 0);
         texture.Apply();
 
         // 保存する画像のサイズを変えるならResizeTexture()を実行
@@ -94,5 +137,17 @@ public class ScreenShot : MonoBehaviour
             RawImage target = targetImage.GetComponent<RawImage>();
             target.texture = tex;
         }
+    }
+
+    void MovePreview()
+    {
+        targetImage.rectTransform.DOScale(transform.localScale * secondScale, 0.5f);
+        targetImage.rectTransform.DOMove(point1.rectTransform.position, 0.5f);
+        Invoke(nameof(SlideMovePreview), 1f);
+    }
+
+    void SlideMovePreview()
+    {
+        targetImage.transform.DOMoveX(point2.rectTransform.position.x, 0.3f);
     }
 }
