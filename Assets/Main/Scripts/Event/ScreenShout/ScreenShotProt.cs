@@ -34,7 +34,6 @@ public class ScreenShotProt : Human
         filePathes = new List<string>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         targetImage = GameObject.Find("RawImage");
-        //todayTask = GameObject.Find("TodayTask").GetComponent<TodayTask>();
         preview.enabled = false;
         _image.enabled = false;
         SucceededShutter.enabled = false;
@@ -48,26 +47,25 @@ public class ScreenShotProt : Human
     {
         if (Input.GetMouseButtonDown(0))
         {
+            preview.enabled = true;
             //preview.transform.position = Vector3.zero;
             GameManager.Instance.IsPhoto = true;
             //Shutter();
-            OffPreview();
-            StartCoroutine(nameof(HiddonText), SucceededShutter);
+            //OffPreview();
             //todayTask.TaskCompletion(1);
             ClickShootButton();
-            FadeIn(0.5f, _image);
-            preview.enabled = true;
-            Invoke(nameof(MovePreview), 1f);
+            ShowSSImage();
+            //Invoke(nameof(MovePreview), 1f);
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
-            OffPreview();
+            preview.enabled = true;
+            //OffPreview();
             //StartCoroutine(nameof(HiddonText), SucceededShutter);
             //todayTask.TaskCompletion(1);
             ClickShootButton();
-            FadeIn(0.5f, _image);
-            preview.enabled = true;
-            Invoke(nameof(MovePreview), 1f);
+            ShowSSImage();
+            //Invoke(nameof(MovePreview), 1f);
 
             Debug.Log(setterObj.Count);
 
@@ -100,12 +98,13 @@ public class ScreenShotProt : Human
     //éBâeä÷êî
     private void Shutter()
     {
+        preview.enabled = true;
         OffPreview();
         StartCoroutine(nameof(HiddonText), SucceededShutter);
         //todayTask.TaskCompletion(1);
         ClickShootButton();
+        ShowSSImage();
         FadeIn(0.5f, _image);
-        preview.enabled = true;
         Invoke(nameof(MovePreview), 1f);
     }
 
@@ -180,8 +179,6 @@ public class ScreenShotProt : Human
         filePathes.Add(GetScreenShotPath());
 
         cam.targetTexture = null;
-
-        ShowSSImage();
     }
 
     Texture2D ResizeTexture(Texture2D src, int dst_w, int dst_h)
@@ -211,7 +208,7 @@ public class ScreenShotProt : Human
     {
         if (!String.IsNullOrEmpty(screenShotPath))
         {
-            byte[] image = File.ReadAllBytes(screenShotPath);
+            byte[] image = File.ReadAllBytes(GetScreenShotPath());
 
             Texture2D tex = new Texture2D(0, 0);
             tex.LoadImage(image);
