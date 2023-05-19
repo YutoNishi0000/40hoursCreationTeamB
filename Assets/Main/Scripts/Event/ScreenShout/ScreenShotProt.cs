@@ -48,24 +48,24 @@ public class ScreenShotProt : Human
         if (Input.GetMouseButtonDown(0))
         {
             preview.enabled = true;
-            preview.transform.position = Vector3.zero;
+            //preview.transform.position = Vector3.zero;
             GameManager.Instance.IsPhoto = true;
             Shutter();
-            OffPreview();
+            //OffPreview();
             //todayTask.TaskCompletion(1);
             ClickShootButton();
             ShowSSImage();
-            Invoke(nameof(MovePreview), 1f);
+            //Invoke(nameof(MovePreview), 1f);
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
             preview.enabled = true;
-            OffPreview();
-            StartCoroutine(nameof(HiddonText), SucceededShutter);
+            //OffPreview();
+            //StartCoroutine(nameof(HiddonText), SucceededShutter);
             //todayTask.TaskCompletion(1);
             ClickShootButton();
             ShowSSImage();
-            Invoke(nameof(MovePreview), 1f);
+            //Invoke(nameof(MovePreview), 1f);
 
             Debug.Log(setterObj.Count);
 

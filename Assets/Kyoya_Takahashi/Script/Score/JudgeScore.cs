@@ -49,7 +49,7 @@ public class JudgeScore : ScoreManger
         if (cameraEnable)
         {
             cameraEnable = false;
-            if (GameManager.Instance.IsPhoto)
+            if (Shutter.isFilming)
             {
                 Debug.Log("’Ê‚Á‚Ä‚é(1)");
                 if (obj.CompareTag("main"))
@@ -66,7 +66,7 @@ public class JudgeScore : ScoreManger
                         //‘ÎÛ‚ğB‰e‚µ‚½‰ñ”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
                         GameManager.Instance.numTargetShutter++;
                     }
-                    GameManager.Instance.IsPhoto = false;
+                    Shutter.isFilming = false;
                 }
                 //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
                 //Debug.Log(ScoreManger.Score);
