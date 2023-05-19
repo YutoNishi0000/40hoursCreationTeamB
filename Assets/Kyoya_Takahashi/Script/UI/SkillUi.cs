@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillUi : MonoBehaviour
 {
-    [SerializeField] private GameObject speed;
-    [SerializeField] private GameObject score;
-    [SerializeField] private GameObject target;
+    [SerializeField] private Image speed;
+    [SerializeField] private Image score;
+    [SerializeField] private Image target;
     void Start()
     {
         
