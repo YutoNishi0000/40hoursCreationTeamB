@@ -99,9 +99,9 @@ public class ScreenShot : MonoBehaviour
 
 
 
-        Texture2D texture = new Texture2D(cam.targetTexture.width/* / 2*/, cam.targetTexture.height, TextureFormat.RGB24, false);
+        Texture2D texture = new Texture2D(cam.targetTexture.width / 2, cam.targetTexture.height, TextureFormat.RGB24, false);
 
-        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width/* / 2*/, cam.targetTexture.height), 0, 0);
+        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width / 2, cam.targetTexture.height), 0, 0);
         texture.Apply();
 
         // 保存する画像のサイズを変えるならResizeTexture()を実行
