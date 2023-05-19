@@ -38,7 +38,7 @@ public class ScreenShot : MonoBehaviour
             InitializeRawImage();
             ClickShootButton();
             Invoke(nameof(MovePreview), 1f);
-            GameManager.Instance.IsPhoto = true;
+            //GameManager.Instance.IsPhoto = true;
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
