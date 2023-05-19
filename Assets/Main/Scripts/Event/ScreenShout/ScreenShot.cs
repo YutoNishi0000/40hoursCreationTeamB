@@ -8,14 +8,20 @@ using DG.Tweening;
 
 public class ScreenShot : MonoBehaviour
 {
-    Camera cam;
-    //GameObject targetImage;
-    [SerializeField] private RawImage targetImage;
-    private string screenShotPath;
-    private string timeStamp;
+    private Camera cam;                                //プレイヤーのカメラ
+    [SerializeField] private RawImage targetImage;     //テクスチャを表示するための物
+    [SerializeField] private Image point1;             //スクショした画像の１番目の移動先
+    [SerializeField] private Image point2;             //スクショした画像の２番目の移動先
+    [SerializeField] private Image point3;             //スクショした画像の３番目の移動先
+    private string screenShotPath;                     //スクリーンショットして生成されたテクスチャのファイルパス
+    private string timeStamp;                          //現在時刻を表すためのもの
+    private const float firstScale = 0.8f;             //一回目移動するときにどれだけRawImnageが縮小されるか（何倍の大きさになるか）
+    private const float secondScale = 0.2f;            //二回目縮小するときにどれだけRawImageが縮小されるか（何倍の大きさになるか）
+    private RawImage initialTargetImage;               //RawImageの初期値
 
     void Awake()
     {
+        initialTargetImage = targetImage;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
@@ -23,8 +29,14 @@ public class ScreenShot : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+            InitializeRawImage();
             ClickShootButton();
         }
+    }
+
+    private void InitializeRawImage()
+    {
+        targetImage = initialTargetImage;
     }
 
     private string GetScreenShotPath()
