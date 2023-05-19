@@ -16,11 +16,11 @@ public class HeterogeneousSetter : MonoBehaviour
     private List<int> pos;
     private int rand;                    //ランダムな数字
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
-    ScreenShotProt screen;
+    ScreenShot screen;
 
     void Start()
     {
-        screen = GameObject.FindObjectOfType<ScreenShotProt>();
+        screen = GameObject.FindObjectOfType<ScreenShot>();
         fieldObjectsNum = 0;
         objSpawnPos = new List<GameObject>();
         queue = new Queue<GameObject>();

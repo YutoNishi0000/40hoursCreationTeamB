@@ -150,4 +150,6 @@ public class ScreenShot : MonoBehaviour
     {
         targetImage.transform.DOMoveX(point2.rectTransform.position.x, 0.3f);
     }
+
+    public void SetList(List<GameObject> list) { setterObj = list; }
 }
