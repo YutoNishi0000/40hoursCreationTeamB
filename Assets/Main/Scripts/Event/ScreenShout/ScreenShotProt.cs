@@ -50,7 +50,7 @@ public class ScreenShotProt : Human
             preview.enabled = true;
             //preview.transform.position = Vector3.zero;
             GameManager.Instance.IsPhoto = true;
-            //Shutter();
+            Shutter();
             //OffPreview();
             //todayTask.TaskCompletion(1);
             ClickShootButton();

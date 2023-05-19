@@ -13,7 +13,7 @@ public class DestroyTarget : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (!GameManager.Instance.IsPhoto)
+        if (!Shutter.isFilming)
         {
             return;
         }

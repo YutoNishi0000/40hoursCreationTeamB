@@ -19,10 +19,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
 
     }
-
-    //写真を撮ったか
-    public bool IsPhoto = false;
-
     //サブカメラで写真を撮ったか
     public bool IsSubPhoto = false;
 
