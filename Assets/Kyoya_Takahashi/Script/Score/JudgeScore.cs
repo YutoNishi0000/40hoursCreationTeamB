@@ -54,10 +54,7 @@ public class JudgeScore : ScoreManger
                 Debug.Log("通ってる(1)");
                 if (obj.CompareTag("main"))
                 {
-                    Debug.Log("通ってる(2)");
-
-                    //対象を撮影した回数をインクリメント
-                    GameManager.Instance.numTargetShutter++;
+                    Debug.Log("通ってる(2)");                    
 
                     //スコア加算
                     ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
@@ -66,6 +63,8 @@ public class JudgeScore : ScoreManger
                     {
                         ScoreManger.ShotMainTarget = true;
                         TargetManager.IsSpawn = true;
+                        //対象を撮影した回数をインクリメント
+                        GameManager.Instance.numTargetShutter++;
                     }
                     GameManager.Instance.IsPhoto = false;
                 }

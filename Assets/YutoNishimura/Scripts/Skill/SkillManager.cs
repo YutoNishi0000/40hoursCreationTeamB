@@ -18,8 +18,8 @@ public class SkillManager : Actor
     private int shutterTimeStamp;
     private bool minimapSkillFlag;         //ターゲットのミニマップの表示フラグのために使う
     private const int skillLevel1 = 15;
-    private const int skillLevel2 = 25;
-    private const int skillLevel3 = 40;
+    private const int skillLevel2 = 26;
+    private const int skillLevel3 = 42;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +36,7 @@ public class SkillManager : Actor
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(skillBlock_player);
         UnLockSkill();
         SkillImposition();
     }
@@ -49,12 +50,17 @@ public class SkillManager : Actor
         {
             case skillLevel1:
                 skillBlock_player = false;
+                GameManager.Instance.numSubShutter++;
                 break;
             case skillLevel2:
                 skillBlock_addScore = false;
+                GameManager.Instance.numSubShutter++;
                 break;
             case skillLevel3:
                 skillBlock_seeTarget = false;
+                //GameManager.Instance.numSubShutter++;
+                break;
+           default:
                 break;
         }
     }
@@ -64,12 +70,12 @@ public class SkillManager : Actor
     /// </summary>
     public void SkillImposition()
     {
-        if(skillBlock_player)
+        if(!skillBlock_player)
         {
-            return;
+            Debug.Log("加速");
+            PlayerSpeedUp();
+            skillBlock_player = true;
         }
-
-        PlayerSpeedUp();
 
         if(skillBlock_addScore)
         {

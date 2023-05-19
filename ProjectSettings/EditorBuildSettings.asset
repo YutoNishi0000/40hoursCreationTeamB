@@ -6,54 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Prot.unity
-    guid: 4f361397cee963143a79e452b9213163
-  - enabled: 0
-    path: Assets/Main/Scenes/Outgame/Title.unity
-    guid: ecf5c356cb0b9a24694feaab50588f97
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 1.unity
-    guid: d405bdb4444a2a5459af20b6cba12d7f
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 2.unity
-    guid: e06a87944d776cc49a7eff1efee7a828
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 3.unity
-    guid: 80d5b7b09a3610b47b02a477afd3651d
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 4.unity
-    guid: dd9997bd5b4e1dd4aa2d8334f027cf5d
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 5.unity
-    guid: c06dd660a333dfc4693a7dc48c82495a
-  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Main/Scenes/Ingame/FailedNegotiation.unity
-    guid: ec00f6ba34eedad40bdac10c5f576011
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/SucsessNegotiation.unity
-    guid: 592e5248913891f47ac2ce3ad98f9964
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 2_k.unity
-    guid: 93948a496b5dc7e4eb55eeff25dc4435
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 1_k.unity
-    guid: 87cc63907d397f946ba24ca18a7dfbd1
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 3_k.unity
-    guid: 6ad9b21c2e2a62a4ea8114bbe4b44859
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 4_k.unity
-    guid: 0d6fbcad60f26984ca293a8b5c919786
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Main/Scenes/Ingame/Result.unity
-    guid: 740473f99c963f646be782c79147ced0
-  - enabled: 0
-    path: Assets/Main/Scenes/Ingame/Day 5_k.unity
-    guid: b19d458d2c4db9b42bec7487613ec18e
+    path: Assets/Kyoya_Takahashi/Scene/GameScene_eazy.unity
+    guid: 96e1d12dc31bac447a8f4ed7c7451be6
   m_configObjects: {}
