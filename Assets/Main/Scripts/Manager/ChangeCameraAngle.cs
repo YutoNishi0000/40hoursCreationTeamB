@@ -26,7 +26,7 @@ public class ChangeCameraAngle : Human
             subCamera.enabled = false;
             mainCamera.enabled = true;
             playerInstance._moveLock = false;
-            UIController._talkStart = false;
+            //UIController._talkStart = false;
         }
     }
 
