@@ -68,7 +68,7 @@ public class ScreenShot : MonoBehaviour
     private void InitializeRawImage()
     {
         targetImage.texture = null;
-        targetImage.enabled = true;
+        targetImage.enabled = false;
         targetImage.rectTransform.position = InitialPrevPos;
         targetImage.rectTransform.localScale = InitialPrevscale;
     }
@@ -139,6 +139,9 @@ public class ScreenShot : MonoBehaviour
             // NGUI の UITexture に表示
             RawImage target = targetImage.GetComponent<RawImage>();
             target.texture = tex;
+
+            //テクスチャ情報を読み込んだ後でRawImageを表示する
+            targetImage.enabled = true;
         }
     }
 
