@@ -38,14 +38,14 @@ public class ScreenShot : MonoBehaviour
         {
             InitializeRawImage();
             ClickShootButton();
-            Invoke(nameof(MovePreview), 1f);
+            Invoke(nameof(FirstMovePreview), 1f);
             //GameManager.Instance.IsPhoto = true;
         }
         else if(Input.GetKeyDown(KeyCode.Q))
         {
             InitializeRawImage();
             ClickShootButton();
-            Invoke(nameof(MovePreview), 1f);
+            Invoke(nameof(FirstMovePreview), 1f);
 
             for (int i = 0; i < setterObj.Count; i++)
             {
@@ -145,14 +145,20 @@ public class ScreenShot : MonoBehaviour
         }
     }
 
-    void MovePreview()
+    private void FirstMovePreview()
+    {
+        targetImage.rectTransform.DOScale(transform.localScale * firstScale, 0.5f);
+        Invoke(nameof(SecondMovePreview), 0.5f);
+    }
+
+    private void SecondMovePreview()
     {
         targetImage.rectTransform.DOScale(transform.localScale * secondScale, 0.5f);
         targetImage.rectTransform.DOMove(point1.rectTransform.position, 0.5f);
         Invoke(nameof(SlideMovePreview), 1f);
     }
 
-    void SlideMovePreview()
+    private void SlideMovePreview()
     {
         targetImage.transform.DOMoveX(point2.rectTransform.position.x, 0.3f);
     }
