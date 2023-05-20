@@ -22,9 +22,14 @@ public class ButtonController : UIController
 
     private void Start()
     {
-        tempButton = this.GetComponent<Image>();
+        InitializeButton();
     }
 
+    //åpè≥êÊÇÃStartä÷êîÅAÇ‹ÇΩÇÕAwakeä÷êîì‡Ç≈ïKÇ∏åƒÇ—èoÇ≥Ç»ÇØÇÍÇŒÇ»ÇÁÇ»Ç¢ä÷êî
+    protected void InitializeButton()
+    {
+        tempButton = this.GetComponent<Image>();
+    }
     public void PopUp()
     {
         tempButton.sprite = afterImage;
@@ -36,4 +41,5 @@ public class ButtonController : UIController
         tempButton.sprite = initialImage;
         tempButton.rectTransform.DOScale(normalVec, changeScaleTime);
     }
+
 }

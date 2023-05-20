@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HomeController : ButtonController
+public class BarController : ButtonController
 {
     [Header("â°Ç©ÇÁèoÇƒÇ≠ÇÈÉoÅ[")]
     [SerializeField] private Image bar;
@@ -16,18 +16,16 @@ public class HomeController : ButtonController
     private void Start()
     {
         bar.rectTransform.position = initialPos.rectTransform.position;
-        tempButton = GetComponent<Image>();
+        InitializeButton();
     }
 
     public void PopUpForHome()
     {
-        PopUp();
         bar.rectTransform.DOMoveX(afterPos.rectTransform.position.x, changeScaleTime);
     }
 
     public void PopDownForHome()
     {
-        PopDown();
         bar.rectTransform.DOMoveX(initialPos.rectTransform.position.x, changeScaleTime);
     }
 }
