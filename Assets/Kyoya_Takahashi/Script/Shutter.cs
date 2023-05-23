@@ -19,6 +19,7 @@ public class Shutter : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("ç∂ÉNÉäÉbÉNÇ≥ÇÍÇΩ");
+            SEManager.Instance.PlayShot();
             isFilming = true;
         }
         else

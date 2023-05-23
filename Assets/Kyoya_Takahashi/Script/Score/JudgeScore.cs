@@ -47,48 +47,31 @@ public class JudgeScore : ScoreManger
     }
     private void LateUpdate()
     {
-        createRay();
         if (Shutter.isFilming)
         {
-            //Ray ray = createRay();
-            //Debug.DrawRay(ray.origin, ray.direction, Color.green, Mathf.Infinity, false);
-            Debug.Log("’Ê‚Á‚Ä‚é(1)");
-            if (obj.CompareTag("main"))
+            //Debug.Log("’Ê‚Á‚Ä‚é(1)");
+
+            //áŠQ•¨‚ª‚ ‚é‚Æ‚«‚Ìˆ—
+            if (createRay())
             {
-                Debug.Log("’Ê‚Á‚Ä‚é(2)");
 
-                ////áŠQ•¨‚ª‚ ‚é‚Æ‚«
-                //if (Physics.Raycast(ray))
-                //{
-                //    Debug.Log("áŠQ•¨‚ª‚ ‚é");
-                //}
-                ////áŠQ•¨‚ª‚È‚¢‚Æ‚«
-                //else
-                //{
-                //    Debug.Log("áŠQ•¨‚ª‚È‚¢");
-                //    //ƒXƒRƒA‰ÁZ
-                //    ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
-
-                //    if (checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position)) != 0)
-                //    {
-                //        ScoreManger.ShotMainTarget = true;
-                //        TargetManager.IsSpawn = true;
-                //        //‘ÎÛ‚ğB‰e‚µ‚½‰ñ”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
-                //        GameManager.Instance.numTargetShutter++;
-                //    }
-                //}
-
-                //if (ray.collider == null)
-                //{
-
-                //}
-
-                //else
-                //{
-                //    Debug.Log("áŠQ");
-                //}
-                Shutter.isFilming = false;
             }
+            //áŠQ•¨‚ª‚È‚¢‚Æ‚«‚Ìˆ—
+            else
+            {
+                //ƒXƒRƒA‰ÁZ
+                ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
+
+                if (checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position)) != 0)
+                {
+                    ScoreManger.ShotMainTarget = true;
+                    TargetManager.IsSpawn = true;
+                    //‘ÎÛ‚ğB‰e‚µ‚½‰ñ”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+                    GameManager.Instance.numTargetShutter++;
+                }
+            }
+
+            Shutter.isFilming = false;
         }
     }
     /// <summary>
@@ -196,18 +179,14 @@ public class JudgeScore : ScoreManger
             return v2;
         }
     }
-
-    private void createRay()
+    RaycastHit hit;
+    private bool createRay()
     {
         Vector3 diff = TargetManager.target.transform.position - player.transform.position;
+        Vector3 direction = diff.normalized;
+        float distance = Vector3.Distance(TargetManager.target.transform.position, player.transform.position);
 
-
-        Debug.DrawRay(player.transform.position, diff, Color.green);
-        //Vector3 direction = diff.normalized;
-
-
-
-        //return new Ray(player.transform.position, diff);
+        return Physics.Raycast(player.transform.position, direction, out hit, distance);
     }
 
 }
