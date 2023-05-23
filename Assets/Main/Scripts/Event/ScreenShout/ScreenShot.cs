@@ -34,7 +34,7 @@ public class ScreenShot : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Shutter.isFilming)
         {
             InitializeRawImage();
             ClickShootButton();

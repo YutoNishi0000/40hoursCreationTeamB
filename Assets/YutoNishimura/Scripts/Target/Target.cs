@@ -12,6 +12,7 @@ public class Target : Actor
     private GameObject targetCamera = null;
     private float initialTargetSpeed;       //ˆÚ“®‘¬“x
     private GameObject pointParent = null;
+    private bool isInsideCamera = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,7 @@ public class Target : Actor
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(isInsideCamera);
         //targetCamera.transform.position = new Vector3(
         //    this.transform.position.x,
         //    this.transform.position.y + 1.0f,

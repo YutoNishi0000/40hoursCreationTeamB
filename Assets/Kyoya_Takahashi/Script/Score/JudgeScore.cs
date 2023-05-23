@@ -9,7 +9,7 @@ public class JudgeScore : ScoreManger
     //[SerializeField] private GameObject obj2 = null;
 
     [SerializeField] private Camera cam = null;
-
+    [SerializeField] private GameObject player = null;
     //それぞれのスコアの値
     public enum ScoreType
     {
@@ -29,7 +29,7 @@ public class JudgeScore : ScoreManger
     private const float areaHeight = 216;     //(1080 / 5) 画面5等分
 
     //画面の中心
-    private Vector3 center = Vector3.zero;
+    static Vector3 center = Vector3.zero;
 
     //カメラのクールタイム
     private float coolTime = 3;
@@ -46,77 +46,86 @@ public class JudgeScore : ScoreManger
     }
     private void LateUpdate()
     {
-        if (cameraEnable)
+        createRay();
+        if (Shutter.isFilming)
         {
-            cameraEnable = false;
-            if (Shutter.isFilming)
+            //Ray ray = createRay();
+            //Debug.DrawRay(ray.origin, ray.direction, Color.green, Mathf.Infinity, false);
+            Debug.Log("通ってる(1)");
+            if (obj.CompareTag("main"))
             {
-                Debug.Log("通ってる(1)");
-                if (obj.CompareTag("main"))
-                {
-                    Debug.Log("通ってる(2)");                    
+                Debug.Log("通ってる(2)");
 
-                    //スコア加算
-                    ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
+                ////障害物があるとき
+                //if (Physics.Raycast(ray))
+                //{
+                //    Debug.Log("障害物がある");
+                //}
+                ////障害物がないとき
+                //else
+                //{
+                //    Debug.Log("障害物がない");
+                //    //スコア加算
+                //    ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
 
-                    if (checkScore(WorldToScreenPoint(cam,TargetManager.target.transform.position)) != 0)
-                    {
-                        ScoreManger.ShotMainTarget = true;
-                        TargetManager.IsSpawn = true;
-                        //対象を撮影した回数をインクリメント
-                        GameManager.Instance.numTargetShutter++;
-                    }
-                    Shutter.isFilming = false;
-                }
-                //obj2.transform.position = WorldToScreenPoint(cam, obj.transform.position);
-                //Debug.Log(ScoreManger.Score);
+                //    if (checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position)) != 0)
+                //    {
+                //        ScoreManger.ShotMainTarget = true;
+                //        TargetManager.IsSpawn = true;
+                //        //対象を撮影した回数をインクリメント
+                //        GameManager.Instance.numTargetShutter++;
+                //    }
+                //}
+
+                //if (ray.collider == null)
+                //{
+
+                //}
+
+                //else
+                //{
+                //    Debug.Log("障害");
+                //}
+                Shutter.isFilming = false;
             }
         }
-        else
-        {
-            coolTime -= Time.deltaTime;
-        }
-        if(coolTime < 0)
-        {
-            cameraEnable = true;
-        }
     }
-        /// <summary>
-        /// ワールド座標をスクリーン座標に
-        /// </summary>
-        /// <param name="cam">カメラオブジェクト</param>
-        /// <param name="worldPosition">ワールド座標</param>
-        /// <returns>スクリーン座標</returns>
-        public static Vector3 WorldToScreenPoint(Camera cam, Vector3 worldPosition)
-        {
-            // カメラ空間に変換(カメラから見た座標に変換)
-            Vector3 cameraSpace = cam.worldToCameraMatrix.MultiplyPoint(worldPosition);
+    /// <summary>
+    /// ワールド座標をスクリーン座標に
+    /// </summary>
+    /// <param name="cam">カメラオブジェクト</param>
+    /// <param name="worldPosition">ワールド座標</param>
+    /// <returns>スクリーン座標</returns>
+    public static Vector3 WorldToScreenPoint(Camera cam, Vector3 worldPosition)
+    {
+        // カメラ空間に変換(カメラから見た座標に変換)
+        Vector3 cameraSpace = cam.worldToCameraMatrix.MultiplyPoint(worldPosition);
 
-            // クリッピング空間に変換(cameraSpaceを一定の範囲に絞ってる)
-            Vector4 clipSpace = cam.projectionMatrix * new Vector4(cameraSpace.x, cameraSpace.y, cameraSpace.z, 1f);
+        // クリッピング空間に変換(cameraSpaceを一定の範囲に絞ってる)
+        Vector4 clipSpace = cam.projectionMatrix * new Vector4(cameraSpace.x, cameraSpace.y, cameraSpace.z, 1f);
 
-            //デバイス座標：左下ー1　右上＋1
-            //割ってるのは正規化
-            // デバイス座標系に変換
-            Vector3 deviceSpace = new Vector3(clipSpace.x / clipSpace.w, clipSpace.y / clipSpace.w, clipSpace.z / clipSpace.w);
+        //デバイス座標：左下ー1　右上＋1
+        //割ってるのは正規化
+        // デバイス座標系に変換
+        Vector3 deviceSpace = new Vector3(clipSpace.x / clipSpace.w, clipSpace.y / clipSpace.w, clipSpace.z / clipSpace.w);
 
-            // スクリーン座標系に変換
-            Vector3 screenSpace = new Vector3((deviceSpace.x + 1f) * 0.25f * Screen.width, (deviceSpace.y + 1f) * 0.5f * Screen.height, deviceSpace.z);
+        // スクリーン座標系に変換
+        Vector3 screenSpace = new Vector3((deviceSpace.x + 1f) * 0.25f * Screen.width, (deviceSpace.y + 1f) * 0.5f * Screen.height, deviceSpace.z);
 
-            return screenSpace;
-        }
-        /// <summary>
-        /// 中央にどれだけ近いか判定
-        /// </summary>
-        /// <param name="scrPoint">スクリーン座標</param>
-        /// <returns>スコアの値</returns>
-        private float checkScore(Vector3 scrPoint)
-        {
+        return screenSpace;
+    }
+    /// <summary>
+    /// 中央にどれだけ近いか判定
+    /// </summary>
+    /// <param name="scrPoint">スクリーン座標</param>
+    /// <returns>スコアの値</returns>
+    public static float checkScore(Vector3 scrPoint)
+    {
         //return lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
         int defaultScore = lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
 
         //スキルによるスコア加算フラグがオンだったらif内の処理を実行
-        if(GameManager.Instance.skillManager.GetAddScoreFlag())
+        if (GameManager.Instance.skillManager.GetAddScoreFlag())
         {
             //フラグがオンだったら1.5倍のスコアを返す
             return defaultScore * 1.5f;
@@ -125,67 +134,80 @@ public class JudgeScore : ScoreManger
         {
             return defaultScore;
         }
-        }
-        /// <summary>
-        /// スコアの判定(横)
-        /// </summary>
-        /// <param name="scrPoint">スクリーン座標</param>
-        /// <param name="score">タテだけで見たときのスコア</param>
-        /// <returns>スコア</returns>
-        private int checkScoreHori(Vector3 scrPoint)
+    }
+    /// <summary>
+    /// スコアの判定(横)
+    /// </summary>
+    /// <param name="scrPoint">スクリーン座標</param>
+    /// <param name="score">タテだけで見たときのスコア</param>
+    /// <returns>スコア</returns>
+    public static int checkScoreHori(Vector3 scrPoint)
+    {
+        if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2)
         {
-            if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2)
-            {
-                return (int)ScoreType.high;
-            }
-            if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2 + areaWidth)
-            {
-                return (int)ScoreType.midle;
-            }
-            if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2 + areaWidth * 2)
-            {
-                return (int)ScoreType.low;
-            }
-            return (int)ScoreType.outOfScreen;
+            return (int)ScoreType.high;
         }
-        /// <summary>
-        /// スコアの判定(縦)
-        /// </summary>
-        /// <param name="scrPoint">スクリーン座標</param>
-        /// <param name="score">タテだけで見たときのスコア</param>
-        /// <returns>スコア</returns>
-        private int checkScoreVart(Vector3 scrPoint)
+        if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2 + areaWidth)
         {
-            if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2)
-            {
-                return (int)ScoreType.high;
-            }
-            if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2 + areaHeight)
-            {
-                return (int)ScoreType.midle;
-            }
-            if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2 + areaHeight * 2)
-            {
-                return (int)ScoreType.low;
-            }
-            return (int)ScoreType.outOfScreen;
+            return (int)ScoreType.midle;
         }
-        /// <summary>
-        /// 低いほうの値をを求める
-        /// </summary>
-        /// <param name="v">片方のスコア</param>
-        /// <returns>スコア</returns>
-        private int lower(int v1, int v2)
+        if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2 + areaWidth * 2)
         {
-            if (v1 < v2)
-            {
-                return v1;
-            }
-            else
-            {
-                return v2;
-            }
+            return (int)ScoreType.low;
         }
-}
+        return (int)ScoreType.outOfScreen;
+    }
+    /// <summary>
+    /// スコアの判定(縦)
+    /// </summary>
+    /// <param name="scrPoint">スクリーン座標</param>
+    /// <param name="score">タテだけで見たときのスコア</param>
+    /// <returns>スコア</returns>
+    public static int checkScoreVart(Vector3 scrPoint)
+    {
+        if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2)
+        {
+            return (int)ScoreType.high;
+        }
+        if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2 + areaHeight)
+        {
+            return (int)ScoreType.midle;
+        }
+        if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2 + areaHeight * 2)
+        {
+            return (int)ScoreType.low;
+        }
+        return (int)ScoreType.outOfScreen;
+    }
+    /// <summary>
+    /// 低いほうの値をを求める
+    /// </summary>
+    /// <param name="v">片方のスコア</param>
+    /// <returns>スコア</returns>
+    public static int lower(int v1, int v2)
+    {
+        if (v1 < v2)
+        {
+            return v1;
+        }
+        else
+        {
+            return v2;
+        }
+    }
 
+    private void createRay()
+    {
+        Vector3 diff = TargetManager.target.transform.position - player.transform.position;
+
+
+        Debug.DrawRay(player.transform.position, diff, Color.green);
+        //Vector3 direction = diff.normalized;
+
+
+
+        //return new Ray(player.transform.position, diff);
+    }
+
+}
 

@@ -12,13 +12,21 @@ public class Shutter : MonoBehaviour
     public static bool isFilming = false;
     void Update()
     {
-        isFilming = false;
+        if(!isEnable)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
-            // コルーチンを開始する
-            StartCoroutine(StartTimer());
+            Debug.Log("左クリックされた");
             isFilming = true;
         }
+        else
+        {
+            return;
+        }
+        // コルーチンを開始する
+        StartCoroutine(StartTimer());
     }
     /// <summary>
     /// カメラのクールタイム

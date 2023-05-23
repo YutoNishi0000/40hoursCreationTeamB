@@ -36,7 +36,7 @@ public class SkillManager : Actor
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(skillBlock_player);
+        //Debug.Log(skillBlock_player);
         UnLockSkill();
         SkillImposition();
     }
