@@ -9,7 +9,8 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     [SerializeField] private AudioClip shot;
     [SerializeField] private AudioClip skill;
     [SerializeField] private AudioClip targetShot;
-    [SerializeField] private AudioClip timeLimit;
+    [SerializeField] private GameObject timeLimit;
+    private bool isTimeLimit = false;
     private void oneShot(AudioClip ac)
     {
         audioSource.PlayOneShot(ac);
@@ -45,8 +46,13 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     /// <summary>
     /// タイムリミットに到達時のSE
     /// </summary>
-    public void PlayTimeLimit()
-    {
-        oneShot(timeLimit);
+    /// <param name="playTime">再生時間</param>
+    public void PlayTimeLimit(float playTime)
+    {        
+        if (!isTimeLimit)
+        {
+            Instantiate(timeLimit);
+        }
+        isTimeLimit = true;
     }
 }

@@ -25822,8 +25822,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c2959065f4d174a84b9427bbb478bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minute: 5
-  _seconds: 0
+  _minute: 0
+  _seconds: 10
 --- !u!114 &1139913443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33664,7 +33664,7 @@ MonoBehaviour:
   shot: {fileID: 8300000, guid: 3f94a5b3c73bdea449aafdc10c2d2976, type: 3}
   skill: {fileID: 8300000, guid: 1aa8df8a699eed64f8411e6d63d01eb6, type: 3}
   targetShot: {fileID: 8300000, guid: aa69f6eca7e1bd049bad3f32a621c86b, type: 3}
-  timeLimit: {fileID: 8300000, guid: 7046527fe0e41de449dbebbace66876b, type: 3}
+  timeLimit: {fileID: 2179297094181169802, guid: fdb13ad5e3045004f9fdabe116a48c9d, type: 3}
 --- !u!4 &1642236777
 Transform:
   m_ObjectHideFlags: 0
@@ -33690,11 +33690,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 7046527fe0e41de449dbebbace66876b, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

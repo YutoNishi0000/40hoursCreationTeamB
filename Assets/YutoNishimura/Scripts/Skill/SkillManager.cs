@@ -54,13 +54,16 @@ public class SkillManager : Actor
             case skillLevel1:
                 skillBlock_player = false;
                 GameManager.Instance.numSubShutter++;
+                SEManager.Instance.PlaySkill();
                 break;
             case skillLevel2:
                 skillBlock_addScore = false;
                 GameManager.Instance.numSubShutter++;
+                SEManager.Instance.PlaySkill();
                 break;
             case skillLevel3:
                 skillBlock_seeTarget = false;
+                SEManager.Instance.PlaySkill();
                 //GameManager.Instance.numSubShutter++;
                 break;
            default:

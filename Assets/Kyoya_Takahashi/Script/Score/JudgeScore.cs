@@ -49,29 +49,30 @@ public class JudgeScore : ScoreManger
     {
         if (Shutter.isFilming)
         {
+            Shutter.isFilming = false;
             //Debug.Log("通ってる(1)");
-
-            //障害物があるときの処理
-            if (createRay())
+            //ターゲットが画面外か
+            if (checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position)) == (int)ScoreType.outOfScreen)
             {
-
+                SEManager.Instance.PlayShot();
+                return;
+            }
+            //障害物があるとき
+            if (!createRay())
+            {
+                SEManager.Instance.PlayShot();
+                return;
             }
             //障害物がないときの処理
-            else
-            {
-                //スコア加算
-                ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
 
-                if (checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position)) != 0)
-                {
-                    ScoreManger.ShotMainTarget = true;
-                    TargetManager.IsSpawn = true;
-                    //対象を撮影した回数をインクリメント
-                    GameManager.Instance.numTargetShutter++;
-                }
-            }
-
-            Shutter.isFilming = false;
+            //スコア加算
+            ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
+            ScoreManger.ShotMainTarget = true;
+            TargetManager.IsSpawn = true;
+            //対象を撮影した回数をインクリメント
+            GameManager.Instance.numTargetShutter++;
+            //SE
+            SEManager.Instance.PlayTargetShot();
         }
     }
     /// <summary>

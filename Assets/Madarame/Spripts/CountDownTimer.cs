@@ -23,6 +23,7 @@ public class CountDownTimer : MonoBehaviour
 		//@§ŒÀŠÔ‚ª0•bˆÈ‰º‚È‚ç‰½‚à‚µ‚È‚¢
 		if (_totalTime <= 0f)
 		{
+			SEManager.Instance.PlayTimeLimit(2f);
 			GameManager.Instance.SetGameOver(true);
 			return;
 		}
