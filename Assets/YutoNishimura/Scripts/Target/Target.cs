@@ -13,10 +13,13 @@ public class Target : Actor
     private float initialTargetSpeed;       //移動速度
     private GameObject pointParent = null;
     private bool isInsideCamera = false;
+    private bool enableTakePicFlag;    //ターゲット撮影判定
+    private const float disTargetShot = 7.0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        enableTakePicFlag = false;
         agent = GetComponent<NavMeshAgent>();
 
         initialTargetSpeed = agent.speed;
@@ -59,6 +62,32 @@ public class Target : Actor
         }
     }
 
+    //自身がカメラに写っていた場合にだけ呼び出される
+    void OnWillRenderObject()
+    {
+        //メインカメラから見えたときだけ処理を行う
+        if (Camera.current.name == "Main Camera")
+        {
+            Debug.Log("メインカメラ処理が行われています");
+
+            Vector3 strangeObjVec = transform.position - playerInstance.transform.position;
+            Vector3 playerForwardVec = playerInstance.transform.forward;
+
+            float angle = Vector3.Angle(playerForwardVec, strangeObjVec);
+
+            float judgeDis = strangeObjVec.magnitude * Mathf.Cos((angle / 360) * Mathf.PI * 2);
+
+            if (judgeDis <= disTargetShot)
+            {
+                enableTakePicFlag = true;
+            }
+            else
+            {
+                enableTakePicFlag = false;
+            }
+        }
+    }
+
     void GoNextPoint()
     {
         //地点が何も設定されていない場合
@@ -79,4 +108,6 @@ public class Target : Actor
     public float GetInitialTargetSpeed() { return initialTargetSpeed; }
 
     public void SetTargetSpeed(float speed) { agent.speed = speed; }
+
+    public bool GetEnableTakePicFlag() { return enableTakePicFlag; }
 }
