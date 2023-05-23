@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using DG.Tweening;
 
-public class ScreenShot : MonoBehaviour
+public class ScreenShot : Actor
 {
     //入力が必要なもの
     [SerializeField] private RawImage targetImage;     //テクスチャを表示するためのRawImage
@@ -22,10 +22,12 @@ public class ScreenShot : MonoBehaviour
     private Vector3 InitialPrevPos;                    //RawImageの初期位置
     private Vector3 InitialPrevscale;                  //RawImageの初期スケール
     private List<GameObject> setterObj;                //毎フレーム送られてくる異質なものの情報を取得するためのもの
+    private List<int> destroyStrangeList;
 
     void Awake()
     {
         setterObj = new List<GameObject>();
+        destroyStrangeList = new List<int>();
         InitialPrevPos = targetImage.rectTransform.position;
         InitialPrevscale = targetImage.rectTransform.localScale;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -40,13 +42,14 @@ public class ScreenShot : MonoBehaviour
             ClickShootButton();
             Invoke(nameof(FirstMovePreview), 1f);
             //GameManager.Instance.IsPhoto = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.Q))
-        {
-            InitializeRawImage();
-            ClickShootButton();
-            Invoke(nameof(FirstMovePreview), 1f);
 
+            //ターゲット撮影判定フラグがオンだったら
+            if(targetInstance.GetEnableTakePicFlag())
+            {
+                //ここにターゲット撮影時の処理を書く
+            }
+
+            //サブカメラ撮影判定がオンだったときの判定
             for (int i = 0; i < setterObj.Count; i++)
             {
                 if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
@@ -60,6 +63,8 @@ public class ScreenShot : MonoBehaviour
                     //tempList[i]のオブジェクトの消滅フラグをオンにする
                     setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
                     Debug.Log("処理完了");
+                    //リストにこの配列のインデックスを追加
+                    destroyStrangeList.Add(i);
                 }
             }
         }
@@ -164,4 +169,8 @@ public class ScreenShot : MonoBehaviour
     }
 
     public void SetList(List<GameObject> list) { setterObj = list; }
+
+    public void SetDestroyList(List<int> list) { destroyStrangeList = list; }
+
+    public List<int> GetDestroyList() { return destroyStrangeList; }
 }

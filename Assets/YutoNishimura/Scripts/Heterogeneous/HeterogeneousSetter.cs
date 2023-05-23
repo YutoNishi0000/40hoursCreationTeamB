@@ -16,7 +16,7 @@ public class HeterogeneousSetter : MonoBehaviour
     private List<int> pos;
     private int rand;                    //ランダムな数字
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
-    ScreenShot screen;
+    private ScreenShot screen;
 
     void Start()
     {
@@ -77,6 +77,19 @@ public class HeterogeneousSetter : MonoBehaviour
                 fieldObjectsNum++;
             }
         }
+
+        //消した異質なもののデータが完全に削除されたらここから下の処理を再開する
+        for(int i = 0; i < screen.GetDestroyList().Count; i++)
+        {
+            //完全に消えていなかったらreturn
+            if (objSpawnPos[screen.GetDestroyList()[i]] != null)
+            {
+                return;
+            }
+        }
+
+        //ここにきているということは、完全に撮影された異質なものが削除されたことになるのでリストを初期化する
+        screen.SetDestroyList(null);
 
         //足りない分を補うような形で異質なものを動的に配置する
         for (int j = 0; j < 8 - fieldObjectsNum; j++)
