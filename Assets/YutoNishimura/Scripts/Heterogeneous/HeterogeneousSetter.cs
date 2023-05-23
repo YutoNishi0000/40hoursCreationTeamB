@@ -12,7 +12,7 @@ public class HeterogeneousSetter : MonoBehaviour
     [SerializeField] private GameObject ObjectC;
     [SerializeField] private GameObject ObjectD;
     private Queue<GameObject> queue;
-    public List<GameObject> objSpawnPos;
+    public List<GameObject> objSpawnPos;   //Don't Touch!!
     private List<int> pos;
     private int rand;                    //ランダムな数字
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
@@ -79,7 +79,7 @@ public class HeterogeneousSetter : MonoBehaviour
         }
 
         //消した異質なもののデータが完全に削除されたらここから下の処理を再開する
-        for(int i = 0; i < screen.GetDestroyList().Count; i++)
+        for (int i = 0; i < screen.GetDestroyList().Count; i++)
         {
             //完全に消えていなかったらreturn
             if (objSpawnPos[screen.GetDestroyList()[i]] != null)
