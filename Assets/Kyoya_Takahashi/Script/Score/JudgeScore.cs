@@ -35,6 +35,7 @@ public class JudgeScore : ScoreManger
     private float coolTime = 3;
     //カメラ使用可能か
     private bool cameraEnable = true;
+    private const float raiseScore = 1.5f;     //スコア上昇倍率
 
     private void Start()
     {
@@ -128,7 +129,7 @@ public class JudgeScore : ScoreManger
         if (GameManager.Instance.skillManager.GetAddScoreFlag())
         {
             //フラグがオンだったら1.5倍のスコアを返す
-            return defaultScore * 1.5f;
+            return defaultScore * raiseScore;
         }
         else
         {
