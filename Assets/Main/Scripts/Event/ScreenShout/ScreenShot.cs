@@ -47,6 +47,7 @@ public class ScreenShot : Actor
             if(targetInstance.GetEnableTakePicFlag())
             {
                 //ここにターゲット撮影時の処理を書く
+                targetInstance.SetDestroyFlag(true);
             }
 
             //サブカメラ撮影判定がオンだったときの判定
