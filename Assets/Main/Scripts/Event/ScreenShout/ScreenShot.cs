@@ -44,9 +44,12 @@ public class ScreenShot : Actor
             //GameManager.Instance.IsPhoto = true;
 
             //ターゲット撮影判定フラグがオンだったら
-            if(targetInstance.GetEnableTakePicFlag())
+            if(RespawTarget.GetCurrentTargetObj().GetComponent<Target>().GetEnableTakePicFlag())
             {
                 //ここにターゲット撮影時の処理を書く
+                GameManager.Instance.numTargetShutter++;
+                //ターゲットのオブジェクトを削除、そしてリスポーンさせる
+                RespawTarget.RespawnTarget();
             }
 
             //サブカメラ撮影判定がオンだったときの判定
