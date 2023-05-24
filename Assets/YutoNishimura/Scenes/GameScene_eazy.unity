@@ -15488,7 +15488,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcfc5d8f8da5ff84c81f8da2d6389875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  targetObj: {fileID: 6335008882168220187, guid: 4a87b575f13403b4c898aa19733db02d, type: 3}
+  root1Pos: {fileID: 1928898501}
+  root2Pos: {fileID: 2101884443}
+  root3Pos: {fileID: 1086570513}
+  root4Pos: {fileID: 1120705530}
 --- !u!4 &640807722
 Transform:
   m_ObjectHideFlags: 0
