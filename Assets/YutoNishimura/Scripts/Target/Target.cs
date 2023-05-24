@@ -6,18 +6,19 @@ using UnityEngine.AI;
 public class Target : Actor
 {
     //public Transform[] points;
-    public List<GameObject> points;
+    public GameObject[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
+    private GameObject targetCamera = null;
     private float initialTargetSpeed;       //移動速度
+    private GameObject pointParent = null;
+    private bool isInsideCamera = false;
     private bool enableTakePicFlag;    //ターゲット撮影判定
     private const float disTargetShot = 7.0f;
-    private bool destroyFlag;          //自身（ターゲットを消滅させるかどうかを表すフラグ）
 
     // Start is called before the first frame update
     void Start()
     {
-        destroyFlag = false;
         enableTakePicFlag = false;
         agent = GetComponent<NavMeshAgent>();
 
@@ -28,16 +29,16 @@ public class Target : Actor
     }
     private void OnEnable()
     {
-        //pointParent = GameObject.FindGameObjectWithTag("TargetPoint");
-        //// 子オブジェクトの数を取得
-        //int childCount = pointParent.transform.childCount;
+        pointParent = GameObject.FindGameObjectWithTag("TargetPoint");
+        // 子オブジェクトの数を取得
+        int childCount = pointParent.transform.childCount;
 
-        //// 子オブジェクトを順に取得する
-        //for (int i = 0; i < childCount; i++)
-        //{
-        //    Transform childTransform = pointParent.transform.GetChild(i);
-        //    points[i] = childTransform.gameObject;
-        //}
+        // 子オブジェクトを順に取得する
+        for (int i = 0; i < childCount; i++)
+        {
+            Transform childTransform = pointParent.transform.GetChild(i);
+            points[i] = childTransform.gameObject;
+        }
     }
     //private void OnEnable()
     //{
@@ -55,21 +56,9 @@ public class Target : Actor
         //    this.transform.position.z);
         //targetCamera.transform.eulerAngles = this.transform.eulerAngles;
         //エージェントが現目標地点に近づいたら次の目標地点を設定
-
-        //まだポイントが設定されていなかったら処理は行わない
-        if(points == null)
-        {
-            return;
-        }
-
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             GoNextPoint();
-        }
-
-        if (destroyFlag)
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -102,7 +91,7 @@ public class Target : Actor
     void GoNextPoint()
     {
         //地点が何も設定されていない場合
-        if (points.Count == 0)
+        if (points.Length == 0)
         {
             return;
         }
@@ -111,7 +100,7 @@ public class Target : Actor
         agent.destination = new Vector3(points[destPoint].transform.position.x, transform.position.y, points[destPoint].transform.position.z);
 
         //配列内の次の位置を目標地点に設定し、必要ならば出発地点に戻る
-        destPoint = (destPoint + 1) % points.Count;
+        destPoint = (destPoint + 1) % points.Length;
     }
 
     public float GetTargetSpeed() { return agent.speed; }
@@ -121,8 +110,4 @@ public class Target : Actor
     public void SetTargetSpeed(float speed) { agent.speed = speed; }
 
     public bool GetEnableTakePicFlag() { return enableTakePicFlag; }
-
-    public void SetTargetRoot(List<GameObject> root) { points = root; }
-
-    public void SetDestroyFlag(bool flag) { destroyFlag = flag; }
 }
