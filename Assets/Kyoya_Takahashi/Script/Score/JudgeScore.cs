@@ -52,7 +52,7 @@ public class JudgeScore : ScoreManger
             Shutter.isFilming = false;
             //Debug.Log("通ってる(1)");
             //ターゲットが画面外か
-            if (checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position)) == (int)ScoreType.outOfScreen)
+            if (checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position)) == (int)ScoreType.outOfScreen)
             {
                 SEManager.Instance.PlayShot();
                 return;
@@ -66,13 +66,15 @@ public class JudgeScore : ScoreManger
             //障害物がないときの処理
 
             //スコア加算
-            ScoreManger.Score += checkScore(WorldToScreenPoint(cam, TargetManager.target.transform.position));
+            ScoreManger.Score += checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position));
             ScoreManger.ShotMainTarget = true;
             TargetManager.IsSpawn = true;
             //対象を撮影した回数をインクリメント
             GameManager.Instance.numTargetShutter++;
             //SE
             SEManager.Instance.PlayTargetShot();
+            //ターゲットリスポーン
+            RespawTarget.RespawnTarget();
         }
     }
     /// <summary>
@@ -183,9 +185,9 @@ public class JudgeScore : ScoreManger
     RaycastHit hit;
     private bool createRay()
     {
-        Vector3 diff = TargetManager.target.transform.position - player.transform.position;
+        Vector3 diff = RespawTarget.GetCurrentTargetObj().transform.position - player.transform.position;
         Vector3 direction = diff.normalized;
-        float distance = Vector3.Distance(TargetManager.target.transform.position, player.transform.position);
+        float distance = Vector3.Distance(RespawTarget.GetCurrentTargetObj().transform.position, player.transform.position);
 
         return Physics.Raycast(player.transform.position, direction, out hit, distance);
     }
