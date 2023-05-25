@@ -17,6 +17,7 @@ public class HeterogeneousSetter : MonoBehaviour
     private int rand;                    //ランダムな数字
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
     private ScreenShot screen;
+    private readonly int numStrangeObjInField = 8;
 
     void Start()
     {
@@ -39,7 +40,7 @@ public class HeterogeneousSetter : MonoBehaviour
         InitialSetObjects();
     }
 
-    void Update()
+    void LateUpdate()
     {
         Debug.Log("1isitunamono" + objSpawnPos.Count);
         SetObjects();
@@ -51,7 +52,7 @@ public class HeterogeneousSetter : MonoBehaviour
     {
         List<int> rnd = new List<int>();
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < numStrangeObjInField; i++)
         {
             rnd.Add(Random.Range(0, points.Count()));
 
@@ -67,7 +68,7 @@ public class HeterogeneousSetter : MonoBehaviour
         }
     }
 
-    private void SetObjects()
+    public void SetObjects()
     {
         //今異質なものが何個配置されているのかを確認
         for(int i = 0; i < points.Count(); i++)
@@ -92,7 +93,7 @@ public class HeterogeneousSetter : MonoBehaviour
         screen.SetDestroyList(null);
 
         //足りない分を補うような形で異質なものを動的に配置する
-        for (int j = 0; j < 8 - fieldObjectsNum; j++)
+        for (int j = 0; j < numStrangeObjInField - fieldObjectsNum; j++)
         {
             int rand = Random.Range(0, points.Count());
 

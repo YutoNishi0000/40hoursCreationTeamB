@@ -6,8 +6,8 @@ using UnityEngine;
 public class HeterogeneousController : Actor
 {
     private Material material;
-    private readonly float destroyTime = 10;
-    private float color_a;
+    private readonly float destroyTime = 1.0f;
+    private float dethtime;
     public bool takenPicFlag;       //写真を撮られたかどうか
     public bool enableTakePicFlag;  //サブカメラで写真を撮ることが可能かどうかを表すフラグ
 
@@ -16,7 +16,7 @@ public class HeterogeneousController : Actor
         enableTakePicFlag = false;
         takenPicFlag = false;
         material = GetComponent<Material>();
-        color_a = destroyTime;
+        dethtime = destroyTime;
     }
 
     void Update()
@@ -62,17 +62,14 @@ public class HeterogeneousController : Actor
             return;
         }
 
-        Debug.Log("異質なもの削除");
-
         //アルファ値が０以下になったら自身を削除
-        if (color_a < 0)
+        if (dethtime < 0)
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
         }
 
-        color_a -= Time.deltaTime;
-
-        GetComponent<Renderer>().material.color -= new Color(0, 0, 0, color_a);
+        dethtime -= Time.deltaTime;
     }
 
     public void SetEnableTakePicFlag(bool flag) { enableTakePicFlag = flag; }
