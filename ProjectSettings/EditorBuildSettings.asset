@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kyoya_Takahashi/Scene/GameScene_eazy.unity
     guid: 96e1d12dc31bac447a8f4ed7c7451be6
+  - enabled: 1
+    path: Assets/YutoNishimura/Scenes/OutGame/Stage.unity
+    guid: 25ef994ce70f9414bb48eab7ec63f4c3
+  - enabled: 1
+    path: Assets/YutoNishimura/Scenes/GameScene_Main.unity
+    guid: e86f0668fe861364f8a5f4d1b97adb81
+  - enabled: 1
+    path: Assets/YutoNishimura/Scenes/OutGame/Title.unity
+    guid: 8a0710f7bc8363b418f8fab4febe3c76
   m_configObjects: {}
