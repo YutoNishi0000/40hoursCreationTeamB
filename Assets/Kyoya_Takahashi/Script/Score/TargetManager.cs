@@ -14,20 +14,21 @@ public class TargetManager : MonoBehaviour
     [SerializeField] List<GameObject> _spawnObject = new List<GameObject>();
     // スポーンさせる座標
     Vector3 _spawnPosition;
-    //private void Awake()
-    //{
-    //    Respawntarget();
-    //}
-    //void Update()
-    //{
-    //    if (!IsSpawn)
-    //    {
-    //        return;
-    //    }
-    //    Debug.Log("通ってる");
-    //    IsSpawn = false;
-    //    StartCoroutine(destroy());
-    //}
+    private void Awake()
+    {
+        //Respawntarget();
+    }
+    void Update()
+    {
+        //if (!IsSpawn)
+        //{
+        //    return;
+        //}
+        //Debug.Log("通ってる");
+        //IsSpawn = false;
+        //StartCoroutine(destroy());
+
+    }
     //private IEnumerator destroy()
     //{
     //    yield return new WaitForSeconds(1);
@@ -43,8 +44,5 @@ public class TargetManager : MonoBehaviour
     //    target = Instantiate(_spawnObject[Random.Range(0, _spawnObject.Count)],
     //                _spawnPosition,
     //                Quaternion.Euler(0, 0, 0));
-
-        
-
     //}
 }

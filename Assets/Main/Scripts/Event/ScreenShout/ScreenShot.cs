@@ -46,10 +46,9 @@ public class ScreenShot : Actor
             //ターゲット撮影判定フラグがオンだったら
             if(RespawTarget.GetCurrentTargetObj().GetComponent<Target>().GetEnableTakePicFlag())
             {
+                Debug.Log("ターゲット通ってる");
                 //ここにターゲット撮影時の処理を書く
-                GameManager.Instance.numTargetShutter++;
-                //ターゲットのオブジェクトを削除、そしてリスポーンさせる
-                RespawTarget.RespawnTarget();
+                //GameManager.Instance.numTargetShutter++;               
             }
 
             //サブカメラ撮影判定がオンだったときの判定
@@ -67,7 +66,7 @@ public class ScreenShot : Actor
                     setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
                     Debug.Log("処理完了");
                     //リストにこの配列のインデックスを追加
-                    destroyStrangeList.Add(i);
+                    //destroyStrangeList.Add(i);
                 }
             }
         }

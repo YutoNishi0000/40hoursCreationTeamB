@@ -80,17 +80,17 @@ public class HeterogeneousSetter : MonoBehaviour
         }
 
         //消した異質なもののデータが完全に削除されたらここから下の処理を再開する
-        for(int i = 0; i < screen.GetDestroyList().Count; i++)
-        {
+        //for(int i = 0; i < screen.GetDestroyList().Count; i++)
+        //{
             //完全に消えていなかったらreturn
-            if (objSpawnPos[screen.GetDestroyList()[i]] != null)
-            {
-                return;
-            }
-        }
+            //if (objSpawnPos[screen.GetDestroyList()[i]] != null)
+            //{
+            //    return;
+            //}
+        //}
 
         //ここにきているということは、完全に撮影された異質なものが削除されたことになるのでリストを初期化する
-        screen.SetDestroyList(null);
+        //screen.SetDestroyList(null);
 
         //足りない分を補うような形で異質なものを動的に配置する
         for (int j = 0; j < numStrangeObjInField - fieldObjectsNum; j++)
