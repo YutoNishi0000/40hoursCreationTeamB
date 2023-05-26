@@ -96,7 +96,7 @@ public class JudgeScore : ScoreManger
     /// <param name="cam">カメラオブジェクト</param>
     /// <param name="worldPosition">ワールド座標</param>
     /// <returns>スクリーン座標</returns>
-    public static Vector3 WorldToScreenPoint(Camera cam, Vector3 worldPosition)
+    private Vector3 WorldToScreenPoint(Camera cam, Vector3 worldPosition)
     {
         // カメラ空間に変換(カメラから見た座標に変換)
         Vector3 cameraSpace = cam.worldToCameraMatrix.MultiplyPoint(worldPosition);
