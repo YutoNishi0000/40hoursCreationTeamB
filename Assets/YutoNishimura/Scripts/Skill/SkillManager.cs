@@ -154,4 +154,7 @@ public class SkillManager : Actor
 
     public bool GetAddScoreFlag() { return addScoreFlag; }
 
+    // スピード
+    public bool GetPlayerSpeedFlag() { return skillBlock_player; }
+
 }
