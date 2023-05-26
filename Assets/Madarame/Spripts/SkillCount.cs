@@ -6,41 +6,34 @@ using UnityEngine.UI;
 public class SkillCount : MonoBehaviour
 {
     // 表示するUI
-    [SerializeField] GameObject _speed;
-    [SerializeField] GameObject _score;
-    [SerializeField] GameObject _vision;
+    [SerializeField] Image _speed;
+    [SerializeField] Image _score;
+    [SerializeField] Image _vision;
     // 非表示するUI
-    [SerializeField] GameObject _speedOff;
-    [SerializeField] GameObject _scoreOff;
-    [SerializeField] GameObject _visionOff;
-    // UI切り替え用変数
-    int[] _Skill = new int[4];
+    [SerializeField] Image _speedOff;
+    [SerializeField] Image _scoreOff;
+    [SerializeField] Image _visionOff;
+
+    SkillManager _skillManager;
+
+    private void Start()
+    {
+        _skillManager = GetComponent<SkillManager>();
+    }
 
     private void Update()
     {
         // スピードUP
-        if (_Skill[1] == 1)
-        {
-            _speed.gameObject.GetComponent<Image>().enabled = true;
-            _speedOff.gameObject.GetComponent<Image>().enabled = false;
-        }
+        _speed.enabled = !_skillManager.GetPlayerSpeedFlag();
+        _speedOff.enabled = _skillManager.GetPlayerSpeedFlag();
+        
         // スコアUP
-        if (_Skill[2] == 2)
-        {
-            _score.gameObject.GetComponent<Image>().enabled = true;
-            _scoreOff.gameObject.GetComponent<Image>().enabled = false;
-        }
+        _score.enabled = _skillManager.GetAddScoreFlag();
+        _scoreOff.enabled = !_skillManager.GetAddScoreFlag();
+
         // 対象が5秒間可視化
-        if (_Skill[3] == 3)
-        {
-            Invoke("Vision", 5);
-            _vision.gameObject.GetComponent<Image>().enabled = false;
-            _visionOff.gameObject.GetComponent<Image>().enabled = true;
-        }
-    }
-    private void Vision()
-    {
-        _vision.gameObject.GetComponent<Image>().enabled = true;
-        _visionOff.gameObject.GetComponent<Image>().enabled = false;
+        _vision.enabled = _skillManager.GetTargetMinimapFlag();
+        _visionOff.enabled = !_skillManager.GetTargetMinimapFlag();
+        
     }
 }
