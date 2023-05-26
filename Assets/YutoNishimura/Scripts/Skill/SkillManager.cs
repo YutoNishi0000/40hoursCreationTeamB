@@ -41,7 +41,7 @@ public class SkillManager : Actor
     {
         //Debug.Log(skillBlock_player);
         UnLockSkill();
-        SkillImposition();
+        SkillImposition();                
     }
 
     /// <summary>
@@ -52,16 +52,25 @@ public class SkillManager : Actor
         switch (GameManager.Instance.numSubShutter)
         {
             case skillLevel1:
-                SEManager.Instance.PlaySkill();
-                skillBlock_player = false;
+                if (skillBlock_player)
+                {
+                    SEManager.Instance.PlaySkill();
+                    skillBlock_player = false;
+                }
                 break;
             case skillLevel2:
-                SEManager.Instance.PlaySkill();
-                skillBlock_addScore = false;
+                if (skillBlock_addScore)
+                {
+                    SEManager.Instance.PlaySkill();
+                    skillBlock_addScore = false;
+                }
                 break;
             case skillLevel3:
-                SEManager.Instance.PlaySkill();
-                skillBlock_seeTarget = false;
+                if (skillBlock_seeTarget)
+                {
+                    SEManager.Instance.PlaySkill();
+                    skillBlock_seeTarget = false;
+                }
                 break;
             default:
                 break;
@@ -73,14 +82,14 @@ public class SkillManager : Actor
     /// </summary>
     public void SkillImposition()
     {
-        if(!skillBlock_player)
+        if(skillBlock_player)
         {
-            Debug.Log("‰Á‘¬");
-            PlayerSpeedUp();
-            skillBlock_player = true;
+            return;
         }
+        Debug.Log("‰Á‘¬");
+        PlayerSpeedUp();
 
-        if(skillBlock_addScore)
+        if (skillBlock_addScore)
         {
             return;
         }
@@ -108,7 +117,7 @@ public class SkillManager : Actor
     /// </summary>
     private void TargetMinimapActivation()
     {
-        int count = GameManager.Instance.numSubShutter - 40;
+        int count = GameManager.Instance.numSubShutter - skillLevel3;
 
         if(count % 10 == 0 && !minimapSkillFlag)
         {
@@ -132,7 +141,8 @@ public class SkillManager : Actor
         }
         else
         {
-            minimapSkillFlag = false; 
+            //SetTargetMinimapFlag(false); 
+            minimapSkillFlag = false;
         }
     }
 

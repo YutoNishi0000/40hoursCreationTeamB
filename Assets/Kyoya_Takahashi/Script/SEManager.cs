@@ -11,7 +11,6 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     [SerializeField] private AudioClip targetShot;
     [SerializeField] private GameObject timeLimit;
 
-    public bool HasPlaySkill = false;
     private bool isTimeLimit = false;
     private void oneShot(AudioClip ac)
     {
@@ -36,11 +35,6 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     /// </summary>
     public void PlaySkill()
     {
-        if(HasPlaySkill)
-        {
-            return;
-        }
-        HasPlaySkill = true;
         oneShot(skill);
     }
     /// <summary>
