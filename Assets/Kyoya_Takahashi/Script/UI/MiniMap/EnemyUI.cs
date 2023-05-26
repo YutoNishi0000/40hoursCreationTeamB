@@ -9,7 +9,6 @@ public class EnemyUI : MonoBehaviour
     [SerializeField] Image enemy;   //enemy‚ÌêŠ‚ğ•\¦‚·‚éUI
     private SkillManager skillManager;
 
-    private const float ORTHO_SIZE = 70;
     // Start is called before the first frame update
     void Start()
     {

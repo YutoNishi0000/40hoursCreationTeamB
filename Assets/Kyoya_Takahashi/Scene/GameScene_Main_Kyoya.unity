@@ -4854,8 +4854,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 445850207}
   enemy: {fileID: 663879404}
-  x: 0
-  y: 0
 --- !u!1 &280875324
 GameObject:
   m_ObjectHideFlags: 0
@@ -19725,7 +19723,7 @@ MonoBehaviour:
   point2: {fileID: 744807415}
   duration: 1.5
   magnitude: 0.5
-  mimic: {fileID: 8675915457954794080, guid: 3fc537e92bf3d2449b5be72cfd6cb447, type: 3}
+  mimic: {fileID: 4484111761750686190, guid: 472eda4c7fef9044098f07d1125affaf, type: 3}
 --- !u!1001 &889016145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37524,8 +37522,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 445850207}
   enemy: {fileID: 0}
-  x: 0
-  y: 0
 --- !u!1 &1710604258
 GameObject:
   m_ObjectHideFlags: 0
