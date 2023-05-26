@@ -30,7 +30,7 @@ public class HeterogeneousController : Actor
         //メインカメラから見えたときだけ処理を行う
         if (Camera.current.name == "Main Camera")
         {
-            Debug.Log("サブカメラ処理が行われています");
+            //Debug.Log("サブカメラ処理が行われています");
 
             Vector3 strangeObjVec = transform.position - playerInstance.transform.position;
             Vector3 playerForwardVec = playerInstance.transform.forward;

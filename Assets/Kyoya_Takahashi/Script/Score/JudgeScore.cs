@@ -51,20 +51,25 @@ public class JudgeScore : ScoreManger
         {
             Shutter.isFilming = false;
             //Debug.Log("通ってる(1)");
+            //障害物があるとき
+            if (!createRay())
+            {
+                Debug.Log("障害蟻");
+                SEManager.Instance.PlayShot();
+                Invoke("startOA", 0.2f);
+                return;
+            }
             //ターゲットが画面外か
             if (checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position)) == (int)ScoreType.outOfScreen)
             {
                 SEManager.Instance.PlayShot();
+                Invoke("startOA", 0.2f);
+                Debug.Log("画面外");
                 return;
             }
-            //障害物があるとき
-            if (!createRay())
-            {
-                SEManager.Instance.PlayShot();
-                return;
-            }
+            
             //障害物がないときの処理
-
+            Debug.Log("撮影した");
             //スコア加算
             ScoreManger.Score += checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position));
             ScoreManger.ShotMainTarget = true;
@@ -75,6 +80,9 @@ public class JudgeScore : ScoreManger
             SEManager.Instance.PlayTargetShot();
             //ターゲットリスポーン
             RespawTarget.RespawnTarget();
+            //アニメーション開始
+            Invoke("startTA", 0.2f);
+
         }
     }
     /// <summary>
@@ -183,13 +191,33 @@ public class JudgeScore : ScoreManger
         }
     }
     RaycastHit hit;
+    [SerializeField] GameObject spere;
     private bool createRay()
     {
         Vector3 diff = RespawTarget.GetCurrentTargetObj().transform.position - player.transform.position;
-        Vector3 direction = diff.normalized;
-        float distance = Vector3.Distance(RespawTarget.GetCurrentTargetObj().transform.position, player.transform.position);
 
-        return Physics.Raycast(player.transform.position, direction, out hit, distance);
+        Vector3 direction = diff.normalized;
+        //Debug.Log(direction);
+        float distance = Vector3.Distance(RespawTarget.GetCurrentTargetObj().transform.position, player.transform.position);
+        Debug.DrawRay(player.transform.position, distance * direction, Color.green, 1f);
+        if (Physics.Raycast(player.transform.position, direction, out hit, distance))
+        {
+            //Physics.Raycast(player.transform.position, direction, out hit, distance);
+           // spere.transform.position = hit.point;
+            Debug.Log("ステージに当たってる");
+            return true;
+        }
+        Debug.Log("ステージに当たってない");
+        return false;     
+        
+    }
+    void startTA()
+    {
+        ShutterAnimation.TargetAnimationStart();
+    }
+    void startOA()
+    {
+        ShutterAnimation.OtherAnimationStart();
     }
 
 }

@@ -16,6 +16,10 @@ TagManager:
   - main
   - sub
   - TargetPoint
+  - Root1
+  - Root2
+  - Root3
+  - Root4
   layers:
   - Default
   - TransparentFX
@@ -27,7 +31,7 @@ TagManager:
   - Target
   - OffUI
   - MiniMap
-  - 
+  - Stage
   - 
   - 
   - 
