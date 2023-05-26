@@ -36,6 +36,7 @@ public class JudgeScore : ScoreManger
     //カメラ使用可能か
     private bool cameraEnable = true;
     private const float raiseScore = 1.5f;     //スコア上昇倍率
+    private ScreenShot screen;
 
     private void Start()
     {
@@ -44,6 +45,8 @@ public class JudgeScore : ScoreManger
             areaWidth * 2 + areaWidth * 0.5f,
             areaHeight * 2 + areaHeight * 0.5f,
             0.0f);
+
+        screen = GameObject.FindObjectOfType<ScreenShot>();
     }
     private void LateUpdate()
     {
@@ -72,7 +75,7 @@ public class JudgeScore : ScoreManger
             //CountDownTimer.GetTime(5);
             Debug.Log("時間を獲得しました");
             //ターゲットが撮影された
-            ScreenShot.noneTargetFlag = false;
+            screen.SetPhotographTargetFlag(false);
             //障害物がないときの処理
             Debug.Log("撮影した");
             //スコア加算

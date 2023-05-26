@@ -12,8 +12,8 @@ public class ShutterAnimation : MonoBehaviour
     static GameObject[] Animation = new GameObject[2];
     private void Start()
     {
-        Animation[0] = AssetDatabase.LoadAssetAtPath<GameObject>(address0);
-        Animation[1] = AssetDatabase.LoadAssetAtPath<GameObject>(address1);
+        //Animation[0] = AssetDatabase.LoadAssetAtPath<GameObject>(address0);
+        //Animation[1] = AssetDatabase.LoadAssetAtPath<GameObject>(address1);
     }
 
 
@@ -23,13 +23,13 @@ public class ShutterAnimation : MonoBehaviour
     public static void TargetAnimationStart()
     {
 
-        Instantiate(Animation[1]);
+        //Instantiate(Animation[1]);
     }
     /// <summary>
     /// その他アニメーション開始
     /// </summary>
     public static void OtherAnimationStart()
     {
-        Instantiate(Animation[0]);
+        //Instantiate(Animation[0]);
     }
 }

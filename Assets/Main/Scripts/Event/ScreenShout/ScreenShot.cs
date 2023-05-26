@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using DG.Tweening;
 
-public class ScreenShot : Actor
+public class ScreenShot : MonoBehaviour
 {
     //入力が必要なもの
     [SerializeField] private RawImage targetImage;     //テクスチャを表示するためのRawImage
@@ -25,7 +25,9 @@ public class ScreenShot : Actor
     private List<int> destroyStrangeList;
     //[SerializeField]private GameObject mimic = null;    //対象のモデル
     private bool noneStrangeFlag;
-    public static bool noneTargetFlag;
+    private bool noneTargetFlag;
+    private Player player;
+
     void Awake()
     {
         setterObj = new List<GameObject>();
@@ -36,6 +38,7 @@ public class ScreenShot : Actor
         targetImage.enabled = false;
         noneStrangeFlag = true;
         noneTargetFlag = true;
+        player = GameObject.FindObjectOfType<Player>();
     }
 
     private void Update()
@@ -85,6 +88,7 @@ public class ScreenShot : Actor
             {
                 Debug.Log("時間を失いました");
                 //CountDownTimer.LostTime(5);
+                player.Shake(3, 1);
             }
         }
     }
@@ -193,4 +197,6 @@ public class ScreenShot : Actor
     public void SetDestroyList(List<int> list) { destroyStrangeList = list; }
 
     public List<int> GetDestroyList() { return destroyStrangeList; }
+
+    public void SetPhotographTargetFlag(bool flag) { noneTargetFlag = flag; }
 }
