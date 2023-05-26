@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Player : Actor
 {
     Vector3 moveDirection = Vector3.zero;
@@ -19,6 +20,11 @@ public class Player : Actor
     private float jumpSpeed = 5f;
     private float gravity = 20f;
 
+    [Header("ターゲットが近づいて来た時のSEを入れてください")]
+    [SerializeField] private AudioClip targetSE;
+
+    private AudioSource audioSource;
+
     //変数の宣言(角度の制限用)
     float minX = -40f, maxX = 40f;
     Vector3 initialCamPos;
@@ -33,6 +39,8 @@ public class Player : Actor
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         initialPlayerSpeed = speed;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = targetSE;
     }
 
     private void Update()
@@ -167,6 +175,26 @@ public class Player : Actor
 
         return q;
     }
+
+    #region ターゲットが近づいてきたときのリアクション
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Target"))
+        {
+            audioSource.Play();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Target"))
+        {
+            audioSource.Stop();
+        }
+    }
+
+    #endregion
 
     #region カメラシェイク
 
