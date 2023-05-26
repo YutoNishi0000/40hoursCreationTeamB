@@ -21,7 +21,7 @@ public class EnemyUI : MonoBehaviour
     {
         enemy.rectTransform.anchoredPosition
                = WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position);
-        //enemy.enabled = skillManager.GetTargetMinimapFlag();
+        enemy.enabled = skillManager.GetTargetMinimapFlag();
         if (skillManager.GetTargetMinimapFlag())
         {
             enemy.rectTransform.anchoredPosition
@@ -36,16 +36,11 @@ public class EnemyUI : MonoBehaviour
     /// <returns>スクリーン座標</returns>
     private Vector3 WorldToScreenPoint(Camera cam, Vector3 worldPosition)
     {
-        // 平行投影のProjectionMatrixを計算する
-        var aspectRatio = (float)Screen.width / Screen.height;
-        var orthoWidth = ORTHO_SIZE * aspectRatio;
-        var projMatrix = Matrix4x4.Ortho(orthoWidth * -1, orthoWidth, ORTHO_SIZE * -1, ORTHO_SIZE, 0, 1000);
         // カメラ空間に変換(カメラから見た座標に変換)
         Vector3 cameraSpace = cam.worldToCameraMatrix.MultiplyPoint(worldPosition);
 
         // クリッピング空間に変換(cameraSpaceを一定の範囲に絞ってる)
-        //Vector4 clipSpace = cam.projectionMatrix * new Vector4(cameraSpace.x, cameraSpace.y, cameraSpace.z, 1f);
-        Vector4 clipSpace = projMatrix * new Vector4(cameraSpace.x, cameraSpace.y, cameraSpace.z, 1f);
+        Vector4 clipSpace = cam.projectionMatrix * new Vector4(cameraSpace.x, cameraSpace.y, cameraSpace.z, 1f);
 
         //デバイス座標：左下ー1　右上＋1
         //割ってるのは正規化
@@ -53,7 +48,7 @@ public class EnemyUI : MonoBehaviour
         Vector3 deviceSpace = new Vector3(clipSpace.x / clipSpace.w, clipSpace.y / clipSpace.w, clipSpace.z / clipSpace.w);
 
         // スクリーン座標系に変換
-        Vector3 screenSpace = new Vector3((deviceSpace.x + 1f) * 0.25f * Screen.width, (deviceSpace.y + 1f) * 0.5f * Screen.height, deviceSpace.z);
+        Vector3 screenSpace = new Vector3((deviceSpace.x + 1f) * 0.21f * Screen.width, (deviceSpace.y + 1f) * 0.38f * Screen.height, deviceSpace.z);
 
         return screenSpace;
     }
