@@ -33,6 +33,7 @@ public class Player : Actor
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         initialPlayerSpeed = speed;
+        Shake(3, 1);
     }
 
     private void Update()
@@ -167,6 +168,36 @@ public class Player : Actor
 
         return q;
     }
+
+    #region カメラシェイク
+
+    public void Shake(float duration, float magnitude)
+    {
+        StartCoroutine(DoShake(duration, magnitude));
+    }
+
+    private IEnumerator DoShake(float duration, float magnitude)
+    {
+        var pos = cam.transform.localPosition;
+
+        var elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            var x = pos.x + Random.Range(-1f, 1f) * magnitude;
+            var y = pos.y + Random.Range(-1f, 1f) * magnitude;
+
+            cam.transform.localPosition = new Vector3(x, y, pos.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        cam.transform.localPosition = pos;
+    }
+
+    #endregion
 
     #region ゲッター、セッター
 
