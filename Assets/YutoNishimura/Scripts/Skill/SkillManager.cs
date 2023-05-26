@@ -17,9 +17,9 @@ public class SkillManager : Actor
     [SerializeField] private readonly float interval = 5.0f;
     private int shutterTimeStamp;
     private bool minimapSkillFlag;         //ターゲットのミニマップの表示フラグのために使う
-    private const int skillLevel1 = 15;
-    private const int skillLevel2 = 26;
-    private const int skillLevel3 = 42;
+    private const int skillLevel1 = 1;
+    private const int skillLevel2 = 2;
+    private const int skillLevel3 = 3;
     private float playerAccelSpeed;
     private const float accelerationSpeed = 1.5f;   //プレイヤーのスキル獲得時の速度倍率
 
@@ -49,24 +49,21 @@ public class SkillManager : Actor
     /// </summary>
     private void UnLockSkill()
     {
-        switch(GameManager.Instance.numSubShutter)
+        switch (GameManager.Instance.numSubShutter)
         {
             case skillLevel1:
-                skillBlock_player = false;
-                GameManager.Instance.numSubShutter++;
                 SEManager.Instance.PlaySkill();
+                skillBlock_player = false;
                 break;
             case skillLevel2:
-                skillBlock_addScore = false;
-                GameManager.Instance.numSubShutter++;
                 SEManager.Instance.PlaySkill();
+                skillBlock_addScore = false;
                 break;
             case skillLevel3:
-                skillBlock_seeTarget = false;
                 SEManager.Instance.PlaySkill();
-                //GameManager.Instance.numSubShutter++;
+                skillBlock_seeTarget = false;
                 break;
-           default:
+            default:
                 break;
         }
     }

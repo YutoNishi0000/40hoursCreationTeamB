@@ -78,7 +78,7 @@ public class Target : Actor
         //    this.transform.position.z);
         //targetCamera.transform.eulerAngles = this.transform.eulerAngles;
         //エージェントが現目標地点に近づいたら次の目標地点を設定
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)   
         {
             GoNextPoint();
         }

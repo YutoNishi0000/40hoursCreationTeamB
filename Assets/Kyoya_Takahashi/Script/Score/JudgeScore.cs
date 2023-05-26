@@ -58,14 +58,12 @@ public class JudgeScore : ScoreManger
             {
                 Debug.Log("障害蟻");
                 SEManager.Instance.PlayShot();
-                Invoke("startOA", 0.2f);
                 return;
             }
             //ターゲットが画面外か
             if (checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position)) == (int)ScoreType.outOfScreen)
             {
                 SEManager.Instance.PlayShot();
-                Invoke("startOA", 0.2f);
                 Debug.Log("画面外");
                 return;
             }
@@ -221,11 +219,6 @@ public class JudgeScore : ScoreManger
     void startTA()
     {
         ShutterAnimation.TargetAnimationStart();
-    }
-    void startOA()
-    {
-        ShutterAnimation.OtherAnimationStart();
-        ScreenShot.abc[1] = 0;
     }
 }
 

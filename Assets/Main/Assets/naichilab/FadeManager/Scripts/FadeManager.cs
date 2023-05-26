@@ -34,7 +34,7 @@ public class FadeManager : MonoBehaviour
 	/// <summary>
 	/// デバッグモード .
 	/// </summary>
-	public bool DebugMode = true;
+	public bool DebugMode = false;
 	/// <summary>フェード中の透明度</summary>
 	private float fadeAlpha = 0;
 	/// <summary>フェード中かどうか</summary>

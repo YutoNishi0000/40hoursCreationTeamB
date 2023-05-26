@@ -12,6 +12,8 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private RawImage targetImage;     //テクスチャを表示するためのRawImage
     [SerializeField] private Image point1;             //スクショした画像の１番目の移動先
     [SerializeField] private Image point2;             //スクショした画像の２番目の移動先
+    [SerializeField] private float duration;           //カメラシェイクの継続時間
+    [SerializeField] private float magnitude;          //カメラシェイクの揺れの強さ
 
     //内部処理で使うもの
     private Camera cam;                                //プレイヤーのカメラ
@@ -70,27 +72,31 @@ public class ScreenShot : MonoBehaviour
             {
                 if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
                 {
+                    Debug.Log("異質なもの撮影");
                     noneStrangeFlag = false;
                     //サブカメラカウントをインクリメント
                     GameManager.Instance.numSubShutter++;
-                    Debug.Log("1");
+                    //Debug.Log("1");
                     //スコアを加算
                     ScoreManger.Score += 10;
-                    Debug.Log("2");
+                    //Debug.Log("2");
                     //tempList[i]のオブジェクトの消滅フラグをオンにする
                     setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
-                    Debug.Log("処理完了");
+                    //Debug.Log("処理完了");
                     //リストにこの配列のインデックスを追加
                     //destroyStrangeList.Add(i);
+                    Invoke("startOA", 0.2f);
                 }
             }
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
             if (noneTargetFlag && noneStrangeFlag && Shutter.isFilming)
             {
-                Debug.Log("時間を失いました");
+                //Debug.Log("時間を失いました");
+                Debug.Log("何も撮影できてない");
                 CountDownTimer.DecreaceTime();
-                player.Shake(1.5f, 1);
+                player.Shake(duration, magnitude);
+                ShutterAnimation.NoneAnimationStart();
             }
         }
     }
@@ -192,6 +198,10 @@ public class ScreenShot : MonoBehaviour
     private void SlideMovePreview()
     {
         targetImage.transform.DOMoveX(point2.rectTransform.position.x, 0.3f);
+    }
+    void startOA()
+    {
+        ShutterAnimation.OtherAnimationStart();
     }
 
     public void SetList(List<GameObject> list) { setterObj = list; }
