@@ -30,7 +30,10 @@ public class ScreenShot : MonoBehaviour
     private bool noneStrangeFlag;
     private bool noneTargetFlag;
     private Player player;
-    
+    [SerializeField] private Image getTimeImg;
+    [SerializeField] private Image lostTimeImg;
+
+
 
     public static int[] abc = new int[10];
 
@@ -99,7 +102,24 @@ public class ScreenShot : MonoBehaviour
                 CountDownTimer.DecreaceTime();
                 player.Shake(duration, magnitude);
                 ShutterAnimation.NoneAnimationStart();
+                FadeIn(lostTimeImg, 0.5f);
             }
+        }
+    }
+
+    public void FadeIn(Image img, float time)
+    {
+        Color color = img.GetComponent<Image>().color;
+
+        if (color.a <= 1.0f)
+        {
+            img.enabled = true;
+            color.a += Time.deltaTime / time;
+            img.GetComponent<Image>().color = color;
+        }
+        else
+        {
+            img.enabled = false;
         }
     }
 
