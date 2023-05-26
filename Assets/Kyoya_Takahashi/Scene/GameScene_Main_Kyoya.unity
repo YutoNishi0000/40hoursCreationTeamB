@@ -22460,6 +22460,7 @@ MonoBehaviour:
   targetImage: {fileID: 630406081}
   point1: {fileID: 1684174577}
   point2: {fileID: 744807415}
+  mimic: {fileID: 8675915457954794080, guid: 3fc537e92bf3d2449b5be72cfd6cb447, type: 3}
 --- !u!1001 &889016145
 PrefabInstance:
   m_ObjectHideFlags: 0

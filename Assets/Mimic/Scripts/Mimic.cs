@@ -91,6 +91,7 @@ namespace MimicSpace
         // Update is called once per frame
         void Update()
         {
+
             if (!canCreateLeg)
                 return;
 
@@ -163,6 +164,11 @@ namespace MimicSpace
             availableLegPool.Add(leg);
             leg.SetActive(false);
         }
+        IEnumerator destroyMimic()
+        {
+            yield return new WaitForSeconds(1f);
+        }
     }
+    
 
 }

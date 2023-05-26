@@ -23,7 +23,7 @@ public class ScreenShot : Actor
     private Vector3 InitialPrevscale;                  //RawImageの初期スケール
     private List<GameObject> setterObj;                //毎フレーム送られてくる異質なものの情報を取得するためのもの
     private List<int> destroyStrangeList;
-
+    [SerializeField]private GameObject mimic = null;    //対象のモデル
     void Awake()
     {
         setterObj = new List<GameObject>();
@@ -38,6 +38,15 @@ public class ScreenShot : Actor
     {
         if(Shutter.isFilming)
         {
+            Instantiate(mimic, 
+                new Vector3(
+                RespawTarget.GetCurrentTargetObj().transform.position.x,
+                RespawTarget.GetCurrentTargetObj().transform.position.y,
+                RespawTarget.GetCurrentTargetObj().transform.position.z), 
+                Quaternion.Euler(
+                RespawTarget.GetCurrentTargetObj().transform.rotation.x,
+                RespawTarget.GetCurrentTargetObj().transform.rotation.y,
+                RespawTarget.GetCurrentTargetObj().transform.rotation.z));
             InitializeRawImage();
             ClickShootButton();
             Invoke(nameof(FirstMovePreview), 1f);
