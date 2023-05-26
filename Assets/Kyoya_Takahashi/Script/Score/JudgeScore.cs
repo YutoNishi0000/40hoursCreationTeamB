@@ -39,6 +39,7 @@ public class JudgeScore : ScoreManger
     private ScreenShot screen;
     //[SerializeField] private Image getTimeImg;
 
+
     private void Start()
     {
         //getTimeImg.enabled = false;
@@ -91,6 +92,7 @@ public class JudgeScore : ScoreManger
             //アニメーション開始
             Invoke("startTA", 0.2f);
             TimerUI.FadeOut(true);
+            SEManager.Instance.PlayMinusTimeCountSE();
             //screen.FadeIn(getTimeImg);
         }
     }

@@ -49206,6 +49206,8 @@ MonoBehaviour:
   skill: {fileID: 8300000, guid: 1aa8df8a699eed64f8411e6d63d01eb6, type: 3}
   targetShot: {fileID: 8300000, guid: aa69f6eca7e1bd049bad3f32a621c86b, type: 3}
   timeLimit: {fileID: 2179297094181169802, guid: fdb13ad5e3045004f9fdabe116a48c9d, type: 3}
+  plusCountSE: {fileID: 8300000, guid: c67a3cc408a9ceb46b797845f370f8e6, type: 3}
+  minusCountSE: {fileID: 8300000, guid: 0d5b392e8942b7a47ac3110901b5102a, type: 3}
 --- !u!4 &1642236777
 Transform:
   m_ObjectHideFlags: 0

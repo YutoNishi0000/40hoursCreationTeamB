@@ -109,6 +109,7 @@ public class ScreenShot : MonoBehaviour
                 player.Shake(duration, magnitude);
                 ShutterAnimation.NoneAnimationStart();
                 TimerUI.FadeOut(false);
+                SEManager.Instance.PlayPlusTimeCountSE();
             }
         }
     }
