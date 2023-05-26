@@ -38,7 +38,7 @@ public class ScreenShot : Actor
     {
         if(Shutter.isFilming)
         {
-            Instantiate(mimic, 
+            Instantiate(mimic,
                 new Vector3(
                 RespawTarget.GetCurrentTargetObj().transform.position.x,
                 RespawTarget.GetCurrentTargetObj().transform.position.y,

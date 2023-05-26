@@ -65,19 +65,19 @@ namespace MimicSpace
 
         private void ResetMimic()
         {
-            foreach (Leg g in GameObject.FindObjectsOfType<Leg>())
-            {
-                Destroy(g.gameObject);
-            }
-            legCount = 0;
-            deployedLegs = 0;
+            //foreach (Leg g in GameObject.FindObjectsOfType<Leg>())
+            //{
+            //    Destroy(g.gameObject);
+            //}
+            //legCount = 0;
+            //deployedLegs = 0;
 
-            maxLegs = numberOfLegs * partsPerLeg;
-            float rot = 360f / maxLegs;
-            Vector2 randV = Random.insideUnitCircle;
-            velocity = new Vector3(randV.x, 0, randV.y);
-            minimumAnchoredParts = minimumAnchoredLegs * partsPerLeg;
-            maxLegDistance = newLegRadius * 2.1f;
+            //maxLegs = numberOfLegs * partsPerLeg;
+            //float rot = 360f / maxLegs;
+            //Vector2 randV = Random.insideUnitCircle;
+            //velocity = new Vector3(randV.x, 0, randV.y);
+            //minimumAnchoredParts = minimumAnchoredLegs * partsPerLeg;
+            //maxLegDistance = newLegRadius * 2.1f;
 
         }
 
@@ -91,7 +91,7 @@ namespace MimicSpace
         // Update is called once per frame
         void Update()
         {
-
+            StartCoroutine(destroyMimic());
             if (!canCreateLeg)
                 return;
 
@@ -167,6 +167,7 @@ namespace MimicSpace
         IEnumerator destroyMimic()
         {
             yield return new WaitForSeconds(1f);
+            Destroy(this.gameObject);
         }
     }
     
