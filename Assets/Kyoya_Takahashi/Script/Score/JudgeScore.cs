@@ -37,11 +37,11 @@ public class JudgeScore : ScoreManger
     private bool cameraEnable = true;
     private const float raiseScore = 1.5f;     //スコア上昇倍率
     private ScreenShot screen;
-    [SerializeField] private Image getTimeImg;
+    //[SerializeField] private Image getTimeImg;
 
     private void Start()
     {
-        getTimeImg.enabled = false;
+        //getTimeImg.enabled = false;
         //画面の中心を求める
         center = new Vector3(
             areaWidth * 2 + areaWidth * 0.5f,
@@ -90,7 +90,7 @@ public class JudgeScore : ScoreManger
             RespawTarget.RespawnTarget();
             //アニメーション開始
             Invoke("startTA", 0.2f);
-
+            TimerUI.FadeOut(true);
             //screen.FadeIn(getTimeImg);
         }
     }

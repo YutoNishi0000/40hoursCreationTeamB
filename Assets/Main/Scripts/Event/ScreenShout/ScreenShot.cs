@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(TimerUI))]
 public class ScreenShot : MonoBehaviour
@@ -32,13 +33,16 @@ public class ScreenShot : MonoBehaviour
     private Player player;
     [SerializeField] private Image lostTimeImg;
     float imgTime;
+    float a_img;
+    private readonly float fadeInSpeed = 10.0f;
+    private readonly float finishFadeIn = 1.0f;
 
 
     public static int[] abc = new int[10];
 
     void Awake()
     {
-        lostTimeImg.enabled = false;
+        //lostTimeImg.enabled = false;
         imgTime = 0;
         setterObj = new List<GameObject>();
         destroyStrangeList = new List<int>();
@@ -104,36 +108,9 @@ public class ScreenShot : MonoBehaviour
                 CountDownTimer.DecreaceTime();
                 player.Shake(duration, magnitude);
                 ShutterAnimation.NoneAnimationStart();
-                StartCoroutine("FadeIn"); // フェードインを開始
+                TimerUI.FadeOut(false);
             }
         }
-    }
-
-    IEnumerator FadeIn()
-    {
-
-        lostTimeImg.gameObject.SetActive(true); // 画像をアクティブにする
-
-        Color c = lostTimeImg.color;
-        c.a = 0f;
-        lostTimeImg.color = c; // 画像の不透明度を0にする
-
-        while (true)
-        {
-            yield return null; // 1フレーム待つ
-            c.a += 0.02f;
-            lostTimeImg.color = c; // 画像の不透明度を下げる
-
-            if (c.a>= 1f) // 不透明度が0以下のとき
-            {
-                c.a = 0f;
-                lostTimeImg.color = c; // 不透明度を0
-                break; // 繰り返し終了
-            }
-        }
-
-        lostTimeImg.gameObject.SetActive(false); // 画像を非アクティブにする
-
     }
     private void InitializeRawImage()
     {
