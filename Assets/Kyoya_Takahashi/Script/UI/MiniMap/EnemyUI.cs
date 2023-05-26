@@ -18,6 +18,10 @@ public class EnemyUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(RespawTarget.GetCurrentTargetObj() == null)
+        {
+            return;
+        }
         enemy.rectTransform.anchoredPosition
                = WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position);
         enemy.enabled = skillManager.GetTargetMinimapFlag();
