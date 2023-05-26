@@ -23,10 +23,12 @@ public class ScreenShot : MonoBehaviour
     private Vector3 InitialPrevscale;                  //RawImageの初期スケール
     private List<GameObject> setterObj;                //毎フレーム送られてくる異質なものの情報を取得するためのもの
     private List<int> destroyStrangeList;
-    //[SerializeField]private GameObject mimic = null;    //対象のモデル
+    [SerializeField]private GameObject mimic = null;    //対象のモデル
     private bool noneStrangeFlag;
     private bool noneTargetFlag;
     private Player player;
+
+    public static int[] abc = new int[10];
 
     void Awake()
     {
@@ -49,15 +51,15 @@ public class ScreenShot : MonoBehaviour
             noneTargetFlag = true;
             noneStrangeFlag = true;
 
-            //Instantiate(mimic,
-            //    new Vector3(
-            //    RespawTarget.GetCurrentTargetObj().transform.position.x,
-            //    RespawTarget.GetCurrentTargetObj().transform.position.y,
-            //    RespawTarget.GetCurrentTargetObj().transform.position.z), 
-            //    Quaternion.Euler(
-            //    RespawTarget.GetCurrentTargetObj().transform.rotation.x,
-            //    RespawTarget.GetCurrentTargetObj().transform.rotation.y,
-            //    RespawTarget.GetCurrentTargetObj().transform.rotation.z));
+            Instantiate(mimic,
+                new Vector3(
+                RespawTarget.GetCurrentTargetObj().transform.position.x,
+                RespawTarget.GetCurrentTargetObj().transform.position.y,
+                RespawTarget.GetCurrentTargetObj().transform.position.z),
+                Quaternion.Euler(
+                RespawTarget.GetCurrentTargetObj().transform.rotation.x,
+                RespawTarget.GetCurrentTargetObj().transform.rotation.y,
+                RespawTarget.GetCurrentTargetObj().transform.rotation.z));
             InitializeRawImage();
             ClickShootButton();
             Invoke(nameof(FirstMovePreview), 1f);
@@ -87,8 +89,8 @@ public class ScreenShot : MonoBehaviour
             if (noneTargetFlag && noneStrangeFlag && Shutter.isFilming)
             {
                 Debug.Log("時間を失いました");
-                //CountDownTimer.LostTime(5);
-                player.Shake(3, 1);
+                CountDownTimer.DecreaceTime();
+                player.Shake(1.5f, 1);
             }
         }
     }

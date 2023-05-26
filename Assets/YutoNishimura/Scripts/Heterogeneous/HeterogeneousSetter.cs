@@ -42,7 +42,7 @@ public class HeterogeneousSetter : MonoBehaviour
 
     void LateUpdate()
     {
-        Debug.Log("1isitunamono" + objSpawnPos.Count);
+        //Debug.Log("1isitunamono" + objSpawnPos.Count);
         SetObjects();
         screen.SetList(objSpawnPos);
     }

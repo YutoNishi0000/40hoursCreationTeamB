@@ -5,21 +5,26 @@ using UnityEngine.UI;
 
 public class CountDownTimer : MonoBehaviour
 {
-    private float _totalTime;    // 制限時間の合計
-    private float _oldSeconds;   // 前回Update時の秒数
-    private Text _timerText;
-    [SerializeField] private int _minute;  // 制限時間（分）
-    [SerializeField] private float _seconds; // 制限時間（秒）
+	private static float _totalTime;    // 制限時間の合計
+	private float _oldSeconds;   // 前回Update時の秒数
+	private Text _timerText;
+	[SerializeField] private int _minute;  // 制限時間（分）
+	[SerializeField] private float _seconds; // 制限時間（秒）
 
-    void Start()
-    {
+	//減らす時間
+	private static float _decreaceTime = 5;
+	//増やす時間
+	private static float _increaceTime = 5;
+
+	void Start()
+	{
 		_totalTime = _minute * 60 + _seconds;
 		_oldSeconds = 0f;
 		_timerText = GetComponentInChildren<Text>();
-    }
+	}
 
-    void Update()
-    {
+	void Update()
+	{
 		//　制限時間が0秒以下なら何もしない
 		if (_totalTime <= 0f)
 		{
@@ -28,7 +33,6 @@ public class CountDownTimer : MonoBehaviour
 			return;
 		}
 		//　一旦トータルの制限時間を計測；
-		_totalTime = _minute * 60 + _seconds;
 		_totalTime -= Time.deltaTime;
 
 		//　再設定
@@ -47,4 +51,13 @@ public class CountDownTimer : MonoBehaviour
 			Debug.Log("制限時間終了");
 		}
 	}
+	public static void DecreaceTime()
+	{
+		_totalTime -= _decreaceTime;
+	}
+	public static void IncreaceTime()
+    {
+		_totalTime += _increaceTime;
+	}
+
 }

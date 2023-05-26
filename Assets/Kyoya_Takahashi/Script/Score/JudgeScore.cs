@@ -6,7 +6,6 @@ public class JudgeScore : ScoreManger
 {
     //ビュー座標に変換したいオブジェクトポジション
     [SerializeField] private GameObject obj = null;
-    //[SerializeField] private GameObject obj2 = null;
 
     [SerializeField] private Camera cam = null;
     [SerializeField] private GameObject player = null;
@@ -55,7 +54,7 @@ public class JudgeScore : ScoreManger
             Shutter.isFilming = false;
             //Debug.Log("通ってる(1)");
             //障害物があるとき
-            if (!createRay())
+            if (createRay())
             {
                 Debug.Log("障害蟻");
                 SEManager.Instance.PlayShot();
@@ -72,7 +71,7 @@ public class JudgeScore : ScoreManger
             }
 
             //時間を獲得
-            //CountDownTimer.GetTime(5);
+            CountDownTimer.IncreaceTime();
             Debug.Log("時間を獲得しました");
             //ターゲットが撮影された
             screen.SetPhotographTargetFlag(false);
@@ -226,7 +225,7 @@ public class JudgeScore : ScoreManger
     void startOA()
     {
         ShutterAnimation.OtherAnimationStart();
+        ScreenShot.abc[1] = 0;
     }
-
 }
 
