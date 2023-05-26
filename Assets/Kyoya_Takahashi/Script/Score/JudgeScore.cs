@@ -67,7 +67,12 @@ public class JudgeScore : ScoreManger
                 Debug.Log("‰æ–ÊŠO");
                 return;
             }
-            
+
+            //ŠÔ‚ğŠl“¾
+            //CountDownTimer.GetTime(5);
+            Debug.Log("ŠÔ‚ğŠl“¾‚µ‚Ü‚µ‚½");
+            //ƒ^[ƒQƒbƒg‚ªB‰e‚³‚ê‚½
+            ScreenShot.noneTargetFlag = false;
             //áŠQ•¨‚ª‚È‚¢‚Æ‚«‚Ìˆ—
             Debug.Log("B‰e‚µ‚½");
             //ƒXƒRƒA‰ÁZ

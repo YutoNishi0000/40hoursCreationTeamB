@@ -23,7 +23,9 @@ public class ScreenShot : Actor
     private Vector3 InitialPrevscale;                  //RawImageの初期スケール
     private List<GameObject> setterObj;                //毎フレーム送られてくる異質なものの情報を取得するためのもの
     private List<int> destroyStrangeList;
-    [SerializeField]private GameObject mimic = null;    //対象のモデル
+    //[SerializeField]private GameObject mimic = null;    //対象のモデル
+    private bool noneStrangeFlag;
+    public static bool noneTargetFlag;
     void Awake()
     {
         setterObj = new List<GameObject>();
@@ -32,39 +34,38 @@ public class ScreenShot : Actor
         InitialPrevscale = targetImage.rectTransform.localScale;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         targetImage.enabled = false;
+        noneStrangeFlag = true;
+        noneTargetFlag = true;
     }
 
     private void Update()
     {
         if(Shutter.isFilming)
         {
-            Instantiate(mimic,
-                new Vector3(
-                RespawTarget.GetCurrentTargetObj().transform.position.x,
-                RespawTarget.GetCurrentTargetObj().transform.position.y,
-                RespawTarget.GetCurrentTargetObj().transform.position.z), 
-                Quaternion.Euler(
-                RespawTarget.GetCurrentTargetObj().transform.rotation.x,
-                RespawTarget.GetCurrentTargetObj().transform.rotation.y,
-                RespawTarget.GetCurrentTargetObj().transform.rotation.z));
+            //フラグを初期化
+            noneTargetFlag = true;
+            noneStrangeFlag = true;
+
+            //Instantiate(mimic,
+            //    new Vector3(
+            //    RespawTarget.GetCurrentTargetObj().transform.position.x,
+            //    RespawTarget.GetCurrentTargetObj().transform.position.y,
+            //    RespawTarget.GetCurrentTargetObj().transform.position.z), 
+            //    Quaternion.Euler(
+            //    RespawTarget.GetCurrentTargetObj().transform.rotation.x,
+            //    RespawTarget.GetCurrentTargetObj().transform.rotation.y,
+            //    RespawTarget.GetCurrentTargetObj().transform.rotation.z));
             InitializeRawImage();
             ClickShootButton();
             Invoke(nameof(FirstMovePreview), 1f);
             //GameManager.Instance.IsPhoto = true;
-
-            //ターゲット撮影判定フラグがオンだったら
-            if(RespawTarget.GetCurrentTargetObj().GetComponent<Target>().GetEnableTakePicFlag())
-            {
-                Debug.Log("ターゲット通ってる");
-                //ここにターゲット撮影時の処理を書く
-                //GameManager.Instance.numTargetShutter++;               
-            }
 
             //サブカメラ撮影判定がオンだったときの判定
             for (int i = 0; i < setterObj.Count; i++)
             {
                 if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
                 {
+                    noneStrangeFlag = false;
                     //サブカメラカウントをインクリメント
                     GameManager.Instance.numSubShutter++;
                     Debug.Log("1");
@@ -77,6 +78,13 @@ public class ScreenShot : Actor
                     //リストにこの配列のインデックスを追加
                     //destroyStrangeList.Add(i);
                 }
+            }
+
+            //空撮り（異質なもの、ターゲットが撮影されていない）していたら
+            if (noneTargetFlag && noneStrangeFlag && Shutter.isFilming)
+            {
+                Debug.Log("時間を失いました");
+                //CountDownTimer.LostTime(5);
             }
         }
     }
