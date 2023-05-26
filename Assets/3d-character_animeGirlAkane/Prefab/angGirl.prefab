@@ -1852,6 +1852,7 @@ GameObject:
   - component: {fileID: 3850880387190137684}
   - component: {fileID: 7174585619207780654}
   - component: {fileID: 7873031136005054801}
+  - component: {fileID: 1983683718729038732}
   m_Layer: 0
   m_Name: angGirl
   m_TagString: Untagged
@@ -1868,7 +1869,7 @@ Transform:
   m_GameObject: {fileID: 4484111761750686190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5314746866759857098}
@@ -1910,6 +1911,18 @@ CapsuleCollider:
   m_Height: 1.1
   m_Direction: 1
   m_Center: {x: 0, y: 0.55, z: 0}
+--- !u!114 &1983683718729038732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4484111761750686190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fa704d1e5e60c48a03968cc20429a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4507022178543547693
 GameObject:
   m_ObjectHideFlags: 0
