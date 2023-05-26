@@ -33,7 +33,6 @@ public class Player : Actor
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         initialPlayerSpeed = speed;
-        Shake(3, 1);
     }
 
     private void Update()
