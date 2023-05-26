@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JudgeScore : ScoreManger
 {
@@ -36,9 +37,11 @@ public class JudgeScore : ScoreManger
     private bool cameraEnable = true;
     private const float raiseScore = 1.5f;     //スコア上昇倍率
     private ScreenShot screen;
+    [SerializeField] private Image getTimeImg;
 
     private void Start()
     {
+        getTimeImg.enabled = false;
         //画面の中心を求める
         center = new Vector3(
             areaWidth * 2 + areaWidth * 0.5f,
@@ -88,6 +91,7 @@ public class JudgeScore : ScoreManger
             //アニメーション開始
             Invoke("startTA", 0.2f);
 
+            //screen.FadeIn(getTimeImg);
         }
     }
     /// <summary>
@@ -119,7 +123,7 @@ public class JudgeScore : ScoreManger
     /// </summary>
     /// <param name="scrPoint">スクリーン座標</param>
     /// <returns>スコアの値</returns>
-    public static float checkScore(Vector3 scrPoint)
+    private float checkScore(Vector3 scrPoint)
     {
         //return lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
         int defaultScore = lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
@@ -141,7 +145,7 @@ public class JudgeScore : ScoreManger
     /// <param name="scrPoint">スクリーン座標</param>
     /// <param name="score">タテだけで見たときのスコア</param>
     /// <returns>スコア</returns>
-    public static int checkScoreHori(Vector3 scrPoint)
+    private int checkScoreHori(Vector3 scrPoint)
     {
         if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2)
         {
@@ -163,7 +167,7 @@ public class JudgeScore : ScoreManger
     /// <param name="scrPoint">スクリーン座標</param>
     /// <param name="score">タテだけで見たときのスコア</param>
     /// <returns>スコア</returns>
-    public static int checkScoreVart(Vector3 scrPoint)
+    private int checkScoreVart(Vector3 scrPoint)
     {
         if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2)
         {
@@ -184,7 +188,7 @@ public class JudgeScore : ScoreManger
     /// </summary>
     /// <param name="v">片方のスコア</param>
     /// <returns>スコア</returns>
-    public static int lower(int v1, int v2)
+    private int lower(int v1, int v2)
     {
         if (v1 < v2)
         {
@@ -196,7 +200,6 @@ public class JudgeScore : ScoreManger
         }
     }
     RaycastHit hit;
-    [SerializeField] GameObject spere;
     private bool createRay()
     {
         Vector3 diff = RespawTarget.GetCurrentTargetObj().transform.position - player.transform.position;
