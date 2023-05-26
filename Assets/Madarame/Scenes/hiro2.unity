@@ -9054,7 +9054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6285dad9d8e917f4ebe49a5230118c17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e9585007ae631524cb149829304e8427, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22277,9 +22277,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d8969084fcbf543aac4a62f0e1c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillCount0: {fileID: 1043451028}
-  SkillCount1: {fileID: 1744955385}
-  SkillCount2: {fileID: 1271643741}
+  _speed: {fileID: 0}
+  _score: {fileID: 0}
+  _vision: {fileID: 0}
+  _speedOff: {fileID: 0}
+  _scoreOff: {fileID: 0}
+  _visionOff: {fileID: 0}
 --- !u!1 &1043451028
 GameObject:
   m_ObjectHideFlags: 0
@@ -29058,7 +29061,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 511
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: bd2023e57fb63764eb3ca9268090e12c, type: 2}
   m_TargetDisplay: 0
@@ -29078,7 +29081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339473632}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 8.6, y: 54.1, z: 6}
+  m_LocalPosition: {x: 8.6, y: 42.3, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43052,7 +43055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02471a81638e12a49b58f03740ebe550, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d52308e135701c4a9c5f30feabc3a81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
