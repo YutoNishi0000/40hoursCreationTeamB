@@ -5,26 +5,42 @@ using UnityEngine.UI;
 
 public class SkillCount : MonoBehaviour
 {
-    // 表示/非表示するUI
-    [SerializeField] GameObject SkillCount0;
-    [SerializeField] GameObject SkillCount1;
-    [SerializeField] GameObject SkillCount2;
+    // 表示するUI
+    [SerializeField] GameObject _speed;
+    [SerializeField] GameObject _score;
+    [SerializeField] GameObject _vision;
+    // 非表示するUI
+    [SerializeField] GameObject _speedOff;
+    [SerializeField] GameObject _scoreOff;
+    [SerializeField] GameObject _visionOff;
     // UI切り替え用変数
-    int[] _SkillCount = new int[4];
+    int[] _Skill = new int[4];
 
     private void Update()
     {
-        if (_SkillCount[1] == 1)
+        // スピードUP
+        if (_Skill[1] == 1)
         {
-            SkillCount0.gameObject.SetActive(true);
+            _speed.gameObject.GetComponent<Image>().enabled = true;
+            _speedOff.gameObject.GetComponent<Image>().enabled = false;
         }
-        if (_SkillCount[2] == 2)
+        // スコアUP
+        if (_Skill[2] == 2)
         {
-            SkillCount1.gameObject.SetActive(true);
+            _score.gameObject.GetComponent<Image>().enabled = true;
+            _scoreOff.gameObject.GetComponent<Image>().enabled = false;
         }
-        if (_SkillCount[3] == 3)
+        // 対象が5秒間可視化
+        if (_Skill[3] == 3)
         {
-            SkillCount2.gameObject.SetActive(true);
+            Invoke("Vision", 5);
+            _vision.gameObject.GetComponent<Image>().enabled = false;
+            _visionOff.gameObject.GetComponent<Image>().enabled = true;
         }
+    }
+    private void Vision()
+    {
+        _vision.gameObject.GetComponent<Image>().enabled = true;
+        _visionOff.gameObject.GetComponent<Image>().enabled = false;
     }
 }

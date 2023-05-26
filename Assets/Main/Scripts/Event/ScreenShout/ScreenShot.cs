@@ -82,7 +82,8 @@ public class ScreenShot : Actor
 
     private string GetScreenShotPath()
     {
-        string path = "Assets/Pictures/" + timeStamp + ".png";
+        //string path = "Assets/Pictures/" + timeStamp + ".png";
+        string path = GameManager.Instance.GetPicturesFilePath() + timeStamp + ".png";
 
         return path;
     }
