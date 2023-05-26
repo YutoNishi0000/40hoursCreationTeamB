@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using DG.Tweening;
 
+[RequireComponent(typeof(TimerUI))]
 public class ScreenShot : MonoBehaviour
 {
     //“ü—Í‚ª•K—v‚È‚à‚Ì
@@ -29,6 +30,7 @@ public class ScreenShot : MonoBehaviour
     private bool noneStrangeFlag;
     private bool noneTargetFlag;
     private Player player;
+    
 
     public static int[] abc = new int[10];
 
