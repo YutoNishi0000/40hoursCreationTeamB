@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 [RequireComponent(typeof(SkillManager))]
 [RequireComponent(typeof(HeterogeneousSetter))]
@@ -45,6 +46,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public SkillManager skillManager;
     public HeterogeneousSetter strangeSetter;
 
+    private const string directoryPath = "Pictures";      //プロジェクトファイル直下にディレクトリを作成
+    private string picturesFilePath;                       //ファイルパスを指定するためのもの
+
     private void Start()
     {
         gameMode = new GameMode();
@@ -52,7 +56,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         strangeSetter = GetComponent<HeterogeneousSetter>();
     }
 
-
+    private void Update()
+    {
+        
+    }
 
     //ゲッター
     public bool GetGameOver()
@@ -64,6 +71,41 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         gameOver = b;
     }
+
+    #region ファイル関係
+
+    //写真を保存するディレクトリパスを取得する
+    public string GetPicturesFilePath()
+    {
+        //ディレクトリが存在しているか
+        if(System.IO.Directory.Exists(directoryPath))
+        {
+            Debug.Log("写真フォルダは存在している");
+        }
+        else
+        {
+            Debug.Log("写真フォルダは存在していない");
+            //ディレクトリ作成
+            System.IO.Directory.CreateDirectory(directoryPath);
+        }
+
+        picturesFilePath = directoryPath + "/";
+
+        return picturesFilePath;
+    }
+
+    //写真を格納しているディレクトリを削除
+    public void DestroyPicturesDirectory()
+    {
+        //ゲーム終了時、写真を格納しているディレクトリが存在しているのならば
+        if(System.IO.Directory.Exists(directoryPath))
+        {
+            //ディレクトリを削除
+            System.IO.Directory.Delete(directoryPath);
+        }
+    }
+
+    #endregion
 
     public GameMode GetGameMode() { return gameMode; }
 
