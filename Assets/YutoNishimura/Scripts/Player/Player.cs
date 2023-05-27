@@ -83,14 +83,7 @@ public class Player : Actor
         {
             Debug.Log("地面についています");
             //移動のベクトルを計算
-            moveDirection = targetDirection * speed;
-
-            //Jumpボタンでジャンプ処理
-            if (Input.GetButton("Jump"))
-            {
-                Debug.Log("ジャンプ");
-                moveDirection.y = jumpSpeed;
-            }
+            moveDirection = targetDirection.normalized * speed;
         }
         else        //空中操作の処理（重力加速度等）
         {

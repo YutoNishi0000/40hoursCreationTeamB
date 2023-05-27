@@ -17,9 +17,9 @@ public class SkillManager : Actor
     [SerializeField] private readonly float interval = 5.0f;
     private int shutterTimeStamp;
     private bool minimapSkillFlag;         //ターゲットのミニマップの表示フラグのために使う
-    private const int skillLevel1 = 1;
-    private const int skillLevel2 = 2;
-    private const int skillLevel3 = 3;
+    private const int skillLevel1 = 5;
+    private const int skillLevel2 = 10;
+    private const int skillLevel3 = 20;
     private float playerAccelSpeed;
     private const float accelerationSpeed = 1.5f;   //プレイヤーのスキル獲得時の速度倍率
 

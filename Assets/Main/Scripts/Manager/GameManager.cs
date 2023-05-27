@@ -58,7 +58,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            DestroyPicturesDirectory();
+            Application.Quit();
+        }
     }
 
     //ÉQÉbÉ^Å[
