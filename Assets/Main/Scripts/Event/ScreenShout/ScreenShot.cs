@@ -299,8 +299,6 @@ public class ScreenShot : MonoBehaviour
         // ファイルとして保存するならFile.WriteAllBytes()を実行
         File.WriteAllBytes(screenShotPath, pngData);
 
-        GameManager.Instance.filePathes.Add(screenShotPath);
-
         cam.targetTexture = null;
 
         //生成したテクスチャファイルから情報を読み込んでRawImageに出力
