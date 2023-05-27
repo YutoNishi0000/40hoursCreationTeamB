@@ -93,6 +93,8 @@ public class JudgeScore : ScoreManger
             Invoke("startTA", 0.2f);
             TimerUI.FadeOut(true);
             SEManager.Instance.PlayMinusTimeCountSE();
+            ScreenShot.noneTargetFlag = false;
+
             //screen.FadeIn(getTimeImg);
         }
     }
@@ -210,7 +212,7 @@ public class JudgeScore : ScoreManger
         //Debug.Log(direction);
         float distance = Vector3.Distance(RespawTarget.GetCurrentTargetObj().transform.position, player.transform.position);
         Debug.DrawRay(player.transform.position, distance * direction, Color.green, 1f);
-        if (Physics.Raycast(player.transform.position, direction, out hit, distance, 10))
+        if (Physics.Raycast(player.transform.position, direction, out hit, distance))
         {
             //Physics.Raycast(player.transform.position, direction, out hit, distance);
            // spere.transform.position = hit.point;

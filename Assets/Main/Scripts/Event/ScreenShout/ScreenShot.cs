@@ -29,7 +29,7 @@ public class ScreenShot : MonoBehaviour
     private List<int> destroyStrangeList;
     [SerializeField]private GameObject mimic = null;    //対象のモデル
     private bool noneStrangeFlag;
-    private bool noneTargetFlag;
+    public static bool noneTargetFlag;
     private Player player;
     [SerializeField] private Image lostTimeImg;
     float imgTime;
@@ -59,9 +59,7 @@ public class ScreenShot : MonoBehaviour
     {
         if(Shutter.isFilming)
         {
-            //フラグを初期化
-            noneTargetFlag = true;
-            noneStrangeFlag = true;
+            
 
             Instantiate(mimic,
                 new Vector3(
@@ -96,6 +94,7 @@ public class ScreenShot : MonoBehaviour
                     //Debug.Log("処理完了");
                     //リストにこの配列のインデックスを追加
                     //destroyStrangeList.Add(i);
+                    //アニメーション
                     Invoke("startOA", 0.2f);
                 }
             }
@@ -110,7 +109,12 @@ public class ScreenShot : MonoBehaviour
                 ShutterAnimation.NoneAnimationStart();
                 TimerUI.FadeOut(false);
                 SEManager.Instance.PlayPlusTimeCountSE();
+                //アニメーション
+                Invoke("startNA", 0.2f);
             }
+            //フラグを初期化
+            noneTargetFlag = true;
+            noneStrangeFlag = true;
         }
     }
     private void InitializeRawImage()
@@ -214,6 +218,10 @@ public class ScreenShot : MonoBehaviour
     void startOA()
     {
         ShutterAnimation.OtherAnimationStart();
+    }
+    void startNA()
+    {
+        ShutterAnimation.NoneAnimationStart();
     }
 
     public void SetList(List<GameObject> list) { setterObj = list; }
