@@ -8,7 +8,7 @@ public class Player : Actor
     Vector3 moveDirection = Vector3.zero;
     Vector3 targetDirection;        //ˆÚ“®‚·‚é•ûŒü‚ÌƒxƒNƒgƒ‹
     private CharacterController controller;
-    [SerializeField] private float speed = 5f;
+    private float speed = 6f;
 
     public GameObject cam;
     Quaternion cameraRot, characterRot;

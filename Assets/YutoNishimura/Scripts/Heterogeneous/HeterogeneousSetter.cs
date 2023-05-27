@@ -18,9 +18,12 @@ public class HeterogeneousSetter : MonoBehaviour
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
     private ScreenShot screen;
     private readonly int numStrangeObjInField = 8;
+    private readonly float respawnCoolTime = 10;    //異質なものが再生成されるまでのクールタイム
+    private float coolTime;
 
     void Start()
     {
+        coolTime = 0;
         screen = GameObject.FindObjectOfType<ScreenShot>();
         fieldObjectsNum = 0;
         objSpawnPos = new List<GameObject>();
@@ -70,6 +73,17 @@ public class HeterogeneousSetter : MonoBehaviour
 
     public void SetObjects()
     {
+        coolTime -= Time.deltaTime;
+
+        if(coolTime > 0)
+        {
+            return;
+        }
+        else
+        {
+            coolTime = 0;
+        }
+
         //今異質なものが何個配置されているのかを確認
         for(int i = 0; i < points.Count(); i++)
         {
@@ -79,18 +93,7 @@ public class HeterogeneousSetter : MonoBehaviour
             }
         }
 
-        //消した異質なもののデータが完全に削除されたらここから下の処理を再開する
-        //for(int i = 0; i < screen.GetDestroyList().Count; i++)
-        //{
-            //完全に消えていなかったらreturn
-            //if (objSpawnPos[screen.GetDestroyList()[i]] != null)
-            //{
-            //    return;
-            //}
-        //}
-
-        //ここにきているということは、完全に撮影された異質なものが削除されたことになるのでリストを初期化する
-        //screen.SetDestroyList(null);
+        Debug.Log("今フィールドに異質なものが" + fieldObjectsNum + "子存在しています");
 
         //足りない分を補うような形で異質なものを動的に配置する
         for (int j = 0; j < numStrangeObjInField - fieldObjectsNum; j++)
@@ -106,6 +109,7 @@ public class HeterogeneousSetter : MonoBehaviour
         }
 
         fieldObjectsNum = 0;
+        coolTime = respawnCoolTime;
     }
 
     //キューを使用して次のオブジェクトをキューにセット、取得する関数
