@@ -15,7 +15,8 @@ public class BarController : ButtonController
 
     private void Start()
     {
-        bar.rectTransform.position = initialPos.rectTransform.position;
+        //bar.rectTransform.position = bar.rectTransform.position;
+        initialPos.rectTransform.position = bar.rectTransform.position;
         InitializeButton();
     }
 
