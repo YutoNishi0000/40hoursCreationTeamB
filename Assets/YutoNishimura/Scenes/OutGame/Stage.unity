@@ -150,8 +150,8 @@ RectTransform:
   m_GameObject: {fileID: 124841127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.76, y: 0.76, z: 0.76}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1673176272}
   m_RootOrder: 1
@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 348}
-  m_SizeDelta: {x: 1456.24, y: 161.3}
+  m_SizeDelta: {x: 1920, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &124841129
 MonoBehaviour:
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4d304421ed096a749bedef1859f7d3f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -411,8 +411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeScaleTime: 0.1
   afterScale: 1.5
-  initialImage: {fileID: 21300000, guid: 21a86c896f500de469609fc741414795, type: 3}
-  afterImage: {fileID: 21300000, guid: 5e71c1a293dad0940873587126c6a953, type: 3}
+  initialImage: {fileID: 21300000, guid: e303fa5d7cc363c4cb2ef160f5c845d2, type: 3}
+  afterImage: {fileID: 21300000, guid: 65c5ba5b611a554498e666114ed9b64b, type: 3}
 --- !u!114 &605446059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3fe74b2af117e2849be12c477cb9ce3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e303fa5d7cc363c4cb2ef160f5c845d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -851,8 +851,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeScaleTime: 0.1
   afterScale: 1.5
-  initialImage: {fileID: 21300000, guid: 21a86c896f500de469609fc741414795, type: 3}
-  afterImage: {fileID: 21300000, guid: 5e71c1a293dad0940873587126c6a953, type: 3}
+  initialImage: {fileID: 21300000, guid: 634611661ffe63842a0c9db66497daa4, type: 3}
+  afterImage: {fileID: 21300000, guid: e45a8902ff5fae3438ebccf8f0309a63, type: 3}
 --- !u!114 &1462535304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,7 +986,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3fe74b2af117e2849be12c477cb9ce3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 634611661ffe63842a0c9db66497daa4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1340,8 +1340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeScaleTime: 0.1
   afterScale: 1.5
-  initialImage: {fileID: 21300000, guid: 21a86c896f500de469609fc741414795, type: 3}
-  afterImage: {fileID: 21300000, guid: 5e71c1a293dad0940873587126c6a953, type: 3}
+  initialImage: {fileID: 21300000, guid: 6f3c94d1eedf5fe44b6473c6c077e261, type: 3}
+  afterImage: {fileID: 21300000, guid: c80475820ea87bd40930238750762678, type: 3}
 --- !u!114 &1915896487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3fe74b2af117e2849be12c477cb9ce3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f3c94d1eedf5fe44b6473c6c077e261, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3fe74b2af117e2849be12c477cb9ce3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c94a3b84ab603e244bd9c54804fc9a38, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1780,5 +1780,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeScaleTime: 0.1
   afterScale: 1.5
-  initialImage: {fileID: 21300000, guid: 21a86c896f500de469609fc741414795, type: 3}
-  afterImage: {fileID: 21300000, guid: 5e71c1a293dad0940873587126c6a953, type: 3}
+  initialImage: {fileID: 21300000, guid: c94a3b84ab603e244bd9c54804fc9a38, type: 3}
+  afterImage: {fileID: 21300000, guid: 99e4d831658d0ca4ba9be7357d1d182d, type: 3}
