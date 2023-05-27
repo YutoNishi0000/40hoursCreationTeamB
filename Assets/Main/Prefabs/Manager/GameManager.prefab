@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 7374533204814793852}
   - component: {fileID: 7374533204814793851}
   - component: {fileID: 8165409216533762271}
-  - component: {fileID: 5498093348767126485}
   - component: {fileID: 368037512333362506}
-  - component: {fileID: 5060493431793681880}
   - component: {fileID: 4673805591551258256}
   m_Layer: 0
   m_Name: GameManager
@@ -52,13 +50,16 @@ MonoBehaviour:
   IsSubPhoto: 0
   numTargetShutter: 0
   numSubShutter: 0
+  numLowScore: 0
+  numMiddleScore: 0
+  numHighScore: 0
   StartGame: 0
   TitleUI: {fileID: 0}
   gameOver: 0
+  filePathes: []
   Date: 0
   gameMode: 0
   skillManager: {fileID: 0}
-  strangeSetter: {fileID: 0}
 --- !u!82 &8165409216533762271
 AudioSource:
   m_ObjectHideFlags: 0
@@ -155,22 +156,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5498093348767126485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7374533204814793850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81072b1f0d8a68440a2096e5d436b7c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
-  cam: {fileID: 0}
-  player: {fileID: 0}
-  spere: {fileID: 0}
 --- !u!114 &368037512333362506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,24 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41278c56b26704847a738073d02a53d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5060493431793681880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7374533204814793850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78606fb9965eb384fb1955fd7381b910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: []
-  ObjectA: {fileID: 0}
-  ObjectB: {fileID: 0}
-  ObjectC: {fileID: 0}
-  ObjectD: {fileID: 0}
-  objSpawnPos: []
 --- !u!114 &4673805591551258256
 MonoBehaviour:
   m_ObjectHideFlags: 0

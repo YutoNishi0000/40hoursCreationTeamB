@@ -39,6 +39,8 @@ public class RespawTarget : MonoBehaviour
     {
         int rootType = Random.Range(0, 4);
 
+        SEManager.Instance.PlayRespawn();
+
         switch ((RootType)rootType)
         {
             case RootType.First:

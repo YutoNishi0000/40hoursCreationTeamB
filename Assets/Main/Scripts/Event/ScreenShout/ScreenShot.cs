@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using System.Security.Cryptography;
 
 [RequireComponent(typeof(TimerUI))]
 public class ScreenShot : MonoBehaviour
@@ -39,6 +40,7 @@ public class ScreenShot : MonoBehaviour
     float imgTime;
     float a_img;
     private readonly float fadeInSpeed = 10.0f;
+    private SkillManager skillManager;
 
     [SerializeField] private GameObject[] gameUI;     //写真を撮るときに消したいUI
 
@@ -79,6 +81,7 @@ public class ScreenShot : MonoBehaviour
         noneStrangeFlag = true;
         noneTargetFlag = true;
         player = GameObject.FindObjectOfType<Player>();
+        skillManager = GetComponent<SkillManager>();
     }
 
     private void Start()
@@ -138,40 +141,37 @@ public class ScreenShot : MonoBehaviour
             }
             else
             {
-                //ターゲットが画面外か
-                if (checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position)) == (int)ScoreType.outOfScreen)
+                switch(checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position)))
                 {
-                    SEManager.Instance.PlayShot();
-                    ScreenShot.noneTargetFlag = true;
-                    Debug.Log("画面外");
+                    case ScoreType.low:
+                        ShutterManager();
+                        GameManager.Instance.numLowScore++;
+                        break;
+                    case ScoreType.midle:
+                        ShutterManager();
+                        GameManager.Instance.numMiddleScore++;
+                        break;
+                    case ScoreType.high:
+                        ShutterManager();
+                        GameManager.Instance.numHighScore++;
+                        break;
+                    case ScoreType.outOfScreen:
+                        SEManager.Instance.PlayShot();
+                        ScreenShot.noneTargetFlag = true;
+                        Debug.Log("画面外");
+                        break;
                 }
-                else
-                {
-                    Transform transform = RespawTarget.GetCurrentTargetObj().transform;
-                    Instantiate(mimic, transform.position, transform.rotation);
-                    ScreenShot.noneTargetFlag = false;
-                    //時間を獲得
-                    CountDownTimer.IncreaceTime();
-                    Debug.Log("時間を獲得しました");
-                    //ターゲットが撮影された
-                    SetPhotographTargetFlag(false);
-                    //障害物がないときの処理
-                    Debug.Log("撮影した");
-                    //スコア加算
-                    ScoreManger.Score += checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position));
-                    ScoreManger.ShotMainTarget = true;
-                    TargetManager.IsSpawn = true;
-                    //対象を撮影した回数をインクリメント
-                    GameManager.Instance.numTargetShutter++;
-                    //SE
-                    SEManager.Instance.PlayTargetShot();
-                    //ターゲットリスポーン
-                    RespawTarget.RespawnTarget();
-                    //アニメーション開始
-                    Invoke("startTA", 0.2f);
-                    TimerUI.FadeOut(true);
-                    SEManager.Instance.PlayMinusTimeCountSE();
-                }
+                ////ターゲットが画面外か
+                //if ( == ScoreType.outOfScreen)
+                //{
+                //    SEManager.Instance.PlayShot();
+                //    ScreenShot.noneTargetFlag = true;
+                //    Debug.Log("画面外");
+                //}
+                //else
+                //{
+
+                //}
             }
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
@@ -194,6 +194,35 @@ public class ScreenShot : MonoBehaviour
             Invoke(nameof(OnUIShutter), 0.2f);
             Shutter.isFilming = false;
         }
+    }
+
+    //撮影時の処理
+    public void ShutterManager()
+    {
+        Transform transform = RespawTarget.GetCurrentTargetObj().transform;
+        Instantiate(mimic, transform.position, transform.rotation);
+        ScreenShot.noneTargetFlag = false;
+        //時間を獲得
+        CountDownTimer.IncreaceTime();
+        Debug.Log("時間を獲得しました");
+        //ターゲットが撮影された
+        SetPhotographTargetFlag(false);
+        //障害物がないときの処理
+        Debug.Log("撮影した");
+        //スコア加算
+        ScoreManger.Score += FinalScorePoint(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position));
+        ScoreManger.ShotMainTarget = true;
+        TargetManager.IsSpawn = true;
+        //対象を撮影した回数をインクリメント
+        GameManager.Instance.numTargetShutter++;
+        //SE
+        SEManager.Instance.PlayTargetShot();
+        //ターゲットリスポーン
+        RespawTarget.RespawnTarget();
+        //アニメーション開始
+        Invoke("startTA", 0.2f);
+        TimerUI.FadeOut(true);
+        SEManager.Instance.PlayMinusTimeCountSE();
     }
 
     //撮影する瞬間非表示にされたUIを表示する関数（Invokeで呼ぶ）
@@ -269,6 +298,8 @@ public class ScreenShot : MonoBehaviour
 
         // ファイルとして保存するならFile.WriteAllBytes()を実行
         File.WriteAllBytes(screenShotPath, pngData);
+
+        GameManager.Instance.filePathes.Add(screenShotPath);
 
         cam.targetTexture = null;
 
@@ -361,26 +392,38 @@ public class ScreenShot : MonoBehaviour
 
         return screenSpace;
     }
+
+    /// <summary>
+    /// 最終的なスコアポイント
+    /// </summary>
+    public float FinalScorePoint(Vector3 scrPoint)
+    {
+        //return lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
+        float finalScore = (float)checkScore(scrPoint);
+
+        //スキルによるスコア加算フラグがオンだったらif内の処理を実行
+        if (skillManager.GetAddScoreFlag())
+        {
+            //フラグがオンだったら1.5倍のスコアを返す
+            return finalScore * raiseScore;
+        }
+        else
+        {
+            return finalScore;
+        }
+    }
+
     /// <summary>
     /// 中央にどれだけ近いか判定
     /// </summary>
     /// <param name="scrPoint">スクリーン座標</param>
     /// <returns>スコアの値</returns>
-    private float checkScore(Vector3 scrPoint)
+    private ScoreType checkScore(Vector3 scrPoint)
     {
         //return lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
-        int defaultScore = lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
+        ScoreType defaultScore = lower(checkScoreHori(scrPoint), checkScoreVart(scrPoint));
 
-        //スキルによるスコア加算フラグがオンだったらif内の処理を実行
-        if (GameManager.Instance.skillManager.GetAddScoreFlag())
-        {
-            //フラグがオンだったら1.5倍のスコアを返す
-            return defaultScore * raiseScore;
-        }
-        else
-        {
-            return defaultScore;
-        }
+        return defaultScore;
     }
     /// <summary>
     /// スコアの判定(横)
@@ -388,21 +431,21 @@ public class ScreenShot : MonoBehaviour
     /// <param name="scrPoint">スクリーン座標</param>
     /// <param name="score">タテだけで見たときのスコア</param>
     /// <returns>スコア</returns>
-    private int checkScoreHori(Vector3 scrPoint)
+    private ScoreType checkScoreHori(Vector3 scrPoint)
     {
         if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2)
         {
-            return (int)ScoreType.high;
+            return ScoreType.high;
         }
         if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2 + areaWidth)
         {
-            return (int)ScoreType.midle;
+            return ScoreType.midle;
         }
         if (Mathf.Abs(scrPoint.x - center.x) < areaWidth / 2 + areaWidth * 2)
         {
-            return (int)ScoreType.low;
+            return ScoreType.low;
         }
-        return (int)ScoreType.outOfScreen;
+        return ScoreType.outOfScreen;
     }
     /// <summary>
     /// スコアの判定(縦)
@@ -410,28 +453,28 @@ public class ScreenShot : MonoBehaviour
     /// <param name="scrPoint">スクリーン座標</param>
     /// <param name="score">タテだけで見たときのスコア</param>
     /// <returns>スコア</returns>
-    private int checkScoreVart(Vector3 scrPoint)
+    private ScoreType checkScoreVart(Vector3 scrPoint)
     {
         if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2)
         {
-            return (int)ScoreType.high;
+            return ScoreType.high;
         }
         if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2 + areaHeight)
         {
-            return (int)ScoreType.midle;
+            return ScoreType.midle;
         }
         if (Mathf.Abs(scrPoint.y - center.y) < areaHeight / 2 + areaHeight * 2)
         {
-            return (int)ScoreType.low;
+            return ScoreType.low;
         }
-        return (int)ScoreType.outOfScreen;
+        return ScoreType.outOfScreen;
     }
     /// <summary>
     /// 低いほうの値をを求める
     /// </summary>
     /// <param name="v">片方のスコア</param>
     /// <returns>スコア</returns>
-    private int lower(int v1, int v2)
+    private ScoreType lower(ScoreType v1, ScoreType v2)
     {
         if (v1 < v2)
         {
