@@ -18,8 +18,8 @@ public class HeterogeneousSetter : MonoBehaviour
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
     private ScreenShot screen;
     private readonly int numStrangeObjInField = 8;
-    private readonly float respawnCoolTime = 10;    //異質なものが再生成されるまでのクールタイム
-    private float coolTime;
+    private readonly static float respawnCoolTime = 10;    //異質なものが再生成されるまでのクールタイム
+    private static float coolTime;
 
     void Start()
     {
@@ -109,6 +109,10 @@ public class HeterogeneousSetter : MonoBehaviour
         }
 
         fieldObjectsNum = 0;
+    }
+
+    public static void CoolTime()
+    {
         coolTime = respawnCoolTime;
     }
 
