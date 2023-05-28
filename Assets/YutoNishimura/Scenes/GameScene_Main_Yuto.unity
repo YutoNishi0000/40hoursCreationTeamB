@@ -11409,30 +11409,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: _score
-      value: 
-      objectReference: {fileID: 2059675498}
-    - target: {fileID: 0}
-      propertyPath: _speed
-      value: 
-      objectReference: {fileID: 2135568040}
-    - target: {fileID: 0}
-      propertyPath: _vision
-      value: 
-      objectReference: {fileID: 1113641177}
-    - target: {fileID: 0}
-      propertyPath: _scoreOff
-      value: 
-      objectReference: {fileID: 1689097194}
-    - target: {fileID: 0}
-      propertyPath: _speedOff
-      value: 
-      objectReference: {fileID: 1005102950}
-    - target: {fileID: 0}
-      propertyPath: _visionOff
-      value: 
-      objectReference: {fileID: 603734568}
     - target: {fileID: 7374533204814793850, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -38786,7 +38762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c2959065f4d174a84b9427bbb478bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minute: 5
+  _minute: 1
   _seconds: 0
   _resultSceneName: Result
 --- !u!114 &1139913443

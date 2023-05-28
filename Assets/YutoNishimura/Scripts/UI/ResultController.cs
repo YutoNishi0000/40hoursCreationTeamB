@@ -20,6 +20,7 @@ public class ResultController : UIController
         ShowResultScore();
         initialResultImg = resultImg.color;
         resultImg.color = new Color(resultImg.color.r, resultImg.color.g, resultImg.color.b, 0);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void Update()
