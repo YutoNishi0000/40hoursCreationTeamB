@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f334e6ef70f46468478dbc15aad1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HomeSceneName: Home
+  HomeSceneName: Home_hiro
 --- !u!4 &327555206
 Transform:
   m_ObjectHideFlags: 0

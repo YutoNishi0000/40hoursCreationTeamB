@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 7374533204814793852}
   - component: {fileID: 7374533204814793851}
   - component: {fileID: 8165409216533762271}
-  - component: {fileID: 368037512333362506}
-  - component: {fileID: 4673805591551258256}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -59,7 +57,7 @@ MonoBehaviour:
   filePathes: []
   Date: 0
   gameMode: 0
-  skillManager: {fileID: 0}
+  gameState: 0
 --- !u!82 &8165409216533762271
 AudioSource:
   m_ObjectHideFlags: 0
@@ -156,33 +154,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &368037512333362506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7374533204814793850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41278c56b26704847a738073d02a53d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4673805591551258256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7374533204814793850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d8969084fcbf543aac4a62f0e1c23e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: {fileID: 0}
-  _score: {fileID: 0}
-  _vision: {fileID: 0}
-  _speedOff: {fileID: 0}
-  _scoreOff: {fileID: 0}
-  _visionOff: {fileID: 0}

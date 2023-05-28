@@ -6731,25 +6731,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6713004004283017352, guid: c2d3e2dfc6e732a47a2163fd9a446486, type: 3}
   m_PrefabInstance: {fileID: 2066702245}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &271543618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7374533204814793850, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
-  m_PrefabInstance: {fileID: 409745228}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &271543626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271543618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603d462b355c6554db2ba3cbb05b9403, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 445850207}
-  enemy: {fileID: 663879404}
 --- !u!1 &280875324
 GameObject:
   m_ObjectHideFlags: 0
@@ -11428,27 +11409,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4673805591551258256, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+    - target: {fileID: 0}
       propertyPath: _score
       value: 
       objectReference: {fileID: 2059675498}
-    - target: {fileID: 4673805591551258256, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+    - target: {fileID: 0}
       propertyPath: _speed
       value: 
       objectReference: {fileID: 2135568040}
-    - target: {fileID: 4673805591551258256, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+    - target: {fileID: 0}
       propertyPath: _vision
       value: 
       objectReference: {fileID: 1113641177}
-    - target: {fileID: 4673805591551258256, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+    - target: {fileID: 0}
       propertyPath: _scoreOff
       value: 
       objectReference: {fileID: 1689097194}
-    - target: {fileID: 4673805591551258256, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+    - target: {fileID: 0}
       propertyPath: _speedOff
       value: 
       objectReference: {fileID: 1005102950}
-    - target: {fileID: 4673805591551258256, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+    - target: {fileID: 0}
       propertyPath: _visionOff
       value: 
       objectReference: {fileID: 603734568}
@@ -11508,8 +11489,7 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4673805591551258256, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
 --- !u!1001 &411839495
 PrefabInstance:
@@ -38808,6 +38788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minute: 5
   _seconds: 0
+  _resultSceneName: Result
 --- !u!114 &1139913443
 MonoBehaviour:
   m_ObjectHideFlags: 0

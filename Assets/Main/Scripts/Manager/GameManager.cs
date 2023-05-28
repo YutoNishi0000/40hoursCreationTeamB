@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 
-[RequireComponent(typeof(SkillManager))]
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     public enum GameMode
@@ -69,8 +68,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            DestroyPicturesDirectory(directoryPath);
-            Application.Quit();
+            GameQuit();
         }
     }
 
@@ -129,6 +127,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             //ディレクトリを削除
             System.IO.Directory.Delete(targetDirectoryPath);
         }
+    }
+
+    //アプリケーション終了時に呼び出す関数
+    public void GameQuit()
+    {
+        DestroyPicturesDirectory(directoryPath);
+        Application.Quit();
     }
 
     #endregion

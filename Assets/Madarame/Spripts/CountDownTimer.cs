@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CountDownTimer : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class CountDownTimer : MonoBehaviour
 	private Text _timerText;
 	[SerializeField] private int _minute;  // 制限時間（分）
 	[SerializeField] private float _seconds; // 制限時間（秒）
-
+	[SerializeField] private string _resultSceneName;  //リザルトシーンの名前
+ 
 	//減らす時間
 	private static float _decreaceTime = 5;
 	//増やす時間
@@ -49,8 +51,16 @@ public class CountDownTimer : MonoBehaviour
 		if (_totalTime <= 0f)
 		{
 			Debug.Log("制限時間終了");
+			SceneManager.LoadScene(_resultSceneName);
 		}
 	}
+
+	//タイマーを初期化する関数
+	private void InitializeTimer()
+	{
+
+	}
+
 	public static void DecreaceTime()
 	{
 		_totalTime -= _decreaceTime;
