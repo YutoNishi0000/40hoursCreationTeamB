@@ -26,4 +26,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/YutoNishimura/Scenes/OutGame/Title.unity
     guid: 8a0710f7bc8363b418f8fab4febe3c76
+  - enabled: 1
+    path: Assets/Madarame/Scenes/Title_hiro.unity
+    guid: bf46abe0ec01de84cb0a4be6b2fd3031
+  - enabled: 1
+    path: Assets/Madarame/Scenes/Home_hiro.unity
+    guid: d20c2c6a6fbe58c4192dce98784826b6
+  - enabled: 1
+    path: Assets/Madarame/Scenes/Stage_hiro.unity
+    guid: 786a881d0d950a84a934d080975c7386
+  - enabled: 1
+    path: Assets/YutoNishimura/Scenes/GameScene_Main_Yuto.unity
+    guid: 2e7d1d991e34d374c9a2d26f58f08025
+  - enabled: 1
+    path: Assets/YutoNishimura/Scenes/OutGame/Result.unity
+    guid: 208b4cb329c754146ad00a976edfb403
   m_configObjects: {}

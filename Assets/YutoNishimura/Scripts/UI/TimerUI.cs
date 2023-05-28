@@ -20,7 +20,7 @@ public class TimerUI : MonoBehaviour
     public static bool isFadeOut = false;
 
     //フェードしたい時間（単位は秒）
-    private static float fadeTime = 0.2f;
+    private static float fadeTime = 0.5f;
 
     private static float enabledTime = 0;
 

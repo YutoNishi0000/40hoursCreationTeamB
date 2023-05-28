@@ -17,16 +17,18 @@ public class SkillManager : Actor
     [SerializeField] private readonly float interval = 5.0f;
     private int shutterTimeStamp;
     private bool minimapSkillFlag;         //ターゲットのミニマップの表示フラグのために使う
-    private const int skillLevel1 = 1;
-    private const int skillLevel2 = 2;
-    private const int skillLevel3 = 3;
+    private const int skillLevel1 = 5;
+    private const int skillLevel2 = 10;
+    private const int skillLevel3 = 20;
     private float playerAccelSpeed;
     private const float accelerationSpeed = 1.5f;   //プレイヤーのスキル獲得時の速度倍率
+    private readonly int minimapTargetShutterNum = 5;   //何枚おきにスキルが発動するか
+    private int previousCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        time = 0;
+        time = interval;
         targetMinimapFlag = false;
         skillBlock_player = true;
         skillBlock_addScore = true;
@@ -117,33 +119,26 @@ public class SkillManager : Actor
     /// </summary>
     private void TargetMinimapActivation()
     {
-        int count = GameManager.Instance.numSubShutter - skillLevel3;
+        int count = (GameManager.Instance.numSubShutter - skillLevel3) / minimapTargetShutterNum;
 
-        if(count % 10 == 0 && !minimapSkillFlag)
-        {
-            minimapSkillFlag = true;
-        }
+        time -= Time.deltaTime;
 
-        if(!minimapSkillFlag)
-        {
-            return;
-        }
-
-        time += Time.deltaTime;
-
-        if(time <= interval)
+        if(time > 0)
         {
             SetTargetMinimapFlag(true);
         }
-        else if((time > interval) && (time <= interval + 10))
-        {
-            SetTargetMinimapFlag(false);
-        }
         else
         {
-            //SetTargetMinimapFlag(false); 
-            minimapSkillFlag = false;
+            SetTargetMinimapFlag(false);
+            time = 0;
         }
+
+        if (count == previousCount + 1)
+        {
+            time = interval;
+        }
+
+        previousCount = count;
     }
 
     /// <summary>

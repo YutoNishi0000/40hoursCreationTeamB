@@ -65,6 +65,8 @@ public class HeterogeneousController : Actor
         //アルファ値が０以下になったら自身を削除
         if (dethtime < 0)
         {
+            //フィールドに足りない異質なものを補うときにクールタイム発生
+            HeterogeneousSetter.CoolTime();
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
