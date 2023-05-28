@@ -23,6 +23,7 @@ public class UIController : MonoBehaviour
     private const int stageIndex = 3;       //ステージシーンのインデックス番号
     private const int resultIndex = 4;      //リザルトシーンのインデックス番号
     private const int operationIndex = 5;   //オペレーションシーンのインデックス番号
+
     private void Awake()
     {
         endAnimation = AssetDatabase.LoadAssetAtPath<GameObject>(address);
@@ -65,6 +66,11 @@ public class UIController : MonoBehaviour
     public void HomeScene()
     {
         GameManager.Instance.sceneIndex = stageSlectIndex;
+
+        if (GameManager.Instance.numGoToResultScene > 0)
+        {
+            BGMManager.Instance.PlayOutGameBGM();
+        }
     }
     public void StageScene()
     {
@@ -74,6 +80,7 @@ public class UIController : MonoBehaviour
     {
         Debug.Log("リザルト");
         GameManager.Instance.sceneIndex = resultIndex;
+        GameManager.Instance.numGoToResultScene++;
     }
     public void OperationScene()
     {

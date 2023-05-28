@@ -51,9 +51,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private const string directoryPath = "Pictures";      //プロジェクトファイル直下にディレクトリを作成
     public int sceneIndex;           //遷移したいシーンのインデックス番号
+    public int numGoToResultScene;  //リザルトシーンに言った回数
 
     private void Start()
     {
+        numGoToResultScene = 0;
         sceneIndex = 0;
         BGMPlayer();
         isClear = false;
@@ -83,7 +85,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 BGMManager.Instance.PlayResultBGM();
                 break;
             default:
-                BGMManager.Instance.PlayOutGameBGM();
+                if (!BGMManager.Instance.GetPlayBGMFLag())
+                {
+                    BGMManager.Instance.PlayOutGameBGM();
+                }
                 break;
         }
     }

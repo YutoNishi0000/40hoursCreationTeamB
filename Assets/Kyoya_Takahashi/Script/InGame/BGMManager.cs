@@ -11,10 +11,12 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     private const int OutGame = 0;
     private const int InGame = 1;
     private const int ResultGame = 2;
+    private bool playBGMFlag;         //ä˘Ç…BGMÇçƒê∂ÇµÇƒÇ¢ÇÈÇ©
 
     public AudioSource audioSource = null;
     private void Start()
     {
+        playBGMFlag = false;
         audioSource = this.GetComponent<AudioSource>();
     }
     public void PlayOutGameBGM()
@@ -23,6 +25,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
         audioSource.clip = BGM[OutGame];
         audioSource.Play();
         audioSource.loop = true;
+        playBGMFlag = true;
     }
     public void PlayInGameBGM()
     {
@@ -31,6 +34,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
         audioSource.clip = BGM[InGame];
         audioSource.Play();
         audioSource.loop = true;
+        playBGMFlag = true;
     }
     
     public void PlayResultBGM()
@@ -39,5 +43,10 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
         audioSource.clip = BGM[ResultGame];
         audioSource.Play();
         audioSource.loop = true;
+        playBGMFlag = true;
     }
+
+    public bool GetPlayBGMFLag() { return playBGMFlag; }
+
+    public void SetPlayBGMFLag(bool flag) { playBGMFlag = true; }
 }
