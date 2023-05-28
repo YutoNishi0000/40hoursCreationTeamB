@@ -19,6 +19,9 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private RawImage targetImage;     //テクスチャを表示するためのRawImage
     [SerializeField] private Image point1;             //スクショした画像の１番目の移動先
     [SerializeField] private Image point2;             //スクショした画像の２番目の移動先
+    [SerializeField] private Image plusCount;
+    [SerializeField] private Image minusCount1;
+    [SerializeField] private Image minusCount2;
     [SerializeField] private float duration;           //カメラシェイクの継続時間
     [SerializeField] private float magnitude;          //カメラシェイクの揺れの強さ
 
@@ -39,8 +42,9 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private Image lostTimeImg;
     float imgTime;
     float a_img;
-    private readonly float fadeInSpeed = 10.0f;
+    private readonly float fadeInSpeed = 0.2f;
     private SkillManager skillManager;
+    private TimerUI fadeManager;
 
     [SerializeField] private GameObject[] gameUI;     //写真を撮るときに消したいUI
 
@@ -82,6 +86,7 @@ public class ScreenShot : MonoBehaviour
         noneTargetFlag = true;
         player = GameObject.FindObjectOfType<Player>();
         skillManager = GetComponent<SkillManager>();
+        fadeManager = GetComponent<TimerUI>();
     }
 
     private void Start()
@@ -182,7 +187,7 @@ public class ScreenShot : MonoBehaviour
                 CountDownTimer.DecreaceTime();
                 player.Shake(duration, magnitude);
                 ShutterAnimation.NoneAnimationStart();
-                TimerUI.FadeOut(false);
+                fadeManager.FadeOut(fadeInSpeed, minusCount1);
                 SEManager.Instance.PlayPlusTimeCountSE();
                 //アニメーション
                 Invoke("startNA", 0.2f);
@@ -192,6 +197,7 @@ public class ScreenShot : MonoBehaviour
                 {
                     //もう５秒時間を減らす
                     CountDownTimer.DecreaceTime();
+                    fadeManager.FadeOut(fadeInSpeed, minusCount2);
                 }
             }
             //フラグを初期化
@@ -228,7 +234,7 @@ public class ScreenShot : MonoBehaviour
         RespawTarget.RespawnTarget();
         //アニメーション開始
         Invoke("startTA", 0.2f);
-        TimerUI.FadeOut(true);
+        fadeManager.FadeOut(fadeInSpeed, plusCount);
         SEManager.Instance.PlayMinusTimeCountSE();
     }
 

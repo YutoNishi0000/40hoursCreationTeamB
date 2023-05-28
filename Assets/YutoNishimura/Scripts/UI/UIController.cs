@@ -33,7 +33,7 @@ public class UIController : MonoBehaviour
     {
         if (!GameManager.Instance.blockSwithScene)
         {
-            GameManager.Instance.BGMPlayer();
+            GameManager.Instance.GameAdministrator();
             SceneManager.LoadScene(index);
         }
         GameManager.Instance.blockSwithScene = true;         
@@ -66,11 +66,6 @@ public class UIController : MonoBehaviour
     public void HomeScene()
     {
         GameManager.Instance.sceneIndex = stageSlectIndex;
-
-        if (GameManager.Instance.numGoToResultScene > 0)
-        {
-            BGMManager.Instance.PlayOutGameBGM();
-        }
     }
     public void StageScene()
     {
@@ -80,7 +75,6 @@ public class UIController : MonoBehaviour
     {
         Debug.Log("ƒŠƒUƒ‹ƒg");
         GameManager.Instance.sceneIndex = resultIndex;
-        GameManager.Instance.numGoToResultScene++;
     }
     public void OperationScene()
     {

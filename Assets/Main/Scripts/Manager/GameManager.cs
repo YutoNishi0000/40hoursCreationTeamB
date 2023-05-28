@@ -35,15 +35,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int numMiddleScore = 0;      //ターゲット撮影時30pt文の評価の数
     public int numHighScore = 0;        //ターゲット撮影時50pt文の評価の数
 
-    public bool isClear;                //クリアしているかどうか
-
     //ゲームが始まっているか
     public bool StartGame = false;
 
     public List<string> filePathes;
-
-    //今日の日付
-    public int Date = 0;
 
     public GameMode gameMode;
     public GameState gameState;
@@ -52,14 +47,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private const string directoryPath = "Pictures";      //プロジェクトファイル直下にディレクトリを作成
     public int sceneIndex;           //遷移したいシーンのインデックス番号
-    public int numGoToResultScene;  //リザルトシーンに言った回数
 
     private void Start()
     {
-        numGoToResultScene = 0;
         sceneIndex = 0;
-        BGMPlayer();
-        isClear = false;
+        GameAdministrator();
         filePathes = new List<string>();
         gameMode = new GameMode();
         gameState = new GameState();
@@ -75,25 +67,39 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     #region BGM関係
 
-    public void BGMPlayer()
+    public void GameAdministrator()
     {
-        switch(sceneIndex)
+        switch (sceneIndex)
         {
             case (int)GameState.MainGame:
+                InitializeGame();
                 BGMManager.Instance.PlayInGameBGM();
                 break;
             case (int)GameState.Result:
                 BGMManager.Instance.PlayResultBGM();
                 break;
             case (int)GameState.Operator:
+                BGMManager.Instance.StopBGM();
                 break;
             default:
-                //if (!BGMManager.Instance.GetPlayBGMFLag())
+                if (!BGMManager.Instance.audioSource.isPlaying || BGMManager.Instance.audioSource.clip != BGMManager.Instance.BGM[(int)BGMManager.BGMTyoe.OutGame])
                 {
                     BGMManager.Instance.PlayOutGameBGM();
                 }
                 break;
         }
+    }
+
+    public void InitializeGame()
+    {
+        numTargetShutter = 0;
+        numSubShutter = 0;
+        numLowScore = 0;
+        numLowScore = 0;
+        numMiddleScore = 0;
+        numHighScore = 0;
+        StartGame = false;
+        ScoreManger.Score = 0;
     }
 
     #endregion

@@ -627,6 +627,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7491502b34f4f7147803701df5f1cc53, type: 3}
+--- !u!114 &309887268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1615939541513382113, guid: 7491502b34f4f7147803701df5f1cc53, type: 3}
+  m_PrefabInstance: {fileID: 309887267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45bda1198e1079846a42359ff73b52ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &387140732 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8113737511486875341, guid: 4b8b85c02fb6d9f4ea52e6f71c887bc2, type: 3}
@@ -1304,6 +1315,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1118335139}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: HomeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 309887268}
+        m_TargetAssemblyTypeName: BGMManager, Assembly-CSharp
+        m_MethodName: PlayOutGameBGM
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -7,10 +7,14 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     //0:タイトルからステージ選択まで
     //1:インゲーム中
     //2:リザルト画面
-    [SerializeField]AudioClip[] BGM = new AudioClip[3];
-    private const int OutGame = 0;
-    private const int InGame = 1;
-    private const int ResultGame = 2;
+    public enum BGMTyoe
+    {
+        OutGame,
+        Ingame,
+        ResultGame
+    }
+
+    public AudioClip[] BGM = new AudioClip[3];
     private bool playBGMFlag;         //既にBGMを再生しているか
 
     public AudioSource audioSource = null;
@@ -22,7 +26,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     public void PlayOutGameBGM()
     {
         audioSource.Stop();
-        audioSource.clip = BGM[OutGame];
+        audioSource.clip = BGM[(int)BGMTyoe.OutGame];
         audioSource.Play();
         audioSource.loop = true;
         playBGMFlag = true;
@@ -31,7 +35,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     {
         Debug.Log("インゲーム");
         audioSource.Stop();
-        audioSource.clip = BGM[InGame];
+        audioSource.clip = BGM[(int)BGMTyoe.Ingame];
         audioSource.Play();
         audioSource.loop = true;
         playBGMFlag = true;
@@ -40,7 +44,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     public void PlayResultBGM()
     {
         audioSource.Stop();
-        audioSource.clip = BGM[ResultGame];
+        audioSource.clip = BGM[(int)BGMTyoe.ResultGame];
         audioSource.Play();
         audioSource.loop = true;
         playBGMFlag = true;
@@ -49,6 +53,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     public void StopBGM()
     {
         audioSource.Stop();
+        playBGMFlag = false;
     }
 
     public bool GetPlayBGMFLag() { return playBGMFlag; }

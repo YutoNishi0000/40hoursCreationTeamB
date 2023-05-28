@@ -105,7 +105,7 @@ public class HeterogeneousSetter : MonoBehaviour
                 rand = Random.Range(0, points.Count());
             }
 
-            objSpawnPos[rand] = Instantiate(GetNextObject(), points[rand].transform.position, Quaternion.identity);
+            objSpawnPos[rand] = Instantiate(GetNextObject(), points[rand].transform.position, GetNextObject().transform.rotation);
         }
 
         fieldObjectsNum = 0;

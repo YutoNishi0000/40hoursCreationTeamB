@@ -19,9 +19,11 @@ public class CountDown : MonoBehaviour
     [SerializeField] private float magnification;  //‰½”{‚ÉŠg‘å‚·‚é‚©
     private float time;
     private readonly float CountTime = 5;
+    private static bool finishCountDown; 
 
     void Start()
     {
+        finishCountDown = false;
         InitialThreeScale = Three.transform.localScale;
         InitialTwoScale = Two.transform.localScale;
         InitialOneScale = One.transform.localScale;
@@ -86,6 +88,9 @@ public class CountDown : MonoBehaviour
             //StartPanel.GetComponent<Image>().color = color;
             StartPanel.enabled = false;
             GameManager.Instance.StartGame = true;
+            finishCountDown = true;
         }
     }
+
+    public static bool GetFinishCountDown() { return finishCountDown; }
 }
