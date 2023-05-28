@@ -57,15 +57,8 @@ public class CountDownTimer : UIController
 			SEManager.Instance.PlayTimeLimit(2f);
 			Debug.Log("制限時間終了");
 			InstantAnimation();
-<<<<<<< HEAD
 			MoveScene(GameManager.Instance.sceneIndex);
-=======
-			
-			if (!GameManager.Instance.blockSwithScene)
-			{
-				MoveScene(GameManager.Instance.sceneIndex);
-			}
->>>>>>> origin/main
+
 			return;
 		}
 		//　一旦トータルの制限時間を計測；
