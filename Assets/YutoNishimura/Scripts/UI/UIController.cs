@@ -24,19 +24,17 @@ public class UIController : MonoBehaviour
     public void MoveScene(string scene)
     {
         Debug.Log("シーン切り替え開始");
-        //blockSwithScene = true;
+        GameManager.Instance.blockSwithScene = true;
         SceneManager.LoadScene(scene); 
     }
     public void PlaySE()
     {
         //サウンドを鳴らす
     }
-    //trueだとシーン切り替えをしない
-    public bool blockSwithScene = true;
     public void UnBlockSwithScene()
     {
         Debug.Log("呼ばれた");
-        blockSwithScene = false;
+        GameManager.Instance.blockSwithScene = false;
     }
     public void InstantAnimation()
     {

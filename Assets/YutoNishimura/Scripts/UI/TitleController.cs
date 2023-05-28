@@ -8,9 +8,7 @@ public class TitleController : UIController
 {
     [Header("ホーム画面のシーン名を入れてください")]
     [SerializeField] private string HomeSceneName;
-    //trueだとシーン切り替えをしない
-    private bool blockSwithScene = true;
-    
+
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -19,17 +17,12 @@ public class TitleController : UIController
             InstantAnimation();
             PlaySE();
         }
-        Debug.Log(blockSwithScene);
+        Debug.Log(GameManager.Instance.blockSwithScene);
 
-        if (blockSwithScene)
+        if (GameManager.Instance.blockSwithScene)
         {
             return;
         }
         MoveScene(HomeSceneName);
-    }
-    public void UnBlockSwithScene()
-    {
-        Debug.Log("呼ばれた");
-        blockSwithScene = false;
     }
 }

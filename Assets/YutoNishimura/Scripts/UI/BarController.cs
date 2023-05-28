@@ -21,8 +21,8 @@ public class BarController : ButtonController
     }
     private void Update()
     {
-        Debug.Log(blockSwithScene);
-        if (blockSwithScene)
+        Debug.Log(GameManager.Instance.blockSwithScene);
+        if (GameManager.Instance.blockSwithScene)
         {
             return;
         }

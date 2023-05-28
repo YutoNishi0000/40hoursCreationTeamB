@@ -53,6 +53,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public GameMode gameMode;
     public GameState gameState;
+    //trueだとシーン切り替えをしない
+    public bool blockSwithScene = true;
 
     private const string directoryPath = "Pictures";      //プロジェクトファイル直下にディレクトリを作成
 
