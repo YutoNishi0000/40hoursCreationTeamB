@@ -34,11 +34,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int numMiddleScore = 0;      //ターゲット撮影時30pt文の評価の数
     public int numHighScore = 0;        //ターゲット撮影時50pt文の評価の数
 
+    public bool isClear;                //クリアしているかどうか
+
     //ゲームが始まっているか
     public bool StartGame = false;
 
-    //タイトルの割れる画像
-    public GameObject TitleUI;
     //ゲームオーバーかどうか
     public bool gameOver = false;
 
@@ -58,6 +58,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start()
     {
+        isClear = false;
         filePathes = new List<string>();
         gameMode = new GameMode();
         gameState = new GameState();
@@ -137,11 +138,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     #endregion
 
-    public GameMode GetGameMode() { return gameMode; }
-
     public void SetGameState(GameState state) { gameState = state; }
 
     public GameState GetGameState() { return gameState; }
+
+    public void SetGameMode(GameMode mode) { gameMode = mode; }
+
+    public GameMode GetGameMode() { return gameMode; }
 
     public string GetDirectryPath() { return directoryPath; }
 
