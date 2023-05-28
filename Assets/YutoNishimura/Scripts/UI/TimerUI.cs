@@ -9,6 +9,9 @@ using UnityEngine.UI;
 public class TimerUI : MonoBehaviour
 {
     private static Image fadeImage;
+    private static Image anotherImage;       //モードがハードだった時に追加で表示したいイメージ
+    [SerializeField] private static Image plusImg;
+    [SerializeField] private static Image minusImg;
 
     //フェード用Imageの透明度
     private static float alpha = 0.0f;
@@ -37,11 +40,13 @@ public class TimerUI : MonoBehaviour
         }
         else
         {
-            fadeImage = GameObject.Find("LostPoint").GetComponent<Image>();
+            fadeImage = GameObject.Find("LostPoint_1").GetComponent<Image>();
+            anotherImage = GameObject.Find("LostPoint_2").GetComponent<Image>();
         }
         fadeImage.enabled = true;
         alpha = 0;
         fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, alpha);
+        anotherImage.color = new Color(anotherImage.color.r, anotherImage.color.g, anotherImage.color.b, alpha);
         isFadeOut = true;
     }
 
@@ -69,6 +74,11 @@ public class TimerUI : MonoBehaviour
 
             //フェード用Imageの色・透明度設定
             fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, alpha);
+
+            if(GameManager.Instance.GetGameMode() == GameManager.GameMode.Hard)
+            {
+                anotherImage.color = new Color(anotherImage.color.r, anotherImage.color.g, anotherImage.color.b, alpha);
+            }
         }
     }
 }
