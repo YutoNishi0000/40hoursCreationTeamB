@@ -19,7 +19,16 @@ public class BarController : ButtonController
         initialPos.rectTransform.position = bar.rectTransform.position;
         InitializeButton();
     }
-
+    private void Update()
+    {
+        Debug.Log(blockSwithScene);
+        if (blockSwithScene)
+        {
+            return;
+        }
+        Debug.Log("ÉVÅ[ÉìêÿÇËë÷Ç¶");
+        MoveScene(sceneName);
+    }
     public void PopUpForHome()
     {
         bar.rectTransform.DOMoveX(afterPos.rectTransform.position.x, changeScaleTime);
@@ -29,8 +38,5 @@ public class BarController : ButtonController
     {
         bar.rectTransform.DOMoveX(initialPos.rectTransform.position.x, changeScaleTime);
     }
-    public void InstantAnimation()
-    {
-        Instantiate(endAnimation);
-    }
+    
 }

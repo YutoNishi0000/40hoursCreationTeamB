@@ -30,15 +30,6 @@ public class ButtonController : UIController
         InitializeButton();
         
     }
-    private void Update()
-    {
-        if(blockSwithScene)
-        {
-            return;
-        }
-        MoveScene(sceneName);
-    }
-
     //Œp³æ‚ÌStartŠÖ”A‚Ü‚½‚ÍAwakeŠÖ”“à‚Å•K‚¸ŒÄ‚Ño‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢ŠÖ”
     protected void InitializeButton()
     {
