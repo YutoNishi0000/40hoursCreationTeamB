@@ -985,7 +985,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3fe74b2af117e2849be12c477cb9ce3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e303fa5d7cc363c4cb2ef160f5c845d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1017,8 +1017,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeScaleTime: 0.1
   afterScale: 1.5
-  initialImage: {fileID: 21300000, guid: 3fe74b2af117e2849be12c477cb9ce3a, type: 3}
-  afterImage: {fileID: 21300000, guid: ab45862cbc4656f44936c5bfc544c902, type: 3}
+  initialImage: {fileID: 21300000, guid: e303fa5d7cc363c4cb2ef160f5c845d2, type: 3}
+  afterImage: {fileID: 21300000, guid: 65c5ba5b611a554498e666114ed9b64b, type: 3}
 --- !u!1 &1233526487
 GameObject:
   m_ObjectHideFlags: 0
