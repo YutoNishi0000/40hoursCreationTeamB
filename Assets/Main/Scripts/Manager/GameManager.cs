@@ -50,7 +50,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool blockSwithScene = true;
 
     private const string directoryPath = "Pictures";      //プロジェクトファイル直下にディレクトリを作成
-    public int sceneIndex = 0;           //遷移したいシーンのインデックス番号
+    public int sceneIndex;           //遷移したいシーンのインデックス番号
 
     private void Start()
     {

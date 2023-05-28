@@ -60,7 +60,7 @@ public class CountDownTimer : UIController
 			
 			if (!GameManager.Instance.blockSwithScene)
 			{
-				MoveScene(4);
+				MoveScene(GameManager.Instance.sceneIndex);
 			}
 			return;
 		}
