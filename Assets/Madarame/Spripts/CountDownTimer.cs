@@ -6,13 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class CountDownTimer : MonoBehaviour
 {
+	private enum GameTime
+	{
+		Easy = 5,
+		Nomal = 7,
+		Hard = 10
+	}
+
 	private static float _totalTime;    // 制限時間の合計
 	private float _oldSeconds;   // 前回Update時の秒数
 	private Text _timerText;
-	[SerializeField] private int _minute;  // 制限時間（分）
-	[SerializeField] private float _seconds; // 制限時間（秒）
+	private int _minute;  // 制限時間（分）
+	private float _seconds; // 制限時間（秒）
 	[SerializeField] private string _resultSceneName;  //リザルトシーンの名前
- 
+
+	private GameTime gameTime;
 	//減らす時間
 	private static float _decreaceTime = 5;
 	//増やす時間
@@ -20,6 +28,20 @@ public class CountDownTimer : MonoBehaviour
 
 	void Start()
 	{
+		_seconds = 0;
+		switch(GameManager.Instance.GetGameMode())
+		{
+			case GameManager.GameMode.Easy:
+				_minute = (int)GameTime.Easy;
+				break;
+			case GameManager.GameMode.Nomal:
+				_minute = (int)GameTime.Nomal;
+				break;
+			case GameManager.GameMode.Hard:
+				_minute = (int)GameTime.Hard;
+				break;
+		}
+
 		_totalTime = _minute * 60 + _seconds;
 		_oldSeconds = 0f;
 		_timerText = GetComponentInChildren<Text>();
