@@ -46,6 +46,11 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
         playBGMFlag = true;
     }
 
+    public void StopBGM()
+    {
+        audioSource.Stop();
+    }
+
     public bool GetPlayBGMFLag() { return playBGMFlag; }
 
     public void SetPlayBGMFLag(bool flag) { playBGMFlag = true; }

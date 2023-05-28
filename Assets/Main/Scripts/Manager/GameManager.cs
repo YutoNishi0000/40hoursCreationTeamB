@@ -20,7 +20,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Home,
         StageSelection,
         MainGame,
-        Result
+        Result,
+        Operator
     }
 
     //サブカメラで写真を撮ったか
@@ -84,8 +85,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             case (int)GameState.Result:
                 BGMManager.Instance.PlayResultBGM();
                 break;
+            case (int)GameState.Operator:
+                break;
             default:
-                if (!BGMManager.Instance.GetPlayBGMFLag())
+                //if (!BGMManager.Instance.GetPlayBGMFLag())
                 {
                     BGMManager.Instance.PlayOutGameBGM();
                 }
