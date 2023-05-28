@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeScaleTime: 0.1
-  afterScale: 1.5
+  afterScale: 1.2
   initialImage: {fileID: 21300000, guid: cbcc09cf5a1240143910b811628c5f23, type: 3}
   afterImage: {fileID: 21300000, guid: d449d29a9363ce34c8fdd12c2e508d71, type: 3}
   bar: {fileID: 132055683}
@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeScaleTime: 0.3
-  afterScale: 1.5
+  afterScale: 1.2
   initialImage: {fileID: 21300000, guid: 49fa088b64f7bf54fb0fbad38a7b1639, type: 3}
   afterImage: {fileID: 21300000, guid: 6aef0b6975868d54ea121ce16c7d10d4, type: 3}
   bar: {fileID: 1978167794}
@@ -2836,7 +2836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeScaleTime: 0.3
-  afterScale: 1.5
+  afterScale: 1.2
   initialImage: {fileID: 21300000, guid: 604b4010a474a1a48a85a61d916b34de, type: 3}
   afterImage: {fileID: 21300000, guid: 30ca8b819a3fe1d48baa1041f1bdbaed, type: 3}
   bar: {fileID: 119447331}
