@@ -13,6 +13,8 @@ public class BarController : ButtonController
     [Header("バーの移動後の位置")]
     [SerializeField] private Image afterPos;
 
+    private const int sceneIndex = 2;
+
     private void Start()
     {
         //bar.rectTransform.position = bar.rectTransform.position;
@@ -21,13 +23,11 @@ public class BarController : ButtonController
     }
     private void Update()
     {
-        Debug.Log(GameManager.Instance.blockSwithScene);
         if (GameManager.Instance.blockSwithScene)
         {
             return;
         }
-        Debug.Log("シーン切り替え");
-        MoveScene(sceneName);
+        MoveScene(sceneIndex);
     }
     public void PopUpForHome()
     {
@@ -38,5 +38,8 @@ public class BarController : ButtonController
     {
         bar.rectTransform.DOMoveX(initialPos.rectTransform.position.x, changeScaleTime);
     }
-    
+    public void Instnt()
+    {
+        Instantiate(endAnimation);
+    }
 }

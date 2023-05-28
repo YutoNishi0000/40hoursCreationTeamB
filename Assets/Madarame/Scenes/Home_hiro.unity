@@ -182,10 +182,10 @@ MonoBehaviour:
   afterScale: 1.5
   initialImage: {fileID: 21300000, guid: 21a86c896f500de469609fc741414795, type: 3}
   afterImage: {fileID: 21300000, guid: ab45862cbc4656f44936c5bfc544c902, type: 3}
-  sceneName: 
   bar: {fileID: 132055683}
   initialPos: {fileID: 1680805123}
   afterPos: {fileID: 454805490}
+  sceneIndex: 0
 --- !u!114 &87080039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,10 +1420,10 @@ MonoBehaviour:
   afterScale: 1.5
   initialImage: {fileID: 21300000, guid: 49fa088b64f7bf54fb0fbad38a7b1639, type: 3}
   afterImage: {fileID: 21300000, guid: 6aef0b6975868d54ea121ce16c7d10d4, type: 3}
-  sceneName: 
   bar: {fileID: 1978167794}
   initialPos: {fileID: 1033538393}
   afterPos: {fileID: 1124119067}
+  sceneIndex: 0
 --- !u!114 &1118335135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2564,7 +2564,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8950593785661598287}
         m_TargetAssemblyTypeName: BarController, Assembly-CSharp
-        m_MethodName: InstantAnimation
+        m_MethodName: Instnt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2624,7 +2624,7 @@ MonoBehaviour:
   afterScale: 1.5
   initialImage: {fileID: 21300000, guid: 604b4010a474a1a48a85a61d916b34de, type: 3}
   afterImage: {fileID: 21300000, guid: 30ca8b819a3fe1d48baa1041f1bdbaed, type: 3}
-  sceneName: Stage_hiro
   bar: {fileID: 119447331}
   initialPos: {fileID: 1345771503}
   afterPos: {fileID: 206966038}
+  sceneIndex: 2

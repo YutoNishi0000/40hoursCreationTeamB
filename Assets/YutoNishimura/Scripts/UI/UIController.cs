@@ -21,11 +21,11 @@ public class UIController : MonoBehaviour
         endAnimation = AssetDatabase.LoadAssetAtPath<GameObject>(address);
     }
     //シーン移動
-    public void MoveScene(string scene)
+    public void MoveScene(int index)
     {
         Debug.Log("シーン切り替え開始");
         GameManager.Instance.blockSwithScene = true;
-        SceneManager.LoadScene(scene); 
+        SceneManager.LoadScene(index); 
     }
     public void PlaySE()
     {

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 
 public class TitleController : UIController
 {
-    [Header("ホーム画面のシーン名を入れてください")]
-    [SerializeField] private string HomeSceneName;
+    private const int sceneIndex = 1;
 
     void Update()
     {
@@ -23,6 +23,6 @@ public class TitleController : UIController
         {
             return;
         }
-        MoveScene(HomeSceneName);
+        MoveScene(sceneIndex);
     }
 }
