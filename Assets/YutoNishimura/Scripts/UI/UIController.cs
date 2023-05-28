@@ -23,7 +23,6 @@ public class UIController : MonoBehaviour
     //シーン移動
     public void MoveScene(int index)
     {
-        Debug.Log("シーン切り替え開始");
         GameManager.Instance.blockSwithScene = true;
         SceneManager.LoadScene(index); 
     }
@@ -33,7 +32,6 @@ public class UIController : MonoBehaviour
     }
     public void UnBlockSwithScene()
     {
-        Debug.Log("呼ばれた");
         GameManager.Instance.blockSwithScene = false;
     }
     public void InstantAnimation()

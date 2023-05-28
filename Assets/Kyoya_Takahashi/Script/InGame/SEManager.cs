@@ -12,6 +12,10 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     [SerializeField] private GameObject timeLimit;
     [SerializeField] private AudioClip plusCountSE;
     [SerializeField] private AudioClip minusCountSE;
+    //===== アウトゲーム =====
+    [SerializeField] private AudioClip select;
+    [SerializeField] private AudioClip decision;
+    [SerializeField] private AudioClip back;
 
     private bool isTimeLimit = false;
     private void oneShot(AudioClip ac)
@@ -72,4 +76,18 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
         }
         isTimeLimit = true;
     }
+    //===== アウトゲーム =====
+    public void PlaySelect()
+    {
+        oneShot(select);
+    }
+    public void PlayDecision()
+    {
+        oneShot(decision);
+    }
+    public void PlayBack()
+    {
+        oneShot(back);
+    }
+
 }

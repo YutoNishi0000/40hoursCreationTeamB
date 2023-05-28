@@ -23,7 +23,7 @@ public class ResultController : UIController
     [SerializeField] private Text[] resultScores;
     [SerializeField] private Sprite clearSprite;       //ゲームクリア時に表示させるスプライト
     [SerializeField] private Sprite failedSprite;      //ゲーム失敗時に表示させるスプライト
-
+    private const int titleIndex = 0;   //タイトルシーンのインデックス
     private void Start()
     {
         ShowResultScore();
@@ -36,6 +36,13 @@ public class ResultController : UIController
     private void Update()
     {
         ShowResult();
+
+        if (GameManager.Instance.blockSwithScene)
+        {
+            return;
+        }
+        MoveScene(titleIndex);
+
     }
 
     public void ShowResultScore()

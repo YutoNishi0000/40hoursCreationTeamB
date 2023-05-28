@@ -19,12 +19,13 @@ public class ButtonController : UIController
 
     //内部処理で使う変数
     protected Image tempButton;
-    private readonly Vector3 normalVec = new Vector3(1, 1, 1); 
+    private readonly Vector3 normalVec = new Vector3(1, 1, 1);
 
     private void Start()
     {
         InitializeButton();        
     }
+    
     //継承先のStart関数、またはAwake関数内で必ず呼び出さなければならない関数
     protected void InitializeButton()
     {
