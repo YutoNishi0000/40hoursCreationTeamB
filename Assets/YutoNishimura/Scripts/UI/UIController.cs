@@ -32,6 +32,10 @@ public class UIController : MonoBehaviour
     {
         if (!GameManager.Instance.blockSwithScene)
         {
+<<<<<<< Updated upstream
+=======
+            GameManager.Instance.BGMPlayer();
+>>>>>>> Stashed changes
             SceneManager.LoadScene(index);
         }
         GameManager.Instance.blockSwithScene = true;         

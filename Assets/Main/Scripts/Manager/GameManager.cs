@@ -54,6 +54,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start()
     {
+        sceneIndex = 0;
+        BGMPlayer();
         isClear = false;
         filePathes = new List<string>();
         gameMode = new GameMode();
@@ -67,6 +69,26 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             GameQuit();
         }
     }
+
+    #region BGMŠÖŒW
+
+    public void BGMPlayer()
+    {
+        switch(sceneIndex)
+        {
+            case (int)GameState.MainGame:
+                BGMManager.Instance.PlayInGameBGM();
+                break;
+            case (int)GameState.Result:
+                BGMManager.Instance.PlayResultBGM();
+                break;
+            default:
+                BGMManager.Instance.PlayOutGameBGM();
+                break;
+        }
+    }
+
+    #endregion
 
     #region ƒtƒ@ƒCƒ‹ŠÖŒW
 
