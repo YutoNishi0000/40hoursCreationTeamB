@@ -1862,7 +1862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ecf74e0224157d42bad57ff34e77068, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1918,6 +1918,7 @@ MonoBehaviour:
   - {fileID: 933718839}
   afterPos: {fileID: 1961006766}
   afterPos_Total: {fileID: 280945150}
+  resultImg: {fileID: 1714787794}
   changeScaleTime: 0.3
   resultScores:
   - {fileID: 1672552123}

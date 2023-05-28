@@ -16,7 +16,7 @@ public class ResultController : UIController
     [SerializeField] private List<Image> bars;
     [SerializeField] private Image afterPos;
     [SerializeField] private Image afterPos_Total;
-    private Image resultImg;
+    [SerializeField] private Image resultImg;
     [SerializeField] private float changeScaleTime = 0.3f;
     private Color initialResultImg;
     private float color_a;
