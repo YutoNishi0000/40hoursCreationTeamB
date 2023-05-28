@@ -35,6 +35,11 @@ public class ResultController : UIController
     private void Update()
     {
         ShowResult();
+        if (GameManager.Instance.blockSwithScene)
+        {
+            return;
+        }
+        MoveScene(GameManager.Instance.sceneIndex);
     }
 
     public void ShowResultScore()

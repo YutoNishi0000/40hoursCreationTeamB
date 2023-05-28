@@ -17,12 +17,13 @@ public class UIController : MonoBehaviour
     //シーン切り替え時のアニメーションプレハブ
     protected GameObject endAnimation = null;
 
-   
+    private const int titleIndex = 0;       //タイトルシーンのインデックス番号
     private const int stageSlectIndex = 1;  //ステージ選択シーンのインデックス番号
     private const int homeIndex = 2;        //ホームシーンのインデックス番号
     private const int stageIndex = 3;       //ステージシーンのインデックス番号
     private const int resultIndex = 4;      //リザルトシーンのインデックス番号
     private const int operationIndex = 5;   //オペレーションシーンのインデックス番号
+    private int leteIndex = 0;              //前のシーンのインデックス番号
     private void Awake()
     {
         endAnimation = AssetDatabase.LoadAssetAtPath<GameObject>(address);
@@ -32,6 +33,33 @@ public class UIController : MonoBehaviour
     {
         if (!GameManager.Instance.blockSwithScene)
         {
+
+            if (index == titleIndex)
+            {
+                BGMManager.Instance.PlayOutGameBGM();
+            }
+            else if (index == stageIndex)
+            {
+                BGMManager.Instance.PlayInGameBGM();
+            }
+            else if (index == resultIndex)
+            {
+                BGMManager.Instance.PlayResultBGM();
+            }
+            else if (index == operationIndex)
+            {
+                BGMManager.Instance.audioSource.Stop();
+            }
+            else if (leteIndex == stageIndex)
+            {
+                Debug.Log("まえはstage");
+                if (index == homeIndex)
+                {
+                    Debug.Log("BGMMMMM<M");
+                    BGMManager.Instance.PlayOutGameBGM();
+                }
+            }
+            leteIndex = index;
             SceneManager.LoadScene(index);
         }
         GameManager.Instance.blockSwithScene = true;         
