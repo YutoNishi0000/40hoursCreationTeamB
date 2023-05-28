@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class StageSelectManager : UIController
 {
-    private const int sceneIndex = 3;
+    private int sceneIndex = 0;         //遷移したいシーンのインデックス番号
+    private const int stageIndex = 3;   //ステージシーンのインデックス番号
+    private const int homeIndex = 1;    //ホームシーンのインデックス番号
+    private void Start()
+    {
+        sceneIndex = stageIndex;
+    }
     void Update()
     {
         if (GameManager.Instance.blockSwithScene)
@@ -12,5 +18,9 @@ public class StageSelectManager : UIController
             return;
         }
         MoveScene(sceneIndex);
+    }
+    public void backHome()
+    {
+        sceneIndex = homeIndex;
     }
 }

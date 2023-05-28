@@ -13,7 +13,8 @@ public class BarController : ButtonController
     [Header("ƒo[‚ÌˆÚ“®Œã‚ÌˆÊ’u")]
     [SerializeField] private Image afterPos;
 
-    private const int sceneIndex = 2;
+    private const int stageSlectIndex = 2;
+
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class BarController : ButtonController
         {
             return;
         }
-        MoveScene(sceneIndex);
+        MoveScene(stageSlectIndex);
     }
     public void PopUpForHome()
     {
