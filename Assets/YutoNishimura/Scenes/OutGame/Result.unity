@@ -1805,11 +1805,11 @@ MonoBehaviour:
   resultImg: {fileID: 1714787794}
   changeScaleTime: 0.3
   resultScores:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1672552123}
+  - {fileID: 1852254791}
+  - {fileID: 1233526489}
+  - {fileID: 447920173}
+  - {fileID: 459733945}
 --- !u!4 &1719789806
 Transform:
   m_ObjectHideFlags: 0
