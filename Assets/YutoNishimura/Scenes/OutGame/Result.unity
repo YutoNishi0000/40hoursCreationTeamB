@@ -1802,7 +1802,6 @@ MonoBehaviour:
   - {fileID: 933718839}
   afterPos: {fileID: 1961006766}
   afterPos_Total: {fileID: 280945150}
-  resultImg: {fileID: 1714787794}
   changeScaleTime: 0.3
   resultScores:
   - {fileID: 1672552123}
@@ -1810,6 +1809,8 @@ MonoBehaviour:
   - {fileID: 1233526489}
   - {fileID: 447920173}
   - {fileID: 459733945}
+  clearSprite: {fileID: 21300000, guid: 8ecf74e0224157d42bad57ff34e77068, type: 3}
+  failedSprite: {fileID: 21300000, guid: 7befa21ca2085284d997f4c7cdb56759, type: 3}
 --- !u!4 &1719789806
 Transform:
   m_ObjectHideFlags: 0
