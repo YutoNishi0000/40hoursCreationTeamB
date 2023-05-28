@@ -15,7 +15,14 @@ public class UIController : MonoBehaviour
     //シーン切り替え時のアニメーションプレハブのアドレス
     private string address = "Assets/Kyoya_Takahashi/Prefabs/OutGame/Animation/SwichAnimationEnd.prefab";
     //シーン切り替え時のアニメーションプレハブ
-    public GameObject endAnimation = null;
+    protected GameObject endAnimation = null;
+
+   
+    private const int stageSlectIndex = 1;  //ステージ選択シーンのインデックス番号
+    private const int homeIndex = 2;        //ホームシーンのインデックス番号
+    private const int stageIndex = 3;       //ステージシーンのインデックス番号
+    private const int resultIndex = 4;      //リザルトシーンのインデックス番号
+    private const int operationIndex = 5;   //オペレーションシーンのインデックス番号
     private void Awake()
     {
         endAnimation = AssetDatabase.LoadAssetAtPath<GameObject>(address);
@@ -45,5 +52,27 @@ public class UIController : MonoBehaviour
     public void InstantAnimation()
     {
         Instantiate(endAnimation);
+    }
+    
+    public void StageSlectScene()
+    {
+        GameManager.Instance.sceneIndex = homeIndex;
+    }
+    public void HomeScene()
+    {
+        GameManager.Instance.sceneIndex = stageSlectIndex;
+    }
+    public void StageScene()
+    {
+        GameManager.Instance.sceneIndex = stageIndex;
+    }
+    public void ResultScene()
+    {
+        Debug.Log("リザルト");
+        GameManager.Instance.sceneIndex = resultIndex;
+    }
+    public void OperationScene()
+    {
+        GameManager.Instance.sceneIndex = operationIndex;
     }
 }

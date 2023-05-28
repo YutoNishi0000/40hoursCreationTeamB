@@ -7,7 +7,6 @@ using UnityEditor.SceneManagement;
 
 public class TitleController : UIController
 {
-    private const int sceneIndex = 1;
 
     void Update()
     {
@@ -16,12 +15,13 @@ public class TitleController : UIController
             //MoveScene(HomeSceneName);
             InstantAnimation();
             PlayDecisionSE();
+            HomeScene();
         }
 
         if (GameManager.Instance.blockSwithScene)
         {
             return;
         }
-        MoveScene(sceneIndex);
+        MoveScene(GameManager.Instance.sceneIndex);
     }
 }

@@ -477,7 +477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db063cbe4915d4697a438dd485e702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endAnimation: {fileID: 0}
   changeScaleTime: 0.1
   afterScale: 1.5
   initialImage: {fileID: 21300000, guid: e303fa5d7cc363c4cb2ef160f5c845d2, type: 3}
@@ -514,6 +513,18 @@ MonoBehaviour:
         - m_Target: {fileID: 605446058}
           m_TargetAssemblyTypeName: UIController, Assembly-CSharp
           m_MethodName: PlaySelectSE
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 605446058}
+          m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+          m_MethodName: HomeScene
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -598,18 +609,6 @@ MonoBehaviour:
       - m_Target: {fileID: 605446058}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: PlayBackSE
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 975500800}
-        m_TargetAssemblyTypeName: StageSelectManager, Assembly-CSharp
-        m_MethodName: backHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1001,7 +1000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd8a594159d97f478bac05044c97499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endAnimation: {fileID: 0}
 --- !u!1 &1319969597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db063cbe4915d4697a438dd485e702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endAnimation: {fileID: 0}
   changeScaleTime: 0.1
   afterScale: 1.5
   initialImage: {fileID: 21300000, guid: 634611661ffe63842a0c9db66497daa4, type: 3}
@@ -1736,7 +1733,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db063cbe4915d4697a438dd485e702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endAnimation: {fileID: 0}
   changeScaleTime: 0.1
   afterScale: 1.5
   initialImage: {fileID: 21300000, guid: 6f3c94d1eedf5fe44b6473c6c077e261, type: 3}
@@ -2238,7 +2234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9db063cbe4915d4697a438dd485e702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endAnimation: {fileID: 0}
   changeScaleTime: 0.1
   afterScale: 1.5
   initialImage: {fileID: 21300000, guid: c94a3b84ab603e244bd9c54804fc9a38, type: 3}

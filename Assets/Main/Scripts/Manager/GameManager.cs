@@ -39,15 +39,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //ゲームが始まっているか
     public bool StartGame = false;
 
-    //ゲームオーバーかどうか
-    public bool gameOver = false;
-
     public List<string> filePathes;
 
-    //ゲームオーバーシーン
-    private string gameOverScene = "GameOver";
-    //ゲームクリアシーン
-    private string gameClearScene = "GameClear";
     //今日の日付
     public int Date = 0;
 
@@ -57,6 +50,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public bool blockSwithScene = true;
 
     private const string directoryPath = "Pictures";      //プロジェクトファイル直下にディレクトリを作成
+    public int sceneIndex = 0;           //遷移したいシーンのインデックス番号
 
     private void Start()
     {
@@ -72,17 +66,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             GameQuit();
         }
-    }
-
-    //ゲッター
-    public bool GetGameOver()
-    {
-        return gameOver;
-    }
-    //セッター
-    public void SetGameOver(bool b)
-    {
-        gameOver = b;
     }
 
     #region ファイル関係
@@ -149,14 +132,4 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public GameMode GetGameMode() { return gameMode; }
 
     public string GetDirectryPath() { return directoryPath; }
-
-    // アプリケーションを終了させる(アプリケーション終了のコードが分散するの防ぐためにpublic関数)
-    public void Quit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#elif UNITY_STANDALONE
-        UnityEngine.Application.Quit();
-#endif        
-    }
 }

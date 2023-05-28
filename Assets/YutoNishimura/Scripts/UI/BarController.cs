@@ -13,7 +13,8 @@ public class BarController : ButtonController
     [Header("ÉoÅ[ÇÃà⁄ìÆå„ÇÃà íu")]
     [SerializeField] private Image afterPos;
 
-    private const int stageSlectIndex = 2;
+    
+    
 
 
     private void Start()
@@ -24,11 +25,12 @@ public class BarController : ButtonController
     }
     private void Update()
     {
+        Debug.Log(GameManager.Instance.sceneIndex);
         if (GameManager.Instance.blockSwithScene)
         {
             return;
         }
-        MoveScene(stageSlectIndex);
+        MoveScene(GameManager.Instance.sceneIndex);
     }
     public void PopUpForHome()
     {
@@ -38,9 +40,5 @@ public class BarController : ButtonController
     public void PopDownForHome()
     {
         bar.rectTransform.DOMoveX(initialPos.rectTransform.position.x, changeScaleTime);
-    }
-    public void Instnt()
-    {
-        Instantiate(endAnimation);
     }
 }
