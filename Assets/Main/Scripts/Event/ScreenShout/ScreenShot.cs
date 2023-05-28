@@ -186,6 +186,13 @@ public class ScreenShot : MonoBehaviour
                 SEManager.Instance.PlayPlusTimeCountSE();
                 //アニメーション
                 Invoke("startNA", 0.2f);
+
+                //もし難易度がハードだったら
+                if(GameManager.Instance.GetGameMode() == GameManager.GameMode.Hard)
+                {
+                    //もう５秒時間を減らす
+                    CountDownTimer.DecreaceTime();
+                }
             }
             //フラグを初期化
             noneTargetFlag = true;
