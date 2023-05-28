@@ -7,7 +7,9 @@ using UnityEditor.SceneManagement;
 
 public class TitleController : UIController
 {
-
+    private void Start()
+    {
+    }
     void Update()
     {
         if(Input.GetMouseButtonDown(0))

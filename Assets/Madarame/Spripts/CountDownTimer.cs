@@ -28,7 +28,7 @@ public class CountDownTimer : UIController
 
 	void Start()
 	{
-		_seconds = 10;
+		_seconds = 5;
         //switch (GameManager.Instance.GetGameMode())
         //{
         //    case GameManager.GameMode.Easy:
@@ -49,7 +49,6 @@ public class CountDownTimer : UIController
 
 	void Update()
 	{
-		Debug.Log(GameManager.Instance.sceneIndex);
 		//　制限時間が0秒以下なら何もしない
 		//　制限時間以下になったらコンソールに『制限時間終了』という文字列を表示する
 		if (_totalTime <= 0f)
@@ -58,7 +57,6 @@ public class CountDownTimer : UIController
 			Debug.Log("制限時間終了");
 			InstantAnimation();
 			MoveScene(GameManager.Instance.sceneIndex);
-
 			return;
 		}
 		//　一旦トータルの制限時間を計測；
