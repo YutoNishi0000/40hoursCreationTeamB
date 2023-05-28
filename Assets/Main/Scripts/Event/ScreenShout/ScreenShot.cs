@@ -257,8 +257,9 @@ public class ScreenShot : MonoBehaviour
 
     private string GetScreenShotPath()
     {
+        string directoryPath = GameManager.Instance.GetDirectryPath();
         //string path = "Assets/Pictures/" + timeStamp + ".png";
-        string path = GameManager.Instance.GetPicturesFilePath() + timeStamp + ".png";
+        string path = GameManager.Instance.GetPicturesFilePath(directoryPath) + timeStamp + ".png";
 
         return path;
     }

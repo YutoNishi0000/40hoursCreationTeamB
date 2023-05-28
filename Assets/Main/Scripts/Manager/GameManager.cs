@@ -55,7 +55,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public GameState gameState;
 
     private const string directoryPath = "Pictures";      //プロジェクトファイル直下にディレクトリを作成
-    private string picturesFilePath;                       //ファイルパスを指定するためのもの
 
     private void Start()
     {
@@ -86,10 +85,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     #region ファイル関係
 
     //写真を保存するディレクトリパスを取得する
-    public string GetPicturesFilePath()
+    public string GetPicturesFilePath(string directryName)
     {
         //ディレクトリが存在しているか
-        if(System.IO.Directory.Exists(directoryPath))
+        if(System.IO.Directory.Exists(directryName))
         {
             Debug.Log("写真フォルダは存在している");
         }
@@ -97,10 +96,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             Debug.Log("写真フォルダは存在していない");
             //ディレクトリ作成
-            System.IO.Directory.CreateDirectory(directoryPath);
+            System.IO.Directory.CreateDirectory(directryName);
         }
 
-        picturesFilePath = directoryPath + "/";
+        string picturesFilePath = directryName + "/";
 
         return picturesFilePath;
     }
@@ -143,6 +142,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void SetGameState(GameState state) { gameState = state; }
 
     public GameState GetGameState() { return gameState; }
+
+    public string GetDirectryPath() { return directoryPath; }
 
     // アプリケーションを終了させる(アプリケーション終了のコードが分散するの防ぐためにpublic関数)
     public void Quit()
