@@ -511,6 +511,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 605446058}
+          m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+          m_MethodName: PlaySelectSE
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -573,8 +585,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 605446058}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: MoveScene
-        m_Mode: 5
+        m_MethodName: InstantAnimation
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -585,7 +597,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 605446058}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: PlaySE
+        m_MethodName: PlayBackSE
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -633,6 +645,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605446056}
   m_CullTransparentMesh: 1
+--- !u!1001 &712922441
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7374533204814793850, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.557065
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.328814
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.334943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
 --- !u!1001 &861183735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -819,6 +888,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879011408}
   m_CullTransparentMesh: 1
+--- !u!1001 &969866131
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.230425
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9037511
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 88.6722
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552020, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552026, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_Name
+      value: SEManger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
 --- !u!1 &975500798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1230,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 1462535303}
+          m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+          m_MethodName: PlaySelectSE
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -1178,7 +1316,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1462535303}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: PlaySE
+        m_MethodName: PlayDecisionSE
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1620,6 +1758,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 1915896486}
+          m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+          m_MethodName: PlaySelectSE
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -1694,7 +1844,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1915896486}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: PlaySE
+        m_MethodName: PlayDecisionSE
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1935,6 +2085,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 8950593785661598287}
+          m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+          m_MethodName: PlaySelectSE
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -2009,7 +2171,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8950593785661598287}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: PlaySE
+        m_MethodName: PlayDecisionSE
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

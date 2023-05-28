@@ -26,9 +26,17 @@ public class UIController : MonoBehaviour
         GameManager.Instance.blockSwithScene = true;
         SceneManager.LoadScene(index); 
     }
-    public void PlaySE()
+    public void PlaySelectSE()
     {
-        //ƒTƒEƒ“ƒh‚ð–Â‚ç‚·
+        SEManager.Instance.PlaySelect();
+    }
+    public void PlayDecisionSE()
+    {
+        SEManager.Instance.PlayDecision();
+    }
+    public void PlayBackSE()
+    {
+        SEManager.Instance.PlayBack();
     }
     public void UnBlockSwithScene()
     {

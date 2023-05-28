@@ -32,7 +32,6 @@ public class BarController : ButtonController
     public void PopUpForHome()
     {
         bar.rectTransform.DOMoveX(afterPos.rectTransform.position.x, changeScaleTime);
-        SEManager.Instance.PlaySelect();
     }
 
     public void PopDownForHome()

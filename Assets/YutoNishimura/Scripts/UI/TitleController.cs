@@ -15,7 +15,7 @@ public class TitleController : UIController
         {
             //MoveScene(HomeSceneName);
             InstantAnimation();
-            SEManager.Instance.PlayDecision();
+            PlayDecisionSE();
         }
 
         if (GameManager.Instance.blockSwithScene)
