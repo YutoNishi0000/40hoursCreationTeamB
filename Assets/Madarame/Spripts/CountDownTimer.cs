@@ -8,9 +8,9 @@ public class CountDownTimer : UIController
 {
 	private enum GameTime
 	{
-		Easy = 5,
-		Nomal = 7,
-		Hard = 10
+		Easy = 0,
+		Nomal = 0,
+		Hard = 0
 	}
 
 	private static float _totalTime;    // êßå¿éûä‘ÇÃçáåv
@@ -28,7 +28,7 @@ public class CountDownTimer : UIController
 
 	void Start()
 	{
-		_seconds = 0;
+		_seconds = 10;
         switch (GameManager.Instance.GetGameMode())
         {
             case GameManager.GameMode.Easy:
