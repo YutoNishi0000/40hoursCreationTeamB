@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/YutoNishimura/Scenes/OutGame/Result.unity
     guid: 208b4cb329c754146ad00a976edfb403
+  - enabled: 1
+    path: Assets/YutoNishimura/Scenes/Operation.unity
+    guid: 85cb6e18e31782b44937139872c27dcf
   m_configObjects: {}
