@@ -18,10 +18,6 @@ public class TitleController : UIController
             HomeScene();
         }
 
-        if (GameManager.Instance.blockSwithScene)
-        {
-            return;
-        }
         MoveScene(GameManager.Instance.sceneIndex);
     }
 }

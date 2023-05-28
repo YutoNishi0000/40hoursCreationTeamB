@@ -25,11 +25,6 @@ public class BarController : ButtonController
     }
     private void Update()
     {
-        Debug.Log(GameManager.Instance.sceneIndex);
-        if (GameManager.Instance.blockSwithScene)
-        {
-            return;
-        }
         MoveScene(GameManager.Instance.sceneIndex);
     }
     public void PopUpForHome()

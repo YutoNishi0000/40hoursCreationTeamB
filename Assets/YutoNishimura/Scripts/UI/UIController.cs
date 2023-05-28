@@ -30,8 +30,11 @@ public class UIController : MonoBehaviour
     //ƒV[ƒ“ˆÚ“®
     public void MoveScene(int index)
     {
-        GameManager.Instance.blockSwithScene = true;
-        SceneManager.LoadScene(index); 
+        if (!GameManager.Instance.blockSwithScene)
+        {
+            SceneManager.LoadScene(index);
+        }
+        GameManager.Instance.blockSwithScene = true;         
     }
     public void PlaySelectSE()
     {
