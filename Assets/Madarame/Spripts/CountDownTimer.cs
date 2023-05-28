@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CountDownTimer : MonoBehaviour
+public class CountDownTimer : UIController
 {
 	private enum GameTime
 	{
@@ -18,7 +18,7 @@ public class CountDownTimer : MonoBehaviour
 	private Text _timerText;
 	private int _minute;  // 制限時間（分）
 	private float _seconds; // 制限時間（秒）
-	[SerializeField] private string _resultSceneName;  //リザルトシーンの名前
+	private const int sceneIndex = 4;	//リザルトシーンのインデックス 
 
 	private GameTime gameTime;
 	//減らす時間
@@ -29,31 +29,38 @@ public class CountDownTimer : MonoBehaviour
 	void Start()
 	{
 		_seconds = 0;
-		switch(GameManager.Instance.GetGameMode())
-		{
-			case GameManager.GameMode.Easy:
-				_minute = (int)GameTime.Easy;
-				break;
-			case GameManager.GameMode.Nomal:
-				_minute = (int)GameTime.Nomal;
-				break;
-			case GameManager.GameMode.Hard:
-				_minute = (int)GameTime.Hard;
-				break;
-		}
-
-		_totalTime = _minute * 60 + _seconds;
+        switch (GameManager.Instance.GetGameMode())
+        {
+            case GameManager.GameMode.Easy:
+                _minute = (int)GameTime.Easy;
+                break;
+            case GameManager.GameMode.Nomal:
+                _minute = (int)GameTime.Nomal;
+                break;
+            case GameManager.GameMode.Hard:
+                _minute = (int)GameTime.Hard;
+                break;
+        }
+        _totalTime = _minute * 60 + _seconds;
 		_oldSeconds = 0f;
 		_timerText = GetComponentInChildren<Text>();
 	}
 
 	void Update()
 	{
+		Debug.Log(GameManager.Instance.blockSwithScene);
 		//　制限時間が0秒以下なら何もしない
+		//　制限時間以下になったらコンソールに『制限時間終了』という文字列を表示する
 		if (_totalTime <= 0f)
 		{
 			SEManager.Instance.PlayTimeLimit(2f);
 			GameManager.Instance.SetGameOver(true);
+			Debug.Log("制限時間終了");
+			InstantAnimation();
+			if (!GameManager.Instance.blockSwithScene)
+			{
+				MoveScene(sceneIndex);
+			}
 			return;
 		}
 		//　一旦トータルの制限時間を計測；
@@ -68,13 +75,7 @@ public class CountDownTimer : MonoBehaviour
 		{
 			_timerText.text = _minute.ToString("00") + ":" + ((int)_seconds).ToString("00");
 		}
-		_oldSeconds = _seconds;
-		//　制限時間以下になったらコンソールに『制限時間終了』という文字列を表示する
-		if (_totalTime <= 0f)
-		{
-			Debug.Log("制限時間終了");
-			SceneManager.LoadScene(_resultSceneName);
-		}
+		_oldSeconds = _seconds;		
 	}
 
 	//タイマーを初期化する関数

@@ -6,9 +6,10 @@ using UnityEditor;
 
 public class ShutterAnimation : MonoBehaviour
 {
-    string addressOther = "Assets/Kyoya_Takahashi/Prefabs/Animation/OtherAnimation.prefab";
-    string addressTarget = "Assets/Kyoya_Takahashi/Prefabs/Animation/TargetAnimation.prefab";
-    string addressNone = "Assets/Kyoya_Takahashi/Prefabs/Animation/NoneAnimation.prefab";
+    string addressOther = "Assets/Kyoya_Takahashi/Prefabs/Ingame/Animation/OtherAnimation.prefab";
+    string addressTarget = "Assets/Kyoya_Takahashi/Prefabs/Ingame/Animation/TargetAnimation.prefab";
+    string addressNone = "Assets/Kyoya_Takahashi/Prefabs/Ingame/Animation/NoneAnimation.prefab";
+       //E:\school\40hour\Assets\Kyoya_Takahashi\Prefabs\Ingame\Animation
     //0:other, 1:target, 2:other
     static GameObject[] Animation = new GameObject[3];
     private void Start()
