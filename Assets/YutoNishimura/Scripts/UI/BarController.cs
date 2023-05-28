@@ -29,4 +29,8 @@ public class BarController : ButtonController
     {
         bar.rectTransform.DOMoveX(initialPos.rectTransform.position.x, changeScaleTime);
     }
+    public void InstantAnimation()
+    {
+        Instantiate(endAnimation);
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Unity.VisualScripting;
 
+
 public class ButtonController : UIController
 {
     [Header("何秒でポップアップ、ポップダウン、バーが移動するか")]
@@ -15,14 +16,27 @@ public class ButtonController : UIController
     [SerializeField] protected Sprite initialImage;
     [Header("ポップアップ後のボタンのイメージ")]
     [SerializeField] protected Sprite afterImage;
+    [Header("移動先のシーン名")]
+    [SerializeField] protected string sceneName;
 
     //内部処理で使う変数
     protected Image tempButton;
     private readonly Vector3 normalVec = new Vector3(1, 1, 1);
+    
+    
 
     private void Start()
     {
         InitializeButton();
+        
+    }
+    private void Update()
+    {
+        if(blockSwithScene)
+        {
+            return;
+        }
+        MoveScene(sceneName);
     }
 
     //継承先のStart関数、またはAwake関数内で必ず呼び出さなければならない関数
@@ -41,5 +55,4 @@ public class ButtonController : UIController
         tempButton.sprite = initialImage;
         tempButton.rectTransform.DOScale(normalVec, changeScaleTime);
     }
-
 }
