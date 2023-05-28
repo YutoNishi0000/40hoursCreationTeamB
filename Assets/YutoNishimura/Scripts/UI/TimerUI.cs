@@ -8,8 +8,6 @@ using UnityEngine.UI;
 //イメージはフェードインする
 public class TimerUI : MonoBehaviour
 {
-    //フェード用のCanvasとImage
-    private static Canvas fadeCanvas;
     private static Image fadeImage;
 
     //フェード用Imageの透明度
@@ -23,9 +21,6 @@ public class TimerUI : MonoBehaviour
     private static float fadeTime = 0.5f;
 
     private static float enabledTime = 0;
-
-    //遷移先のシーン番号
-    private static int nextScene = 1;
 
     //フェード用のCanvasとImage生成
     public static void Init()
