@@ -553,6 +553,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552023, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8350055675308552026, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
       propertyPath: m_Name
       value: SEManger
@@ -1126,6 +1130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2751442685343466819, guid: 7491502b34f4f7147803701df5f1cc53, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: -2751442685343466819, guid: 7491502b34f4f7147803701df5f1cc53, type: 3}
       propertyPath: m_audioClip
       value: 

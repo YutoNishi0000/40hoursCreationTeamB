@@ -38,7 +38,7 @@ public class ScreenShot : MonoBehaviour
     [SerializeField]private GameObject mimic = null;    //‘ÎÛ‚Ìƒ‚ƒfƒ‹
     private bool noneStrangeFlag;
     public static bool noneTargetFlag;
-    private Player player;
+    [SerializeField] private GameObject player;
     [SerializeField] private Image lostTimeImg;
     float imgTime;
     float a_img;
@@ -84,7 +84,6 @@ public class ScreenShot : MonoBehaviour
         targetImage.enabled = false;
         noneStrangeFlag = true;
         noneTargetFlag = true;
-        player = GameObject.FindObjectOfType<Player>();
         skillManager = GetComponent<SkillManager>();
         fadeManager = GetComponent<TimerUI>();
     }
@@ -160,7 +159,7 @@ public class ScreenShot : MonoBehaviour
             //ƒTƒuƒJƒƒ‰B‰e”»’è‚ªƒIƒ“‚¾‚Á‚½‚Æ‚«‚Ì”»’è
             for (int i = 0; i < setterObj.Count; i++)
             {
-                if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
+                if (setterObj[i] != null && JudgeSubTarget(cam, setterObj[i], player))
                 {
                     Debug.Log("ˆÙ¿‚È‚à‚ÌB‰e");
         
@@ -187,7 +186,7 @@ public class ScreenShot : MonoBehaviour
                 //Debug.Log("ŠÔ‚ğ¸‚¢‚Ü‚µ‚½");
                 Debug.Log("‰½‚àB‰e‚Å‚«‚Ä‚È‚¢");
                 CountDownTimer.DecreaceTime();
-                player.Shake(duration, magnitude);
+                player.GetComponent<Player>().Shake(duration, magnitude);
                 //ShutterAnimation.NoneAnimationStart();
                 fadeManager.FadeOut(fadeInSpeed, minusCount1);
                 SEManager.Instance.PlayPlusTimeCountSE();
@@ -237,8 +236,10 @@ public class ScreenShot : MonoBehaviour
     //B‰e‚Ìˆ—
     public void ShutterManager()
     {
-        Transform transform = RespawTarget.GetCurrentTargetObj().transform;
-        Instantiate(mimic, transform.position, transform.rotation);
+        GameObject targetObj = RespawTarget.GetCurrentTargetObj();
+        //è“®‚Å’²®
+        Vector3 targetPos = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y - 1, targetObj.transform.position.z);
+        Instantiate(mimic, targetPos, targetObj.transform.rotation);
         ScreenShot.noneTargetFlag = false;
         //ŠÔ‚ğŠl“¾
         CountDownTimer.IncreaceTime();
@@ -261,6 +262,24 @@ public class ScreenShot : MonoBehaviour
         //Invoke("startTA", 0.2f);
         fadeManager.FadeOut(fadeInSpeed, plusCount);
         SEManager.Instance.PlayMinusTimeCountSE();
+    }
+
+    public bool JudgeSubTarget(Camera camera, GameObject subTargetPos, GameObject playerPos)
+    {
+        float fov = camera.fieldOfView;
+        float judgeRange = Mathf.Cos(Mathf.PI - (((2 * Mathf.PI) - ((fov / 360) * Mathf.PI * 2)) / 2));
+        Vector3 playerToSubVec = subTargetPos.transform.position - playerPos.transform.position;
+        Vector3 playerForwardVec = camera.transform.forward;   //”O‚Ì‚½‚ßƒJƒƒ‰‚ªŒü‚¢‚Ä‚¢‚é•ûŒü‚ÌƒxƒNƒgƒ‹‚ğæ“¾
+        float dot = Vector3.Dot(playerToSubVec.normalized, playerForwardVec.normalized);
+
+        if (playerToSubVec.magnitude < 7.0f && dot >= judgeRange)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     //B‰e‚·‚éuŠÔ”ñ•\¦‚É‚³‚ê‚½UI‚ğ•\¦‚·‚éŠÖ”iInvoke‚ÅŒÄ‚Ôj
@@ -525,7 +544,7 @@ public class ScreenShot : MonoBehaviour
     RaycastHit hit;
     private bool createRay()
     {
-        Vector3 diff = RespawTarget.GetCurrentTargetObj().transform.position - player.transform.position;
+        Vector3 diff = RespawTarget.GetCurrentTargetObj().transform.position - player.gameObject.transform.position;
 
         Vector3 direction = diff.normalized;
         //Debug.Log(direction);

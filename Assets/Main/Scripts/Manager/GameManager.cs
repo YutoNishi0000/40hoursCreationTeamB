@@ -164,7 +164,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void GameQuit()
     {
         DestroyPicturesDirectory(directoryPath);
-        Application.Quit();
     }
 
     #endregion

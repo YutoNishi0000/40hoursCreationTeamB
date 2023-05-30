@@ -90,7 +90,7 @@ public class SkillManager : Actor
         {
             return;
         }
-        Debug.Log("‰Á‘¬");
+        //Debug.Log("‰Á‘¬");
         PlayerSpeedUp();
 
         if (skillBlock_addScore)
