@@ -9,8 +9,8 @@ public class ResultController : UIController
     private enum TargetScore
     {
         Easy = 150,
-        Nomal = 250,
-        Hard = 500
+        Nomal = 600,
+        Hard = 850
     }
 
     [SerializeField] private List<Image> bars;

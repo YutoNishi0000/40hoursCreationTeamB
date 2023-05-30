@@ -26,6 +26,7 @@ public class MetalonController : AIController
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         root = new List<GameObject>();
         //自身のスポーンされた位置を記憶する
         initializeSpawnPos = transform.position;
