@@ -19,6 +19,7 @@ public class Target : Actor
     private bool isInsideCamera = false;
     private bool enableTakePicFlag;    //ターゲット撮影判定
     private const float disTargetShot = 7.0f;
+    private readonly float minDistance = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,52 +34,12 @@ public class Target : Actor
 
         //目標地点の間を継続的に移動
         agent.autoBraking = false;
-
-        if(rootParent1 == null)
-        {
-            Debug.Log("nullだよ");
-        }
-
-        //// 子オブジェクトの数を取得
-        //int childCount = rootParent1.transform.childCount;
-
-        //// 子オブジェクトを順に取得する
-        //for (int i = 0; i < childCount; i++)
-        //{
-        //    Transform childTransform = rootParent1.transform.GetChild(i);
-        //    points[i] = childTransform.gameObject;
-        //}
     }
-    private void OnEnable()
-    {
-        //pointParent = GameObject.FindGameObjectWithTag("TargetPoint");
-        //// 子オブジェクトの数を取得
-        //int childCount = pointParent.transform.childCount;
-
-        // 子オブジェクトを順に取得する
-        //for (int i = 0; i < childCount; i++)
-        //{
-        //    Transform childTransform = pointParent.transform.GetChild(i);
-        //    points[i] = childTransform.gameObject;
-        //}
-    }
-    //private void OnEnable()
-    //{
-    //    targetCamera = GameObject.FindWithTag("subCamera");
-    //    points = GameObject.FindGameObjectsWithTag("dest");
-    //}
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(isInsideCamera);
-        //targetCamera.transform.position = new Vector3(
-        //    this.transform.position.x,
-        //    this.transform.position.y + 1.0f,
-        //    this.transform.position.z);
-        //targetCamera.transform.eulerAngles = this.transform.eulerAngles;
-        //エージェントが現目標地点に近づいたら次の目標地点を設定
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)   
+        if (!agent.pathPending && agent.remainingDistance < minDistance)   
         {
             GoNextPoint();
         }

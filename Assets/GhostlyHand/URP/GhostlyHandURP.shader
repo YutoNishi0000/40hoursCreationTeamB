@@ -166,7 +166,7 @@ Shader "GhostlyHandURP"
 			
 			#pragma vertex vert
 			#pragma fragment frag
-			d
+
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"

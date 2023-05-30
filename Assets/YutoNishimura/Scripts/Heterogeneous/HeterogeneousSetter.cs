@@ -11,6 +11,7 @@ public class HeterogeneousSetter : MonoBehaviour
     [SerializeField] private GameObject ObjectB;
     [SerializeField] private GameObject ObjectC;
     [SerializeField] private GameObject ObjectD;
+    [SerializeField] private GameObject[] parentWonderPoints;       //ルートポイントの親オブジェクトを入れてください（動く異質なもの）
     private Queue<GameObject> queue;
     public List<GameObject> objSpawnPos;
     private List<int> pos;
@@ -106,6 +107,12 @@ public class HeterogeneousSetter : MonoBehaviour
             }
 
             objSpawnPos[rand] = Instantiate(GetNextObject(), points[rand].transform.position, GetNextObject().transform.rotation);
+
+            //MetalonControllerがnullではなかったら
+            if (objSpawnPos[rand].GetComponent<MetalonController>())
+            {
+                objSpawnPos[rand].GetComponent<MetalonController>().SetRootType(rand, parentWonderPoints);
+            }
         }
 
         fieldObjectsNum = 0;
