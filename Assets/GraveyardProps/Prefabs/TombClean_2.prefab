@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 33756788833722360}
   - component: {fileID: 23231324706993290}
   - component: {fileID: 7481740764446669642}
-  - component: {fileID: 64197756373647408}
   m_Layer: 0
   m_Name: TombClean_2
   m_TagString: Untagged
@@ -99,17 +98,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   takenPicFlag: 0
   enableTakePicFlag: 0
---- !u!64 &64197756373647408
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393114240693028}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 29bc42cd38d507149a4b71ebc302f5bb, type: 3}

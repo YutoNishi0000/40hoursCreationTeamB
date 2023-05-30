@@ -20,6 +20,7 @@ TagManager:
   - Root2
   - Root3
   - Root4
+  - MoveStrange
   layers:
   - Default
   - TransparentFX

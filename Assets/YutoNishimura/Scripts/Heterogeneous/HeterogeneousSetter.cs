@@ -21,7 +21,7 @@ public class HeterogeneousSetter : MonoBehaviour
     private readonly int numStrangeObjInField = 8;
     private readonly static float respawnCoolTime = 10;    //異質なものが再生成されるまでのクールタイム
     private static float coolTime;
-
+    public static int numRand;
     void Start()
     {
         coolTime = 0;
@@ -69,6 +69,16 @@ public class HeterogeneousSetter : MonoBehaviour
             }
 
             objSpawnPos[rnd[i]] = Instantiate(GetNextObject(), points[rnd[i]].transform.position, Quaternion.identity);
+
+            numRand = rnd[i];
+
+            if (objSpawnPos[rnd[i]].GetComponentInChildren<MetalonController>())
+            {
+                Debug.Log("セット");
+                objSpawnPos[rnd[i]].GetComponent<MetalonController>().SetRootType();
+                objSpawnPos[rnd[i]].GetComponent<MetalonController>().SetSpawnNumber(rnd[i]);
+                objSpawnPos[rnd[i]].GetComponent<MetalonController>().SetFinishedSetRootFlag(true);
+            }
         }
     }
 
@@ -94,7 +104,7 @@ public class HeterogeneousSetter : MonoBehaviour
             }
         }
 
-        Debug.Log("今フィールドに異質なものが" + fieldObjectsNum + "子存在しています");
+        //Debug.Log("今フィールドに異質なものが" + fieldObjectsNum + "子存在しています");
 
         //足りない分を補うような形で異質なものを動的に配置する
         for (int j = 0; j < numStrangeObjInField - fieldObjectsNum; j++)
@@ -108,10 +118,14 @@ public class HeterogeneousSetter : MonoBehaviour
 
             objSpawnPos[rand] = Instantiate(GetNextObject(), points[rand].transform.position, GetNextObject().transform.rotation);
 
-            //MetalonControllerがnullではなかったら
+            numRand = rand;
+
             if (objSpawnPos[rand].GetComponent<MetalonController>())
             {
-                objSpawnPos[rand].GetComponent<MetalonController>().SetRootType(rand, parentWonderPoints);
+                Debug.Log("セット");
+                objSpawnPos[rand].GetComponent<MetalonController>().SetRootType();
+                objSpawnPos[rand].GetComponent<MetalonController>().SetSpawnNumber(rand);
+                objSpawnPos[rand].GetComponent<MetalonController>().SetFinishedSetRootFlag(true);
             }
         }
 

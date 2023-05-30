@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 33273512303380228}
   - component: {fileID: 23759969937772492}
   - component: {fileID: 4799400689892329661}
-  - component: {fileID: 64237564485254452}
   m_Layer: 0
   m_Name: GraveType2_Damaged_2
   m_TagString: Untagged
@@ -99,17 +98,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   takenPicFlag: 0
   enableTakePicFlag: 0
---- !u!64 &64237564485254452
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849694135568822}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 2e4faddbb5269b540bd004d7f521673c, type: 3}

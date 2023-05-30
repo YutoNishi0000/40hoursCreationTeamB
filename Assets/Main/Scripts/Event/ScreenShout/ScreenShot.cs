@@ -113,29 +113,6 @@ public class ScreenShot : MonoBehaviour
             Invoke(nameof(FirstMovePreview), 1f);
             //GameManager.Instance.IsPhoto = true;
 
-            //サブカメラ撮影判定がオンだったときの判定
-            for (int i = 0; i < setterObj.Count; i++)
-            {
-                if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
-                {
-                    Debug.Log("異質なもの撮影");
-        
-                    noneStrangeFlag = false;
-                    //サブカメラカウントをインクリメント
-                    GameManager.Instance.numSubShutter++;
-                    //Debug.Log("1");
-                    //スコアを加算
-                    ScoreManger.Score += 10;
-                    //Debug.Log("2");
-                    //tempList[i]のオブジェクトの消滅フラグをオンにする
-                    setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
-                    //Debug.Log("処理完了");
-                    //リストにこの配列のインデックスを追加
-                    //destroyStrangeList.Add(i);
-                    //アニメーション
-                    Invoke("startOA", 0.2f);
-                }
-            }
 
             //Debug.Log("通ってる(1)");
             //障害物があるとき
@@ -166,6 +143,7 @@ public class ScreenShot : MonoBehaviour
                         Debug.Log("画面外");
                         break;
                 }
+
                 ////ターゲットが画面外か
                 //if ( == ScoreType.outOfScreen)
                 //{
@@ -178,6 +156,31 @@ public class ScreenShot : MonoBehaviour
 
                 //}
             }
+
+            //サブカメラ撮影判定がオンだったときの判定
+            for (int i = 0; i < setterObj.Count; i++)
+            {
+                if (setterObj[i] != null && setterObj[i].GetComponent<HeterogeneousController>().GetEnableTakePicFlag())
+                {
+                    Debug.Log("異質なもの撮影");
+        
+                    noneStrangeFlag = false;
+                    //サブカメラカウントをインクリメント
+                    GameManager.Instance.numSubShutter++;
+                    //Debug.Log("1");
+                    //スコアを加算
+                    ScoreManger.Score += 10;
+                    //Debug.Log("2");
+                    //tempList[i]のオブジェクトの消滅フラグをオンにする
+                    setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                    //Debug.Log("処理完了");
+                    //リストにこの配列のインデックスを追加
+                    //destroyStrangeList.Add(i);
+                    //アニメーション
+                    Invoke("startOA", 0.2f);
+                }
+            }
+
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
             if (noneTargetFlag && noneStrangeFlag && Shutter.isFilming)
@@ -200,10 +203,12 @@ public class ScreenShot : MonoBehaviour
                     fadeManager.FadeOut(fadeInSpeed, minusCount2);
                 }
             }
+
             //フラグを初期化
             noneTargetFlag = true;
             noneStrangeFlag = true;
 
+            //消していたUIをオンに
             Invoke(nameof(OnUIShutter), 0.2f);
             Shutter.isFilming = false;
         }
