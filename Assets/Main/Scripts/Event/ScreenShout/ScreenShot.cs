@@ -177,10 +177,9 @@ public class ScreenShot : MonoBehaviour
                     //リストにこの配列のインデックスを追加
                     //destroyStrangeList.Add(i);
                     //アニメーション
-                    Invoke("startOA", 0.2f);
+                    //Invoke("startOA", 0.2f);
                 }
             }
-
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
             if (noneTargetFlag && noneStrangeFlag && Shutter.isFilming)
@@ -189,11 +188,11 @@ public class ScreenShot : MonoBehaviour
                 Debug.Log("何も撮影できてない");
                 CountDownTimer.DecreaceTime();
                 player.Shake(duration, magnitude);
-                ShutterAnimation.NoneAnimationStart();
+                //ShutterAnimation.NoneAnimationStart();
                 fadeManager.FadeOut(fadeInSpeed, minusCount1);
                 SEManager.Instance.PlayPlusTimeCountSE();
                 //アニメーション
-                Invoke("startNA", 0.2f);
+                //Invoke("startNA", 0.2f);
 
                 //もし難易度がハードだったら
                 if(GameManager.Instance.GetGameMode() == GameManager.GameMode.Hard)
@@ -202,6 +201,27 @@ public class ScreenShot : MonoBehaviour
                     CountDownTimer.DecreaceTime();
                     fadeManager.FadeOut(fadeInSpeed, minusCount2);
                 }
+            }
+
+            //異質な物だけ撮影した場合
+            if (!noneStrangeFlag && noneTargetFlag)
+            {
+                Invoke("startOA", 0.2f);
+            }
+            //ターゲットだけ撮影した場合
+            else if (noneStrangeFlag && !noneTargetFlag)
+            {
+                Invoke("startTA", 0.2f);
+            }
+            //どちらも撮影した場合
+            else if (!noneStrangeFlag && !noneTargetFlag)
+            {
+                Invoke("startTA", 0.2f);
+            }
+            //空撮りだった場合
+            else
+            {
+                Invoke("startNA", 0.2f);
             }
 
             //フラグを初期化
@@ -238,7 +258,7 @@ public class ScreenShot : MonoBehaviour
         //ターゲットリスポーン
         RespawTarget.RespawnTarget();
         //アニメーション開始
-        Invoke("startTA", 0.2f);
+        //Invoke("startTA", 0.2f);
         fadeManager.FadeOut(fadeInSpeed, plusCount);
         SEManager.Instance.PlayMinusTimeCountSE();
     }

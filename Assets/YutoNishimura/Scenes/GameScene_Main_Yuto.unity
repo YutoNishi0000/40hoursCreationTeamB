@@ -7,9 +7,9 @@ OcclusionCullingSettings:
   m_OcclusionBakeSettings:
     smallestOccluder: 5
     smallestHole: 0.25
-    backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+    backfaceThreshold: 30
+  m_SceneGUID: 2e7d1d991e34d374c9a2d26f58f08025
+  m_OcclusionCullingData: {fileID: 36300000, guid: ceb1834121dde01479bffcc202328c4e, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -11785,6 +11785,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793851, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: animations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374533204814793851, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 5493716365134650271, guid: f5c8b2095d37e804084518a2473c7a25, type: 3}
+    - target: {fileID: 7374533204814793851, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 361372441579283264, guid: 60af1f3b6b63e7e44b7efa02bc39006e, type: 3}
+    - target: {fileID: 7374533204814793851, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: animations.Array.data[2]
+      value: 
+      objectReference: {fileID: 5001119668906291612, guid: 2dbc39114b54619469f387ff35018353, type: 3}
+    - target: {fileID: 7374533204814793851, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
+      propertyPath: animations.Array.data[3]
+      value: 
+      objectReference: {fileID: 4078675647470845428, guid: 63b8f4e1af571574ab10f552b4654996, type: 3}
     - target: {fileID: 7374533204814793852, guid: 765cde3c5c92bba438a1c0c20f40c761, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -50569,6 +50589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1629479312}
   - component: {fileID: 1629479311}
+  - component: {fileID: 1629479313}
   m_Layer: 0
   m_Name: Con
   m_TagString: Untagged
@@ -50605,6 +50626,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1629479313
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629479310}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1629605199
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,13 +21,15 @@ public class SkillManager : Actor
     private const int skillLevel2 = 10;
     private const int skillLevel3 = 20;
     private float playerAccelSpeed;
-    private const float accelerationSpeed = 1.5f;   //プレイヤーのスキル獲得時の速度倍率
+    private readonly float accelerationSpeed = 1.5f;   //プレイヤーのスキル獲得時の速度倍率
     private readonly int minimapTargetShutterNum = 5;   //何枚おきにスキルが発動するか
     private int previousCount;
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindObjectOfType<Player>();
         time = interval;
         targetMinimapFlag = false;
         skillBlock_player = true;
@@ -35,7 +37,7 @@ public class SkillManager : Actor
         skillBlock_seeTarget = true;
         addScoreFlag = false;
         minimapSkillFlag = false;
-        playerAccelSpeed = playerInstance.GetInitialPlayerSpeed() * accelerationSpeed;
+        playerAccelSpeed = player.GetInitialPlayerSpeed() * accelerationSpeed;
     }
 
     // Update is called once per frame
@@ -146,7 +148,7 @@ public class SkillManager : Actor
     /// </summary>
     private void PlayerSpeedUp()
     {
-        playerInstance.SetPlayerSpeed(playerAccelSpeed);
+        playerInstance.SetPlayerSpeed(9);
     }
 
     //ターゲットのミニマップを表示するかどうか

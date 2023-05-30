@@ -29,7 +29,7 @@ public class ShutterAnimation : MonoBehaviour
     public static void OtherAnimationStart()
     {
         Debug.Log("異質");
-        Instantiate(Animation[0]);
+        Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.Other]);
     }
     /// <summary>
     /// ターゲット撮影アニメーション開始
@@ -37,7 +37,7 @@ public class ShutterAnimation : MonoBehaviour
     public static void TargetAnimationStart()
     {
         Debug.Log("ターゲット");
-        Instantiate(Animation[1]);
+        Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.Target]);
     }
     /// <summary>
     /// 何も撮影できなかったアニメーション開始
@@ -45,6 +45,6 @@ public class ShutterAnimation : MonoBehaviour
     public static void NoneAnimationStart()
     {
         Debug.Log("何も");
-        Instantiate(Animation[2]);
+        Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.None]);
     }
 }

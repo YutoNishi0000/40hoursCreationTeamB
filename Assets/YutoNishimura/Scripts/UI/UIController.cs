@@ -58,7 +58,7 @@ public class UIController : MonoBehaviour
     }
     public void InstantAnimation()
     {
-        Instantiate(endAnimation);
+        Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.End]);
     }
     
     public void StageSlectScene()

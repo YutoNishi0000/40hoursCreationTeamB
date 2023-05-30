@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //異質なもの自身にアタッチするもの
+[RequireComponent(typeof(MeshRenderer))]
 public class HeterogeneousController : Actor
 {
     private Material material;

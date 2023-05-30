@@ -24,6 +24,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Operator
     }
 
+    public enum ShutterAnimationState
+    {
+        None,
+        Other,
+        Target,
+        End
+    }
+
     //サブカメラで写真を撮ったか
     public bool IsSubPhoto = false;
 
@@ -48,6 +56,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private const string directoryPath = "Pictures";      //プロジェクトファイル直下にディレクトリを作成
     public int sceneIndex;           //遷移したいシーンのインデックス番号
 
+    public GameObject[] animations;
+
     private void Start()
     {
         sceneIndex = 0;
@@ -55,14 +65,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         filePathes = new List<string>();
         gameMode = new GameMode();
         gameState = new GameState();
+
+        BGMManager.Instance.audioSource.Stop();
+        BGMManager.Instance.PlayOutGameBGM();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameQuit();
-        }
+
     }
 
     #region BGM関係
