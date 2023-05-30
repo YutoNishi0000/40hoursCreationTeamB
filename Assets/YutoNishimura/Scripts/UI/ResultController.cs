@@ -8,7 +8,7 @@ public class ResultController : UIController
 {
     private enum TargetScore
     {
-        Easy = 150,
+        Easy = 250,
         Nomal = 600,
         Hard = 850
     }
