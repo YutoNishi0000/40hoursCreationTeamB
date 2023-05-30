@@ -14,13 +14,15 @@ public class ShutterAnimation : MonoBehaviour
     static GameObject[] Animation = new GameObject[3];
     private void Start()
     {
+#if UNITY_EDITOR
         Animation[0] = AssetDatabase.LoadAssetAtPath<GameObject>(addressOther);
         Animation[1] = AssetDatabase.LoadAssetAtPath<GameObject>(addressTarget);
         Animation[2] = AssetDatabase.LoadAssetAtPath<GameObject>(addressNone);
+#endif
     }
 
 
-    
+
     /// <summary>
     /// 異質なもの撮影アニメーション開始
     /// </summary>

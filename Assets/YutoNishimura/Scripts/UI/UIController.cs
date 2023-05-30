@@ -26,7 +26,9 @@ public class UIController : MonoBehaviour
 
     private void Awake()
     {
+#if UNITY_EDITOR
         endAnimation = AssetDatabase.LoadAssetAtPath<GameObject>(address);
+#endif
     }
     //ƒV[ƒ“ˆÚ“®
     public void MoveScene(int index)
