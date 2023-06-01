@@ -74,7 +74,9 @@ public class HeterogeneousSetter : MonoBehaviour
             if (objSpawnPos[rnd[i]].GetComponentInChildren<MetalonController>())
             {
                 Debug.Log("セット");
+                objSpawnPos[rnd[i]].GetComponent<MetalonController>().SetRootType();
                 objSpawnPos[rnd[i]].GetComponent<MetalonController>().SetSpawnNumber(rnd[i]);
+                objSpawnPos[rnd[i]].GetComponent<MetalonController>().SetFinishedSetRootFlag(true);
             }
         }
     }
@@ -120,7 +122,9 @@ public class HeterogeneousSetter : MonoBehaviour
             if (objSpawnPos[rand].GetComponent<MetalonController>())
             {
                 Debug.Log("セット");
+                objSpawnPos[rand].GetComponent<MetalonController>().SetRootType();
                 objSpawnPos[rand].GetComponent<MetalonController>().SetSpawnNumber(rand);
+                objSpawnPos[rand].GetComponent<MetalonController>().SetFinishedSetRootFlag(true);
             }
         }
 
