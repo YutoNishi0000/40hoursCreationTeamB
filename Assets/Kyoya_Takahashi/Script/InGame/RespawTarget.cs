@@ -41,6 +41,7 @@ public class RespawTarget : MonoBehaviour
 
         SEManager.Instance.PlayRespawn();
 
+        //ルートタイプによってスポーンする位置が変わる
         switch ((RootType)rootType)
         {
             case RootType.First:
@@ -67,5 +68,6 @@ public class RespawTarget : MonoBehaviour
         Destroy(tempTarget);
     }
 
+    //フィールド上に存在しているターゲットオブジェクトを取得
     public static GameObject GetCurrentTargetObj() { return tempTarget; }
 }

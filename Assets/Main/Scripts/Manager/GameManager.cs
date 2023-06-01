@@ -7,6 +7,7 @@ using System.IO;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    //ƒQ[ƒ€‚Ì“ïˆÕ“x
     public enum GameMode
     {
         Easy,
@@ -14,6 +15,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Hard
     }
 
+    //ƒQ[ƒ€‚ª¡‚Ç‚Ì‚æ‚¤‚Èó‘Ô‚È‚Ì‚©
     public enum GameState
     {
         Title,

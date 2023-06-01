@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExistController : MonoBehaviour
 {
+    //ƒQ[ƒ€I—¹‚ÉŒÄ‚Ño‚·
     public void EndGame()
     {
         GameManager.Instance.GameQuit();
