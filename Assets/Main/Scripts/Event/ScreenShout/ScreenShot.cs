@@ -11,10 +11,6 @@ using System.Security.Cryptography;
 [RequireComponent(typeof(TimerUI))]
 public class ScreenShot : MonoBehaviour
 {
-    //画面の中心
-    static Vector3 center = Vector3.zero;
-    private const float raiseScore = 1.5f;     //スコア上昇倍率
-
     //入力が必要なもの
     [SerializeField] private RawImage targetImage;     //テクスチャを表示するためのRawImage
     [SerializeField] private Image point1;             //スクショした画像の１番目の移動先
@@ -24,6 +20,10 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private Image minusCount2;
     [SerializeField] private float duration;           //カメラシェイクの継続時間
     [SerializeField] private float magnitude;          //カメラシェイクの揺れの強さ
+    [SerializeField]private GameObject mimic = null;    //対象のモデル
+    [SerializeField] private GameObject player;
+    [SerializeField] private Image lostTimeImg;
+    [SerializeField] private GameObject[] gameUI;     //写真を撮るときに消したいUI
 
     //内部処理で使うもの
     private Camera cam;                                //プレイヤーのカメラ
@@ -34,22 +34,13 @@ public class ScreenShot : MonoBehaviour
     private Vector3 InitialPrevPos;                    //RawImageの初期位置
     private Vector3 InitialPrevscale;                  //RawImageの初期スケール
     private List<GameObject> setterObj;                //毎フレーム送られてくる異質なものの情報を取得するためのもの
-    private List<int> destroyStrangeList;
-    [SerializeField]private GameObject mimic = null;    //対象のモデル
-    private bool noneStrangeFlag;
-    public static bool noneTargetFlag;
-    [SerializeField] private GameObject player;
-    [SerializeField] private Image lostTimeImg;
-    float imgTime;
-    float a_img;
-    private readonly float fadeInSpeed = 0.2f;
+    private bool noneStrangeFlag;                      //異質なものが撮影されていたらfalse 撮影されていなかったらtrue
+    public static bool noneTargetFlag;                 //ターゲットが撮影されていたらfalse 撮影されていなかったらtrue
+    private readonly float fadeInSpeed = 0.2f;         //フェードスピード、撮影判定呼び出し時間
+    private Vector3 center = Vector3.zero;             //画面の中心
+    private const float raiseScore = 1.5f;             //スコア上昇倍率
     private SkillManager skillManager;
     private TimerUI fadeManager;
-
-    [SerializeField] private GameObject[] gameUI;     //写真を撮るときに消したいUI
-
-    //ビュー座標に変換したいオブジェクトポジション
-    [SerializeField] private GameObject obj = null;
 
     //それぞれのスコアの値
     public enum ScoreType
@@ -60,24 +51,13 @@ public class ScreenShot : MonoBehaviour
         outOfScreen = 0,
     };
 
-    //スコア倍率(レベルに応じて値が異なる)
-    private readonly float Odds_Level1 = 1.2f;
-    private readonly float Odds_Level2 = 1.5f;
-    private readonly float Odds_Level3 = 2.0f;
-
     //それぞれの判定の幅
     private const float areaWidth = 192;      //(960 / 5) 画面5等分
     private const float areaHeight = 216;     //(1080 / 5) 画面5等分
 
-
-    public static int[] abc = new int[10];
-
-    void Awake()
+    private void Start()
     {
-        //lostTimeImg.enabled = false;
-        imgTime = 0;
         setterObj = new List<GameObject>();
-        destroyStrangeList = new List<int>();
         InitialPrevPos = targetImage.rectTransform.position;
         InitialPrevscale = targetImage.rectTransform.localScale;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -86,34 +66,19 @@ public class ScreenShot : MonoBehaviour
         noneTargetFlag = true;
         skillManager = GetComponent<SkillManager>();
         fadeManager = GetComponent<TimerUI>();
-    }
-
-    private void Start()
-    {
-        //getTimeImg.enabled = false;
         //画面の中心を求める
-        center = new Vector3(
-            areaWidth * 2 + areaWidth * 0.5f,
-            areaHeight * 2 + areaHeight * 0.5f,
-            0.0f);
+        center = new Vector3(areaWidth * 2 + areaWidth * 0.5f, areaHeight * 2 + areaHeight * 0.5f, 0.0f);
     }
 
     private void Update()
     {
         if (Shutter.isFilming)
         {
-            for (int i = 0; i < gameUI.Length; i++)
-            {
-                gameUI[i].SetActive(false);
-            }
-
+            OffUIShutter();
             InitializeRawImage();
             ClickShootButton();
             Invoke(nameof(FirstMovePreview), 1f);
-            //GameManager.Instance.IsPhoto = true;
 
-
-            //Debug.Log("通ってる(1)");
             //障害物があるとき
             if (createRay())
             {
@@ -138,22 +103,10 @@ public class ScreenShot : MonoBehaviour
                         break;
                     case ScoreType.outOfScreen:
                         SEManager.Instance.PlayShot();
-                        ScreenShot.noneTargetFlag = true;
+                        noneTargetFlag = true;
                         Debug.Log("画面外");
                         break;
                 }
-
-                ////ターゲットが画面外か
-                //if ( == ScoreType.outOfScreen)
-                //{
-                //    SEManager.Instance.PlayShot();
-                //    ScreenShot.noneTargetFlag = true;
-                //    Debug.Log("画面外");
-                //}
-                //else
-                //{
-
-                //}
             }
 
             //サブカメラ撮影判定がオンだったときの判定
@@ -161,22 +114,13 @@ public class ScreenShot : MonoBehaviour
             {
                 if (setterObj[i] != null && JudgeSubTarget(cam, setterObj[i], player))
                 {
-                    Debug.Log("異質なもの撮影");
-        
                     noneStrangeFlag = false;
                     //サブカメラカウントをインクリメント
                     GameManager.Instance.numSubShutter++;
-                    //Debug.Log("1");
                     //スコアを加算
                     ScoreManger.Score += 10;
-                    //Debug.Log("2");
                     //tempList[i]のオブジェクトの消滅フラグをオンにする
                     setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
-                    //Debug.Log("処理完了");
-                    //リストにこの配列のインデックスを追加
-                    //destroyStrangeList.Add(i);
-                    //アニメーション
-                    //Invoke("startOA", 0.2f);
                 }
             }
 
@@ -190,126 +134,78 @@ public class ScreenShot : MonoBehaviour
                 //ShutterAnimation.NoneAnimationStart();
                 fadeManager.FadeOut(fadeInSpeed, minusCount1);
                 SEManager.Instance.PlayPlusTimeCountSE();
-                //アニメーション
-                //Invoke("startNA", 0.2f);
 
                 //もし難易度がハードだったら
                 if(GameManager.Instance.GetGameMode() == GameManager.GameMode.Hard)
                 {
-                    //もう５秒時間を減らす
+                    //もう５秒制限時間を減らす
                     CountDownTimer.DecreaceTime();
                     fadeManager.FadeOut(fadeInSpeed, minusCount2);
                 }
             }
 
-            //異質な物だけ撮影した場合
-            if (!noneStrangeFlag && noneTargetFlag)
-            {
-                Invoke("startOA", 0.2f);
-            }
-            //ターゲットだけ撮影した場合
-            else if (noneStrangeFlag && !noneTargetFlag)
-            {
-                Invoke("startTA", 0.2f);
-            }
-            //どちらも撮影した場合
-            else if (!noneStrangeFlag && !noneTargetFlag)
-            {
-                Invoke("startTA", 0.2f);
-            }
-            //空撮りだった場合
-            else
-            {
-                Invoke("startNA", 0.2f);
-            }
+            //シャッターアニメーションを遅れて表示させる
+            ShutterAnimationController(fadeInSpeed);
 
             //フラグを初期化
             noneTargetFlag = true;
             noneStrangeFlag = true;
 
             //消していたUIをオンに
-            Invoke(nameof(OnUIShutter), 0.2f);
+            Invoke(nameof(OnUIShutter), fadeInSpeed);
             Shutter.isFilming = false;
         }
     }
+
+    #region 撮影系
 
     //撮影時の処理
     public void ShutterManager()
     {
         GameObject targetObj = RespawTarget.GetCurrentTargetObj();
-        //手動で調整
+        //手動でターゲットが表示される位置を調整
         Vector3 targetPos = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y - 1, targetObj.transform.position.z);
         Instantiate(mimic, targetPos, targetObj.transform.rotation);
-        ScreenShot.noneTargetFlag = false;
+        noneTargetFlag = false;
         //時間を獲得
         CountDownTimer.IncreaceTime();
-        Debug.Log("時間を獲得しました");
         //ターゲットが撮影された
         SetPhotographTargetFlag(false);
-        //障害物がないときの処理
-        Debug.Log("撮影した");
         //スコア加算
         ScoreManger.Score += FinalScorePoint(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position));
-        ScoreManger.ShotMainTarget = true;
-        TargetManager.IsSpawn = true;
         //対象を撮影した回数をインクリメント
         GameManager.Instance.numTargetShutter++;
         //SE
         SEManager.Instance.PlayTargetShot();
         //ターゲットリスポーン
         RespawTarget.RespawnTarget();
-        //アニメーション開始
-        //Invoke("startTA", 0.2f);
+        //UIをフェードアウト
         fadeManager.FadeOut(fadeInSpeed, plusCount);
-        SEManager.Instance.PlayMinusTimeCountSE();
+        SEManager.Instance.PlayPlusTimeCountSE();
     }
 
-    public bool JudgeSubTarget(Camera camera, GameObject subTargetPos, GameObject playerPos)
+    private void ShutterAnimationController(float invokeTime)
     {
-        float fov = camera.fieldOfView;
-        float judgeRange = Mathf.Cos(Mathf.PI - (((2 * Mathf.PI) - ((fov / 360) * Mathf.PI * 2)) / 2));
-        Vector3 playerToSubVec = subTargetPos.transform.position - playerPos.transform.position;
-        Vector3 playerForwardVec = camera.transform.forward;   //念のためカメラが向いている方向のベクトルを取得
-        float dot = Vector3.Dot(playerToSubVec.normalized, playerForwardVec.normalized);
-
-        if (playerToSubVec.magnitude < 7.0f && dot >= judgeRange)
+        //異質な物だけ撮影した場合
+        if (!noneStrangeFlag && noneTargetFlag)
         {
-            return true;
+            Invoke("startOA", invokeTime);
         }
+        //ターゲットだけ撮影した場合
+        else if (noneStrangeFlag && !noneTargetFlag)
+        {
+            Invoke("startTA", invokeTime);
+        }
+        //どちらも撮影した場合
+        else if (!noneStrangeFlag && !noneTargetFlag)
+        {
+            Invoke("startTA", invokeTime);
+        }
+        //空撮りだった場合
         else
         {
-            return false;
+            Invoke("startNA", invokeTime);
         }
-    }
-
-    //撮影する瞬間非表示にされたUIを表示する関数（Invokeで呼ぶ）
-    public void OnUIShutter()
-    {
-        for (int i = 0; i < gameUI.Length; i++)
-        {
-            gameUI[i].SetActive(true);
-        }
-    }
-
-
-    //特定のImageを表示、非表示する関数
-    public void UIManager_Image(Image img, bool isActive)
-    {
-        img.enabled = isActive;
-    }
-
-    //特定のTextを表示、非表示する関数
-    public void UIManager_Text(Text text, bool isActive)
-    {
-        text.enabled = isActive;
-    }
-
-    private void InitializeRawImage()
-    {
-        targetImage.texture = null;
-        targetImage.enabled = false;
-        targetImage.rectTransform.position = InitialPrevPos;
-        targetImage.rectTransform.localScale = InitialPrevscale;
     }
 
     private string GetScreenShotPath()
@@ -330,18 +226,6 @@ public class ScreenShot : MonoBehaviour
 
         RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
         cam.targetTexture = renderTexture;
-
-
-
-
-        //================================================================================================================================================
-        //
-        //   もし。テクスチャが縮められている状態だったら下のコメント化している部分（「 / 2」）のところをはずしてみて）
-        //
-        //================================================================================================================================================
-
-
-
 
         Texture2D texture = new Texture2D(cam.targetTexture.width / 2, cam.targetTexture.height, TextureFormat.RGB24, false);
 
@@ -386,6 +270,39 @@ public class ScreenShot : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region UI系
+
+    //撮影する瞬間非表示にされたUIを表示する関数（Invokeで呼ぶ）
+    public void OnUIShutter()
+    {
+        for (int i = 0; i < gameUI.Length; i++)
+        {
+            gameUI[i].SetActive(true);
+        }
+    }
+    
+    //撮影する瞬間非表示にされたUIを表示する関数（Invokeで呼ぶ）
+    public void OffUIShutter()
+    {
+        for (int i = 0; i < gameUI.Length; i++)
+        {
+            gameUI[i].SetActive(false);
+        }
+    }
+
+    private void InitializeRawImage()
+    {
+        targetImage.texture = null;
+        targetImage.enabled = false;
+        targetImage.rectTransform.position = InitialPrevPos;
+        targetImage.rectTransform.localScale = InitialPrevscale;
+    }
+
+    #endregion
+
+    #region プレビューの動き
     private void FirstMovePreview()
     {
         targetImage.rectTransform.DOScale(transform.localScale * firstScale, 0.5f);
@@ -403,6 +320,11 @@ public class ScreenShot : MonoBehaviour
     {
         targetImage.transform.DOMoveX(point2.rectTransform.position.x, 0.3f);
     }
+
+    #endregion
+
+    #region シャッターアニメーション
+
     void startOA()
     {
         ShutterAnimation.OtherAnimationStart();
@@ -412,17 +334,14 @@ public class ScreenShot : MonoBehaviour
         ShutterAnimation.NoneAnimationStart();
     }
 
-    public void SetList(List<GameObject> list) { setterObj = list; }
+    void startTA()
+    {
+        ShutterAnimation.TargetAnimationStart();
+    }
 
-    public void SetDestroyList(List<int> list) { destroyStrangeList = list; }
+    #endregion
 
-    public List<int> GetDestroyList() { return destroyStrangeList; }
-
-    public void SetPhotographTargetFlag(bool flag) { noneTargetFlag = flag; }
-
-
-
-
+    #region ターゲット撮影判定
 
     /// <summary>
     /// ワールド座標をスクリーン座標に
@@ -561,8 +480,36 @@ public class ScreenShot : MonoBehaviour
         return false;
 
     }
-    void startTA()
+
+    #endregion
+
+    #region 異質なもの撮影判定
+
+    public bool JudgeSubTarget(Camera camera, GameObject subTargetPos, GameObject playerPos)
     {
-        ShutterAnimation.TargetAnimationStart();
+        float fov = camera.fieldOfView;
+        float judgeRange = Mathf.Cos(Mathf.PI - (((2 * Mathf.PI) - ((fov / 360) * Mathf.PI * 2)) / 2));
+        Vector3 playerToSubVec = subTargetPos.transform.position - playerPos.transform.position;
+        Vector3 playerForwardVec = camera.transform.forward;   //念のためカメラが向いている方向のベクトルを取得
+        float dot = Vector3.Dot(playerToSubVec.normalized, playerForwardVec.normalized);
+
+        if (playerToSubVec.magnitude < 7.0f && dot >= judgeRange)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
+
+    #endregion
+
+    #region ゲッター、セッター
+
+    public void SetList(List<GameObject> list) { setterObj = list; }
+
+    public void SetPhotographTargetFlag(bool flag) { noneTargetFlag = flag; }
+
+    #endregion
 }

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 //自身の周辺をうろつくようにする
 public class MetalonController : Actor
 {
+    //メタロン（動く異質なもの）のルートの種類
     public enum SubRootType
     {
         First,
@@ -98,9 +99,7 @@ public class MetalonController : Actor
     //ターゲットが生み出された直後に呼び出す
     public void SetRootType()
     {
-        SubRootType type = (SubRootType)Random.Range(0, rootNum);
-
-        switch (type)
+        switch (subRootType)
         {
             case SubRootType.First:
                 rootParent1 = GameObject.Find("WonderPoint0");

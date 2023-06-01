@@ -38,6 +38,7 @@ public class HeterogeneousController : Actor
         {
             //フィールドに足りない異質なものを補うときにクールタイム発生
             HeterogeneousSetter.CoolTime();
+            //即座に自身のゲームオブジェクトを非アクティブに
             gameObject.SetActive(false);
             Destroy(gameObject);
         }

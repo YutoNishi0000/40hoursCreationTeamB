@@ -18,11 +18,10 @@ public class ResultController : UIController
     [SerializeField] private Image afterPos_Total;
     [SerializeField] private Image resultImg;
     [SerializeField] private float changeScaleTime = 0.3f;
-    private Color initialResultImg;
-    private float color_a;
     [SerializeField] private Text[] resultScores;
     [SerializeField] private Sprite clearSprite;       //ゲームクリア時に表示させるスプライト
     [SerializeField] private Sprite failedSprite;      //ゲーム失敗時に表示させるスプライト
+    private Color initialResultImg;
     private void Start()
     {
         ShowResultScore();

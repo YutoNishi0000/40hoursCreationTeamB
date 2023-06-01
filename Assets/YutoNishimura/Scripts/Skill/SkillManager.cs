@@ -37,7 +37,6 @@ public class SkillManager : Actor
         skillBlock_seeTarget = true;
         addScoreFlag = false;
         minimapSkillFlag = false;
-        playerAccelSpeed = player.GetInitialPlayerSpeed() * accelerationSpeed;
     }
 
     // Update is called once per frame
@@ -56,25 +55,16 @@ public class SkillManager : Actor
         switch (GameManager.Instance.numSubShutter)
         {
             case skillLevel1:
-                if (skillBlock_player)
-                {
-                    SEManager.Instance.PlaySkill();
-                    skillBlock_player = false;
-                }
+                SEManager.Instance.PlaySkill();
+                skillBlock_player = false;
                 break;
             case skillLevel2:
-                if (skillBlock_addScore)
-                {
-                    SEManager.Instance.PlaySkill();
-                    skillBlock_addScore = false;
-                }
+                SEManager.Instance.PlaySkill();
+                skillBlock_addScore = false;
                 break;
             case skillLevel3:
-                if (skillBlock_seeTarget)
-                {
-                    SEManager.Instance.PlaySkill();
-                    skillBlock_seeTarget = false;
-                }
+                SEManager.Instance.PlaySkill();
+                skillBlock_seeTarget = false;
                 break;
             default:
                 break;
@@ -90,7 +80,8 @@ public class SkillManager : Actor
         {
             return;
         }
-        //Debug.Log("加速");
+
+        //プレイヤー速度アップ開放
         PlayerSpeedUp();
 
         if (skillBlock_addScore)
@@ -98,6 +89,7 @@ public class SkillManager : Actor
             return;
         }
 
+        //スコアアップ開放
         AddScore();
 
         if(skillBlock_seeTarget)
@@ -105,6 +97,7 @@ public class SkillManager : Actor
             return;
         }
 
+        //ターゲット可視化解放
         TargetMinimapActivation();
     }
 
@@ -148,7 +141,8 @@ public class SkillManager : Actor
     /// </summary>
     private void PlayerSpeedUp()
     {
-        playerInstance.SetPlayerSpeed(9);
+        playerAccelSpeed = player.GetInitialPlayerSpeed() * accelerationSpeed;
+        playerInstance.SetPlayerSpeed(playerAccelSpeed);
     }
 
     //ターゲットのミニマップを表示するかどうか

@@ -123,31 +123,6 @@ public class Player : Actor
 
         cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
-
-        //UpdateCursorLock();
-    }
-
-    //マウスカーソルの表示非表示を制御する関数
-    public void UpdateCursorLock()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            cursorLock = false;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            cursorLock = true;
-        }
-
-
-        if (cursorLock)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else if (!cursorLock)
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
     }
 
     //角度制限関数の作成

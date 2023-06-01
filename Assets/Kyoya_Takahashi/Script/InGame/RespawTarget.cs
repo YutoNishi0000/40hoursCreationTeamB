@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RespawTarget : MonoBehaviour
 {
+    //ルートの種類（全4種類）
     public enum RootType
     {
         First,
@@ -12,15 +13,14 @@ public class RespawTarget : MonoBehaviour
         Fourth
     }
 
-    //ターゲットオブジェクト
-    [SerializeField] private GameObject targetObj;
+    [SerializeField] private GameObject targetObj;        //ターゲットオブジェクト
 
     [SerializeField] private GameObject root1Pos;
     [SerializeField] private GameObject root2Pos;
     [SerializeField] private GameObject root3Pos;
     [SerializeField] private GameObject root4Pos;
 
-    public static GameObject tempTarget;
+    public static GameObject tempTarget;             //ターゲットのオブジェクトを保持するための変数
 
     private void Start()
     {

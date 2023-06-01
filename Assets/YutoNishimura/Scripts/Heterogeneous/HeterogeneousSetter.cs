@@ -46,7 +46,6 @@ public class HeterogeneousSetter : MonoBehaviour
 
     void LateUpdate()
     {
-        //Debug.Log("1isitunamono" + objSpawnPos.Count);
         SetObjects();
         screen.SetList(objSpawnPos);
     }
@@ -82,8 +81,10 @@ public class HeterogeneousSetter : MonoBehaviour
         }
     }
 
+    //かぶらないように空いている異質なものの生成ポイントに生成する
     public void SetObjects()
     {
+        //クールタイムを設置
         coolTime -= Time.deltaTime;
 
         if(coolTime > 0)
@@ -103,8 +104,6 @@ public class HeterogeneousSetter : MonoBehaviour
                 fieldObjectsNum++;
             }
         }
-
-        //Debug.Log("今フィールドに異質なものが" + fieldObjectsNum + "子存在しています");
 
         //足りない分を補うような形で異質なものを動的に配置する
         for (int j = 0; j < numStrangeObjInField - fieldObjectsNum; j++)
@@ -132,12 +131,13 @@ public class HeterogeneousSetter : MonoBehaviour
         fieldObjectsNum = 0;
     }
 
+    //クールタイム発生
     public static void CoolTime()
     {
         coolTime = respawnCoolTime;
     }
 
-    //キューを使用して次のオブジェクトをキューにセット、取得する関数
+    //キューを使用して次の要素のオブジェクトをキューにセット、取得する関数
     private GameObject GetNextObject()
     {
         if (queue.Count == 0)
