@@ -7,6 +7,7 @@ using System.IO;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
+using Cysharp.Threading.Tasks;
 
 [RequireComponent(typeof(TimerUI))]
 public class ScreenShot : MonoBehaviour
@@ -41,6 +42,16 @@ public class ScreenShot : MonoBehaviour
     private const float raiseScore = 1.5f;             //スコア上昇倍率
     private SkillManager skillManager;
     private TimerUI fadeManager;
+    private readonly float prevSlide = 1.0f;
+    private readonly float prevScale = 0.5f;
+
+    //シャッターアニメーションの種類
+    private enum ShutterAnimationType
+    {
+        None,
+        Target,
+        Other
+    }
 
     //それぞれのスコアの値
     public enum ScoreType
@@ -77,80 +88,23 @@ public class ScreenShot : MonoBehaviour
             OffUIShutter();
             InitializeRawImage();
             ClickShootButton();
-            Invoke(nameof(FirstMovePreview), 1f);
-
-            //障害物があるとき
-            if (createRay())
-            {
-                Debug.Log("障害蟻");
-                SEManager.Instance.PlayShot();
-            }
-            else
-            {
-                switch(checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position)))
-                {
-                    case ScoreType.low:
-                        ShutterManager();
-                        GameManager.Instance.numLowScore++;
-                        break;
-                    case ScoreType.midle:
-                        ShutterManager();
-                        GameManager.Instance.numMiddleScore++;
-                        break;
-                    case ScoreType.high:
-                        ShutterManager();
-                        GameManager.Instance.numHighScore++;
-                        break;
-                    case ScoreType.outOfScreen:
-                        SEManager.Instance.PlayShot();
-                        noneTargetFlag = true;
-                        Debug.Log("画面外");
-                        break;
-                }
-            }
-
-            //サブカメラ撮影判定がオンだったときの判定
-            for (int i = 0; i < setterObj.Count; i++)
-            {
-                if (setterObj[i] != null && JudgeSubTarget(cam, setterObj[i], player))
-                {
-                    noneStrangeFlag = false;
-                    //サブカメラカウントをインクリメント
-                    GameManager.Instance.numSubShutter++;
-                    //スコアを加算
-                    ScoreManger.Score += 10;
-                    //tempList[i]のオブジェクトの消滅フラグをオンにする
-                    setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
-                }
-            }
+            Invoke(nameof(FirstMovePreview), prevSlide);
+            ShutterManager();
+            ShutterOther();
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
-            if (noneTargetFlag && noneStrangeFlag && Shutter.isFilming)
+            if (noneTargetFlag && noneStrangeFlag)
             {
-                //Debug.Log("時間を失いました");
-                Debug.Log("何も撮影できてない");
-                CountDownTimer.DecreaceTime();
-                player.GetComponent<Player>().Shake(duration, magnitude);
-                //ShutterAnimation.NoneAnimationStart();
-                fadeManager.FadeOut(fadeInSpeed, minusCount1);
-                SEManager.Instance.PlayPlusTimeCountSE();
-
-                //もし難易度がハードだったら
-                if(GameManager.Instance.GetGameMode() == GameManager.GameMode.Hard)
-                {
-                    //もう５秒制限時間を減らす
-                    CountDownTimer.DecreaceTime();
-                    fadeManager.FadeOut(fadeInSpeed, minusCount2);
-                }
+                ShutterNone();
             }
 
-            //シャッターアニメーションを遅れて表示させる
             ShutterAnimationController(fadeInSpeed);
 
             //フラグを初期化
             noneTargetFlag = true;
             noneStrangeFlag = true;
 
+            //シャッターアニメーションを遅れて表示させる
             //消していたUIをオンに
             Invoke(nameof(OnUIShutter), fadeInSpeed);
             Shutter.isFilming = false;
@@ -159,8 +113,41 @@ public class ScreenShot : MonoBehaviour
 
     #region 撮影系
 
+    //撮影判定関数
+    private void ShutterManager()
+    {
+        //障害物がない時
+        if (!createRay())
+        { 
+            switch (checkScore(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position)))
+            {
+                case ScoreType.low:
+                    ShutterTarget();
+                    GameManager.Instance.numLowScore++;
+                    break;
+                case ScoreType.midle:
+                    ShutterTarget();
+                    GameManager.Instance.numMiddleScore++;
+                    break;
+                case ScoreType.high:
+                    ShutterTarget();
+                    GameManager.Instance.numHighScore++;
+                    break;
+                case ScoreType.outOfScreen:
+                    SEManager.Instance.PlayShot();
+                    noneTargetFlag = true;
+                    Debug.Log("画面外");
+                    break;
+            }
+        }
+        else
+        {
+            SEManager.Instance.PlayShot();
+        }
+    }
+
     //撮影時の処理
-    public void ShutterManager()
+    public void ShutterTarget()
     {
         GameObject targetObj = RespawTarget.GetCurrentTargetObj();
         //手動でターゲットが表示される位置を調整
@@ -184,34 +171,73 @@ public class ScreenShot : MonoBehaviour
         SEManager.Instance.PlayPlusTimeCountSE();
     }
 
+    private void ShutterOther()
+    {
+        //サブカメラ撮影判定がオンだったときの判定
+        for (int i = 0; i < setterObj.Count; i++)
+        {
+            if (setterObj[i] != null && JudgeSubTarget(cam, setterObj[i], player))
+            {
+                noneStrangeFlag = false;
+                //サブカメラカウントをインクリメント
+                GameManager.Instance.numSubShutter++;
+                //スコアを加算
+                ScoreManger.Score += 10;
+                //tempList[i]のオブジェクトの消滅フラグをオンにする
+                setterObj[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+            }
+        }
+    }
+
+    private void ShutterNone()
+    {
+        //Debug.Log("時間を失いました");
+        Debug.Log("何も撮影できてない");
+        CountDownTimer.DecreaceTime();
+        player.GetComponent<Player>().Shake(duration, magnitude);
+        //ShutterAnimation.NoneAnimationStart();
+        fadeManager.FadeOut(fadeInSpeed, minusCount1);
+        SEManager.Instance.PlayMinusTimeCountSE();
+
+        //もし難易度がハードだったら
+        if (GameManager.Instance.GetGameMode() == GameManager.GameMode.Hard)
+        {
+            //もう５秒制限時間を減らす
+            CountDownTimer.DecreaceTime();
+            fadeManager.FadeOut(fadeInSpeed, minusCount2);
+        }
+    }
+
+    //シャッターアニメーションを管理する関数
     private void ShutterAnimationController(float invokeTime)
     {
         //異質な物だけ撮影した場合
         if (!noneStrangeFlag && noneTargetFlag)
         {
-            Invoke("startOA", invokeTime);
+            ShutterAnimationmanager(ShutterAnimationType.Other, invokeTime).Forget();
         }
         //ターゲットだけ撮影した場合
         else if (noneStrangeFlag && !noneTargetFlag)
         {
-            Invoke("startTA", invokeTime);
+            ShutterAnimationmanager(ShutterAnimationType.Target, invokeTime).Forget();
         }
         //どちらも撮影した場合
         else if (!noneStrangeFlag && !noneTargetFlag)
         {
-            Invoke("startTA", invokeTime);
+            ShutterAnimationmanager(ShutterAnimationType.Target, invokeTime).Forget();
         }
         //空撮りだった場合
         else
         {
-            Invoke("startNA", invokeTime);
+            ShutterAnimationmanager(ShutterAnimationType.None, invokeTime).Forget();
         }
     }
 
+    //撮った写真のファイルパスを取得
     private string GetScreenShotPath()
     {
         string directoryPath = GameManager.Instance.GetDirectryPath();
-        //string path = "Assets/Pictures/" + timeStamp + ".png";
+
         string path = GameManager.Instance.GetPicturesFilePath(directoryPath) + timeStamp + ".png";
 
         return path;
@@ -247,11 +273,13 @@ public class ScreenShot : MonoBehaviour
         ShowSSImage();
     }
 
+    //撮影関数
     public void ClickShootButton()
     {
         StartCoroutine(CreateScreenShot());
     }
 
+    //撮影した写真をRawImageに表示
     public void ShowSSImage()
     {
         if (!String.IsNullOrEmpty(screenShotPath))
@@ -305,38 +333,43 @@ public class ScreenShot : MonoBehaviour
     #region プレビューの動き
     private void FirstMovePreview()
     {
-        targetImage.rectTransform.DOScale(transform.localScale * firstScale, 0.5f);
+        targetImage.rectTransform.DOScale(transform.localScale * firstScale, prevScale);
         Invoke(nameof(SecondMovePreview), 0.5f);
     }
 
     private void SecondMovePreview()
     {
-        targetImage.rectTransform.DOScale(transform.localScale * secondScale, 0.5f);
-        targetImage.rectTransform.DOMove(point1.rectTransform.position, 0.5f);
-        Invoke(nameof(SlideMovePreview), 1f);
+        targetImage.rectTransform.DOScale(transform.localScale * secondScale, prevScale);
+        targetImage.rectTransform.DOMove(point1.rectTransform.position, prevScale);
+        Invoke(nameof(SlideMovePreview), prevSlide);
     }
 
     private void SlideMovePreview()
     {
-        targetImage.transform.DOMoveX(point2.rectTransform.position.x, 0.3f);
+        targetImage.transform.DOMoveX(point2.rectTransform.position.x, prevScale);
     }
 
     #endregion
 
     #region シャッターアニメーション
 
-    void startOA()
+    private async UniTask ShutterAnimationmanager(ShutterAnimationType type, float delayTime)
     {
-        ShutterAnimation.OtherAnimationStart();
-    }
-    void startNA()
-    {
-        ShutterAnimation.NoneAnimationStart();
-    }
+        int time = (int)(delayTime * 1000);
+        await UniTask.Delay(time);
 
-    void startTA()
-    {
-        ShutterAnimation.TargetAnimationStart();
+        switch(type)
+        {
+            case ShutterAnimationType.None:
+                ShutterAnimation.NoneAnimationStart();
+                break;
+            case ShutterAnimationType.Target:
+                ShutterAnimation.TargetAnimationStart();
+                break;
+            case ShutterAnimationType.Other:
+                ShutterAnimation.OtherAnimationStart();
+                break;
+        }
     }
 
     #endregion
