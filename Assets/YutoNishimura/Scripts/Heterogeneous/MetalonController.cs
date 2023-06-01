@@ -20,6 +20,7 @@ public class MetalonController : Actor
 
     private Animator animator;
     public List<GameObject> points;
+    public List<GameObject> rootParents;
     private int destPoint = 0;
     private NavMeshAgent agent;
     private GameObject rootParent1;
@@ -29,25 +30,21 @@ public class MetalonController : Actor
     private GameObject rootParent5;
     private GameObject rootParent6;
     private GameObject rootParent7;
-    private const float disTargetShot = 7.0f;
     private readonly float minDistance = 0.5f;
     private bool finishedSetRoot;                //ルート設定が完了したかどうか
-    private readonly int rootNum = 7;               //ルートが何種類あるか
-    private int spawnNum;                         //スポーン番号
     private SubRootType subRootType;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnNum = 0;
         destPoint = 0;
         agent = GetComponent<NavMeshAgent>();
         points = new List<GameObject>();
+        rootParents = new List<GameObject>();
         finishedSetRoot = false;
         //目標地点の間を継続的に移動
         agent.autoBraking = false;
         animator = GetComponent<Animator>();
-        SetRootType();
         subRootType = new SubRootType();
     }
 
@@ -97,9 +94,9 @@ public class MetalonController : Actor
     }
 
     //ターゲットが生み出された直後に呼び出す
-    public void SetRootType()
+    public void SetRootType(SubRootType type)
     {
-        switch (subRootType)
+        switch (type)
         {
             case SubRootType.First:
                 rootParent1 = GameObject.Find("WonderPoint0");
@@ -184,10 +181,12 @@ public class MetalonController : Actor
         }
     }
 
+    //ルート設定を行う
     public void SetSpawnNumber(int num) 
     {
-        subRootType = GetRootType(num);
-        destPoint = GetStartPoint(num);
+        SetRootType(GetRootType(num));    //ルートタイプを取得
+        destPoint = GetStartPoint(num);   //ルート配列のスタートインデックスをセット
+        SetFinishedSetRootFlag(true);     //行動開始
     }
 
     public void SetFinishedSetRootFlag(bool flag) { finishedSetRoot = flag; }

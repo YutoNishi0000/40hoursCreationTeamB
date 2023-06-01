@@ -15,8 +15,6 @@ public class SkillManager : Actor
     private bool skillBlock_seeTarget;
     private float time;
     [SerializeField] private readonly float interval = 5.0f;
-    private int shutterTimeStamp;
-    private bool minimapSkillFlag;         //ターゲットのミニマップの表示フラグのために使う
     private const int skillLevel1 = 5;
     private const int skillLevel2 = 10;
     private const int skillLevel3 = 20;
@@ -36,7 +34,6 @@ public class SkillManager : Actor
         skillBlock_addScore = true;
         skillBlock_seeTarget = true;
         addScoreFlag = false;
-        minimapSkillFlag = false;
     }
 
     // Update is called once per frame
