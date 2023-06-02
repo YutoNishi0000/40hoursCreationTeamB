@@ -34,7 +34,7 @@ public class ScreenShot : MonoBehaviour
     private const float secondScale = 0.2f;            //二回目縮小するときにどれだけRawImageが縮小されるか（何倍の大きさになるか）
     private Vector3 InitialPrevPos;                    //RawImageの初期位置
     private Vector3 InitialPrevscale;                  //RawImageの初期スケール
-    private List<GameObject> setterObj;                //毎フレーム送られてくる異質なものの情報を取得するためのもの
+    internal List<GameObject> setterObj;          //毎フレーム送られてくる異質なものの情報を取得するためのもの
     private bool noneStrangeFlag;                      //異質なものが撮影されていたらfalse 撮影されていなかったらtrue
     public static bool noneTargetFlag;                 //ターゲットが撮影されていたらfalse 撮影されていなかったらtrue
     private readonly float fadeInSpeed = 0.2f;         //フェードスピード、撮影判定呼び出し時間
@@ -44,6 +44,10 @@ public class ScreenShot : MonoBehaviour
     private TimerUI fadeManager;
     private readonly float prevSlide = 1.0f;
     private readonly float prevScale = 0.5f;
+    private bool judgeSubTargetFlag;
+    private bool judgeTargetFlag;
+    private JudgeScreenShot judge;
+    
 
     //シャッターアニメーションの種類
     private enum ShutterAnimationType
@@ -68,6 +72,9 @@ public class ScreenShot : MonoBehaviour
 
     private void Start()
     {
+        judge = new JudgeScreenShot();
+        judgeSubTargetFlag = false;
+        judgeTargetFlag = false;
         setterObj = new List<GameObject>();
         InitialPrevPos = targetImage.rectTransform.position;
         InitialPrevscale = targetImage.rectTransform.localScale;
@@ -89,20 +96,21 @@ public class ScreenShot : MonoBehaviour
             InitializeRawImage();
             ClickShootButton();
             Invoke(nameof(FirstMovePreview), prevSlide);
-            ShutterManager();
-            ShutterOther();
+
+            judgeTargetFlag = judge.judgeTarget.ShutterTarget(player, mimic, cam, RespawTarget.GetCurrentTargetObj().transform.position, center, areaWidth, areaHeight, raiseScore);
+            judgeSubTargetFlag = judge.judgeSubTarget.ShutterSubTargets(cam, player, setterObj, 7.0f);
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
-            if (noneTargetFlag && noneStrangeFlag)
+            if (!judgeTargetFlag && !judgeSubTargetFlag)
             {
                 ShutterNone();
             }
 
-            ShutterAnimationController(fadeInSpeed);
+            ShutterAnimationController(fadeInSpeed, judgeTargetFlag, judgeSubTargetFlag);
 
             //フラグを初期化
-            noneTargetFlag = true;
-            noneStrangeFlag = true;
+            judgeTargetFlag = false;
+            judgeSubTargetFlag = false;
 
             //シャッターアニメーションを遅れて表示させる
             //消していたUIをオンに
@@ -154,21 +162,21 @@ public class ScreenShot : MonoBehaviour
         Vector3 targetPos = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y - 1, targetObj.transform.position.z);
         Instantiate(mimic, targetPos, targetObj.transform.rotation);
         noneTargetFlag = false;
-        //時間を獲得
-        CountDownTimer.IncreaceTime();
         //ターゲットが撮影された
         SetPhotographTargetFlag(false);
         //スコア加算
         ScoreManger.Score += FinalScorePoint(WorldToScreenPoint(cam, RespawTarget.GetCurrentTargetObj().transform.position));
+        //時間を獲得
+        CountDownTimer.IncreaceTime();
         //対象を撮影した回数をインクリメント
         GameManager.Instance.numTargetShutter++;
         //SE
         SEManager.Instance.PlayTargetShot();
+        SEManager.Instance.PlayPlusTimeCountSE();
         //ターゲットリスポーン
         RespawTarget.RespawnTarget();
         //UIをフェードアウト
         fadeManager.FadeOut(fadeInSpeed, plusCount);
-        SEManager.Instance.PlayPlusTimeCountSE();
     }
 
     private void ShutterOther()
@@ -189,15 +197,13 @@ public class ScreenShot : MonoBehaviour
         }
     }
 
+    //空撮りしたときの処理
     private void ShutterNone()
     {
-        //Debug.Log("時間を失いました");
-        Debug.Log("何も撮影できてない");
         CountDownTimer.DecreaceTime();
         player.GetComponent<Player>().Shake(duration, magnitude);
-        //ShutterAnimation.NoneAnimationStart();
-        fadeManager.FadeOut(fadeInSpeed, minusCount1);
         SEManager.Instance.PlayMinusTimeCountSE();
+        fadeManager.FadeOut(fadeInSpeed, minusCount1);
 
         //もし難易度がハードだったら
         if (GameManager.Instance.GetGameMode() == GameManager.GameMode.Hard)
@@ -209,20 +215,20 @@ public class ScreenShot : MonoBehaviour
     }
 
     //シャッターアニメーションを管理する関数
-    private void ShutterAnimationController(float invokeTime)
+    private void ShutterAnimationController(float invokeTime, bool targetFlag, bool subTargetFlag)
     {
         //異質な物だけ撮影した場合
-        if (!noneStrangeFlag && noneTargetFlag)
+        if (subTargetFlag && !targetFlag)
         {
             ShutterAnimationmanager(ShutterAnimationType.Other, invokeTime).Forget();
         }
         //ターゲットだけ撮影した場合
-        else if (noneStrangeFlag && !noneTargetFlag)
+        else if (!subTargetFlag && targetFlag)
         {
             ShutterAnimationmanager(ShutterAnimationType.Target, invokeTime).Forget();
         }
         //どちらも撮影した場合
-        else if (!noneStrangeFlag && !noneTargetFlag)
+        else if (subTargetFlag && targetFlag)
         {
             ShutterAnimationmanager(ShutterAnimationType.Target, invokeTime).Forget();
         }
@@ -410,7 +416,7 @@ public class ScreenShot : MonoBehaviour
         float finalScore = (float)checkScore(scrPoint);
 
         //スキルによるスコア加算フラグがオンだったらif内の処理を実行
-        if (skillManager.GetAddScoreFlag())
+        if (SkillManager.GetAddScoreFlag())
         {
             //フラグがオンだったら1.5倍のスコアを返す
             return finalScore * raiseScore;

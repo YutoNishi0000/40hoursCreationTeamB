@@ -8,7 +8,7 @@ using UnityEngine;
 //JudgeScoreコンポーネントを動的に追加したい <- ゲームシーンに移動したとき
 public class SkillManager : Actor
 {
-    private bool addScoreFlag;         //スコア加算フラグ
+    private static bool addScoreFlag;         //スコア加算フラグ
     private bool targetMinimapFlag;     //ターゲットのミニマップを表示するかどうか
     private bool skillBlock_player;
     private bool skillBlock_addScore;
@@ -151,9 +151,9 @@ public class SkillManager : Actor
     public bool GetTargetMinimapFlag() { return targetMinimapFlag; }
 
     //スコア加算フラグ
-    public void SetAddScoreFlag(bool flag) { addScoreFlag = flag; }
+    public static void SetAddScoreFlag(bool flag) { addScoreFlag = flag; }
 
-    public bool GetAddScoreFlag() { return addScoreFlag; }
+    public static bool GetAddScoreFlag() { return addScoreFlag; }
 
     // スピード
     public bool GetPlayerSpeedFlag() { return skillBlock_player; }
