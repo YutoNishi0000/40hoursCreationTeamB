@@ -28508,7 +28508,6 @@ MonoBehaviour:
   lostTimeImg: {fileID: 0}
   gameUI:
   - {fileID: 124973368}
-  obj: {fileID: 0}
 --- !u!114 &889012887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28610,7 +28609,14 @@ MonoBehaviour:
   ObjectB: {fileID: 7925908207704047568, guid: 335946c4528dd1e4cb26cd4893d8ac70, type: 3}
   ObjectC: {fileID: 1849694135568822, guid: 2e6602961f3b26843893714f5721908b, type: 3}
   ObjectD: {fileID: 1393114240693028, guid: b570e106ef044cc4a9fa5fb228bec801, type: 3}
-  parentWonderPoints: []
+  parentWonderPoints:
+  - {fileID: 37975594}
+  - {fileID: 559871062}
+  - {fileID: 1019168101}
+  - {fileID: 406596942}
+  - {fileID: 844503778}
+  - {fileID: 1622129262}
+  - {fileID: 583060704}
   objSpawnPos: []
 --- !u!1001 &889016145
 PrefabInstance:

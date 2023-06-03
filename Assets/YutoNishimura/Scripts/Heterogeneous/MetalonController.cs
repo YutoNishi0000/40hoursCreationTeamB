@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class MetalonController : Actor
     }
 
     private Animator animator;
-    public List<GameObject> points;
+    public List<GameObject> points = new List<GameObject>();
     private int destPoint = 0;
     private NavMeshAgent agent;
     private GameObject rootParent1;
@@ -29,6 +30,7 @@ public class MetalonController : Actor
     private GameObject rootParent5;
     private GameObject rootParent6;
     private GameObject rootParent7;
+    private List<GameObject> parentPoints;
     private const float disTargetShot = 7.0f;
     private readonly float minDistance = 0.5f;
     private bool finishedSetRoot;                //ルート設定が完了したかどうか
@@ -39,19 +41,16 @@ public class MetalonController : Actor
     // Start is called before the first frame update
     void Start()
     {
+        parentPoints = new List<GameObject>();
         spawnNum = 0;
-        destPoint = 0;
         agent = GetComponent<NavMeshAgent>();
-        points = new List<GameObject>();
         finishedSetRoot = false;
         //目標地点の間を継続的に移動
         agent.autoBraking = false;
         animator = GetComponent<Animator>();
-        SetRootType();
         subRootType = new SubRootType();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!agent.pathPending && agent.remainingDistance < minDistance)
@@ -66,12 +65,6 @@ public class MetalonController : Actor
     {
         //地点が何も設定されていない場合
         if (points.Count == 0)
-        {
-            return;
-        }
-
-        //ルートの設定が終わるまで待機
-        if(finishedSetRoot)
         {
             return;
         }
@@ -97,37 +90,30 @@ public class MetalonController : Actor
     }
 
     //ターゲットが生み出された直後に呼び出す
-    public void SetRootType()
+    public void SetRootType(SubRootType type)
     {
-        switch (subRootType)
+        switch (type)
         {
             case SubRootType.First:
-                rootParent1 = GameObject.Find("WonderPoint0");
-                SetPoints(rootParent1);
+                SetPoints(parentPoints[(int)SubRootType.First]);
                 break;
             case SubRootType.Second:
-                rootParent2 = GameObject.Find("WonderPoint1");
-                SetPoints(rootParent2);
+                SetPoints(parentPoints[(int)SubRootType.Second]);
                 break;
             case SubRootType.Third:
-                rootParent3 = GameObject.Find("WonderPoint2");
-                SetPoints(rootParent3);
+                SetPoints(parentPoints[(int)SubRootType.Third]);
                 break;
             case SubRootType.Fourth:
-                rootParent4 = GameObject.Find("WonderPoint3");
-                SetPoints(rootParent4);
+                SetPoints(parentPoints[(int)SubRootType.Fourth]);
                 break;
             case SubRootType.Fifth:
-                rootParent5 = GameObject.Find("WonderPoint4");
-                SetPoints(rootParent5);
+                SetPoints(parentPoints[(int)SubRootType.Fifth]);
                 break;
             case SubRootType.Sixth:
-                rootParent6 = GameObject.Find("WonderPoint5");
-                SetPoints(rootParent6);
+                SetPoints(parentPoints[(int)SubRootType.Sixth]);
                 break;
             case SubRootType.Seventh:
-                rootParent7 = GameObject.Find("WonderPoint6");
-                SetPoints(rootParent7);
+                SetPoints(parentPoints[(int)SubRootType.Seventh]);
                 break;
         }
     }
@@ -186,11 +172,13 @@ public class MetalonController : Actor
 
     public void SetSpawnNumber(int num) 
     {
-        subRootType = GetRootType(num);
+        SetRootType(GetRootType(num));
         destPoint = GetStartPoint(num);
     }
 
     public void SetFinishedSetRootFlag(bool flag) { finishedSetRoot = flag; }
+
+    public void SetWonderParentPoints(List<GameObject> points) { parentPoints = points; }
 }
 
 

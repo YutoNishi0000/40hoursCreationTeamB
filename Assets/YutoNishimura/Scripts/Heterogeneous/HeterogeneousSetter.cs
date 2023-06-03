@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ public class HeterogeneousSetter : MonoBehaviour
     [SerializeField] private GameObject ObjectB;
     [SerializeField] private GameObject ObjectC;
     [SerializeField] private GameObject ObjectD;
-    [SerializeField] private GameObject[] parentWonderPoints;       //ルートポイントの親オブジェクトを入れてください（動く異質なもの）
+    [SerializeField] private List<GameObject> parentWonderPoints;       //ルートポイントの親オブジェクトを入れてください（動く異質なもの）
     private Queue<GameObject> queue;
     public List<GameObject> objSpawnPos;
     private List<int> pos;
@@ -69,11 +70,9 @@ public class HeterogeneousSetter : MonoBehaviour
 
             objSpawnPos[rnd[i]] = Instantiate(GetNextObject(), points[rnd[i]].transform.position, Quaternion.identity);
 
-            numRand = rnd[i];
-
             if (objSpawnPos[rnd[i]].GetComponentInChildren<MetalonController>())
             {
-                SetMetalonConfig(rnd[i]);
+                SetMetalonConfig(rnd[i], parentWonderPoints).Forget();
             }
         }
     }
@@ -114,23 +113,22 @@ public class HeterogeneousSetter : MonoBehaviour
 
             objSpawnPos[rand] = Instantiate(GetNextObject(), points[rand].transform.position, GetNextObject().transform.rotation);
 
-            numRand = rand;
-
             if (objSpawnPos[rand].GetComponent<MetalonController>())
             {
-                SetMetalonConfig(rand);
+                SetMetalonConfig(rand, parentWonderPoints).Forget();
             }
         }
 
         fieldObjectsNum = 0;
     }
 
-    private void SetMetalonConfig(int num)
+    private async UniTask SetMetalonConfig(int num, List<GameObject> parentPoints)
     {
+        await UniTask.Delay(3000);
         Debug.Log("セット");
         MetalonController metaron = objSpawnPos[num].GetComponent<MetalonController>();
-        //ルートの種類をセット
-        metaron.SetRootType();
+        //ルート情報が入った親オブジェクトをセット
+        metaron.SetWonderParentPoints(parentPoints);
         //スポーンナンバーをセット
         metaron.SetSpawnNumber(num);
         //設定が終わったことを報告

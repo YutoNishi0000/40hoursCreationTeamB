@@ -220,13 +220,6 @@ public class JudgeTarget : MonoBehaviour
 //異質なものの判定だけを行うクラス
 public class JudgeSubTarget : MonoBehaviour
 {
-    private List<GameObject> points;
-
-    public JudgeSubTarget()
-    {
-        points = new List<GameObject>();
-    }
-
     //これ使う
     public bool ShutterSubTargets(Camera camera, GameObject playerPos, List<GameObject> list, float judgeDis)
     {
@@ -264,6 +257,4 @@ public class JudgeSubTarget : MonoBehaviour
             return false;
         }
     }
-
-    public void SetPoints(List<GameObject> list) { points = list; }
 }
