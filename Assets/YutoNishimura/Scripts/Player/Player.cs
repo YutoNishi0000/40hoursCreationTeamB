@@ -9,26 +9,14 @@ public class Player : Actor
     Vector3 targetDirection;        //移動する方向のベクトル
     private CharacterController controller;
     private float speed = 6f;
-
+    float minX = -40f, maxX = 40f;
+    float Xsensityvity = 3f, Ysensityvity = 3f;
     public GameObject cam;
     Quaternion cameraRot, characterRot;
-    float Xsensityvity = 3f, Ysensityvity = 3f;
-
-    bool cursorLock = true;
     public bool _moveLock;                           //行動を制限するかどうか
-
-    private float jumpSpeed = 5f;
     private float gravity = 20f;
-
-    [Header("ターゲットが近づいて来た時のSEを入れてください")]
-    [SerializeField] private AudioClip targetSE;
-
     private AudioSource audioSource;
-
-    //変数の宣言(角度の制限用)
-    float minX = -40f, maxX = 40f;
-    Vector3 initialCamPos;
-
+    Vector3 initialCamPos;    //変数の宣言(角度の制限用)
     private float initialPlayerSpeed;   //ゲーム開始時のプレイヤーのデフォルトスピード
 
     private void Start()
@@ -40,7 +28,6 @@ public class Player : Actor
         Cursor.lockState = CursorLockMode.Locked;
         initialPlayerSpeed = speed;
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = targetSE;
     }
 
     private void Update()

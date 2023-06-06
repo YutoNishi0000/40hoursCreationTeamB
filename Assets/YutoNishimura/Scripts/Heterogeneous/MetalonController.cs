@@ -23,32 +23,17 @@ public class MetalonController : Actor
     public List<GameObject> points = new List<GameObject>();
     private int destPoint = 0;
     private NavMeshAgent agent;
-    private GameObject rootParent1;
-    private GameObject rootParent2;
-    private GameObject rootParent3;
-    private GameObject rootParent4;
-    private GameObject rootParent5;
-    private GameObject rootParent6;
-    private GameObject rootParent7;
     private List<GameObject> parentPoints;
-    private const float disTargetShot = 7.0f;
     private readonly float minDistance = 0.5f;
-    private bool finishedSetRoot;                //ルート設定が完了したかどうか
-    private readonly int rootNum = 7;               //ルートが何種類あるか
-    private int spawnNum;                         //スポーン番号
-    private SubRootType subRootType;
 
     // Start is called before the first frame update
     void Start()
     {
         parentPoints = new List<GameObject>();
-        spawnNum = 0;
         agent = GetComponent<NavMeshAgent>();
-        finishedSetRoot = false;
         //目標地点の間を継続的に移動
         agent.autoBraking = false;
         animator = GetComponent<Animator>();
-        subRootType = new SubRootType();
     }
 
     void Update()
@@ -175,8 +160,6 @@ public class MetalonController : Actor
         SetRootType(GetRootType(num));
         destPoint = GetStartPoint(num);
     }
-
-    public void SetFinishedSetRootFlag(bool flag) { finishedSetRoot = flag; }
 
     public void SetWonderParentPoints(List<GameObject> points) { parentPoints = points; }
 }
