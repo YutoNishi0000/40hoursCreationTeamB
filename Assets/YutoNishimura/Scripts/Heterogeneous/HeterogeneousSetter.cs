@@ -131,8 +131,6 @@ public class HeterogeneousSetter : MonoBehaviour
         metaron.SetWonderParentPoints(parentPoints);
         //スポーンナンバーをセット
         metaron.SetSpawnNumber(num);
-        //設定が終わったことを報告
-        metaron.SetFinishedSetRootFlag(true);
     }
 
     //クールタイム発生
