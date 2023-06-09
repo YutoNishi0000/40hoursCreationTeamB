@@ -60,6 +60,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public GameObject[] animations;
 
+    //オプション画面
+    public float XCameraSensitivity = 1;    //カメラの感度(X)
+    public float YCameraSensitivity = 1;    //カメラの感度(Y)
+
     private void Start()
     {
         sceneIndex = 0;

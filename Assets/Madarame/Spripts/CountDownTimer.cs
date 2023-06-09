@@ -8,9 +8,9 @@ public class CountDownTimer : UIController
 {
 	private enum GameTime
 	{
-		Easy = 5,
-		Nomal = 7,
-		Hard = 10
+		Easy  = 5,
+		Nomal = 5,
+		Hard  = 7
 	}
 
 	private static float _totalTime;    // §ŒÀŠÔ‚Ì‡Œv
