@@ -41,8 +41,11 @@ public class SelectUI : MonoBehaviour
             return;
         }
 
-        Debug.Log("a");
-        HidePoseUI();
+        _background.HideUI();
+        _selectButton.HideUI();
+        _reStartButton.HideUI();
+        _optionButton.HideUI();
+        //HidePoseUI();
 
         // ボタンクリック時にイベント追加 ---------------------- //
         _selectButton. Button.onClick.AddListener(SelectMove);
@@ -52,7 +55,7 @@ public class SelectUI : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetButtonDown("Space"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _isPosing = true;
             GameManager.Instance.IsPlayGame = false;
@@ -63,10 +66,7 @@ public class SelectUI : MonoBehaviour
     /// <summary> ポーズ画面非表示 </summary>
     private void HidePoseUI()
     {
-        _background.HideUI();
-        _selectButton.HideUI();
-        _reStartButton.HideUI();
-        _optionButton.HideUI();
+        
     }
     /// <summary> ポーズ画面表示 </summary>
     private void ShowPoseUI()

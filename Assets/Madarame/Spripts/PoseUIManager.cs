@@ -17,9 +17,6 @@ public class PoseUIManager : MonoBehaviour
     /// <summary>ボタンクラスを取得 </summary>
     public Button Button => _button;
     
-    /// <summary>イメージクラスを取得 </summary>
-    public Image Image => _image;
-
     private void Start()
     {
         _button = GetComponent<Button>();
@@ -29,14 +26,14 @@ public class PoseUIManager : MonoBehaviour
     /// <summary>UI表示</summary>
     public void ShowUI()
     {
-        _button.enabled = true;
+        //_button.enabled = true;
         _image.enabled = true;
         _text.enabled = true;
     }
     /// <summary>UI非表示</summary>
     public void HideUI()
     {
-        _button.enabled = false;
+        //_button.enabled = false;
         _image.enabled = false;
         _text.enabled = false;
     }
