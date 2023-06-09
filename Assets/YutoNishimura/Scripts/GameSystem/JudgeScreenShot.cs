@@ -29,38 +29,63 @@ public class JudgeTarget : MonoBehaviour
         outOfScreen = 0,
     };
 
-    //これ使う
-    public bool ShutterTarget(GameObject player, GameObject targetModel, Camera cam, Vector3 worldPosition, Vector3 center, float areaWidth, float areaHeight, float raise)
+    /// <summary>
+    /// ターゲットを撮影できているか
+    /// </summary>
+    /// <param name="player">プレイヤーオブジェクト</param>
+    /// <param name="targetModel">撮影時に表示したいオブジェクト</param>
+    /// <param name="cam">プレイヤーカメラオブジェクト</param>
+    /// <param name="worldPosition">ターゲットのワールド座標</param>
+    /// <param name="center">プレイヤー画面カメラの中心</param>
+    /// <param name="areaWidth">プレイヤー画面の幅</param>
+    /// <param name="areaHeight">プレイヤー画面の高さ</param>
+    /// <param name="raise">スコア倍率</param>
+    /// <returns>撮影成功：true、撮影失敗：false</returns>
+    public bool ShutterTarget(
+        GameObject player,
+        GameObject targetModel,
+        Camera cam,
+        Vector3 worldPosition,
+        Vector3 center,
+        float areaWidth,
+        float areaHeight,
+        float raise)
     {
-        //障害物がない時
-        if (!createRay(player))
+        //SE再生
+        SEManager.Instance.PlayShot();
+        //プレイヤーとターゲットの間にオブジェクトがあるかどうか
+        //===== 間にオブジェクトがあるとき =====
+        if (createRay(player))
         {
-            ScoreType finalScore = checkScore(WorldToScreenPoint(cam, worldPosition), center, areaWidth, areaHeight);
-
-            switch (finalScore)
-            {
-                case ScoreType.low:
-                    TargetProcess(targetModel, ScoreType.low, raise);
-                    return true;
-                case ScoreType.midle:
-                    TargetProcess(targetModel, ScoreType.midle, raise);
-                    return true;
-                case ScoreType.high:
-                    TargetProcess(targetModel, ScoreType.high, raise);
-                    return true;
-                default:
-                    SEManager.Instance.PlayShot();
-                    return false;
-            }
-        }
-        else
-        {
-            SEManager.Instance.PlayShot();
             return false;
+        }
+        //===== 間にオブジェクトがないとき =====
+        //ターゲットが中心にどれだけ近いかによってスコアを決める
+        ScoreType finalScore 
+            = checkScore(WorldToScreenPoint(cam, worldPosition), center, areaWidth, areaHeight);
+
+        switch (finalScore)
+        {
+            case ScoreType.low:
+                TargetProcess(targetModel, ScoreType.low, raise);
+                return true;
+            case ScoreType.midle:
+                TargetProcess(targetModel, ScoreType.midle, raise);
+                return true;
+            case ScoreType.high:
+                TargetProcess(targetModel, ScoreType.high, raise);
+                return true;
+            default:
+                return false;
         }
     }
 
-    //対象を撮影したときの最低限の処理
+    /// <summary>
+    /// 対象を撮影したときの最低限の処理
+    /// </summary>
+    /// <param name="targetModel">撮影時に写真に写したいオブジェクト</param>
+    /// <param name="type">enum型のそれぞれのスコア加算量</param>
+    /// <param name="raise">スコア加算倍率</param>
     private void TargetProcess(GameObject targetModel, ScoreType type, float raise)
     {
         GameObject targetObj = RespawTarget.GetCurrentTargetObj();
@@ -80,7 +105,13 @@ public class JudgeTarget : MonoBehaviour
         RespawTarget.RespawnTarget();
     }
 
-
+    /// <summary>
+    /// スコア倍率も含めた最終的なスコア
+    /// </summary>
+    /// <param name="type">enum型のそれぞれのスコア加算量</param>
+    /// <param name="flag">スコアアップフラグ</param>
+    /// <param name="raise">スコアアップ倍率</param>
+    /// <returns></returns>
     public float GetFinalScore(ScoreType type, bool flag, float raise)
     {
         switch (type)
