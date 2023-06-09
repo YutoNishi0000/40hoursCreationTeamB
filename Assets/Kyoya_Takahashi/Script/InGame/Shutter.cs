@@ -12,7 +12,7 @@ public class Shutter : MonoBehaviour
     public static bool isFilming = false;
     void Update()
     {
-        if(!GameManager.Instance.StartGame)
+        if(!GameManager.Instance.IsPlayGame)
         {
             return;
         }
