@@ -3545,6 +3545,7 @@ GameObject:
   - component: {fileID: 242558022}
   - component: {fileID: 242558021}
   - component: {fileID: 242558020}
+  - component: {fileID: 242558023}
   m_Layer: 5
   m_Name: GoSelect
   m_TagString: Untagged
@@ -3655,6 +3656,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242558018}
   m_CullTransparentMesh: 1
+--- !u!114 &242558023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242558018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfded6b86fab354bba790569b007cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &242707361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6713004004283017352, guid: c2d3e2dfc6e732a47a2163fd9a446486, type: 3}
@@ -8520,6 +8533,7 @@ GameObject:
   - component: {fileID: 442877862}
   - component: {fileID: 442877861}
   - component: {fileID: 442877860}
+  - component: {fileID: 442877863}
   m_Layer: 5
   m_Name: GoRestart
   m_TagString: Untagged
@@ -8630,6 +8644,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442877858}
   m_CullTransparentMesh: 1
+--- !u!114 &442877863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442877858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfded6b86fab354bba790569b007cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &451656628
 GameObject:
   m_ObjectHideFlags: 0
@@ -25071,6 +25097,7 @@ GameObject:
   - component: {fileID: 1124974788}
   - component: {fileID: 1124974790}
   - component: {fileID: 1124974789}
+  - component: {fileID: 1124974791}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -25136,6 +25163,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124974787}
   m_CullTransparentMesh: 1
+--- !u!114 &1124974791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124974787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfded6b86fab354bba790569b007cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1125597118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30577,6 +30616,7 @@ GameObject:
   - component: {fileID: 1445378723}
   - component: {fileID: 1445378722}
   - component: {fileID: 1445378721}
+  - component: {fileID: 1445378724}
   m_Layer: 5
   m_Name: GoOption
   m_TagString: Untagged
@@ -30687,6 +30727,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445378719}
   m_CullTransparentMesh: 1
+--- !u!114 &1445378724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445378719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfded6b86fab354bba790569b007cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1446135190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40443,6 +40495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2002864088}
+  - component: {fileID: 2002864089}
   m_Layer: 5
   m_Name: Pose
   m_TagString: Untagged
@@ -40474,6 +40527,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2002864089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002864087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e2219553e996049889891ae328c0a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isPosing: 0
+  _background: {fileID: 1124974791}
+  _selectButton: {fileID: 242558023}
+  _reStartButton: {fileID: 442877863}
+  _optionButton: {fileID: 1445378724}
 --- !u!4 &2009919322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6713004004283017352, guid: c2d3e2dfc6e732a47a2163fd9a446486, type: 3}
