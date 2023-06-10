@@ -31,6 +31,7 @@ public class MetalonController : Actor
     {
         parentPoints = new List<GameObject>();
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = Config.subTargetSpeed;
         //目標地点の間を継続的に移動
         agent.autoBraking = false;
         animator = GetComponent<Animator>();

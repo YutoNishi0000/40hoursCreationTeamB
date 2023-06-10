@@ -14,14 +14,11 @@ public class SkillManager : Actor
     private bool skillBlock_addScore;
     private bool skillBlock_seeTarget;
     private float time;
-    [SerializeField] private readonly float interval = 5.0f;
+    [SerializeField] private readonly float interval = Config.intervalActiveTargetMInimap;
     private int shutterTimeStamp;
     private bool minimapSkillFlag;         //ターゲットのミニマップの表示フラグのために使う
-    private const int skillLevel1 = 5;
-    private const int skillLevel2 = 10;
-    private const int skillLevel3 = 20;
     private float playerAccelSpeed;
-    private readonly float accelerationSpeed = 1.5f;   //プレイヤーのスキル獲得時の速度倍率
+    private readonly float accelerationSpeed = Config.raisePlayerSpeed;   //プレイヤーのスキル獲得時の速度倍率
     private readonly int minimapTargetShutterNum = 5;   //何枚おきにスキルが発動するか
     private int previousCount;
     private Player player;
@@ -52,22 +49,20 @@ public class SkillManager : Actor
     /// </summary>
     private void UnLockSkill()
     {
-        switch (GameManager.Instance.numSubShutter)
+        if(GameManager.Instance.numSubShutter == Config.skillLevel1)
         {
-            case skillLevel1:
-                SEManager.Instance.PlaySkill();
-                skillBlock_player = false;
-                break;
-            case skillLevel2:
-                SEManager.Instance.PlaySkill();
-                skillBlock_addScore = false;
-                break;
-            case skillLevel3:
-                SEManager.Instance.PlaySkill();
-                skillBlock_seeTarget = false;
-                break;
-            default:
-                break;
+            SEManager.Instance.PlaySkill();
+            skillBlock_player = false;
+        }
+        else if (GameManager.Instance.numSubShutter == Config.skillLevel2)
+        {
+            SEManager.Instance.PlaySkill();
+            skillBlock_addScore = false;
+        }
+        else if (GameManager.Instance.numSubShutter == Config.skillLevel3)
+        {
+            SEManager.Instance.PlaySkill();
+            skillBlock_seeTarget = false;
         }
     }
 
@@ -114,7 +109,7 @@ public class SkillManager : Actor
     /// </summary>
     private void TargetMinimapActivation()
     {
-        int count = (GameManager.Instance.numSubShutter - skillLevel3) / minimapTargetShutterNum;
+        int count = (GameManager.Instance.numSubShutter - Config.skillLevel3) / minimapTargetShutterNum;
 
         time -= Time.deltaTime;
 

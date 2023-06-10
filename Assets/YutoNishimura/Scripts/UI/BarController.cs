@@ -29,11 +29,11 @@ public class BarController : ButtonController
     }
     public void PopUpForHome()
     {
-        bar.rectTransform.DOMoveX(afterPos.rectTransform.position.x, changeScaleTime);
+        bar.rectTransform.DOMoveX(afterPos.rectTransform.position.x, Config.moveBarSpeed);
     }
 
     public void PopDownForHome()
     {
-        bar.rectTransform.DOMoveX(initialPos.rectTransform.position.x, changeScaleTime);
+        bar.rectTransform.DOMoveX(initialPos.rectTransform.position.x, Config.moveBarSpeed);
     }
 }

@@ -6,18 +6,11 @@ using DG.Tweening;
 
 public class ResultController : UIController
 {
-    private enum TargetScore
-    {
-        Easy = 250,
-        Nomal = 700,
-        Hard = 1500
-    }
-
     [SerializeField] private List<Image> bars;
     [SerializeField] private Image afterPos;
     [SerializeField] private Image afterPos_Total;
     [SerializeField] private Image resultImg;
-    [SerializeField] private float changeScaleTime = 0.3f;
+    [SerializeField] private float changeScaleTime = Config.popSpeed;
     [SerializeField] private Text[] resultScores;
     [SerializeField] private Sprite clearSprite;       //ゲームクリア時に表示させるスプライト
     [SerializeField] private Sprite failedSprite;      //ゲーム失敗時に表示させるスプライト
@@ -67,20 +60,20 @@ public class ResultController : UIController
         switch(mode)
         {
             case GameManager.GameMode.Easy:
-                resultImg.sprite = GetResultSprite(score, TargetScore.Easy);
+                resultImg.sprite = GetResultSprite(score, Config.easyTargetScore);
                 break;
             case GameManager.GameMode.Nomal:
-                resultImg.sprite = GetResultSprite(score, TargetScore.Nomal);
+                resultImg.sprite = GetResultSprite(score, Config.nomalTargetScore);
                 break;
             case GameManager.GameMode.Hard:
-                resultImg.sprite = GetResultSprite(score, TargetScore.Hard);
+                resultImg.sprite = GetResultSprite(score, Config.hardTargetScore);
                 break;
         }
     }
 
-    private Sprite GetResultSprite(int score, TargetScore targetScore)
+    private Sprite GetResultSprite(int score, int targetScore)
     {
-        if(score >= (int)targetScore)
+        if(score >= targetScore)
         {
             return clearSprite;
         }

@@ -8,13 +8,13 @@ public class Player : Actor
     Vector3 moveDirection = Vector3.zero;
     Vector3 targetDirection;        //移動する方向のベクトル
     private CharacterController controller;
-    private float speed = 6f;
+    private float speed = Config.playerSpeed;
     float minX = -40f, maxX = 40f;
-    float Xsensityvity = 3f, Ysensityvity = 3f;
+    float Xsensityvity = Config.mouseHorizon, Ysensityvity = Config.mouseVertical;
     public GameObject cam;
     Quaternion cameraRot, characterRot;
     public bool _moveLock;                           //行動を制限するかどうか
-    private float gravity = 20f;
+    private float gravity = Config.gravity;
     private AudioSource audioSource;
     Vector3 initialCamPos;    //変数の宣言(角度の制限用)
     private float initialPlayerSpeed;   //ゲーム開始時のプレイヤーのデフォルトスピード

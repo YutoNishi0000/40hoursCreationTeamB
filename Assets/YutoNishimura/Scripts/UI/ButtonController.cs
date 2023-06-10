@@ -9,9 +9,9 @@ using Unity.VisualScripting;
 public class ButtonController : UIController
 {
     [Header("何秒でポップアップ、ポップダウン、バーが移動するか")]
-    [SerializeField] protected float changeScaleTime = 0.1f;
+    [SerializeField] protected float changeScaleTime = Config.popSpeed;
     [Header("ポップアップ後の大きさ（倍率）")]
-    [SerializeField] protected float afterScale = 1.5f;
+    [SerializeField] protected float afterScale = Config.popUpSize;
     [Header("ポップアップ前のスプライト")]
     [SerializeField] protected Sprite initialImage;
     [Header("ポップアップ後のボタンのイメージ")]

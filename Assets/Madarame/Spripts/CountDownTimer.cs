@@ -6,25 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class CountDownTimer : UIController
 {
-	private enum GameTime
-	{
-		Easy  = 5,
-		Nomal = 5,
-		Hard  = 7
-	}
-
 	private static float _totalTime;    // 制限時間の合計
 	private float _oldSeconds;   // 前回Update時の秒数
 	private Text _timerText;
 	private int _minute;  // 制限時間（分）
 	private float _seconds; // 制限時間（秒）
 	private const int sceneIndex = 4;	//リザルトシーンのインデックス 
-
-	private GameTime gameTime;
 	//減らす時間
-	private static float _decreaceTime = 5;
+	private static float _decreaceTime = Config.airShutterMinusCount;
 	//増やす時間
-	private static float _increaceTime = 5;
+	private static float _increaceTime = Config.targetShutterPlusCount;
 
 	void Start()
 	{
@@ -32,13 +23,13 @@ public class CountDownTimer : UIController
 		switch (GameManager.Instance.GetGameMode())
 		{
 			case GameManager.GameMode.Easy:
-				_minute = (int)GameTime.Easy;
+				_minute = Config.easyModeTime;
 				break;
 			case GameManager.GameMode.Nomal:
-				_minute = (int)GameTime.Nomal;
+				_minute = Config.nomalModeTime;
 				break;
 			case GameManager.GameMode.Hard:
-				_minute = (int)GameTime.Hard;
+				_minute = Config.hardModeTime;
 				break;
 		}
 		_totalTime = _minute * 60 + _seconds;

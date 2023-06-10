@@ -30,20 +30,14 @@ public class ScreenShot : MonoBehaviour
     private Camera cam;                                //プレイヤーのカメラ
     private string screenShotPath;                     //スクリーンショットして生成されたテクスチャのファイルパス
     private string timeStamp;                          //現在時刻を表すためのもの
-    private const float firstScale = 0.8f;             //一回目移動するときにどれだけRawImnageが縮小されるか（何倍の大きさになるか）
-    private const float secondScale = 0.2f;            //二回目縮小するときにどれだけRawImageが縮小されるか（何倍の大きさになるか）
     private Vector3 InitialPrevPos;                    //RawImageの初期位置
     private Vector3 InitialPrevscale;                  //RawImageの初期スケール
     internal List<GameObject> setterObj;          //毎フレーム送られてくる異質なものの情報を取得するためのもの
     private bool noneStrangeFlag;                      //異質なものが撮影されていたらfalse 撮影されていなかったらtrue
     public static bool noneTargetFlag;                 //ターゲットが撮影されていたらfalse 撮影されていなかったらtrue
-    private readonly float fadeInSpeed = 0.2f;         //フェードスピード、撮影判定呼び出し時間
     private Vector3 center = Vector3.zero;             //画面の中心
-    private const float raiseScore = 1.5f;             //スコア上昇倍率
     private SkillManager skillManager;
     private TimerUI fadeManager;
-    private readonly float prevSlide = 1.0f;
-    private readonly float prevScale = 0.5f;
     private bool judgeSubTargetFlag;
     private bool judgeTargetFlag;
     private JudgeScreenShot judge;
@@ -56,15 +50,6 @@ public class ScreenShot : MonoBehaviour
         Target,
         Other
     }
-
-    //それぞれのスコアの値
-    public enum ScoreType
-    {
-        high = 50,
-        midle = 30,
-        low = 10,
-        outOfScreen = 0,
-    };
 
     //それぞれの判定の幅
     private const float areaWidth = 192;      //(960 / 5) 画面5等分
@@ -95,9 +80,9 @@ public class ScreenShot : MonoBehaviour
             OffUIShutter();
             InitializeRawImage();
             ClickShootButton();
-            Invoke(nameof(FirstMovePreview), prevSlide);
+            Invoke(nameof(FirstMovePreview), Config.movePrevTimeFirst);
 
-            judgeTargetFlag = judge.judgeTarget.ShutterTarget(player, mimic, cam, RespawTarget.GetCurrentTargetObj().transform.position, center, areaWidth, areaHeight, raiseScore);
+            judgeTargetFlag = judge.judgeTarget.ShutterTarget(player, mimic, cam, RespawTarget.GetCurrentTargetObj().transform.position, center, areaWidth, areaHeight, Config.raiseScore);
             judgeSubTargetFlag = judge.judgeSubTarget.ShutterSubTargets(cam, player, setterObj, 7.0f);
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
@@ -106,7 +91,7 @@ public class ScreenShot : MonoBehaviour
                 ShutterNone();
             }
 
-            ShutterAnimationController(fadeInSpeed, judgeTargetFlag, judgeSubTargetFlag);
+            ShutterAnimationController(Config.delayTimeShutterAnimation, judgeTargetFlag, judgeSubTargetFlag);
 
             //フラグを初期化
             judgeTargetFlag = false;
@@ -114,7 +99,7 @@ public class ScreenShot : MonoBehaviour
 
             //シャッターアニメーションを遅れて表示させる
             //消していたUIをオンに
-            Invoke(nameof(OnUIShutter), fadeInSpeed);
+            Invoke(nameof(OnUIShutter), Config.TimeActivationUI);
             Shutter.isFilming = false;
         }
     }
@@ -127,14 +112,14 @@ public class ScreenShot : MonoBehaviour
         CountDownTimer.DecreaceTime();
         player.GetComponent<Player>().Shake(duration, magnitude);
         SEManager.Instance.PlayMinusTimeCountSE();
-        fadeManager.FadeOut(fadeInSpeed, minusCount1);
+        fadeManager.FadeOut(Config.fadeOutSpeed, minusCount1);
 
         //もし難易度がハードだったら
         if (GameManager.Instance.GetGameMode() == GameManager.GameMode.Hard)
         {
             //もう５秒制限時間を減らす
             CountDownTimer.DecreaceTime();
-            fadeManager.FadeOut(fadeInSpeed, minusCount2);
+            fadeManager.FadeOut(Config.fadeOutSpeed, minusCount2);
         }
     }
 
@@ -263,20 +248,20 @@ public class ScreenShot : MonoBehaviour
     #region プレビューの動き
     private void FirstMovePreview()
     {
-        targetImage.rectTransform.DOScale(transform.localScale * firstScale, prevScale);
-        Invoke(nameof(SecondMovePreview), 0.5f);
+        targetImage.rectTransform.DOScale(transform.localScale * Config.reduceScaleFirst, Config.changePrevTransformFirst);
+        Invoke(nameof(SecondMovePreview), Config.movePrevTimeSecond);
     }
 
     private void SecondMovePreview()
     {
-        targetImage.rectTransform.DOScale(transform.localScale * secondScale, prevScale);
-        targetImage.rectTransform.DOMove(point1.rectTransform.position, prevScale);
-        Invoke(nameof(SlideMovePreview), prevSlide);
+        targetImage.rectTransform.DOScale(transform.localScale * Config.reduceScaleSecond, Config.changePrevTransformSecond);
+        targetImage.rectTransform.DOMove(point1.rectTransform.position, Config.changePrevTransformSecond);
+        Invoke(nameof(SlideMovePreview), Config.movePrevTimeThird);
     }
 
     private void SlideMovePreview()
     {
-        targetImage.transform.DOMoveX(point2.rectTransform.position.x, prevScale);
+        targetImage.transform.DOMoveX(point2.rectTransform.position.x, Config.changePrevTransformThird);
     }
 
     #endregion

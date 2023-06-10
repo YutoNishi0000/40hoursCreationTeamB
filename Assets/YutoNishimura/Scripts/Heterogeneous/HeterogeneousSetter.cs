@@ -19,8 +19,8 @@ public class HeterogeneousSetter : MonoBehaviour
     private int rand;                    //ランダムな数字
     private int fieldObjectsNum;         //フィールド内にある異質なものの個数
     private ScreenShot screen;
-    private readonly int numStrangeObjInField = 8;
-    private readonly static float respawnCoolTime = 10;    //異質なものが再生成されるまでのクールタイム
+    private readonly int numStrangeObjInField = Config.numSubTargetInField;
+    private readonly static float respawnCoolTime = Config.subSubTargetGenerationCoolTime;    //異質なものが再生成されるまでのクールタイム
     private static float coolTime;
     public static int numRand;
     void Start()

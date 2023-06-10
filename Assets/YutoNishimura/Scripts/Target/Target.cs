@@ -26,7 +26,7 @@ public class Target : Actor
     {
         enableTakePicFlag = false;
         agent = GetComponent<NavMeshAgent>();
-
+        agent.speed = Config.targetSpeed;
         //int rootType = Random.Range(0, 4);
         //SetRootType((RespawTarget.RootType)rootType);
 

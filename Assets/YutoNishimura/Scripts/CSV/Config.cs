@@ -18,15 +18,15 @@ public class Config : MonoBehaviour
 
     public static float gravity;
 
-    public static float numSubTargetInField;
+    public static int numSubTargetInField;
 
     public static float subSubTargetGenerationCoolTime;
 
-    public static float skillLevel1;
+    public static int skillLevel1;
         
-    public static float skillLevel2;
+    public static int skillLevel2;
 
-    public static float skillLevel3;
+    public static int skillLevel3;
 
     public static float raisePlayerSpeed;
 
@@ -36,23 +36,47 @@ public class Config : MonoBehaviour
 
     public static float airShutterMinusCount;
 
-    public static float easyModeTime;
+    public static int easyModeTime;
 
-    public static float nomalModeTime;
+    public static int nomalModeTime;
 
-    public static float hardModeTime;
+    public static int hardModeTime;
 
-    public static float easyTargetScore;
+    public static int easyTargetScore;
 
-    public static float nomalTargetScore;
+    public static int nomalTargetScore;
 
-    public static float hardTargetScore;
+    public static int hardTargetScore;
 
     public static float popSpeed;
 
     public static float popUpSize;
 
     public static float moveBarSpeed;
+
+    public static float raiseScore;
+
+    public static float reduceScaleFirst;
+
+    public static float reduceScaleSecond;
+
+    public static float movePrevTimeFirst;
+
+    public static float movePrevTimeSecond;
+
+    public static float movePrevTimeThird;
+
+    public static float changePrevTransformFirst;
+
+    public static float changePrevTransformSecond;
+
+    public static float changePrevTransformThird;
+
+    public static float delayTimeShutterAnimation;
+
+    public static float fadeOutSpeed;
+
+    public static float TimeActivationUI;
 
     private void Start()
     {
@@ -70,15 +94,15 @@ public class Config : MonoBehaviour
 
         gravity = float.Parse(gameInfo[5][1]);
 
-        numSubTargetInField = float.Parse(gameInfo[6][1]);
+        numSubTargetInField = int.Parse(gameInfo[6][1]);
 
         subSubTargetGenerationCoolTime = float.Parse(gameInfo[7][1]);
 
-        skillLevel1 = float.Parse(gameInfo[8][1]);
+        skillLevel1 = int.Parse(gameInfo[8][1]);
 
-        skillLevel2 = float.Parse(gameInfo[9][1]);
+        skillLevel2 = int.Parse(gameInfo[9][1]);
 
-        skillLevel3 = float.Parse(gameInfo[10][1]);
+        skillLevel3 = int.Parse(gameInfo[10][1]);
 
         raisePlayerSpeed = float.Parse(gameInfo[11][1]);
 
@@ -88,23 +112,47 @@ public class Config : MonoBehaviour
 
         airShutterMinusCount = float.Parse(gameInfo[14][1]);
 
-        easyModeTime = float.Parse(gameInfo[15][1]);
+        easyModeTime = int.Parse(gameInfo[15][1]);
 
-        nomalModeTime = float.Parse(gameInfo[16][1]);
+        nomalModeTime = int.Parse(gameInfo[16][1]);
 
-        hardModeTime = float.Parse(gameInfo[17][1]);
+        hardModeTime = int.Parse(gameInfo[17][1]);
 
-        easyTargetScore = float.Parse(gameInfo[18][1]);
+        easyTargetScore = int.Parse(gameInfo[18][1]);
 
-        nomalTargetScore = float.Parse(gameInfo[19][1]);
+        nomalTargetScore = int.Parse(gameInfo[19][1]);
 
-        hardTargetScore = float.Parse(gameInfo[20][1]);
+        hardTargetScore = int.Parse(gameInfo[20][1]);
 
         popSpeed = float.Parse(gameInfo[21][1]);
 
         popUpSize = float.Parse(gameInfo[22][1]);
 
         moveBarSpeed = float.Parse(gameInfo[23][1]);
+
+        raiseScore = float.Parse(gameInfo[24][1]);
+
+        reduceScaleFirst = float.Parse(gameInfo[25][1]);
+
+        reduceScaleSecond = float.Parse(gameInfo[26][1]);
+
+        movePrevTimeFirst = float.Parse(gameInfo[27][1]);
+
+        movePrevTimeSecond = float.Parse(gameInfo[28][1]);
+
+        movePrevTimeThird = float.Parse(gameInfo[29][1]);
+
+        changePrevTransformFirst = float.Parse(gameInfo[30][1]);
+
+        changePrevTransformSecond = float.Parse(gameInfo[31][1]);
+
+        changePrevTransformThird = float.Parse(gameInfo[32][1]);
+
+        delayTimeShutterAnimation = float.Parse(gameInfo[33][1]);
+
+        fadeOutSpeed = float.Parse(gameInfo[34][1]);
+
+        TimeActivationUI = float.Parse(gameInfo[35][1]);
 
         Debug.Log(playerSpeed);
         Debug.Log(targetSpeed);

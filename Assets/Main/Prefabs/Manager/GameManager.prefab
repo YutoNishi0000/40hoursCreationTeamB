@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7374533204814793852}
   - component: {fileID: 7374533204814793851}
+  - component: {fileID: 1549665573730823474}
+  - component: {fileID: 8532399579169411253}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -50,11 +52,37 @@ MonoBehaviour:
   numLowScore: 0
   numMiddleScore: 0
   numHighScore: 0
-  isClear: 0
-  StartGame: 0
+  IsPlayGame: 0
   filePathes: []
-  Date: 0
   gameMode: 0
   gameState: 0
   blockSwithScene: 1
   sceneIndex: 0
+  animations: []
+  XCameraSensitivity: 1
+  YCameraSensitivity: 1
+--- !u!114 &1549665573730823474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374533204814793850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9b32174de4e4e45ba87ad52f4f4ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filePath: FOCUS
+--- !u!114 &8532399579169411253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374533204814793850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee8543e62825b246972ec5c4f0093b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
