@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class JudgeScore : ScoreManger
 {
-
-
     //カメラのクールタイム
     private float coolTime = 3;
     //カメラ使用可能か
@@ -18,7 +16,6 @@ public class JudgeScore : ScoreManger
 
     private void Start()
     {
-
         screen = GameObject.FindObjectOfType<ScreenShot>();
     }
     private void LateUpdate()

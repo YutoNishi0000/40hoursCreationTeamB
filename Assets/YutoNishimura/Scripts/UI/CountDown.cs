@@ -87,7 +87,7 @@ public class CountDown : MonoBehaviour
             //color.a = Mathf.Abs(time);
             //StartPanel.GetComponent<Image>().color = color;
             StartPanel.enabled = false;
-            GameManager.Instance.StartGame = true;
+            GameManager.Instance.IsPlayGame = true;
             finishCountDown = true;
         }
     }

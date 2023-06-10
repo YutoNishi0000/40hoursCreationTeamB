@@ -32,7 +32,7 @@ public class Player : Actor
 
     private void Update()
     {
-        if (!GameManager.Instance.StartGame)
+        if (!GameManager.Instance.IsPlayGame)
         {
             return;
         }
@@ -42,7 +42,7 @@ public class Player : Actor
 
     private void FixedUpdate()
     {
-        if (!GameManager.Instance.StartGame)
+        if (!GameManager.Instance.IsPlayGame)
         {
             return;
         }

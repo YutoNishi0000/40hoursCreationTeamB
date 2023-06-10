@@ -45,8 +45,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int numMiddleScore = 0;      //ターゲット撮影時30pt文の評価の数
     public int numHighScore = 0;        //ターゲット撮影時50pt文の評価の数
 
-    //ゲームが始まっているか
-    public bool StartGame = false;
+    
+    public bool IsPlayGame = false;     //プレイヤーがゲームプレイ可能か
 
     public List<string> filePathes;
 
@@ -59,6 +59,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int sceneIndex;           //遷移したいシーンのインデックス番号
 
     public GameObject[] animations;
+
+    //オプション画面
+    public float XCameraSensitivity = 1;    //カメラの感度(X)
+    public float YCameraSensitivity = 1;    //カメラの感度(Y)
 
     private void Start()
     {
@@ -110,7 +114,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         numLowScore = 0;
         numMiddleScore = 0;
         numHighScore = 0;
-        StartGame = false;
+        IsPlayGame = false;
         ScoreManger.Score = 0;
     }
 
