@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Pose : MonoBehaviour
@@ -30,7 +31,7 @@ public class Pose : MonoBehaviour
     private int OptionSceneIndex;
 
     //子オブジェクトの数
-    private const int childNum = 4;   
+    private const int childNum = 8;   
     
     //UIのオブジェクト情報
     private GameObject[] poseUI = new GameObject[childNum];
@@ -51,7 +52,11 @@ public class Pose : MonoBehaviour
             poseUI[i] = transform.GetChild(i).gameObject;
         }
 
-        hideUI();
+        HideUI();
+
+        // 選択されていないときはボタンを暗くする
+        Color disabledColor = _selectButton.Button.colors.disabledColor;
+        _selectButton.Button.image.color = disabledColor;
 
         // ボタンクリック時にイベント追加 ---------------------- //
         _selectButton.Button.onClick.AddListener(SelectMove);
@@ -65,22 +70,24 @@ public class Pose : MonoBehaviour
         // ===== ポーズ中の処理 =====
         if (IsPosing)
         {
-            showUI();
+            ShowUI();
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                GameManager.Instance.IsPlayGame = true;
                 IsPosing = false;
             }
             return;
         }
         // ===== ポーズじゃないときの処理 =====
-        hideUI();
+        HideUI();
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            GameManager.Instance.IsPlayGame = false;
             IsPosing = true;
         }
     }
     /// <summary> ポーズ画面非表示 </summary>
-    private void hideUI()
+    private void HideUI()
     {
         for (int i = 0; i < poseUI.Length; i++)
         {
@@ -88,7 +95,7 @@ public class Pose : MonoBehaviour
         }
     }
     /// <summary> ポーズ画面表示 </summary>
-    private void showUI()
+    private void ShowUI()
     {
         for (int i = 0; i < poseUI.Length; i++)
         {
