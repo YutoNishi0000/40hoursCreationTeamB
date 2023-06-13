@@ -54,14 +54,10 @@ public class Pose : MonoBehaviour
 
         HideUI();
 
-        // 選択されていないときはボタンを暗くする
-        Color disabledColor = _selectButton.Button.colors.disabledColor;
-        _selectButton.Button.image.color = disabledColor;
-
         // ボタンクリック時にイベント追加 ---------------------- //
-        _selectButton.Button.onClick.AddListener(SelectMove);
+        _selectButton. Button.onClick.AddListener(SelectMove);
         _reStartButton.Button.onClick.AddListener(ReStartMove);
-        _optionButton.Button.onClick.AddListener(OptionMove);
+        _optionButton. Button.onClick.AddListener(OptionMove);
         // ----------------------------------------------------- //
     }
 
@@ -73,6 +69,7 @@ public class Pose : MonoBehaviour
             ShowUI();
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                Cursor.lockState = CursorLockMode.Locked;
                 GameManager.Instance.IsPlayGame = true;
                 IsPosing = false;
             }
@@ -82,6 +79,7 @@ public class Pose : MonoBehaviour
         HideUI();
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            Cursor.lockState = CursorLockMode.None;
             GameManager.Instance.IsPlayGame = false;
             IsPosing = true;
         }
