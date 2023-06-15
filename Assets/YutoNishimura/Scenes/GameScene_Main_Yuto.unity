@@ -2145,6 +2145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfded6b86fab354bba790569b007cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buttonGuide: {fileID: 312518107}
+  _buttonType: 0
 --- !u!114 &85789426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7637,6 +7639,7 @@ GameObject:
   - component: {fileID: 312518104}
   - component: {fileID: 312518106}
   - component: {fileID: 312518105}
+  - component: {fileID: 312518107}
   m_Layer: 5
   m_Name: SelectExplain
   m_TagString: Untagged
@@ -7703,6 +7706,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312518103}
   m_CullTransparentMesh: 1
+--- !u!114 &312518107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312518103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ed58ef29060004498dd8310bffd0fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _restartText: "\u59CB\u3081\u304B\u3089\u3084\u308A\u76F4\u3057\u307E\u3059"
+  _optionText: "\u30B2\u30FC\u30E0\u306E\u8A2D\u5B9A\u753B\u9762\u306B\u98DB\u3073\u307E\u3059"
+  _exitText: "\u30E2\u30FC\u30C9\u9078\u629E\u753B\u9762\u306B\u623B\u308A\u307E\u3059"
 --- !u!1001 &312977188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14241,7 +14259,7 @@ GameObject:
   - component: {fileID: 481768407}
   - component: {fileID: 481768409}
   m_Layer: 5
-  m_Name: Pose
+  m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14288,7 +14306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectButton: {fileID: 715258611}
-  _reStartButton: {fileID: 85789425}
+  _restartButton: {fileID: 85789425}
   _optionButton: {fileID: 1681715207}
   SelectSceneIndex: 2
   ReStartSceneIndex: 3
@@ -19541,7 +19559,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pose
+  m_Text: Pause
 --- !u!222 &603916615
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23151,6 +23169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfded6b86fab354bba790569b007cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buttonGuide: {fileID: 312518107}
+  _buttonType: 2
 --- !u!114 &715258612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32892,7 +32912,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ReStart
+  m_Text: RESTART
 --- !u!222 &1013772511
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -53165,6 +53185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfded6b86fab354bba790569b007cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buttonGuide: {fileID: 312518107}
+  _buttonType: 1
 --- !u!114 &1681715208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57651,7 +57673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option
+  m_Text: OPTION
 --- !u!222 &1855477504
 CanvasRenderer:
   m_ObjectHideFlags: 0

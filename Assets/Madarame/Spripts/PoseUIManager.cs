@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static ButtonGuide;
 
 public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    /// <summary>ボタン説明 </summary>  
+    [Header("ボタン説明"), SerializeField]
+    private ButtonGuide _buttonGuide;
+
+    /// <summary>ボタンの種類 </summary>  
+    [Header("ボタンの種類"), SerializeField]
+    private ButtonType _buttonType;
+
     /// <summary>選択肢ボタン </summary>    
     private Button _button;
 
@@ -20,6 +29,11 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     
     private void Start()
     {
+        if(_buttonGuide == null)
+        {
+            Debug.LogError("インスペクターにボタンガイドを格納してください。");
+            return;
+        }
         _button = GetComponent<Button>();
         _image　= GetComponent<Image>();
         _text = transform.GetChild(0).GetComponent<Text>();
@@ -31,20 +45,19 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// <summary>UI表示</summary>
     public void ShowUI()
     {
-        //_button.enabled = true;
         _image.enabled = true;
         _text.enabled = true;
     }
     /// <summary>UI非表示</summary>
     public void HideUI()
     {
-        //_button.enabled = false;
         _image.enabled = false;
         _text.enabled = false;
     }
     /// <summary>選択されてるときはボタンを明るくする </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
+        _buttonGuide.ChangeText(_buttonType);
         Color normalColor = Button.colors.normalColor;
         Button.image.color = normalColor;
     }

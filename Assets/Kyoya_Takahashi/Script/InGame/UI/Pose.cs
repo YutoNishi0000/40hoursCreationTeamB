@@ -12,7 +12,7 @@ public class Pose : MonoBehaviour
 
     /// <summary>リスタートボタン </summary>    
     [Header("リスタートボタン"), SerializeField]
-    private PoseUIManager _reStartButton;
+    private PoseUIManager _restartButton;
 
     /// <summary>オプションボタン </summary>    
     [Header("オプションボタン"), SerializeField]
@@ -41,7 +41,7 @@ public class Pose : MonoBehaviour
 
     private void Start()
     {
-        if (_selectButton == null || _reStartButton == null || _optionButton == null)
+        if (_selectButton == null || _restartButton == null || _optionButton == null)
         {
             Debug.LogError("selectUIのインスペクターにButtonを格納してください。");
             return;
@@ -56,7 +56,7 @@ public class Pose : MonoBehaviour
 
         // ボタンクリック時にイベント追加 ---------------------- //
         _selectButton. Button.onClick.AddListener(SelectMove);
-        _reStartButton.Button.onClick.AddListener(ReStartMove);
+        _restartButton.Button.onClick.AddListener(ReStartMove);
         _optionButton. Button.onClick.AddListener(OptionMove);
         // ----------------------------------------------------- //
     }
