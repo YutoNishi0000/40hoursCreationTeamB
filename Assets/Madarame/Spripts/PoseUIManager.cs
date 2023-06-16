@@ -15,6 +15,14 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("ボタンの種類"), SerializeField]
     private ButtonType _buttonType;
 
+    /// <summary>選択されている時のボタン画像 </summary>  
+    [Header("選択されている時のボタン画像"), SerializeField]
+    private Sprite _selectButton;
+
+    /// <summary>選択されていない時のボタン画像 </summary>  
+    [Header("選択されていない時のボタン画像"), SerializeField]
+    private Sprite _noselectButton;
+
     /// <summary>選択肢ボタン </summary>    
     private Button _button;
 
@@ -29,15 +37,14 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     
     private void Start()
     {
-        if(_buttonGuide == null)
+        if(_buttonGuide == null || _selectButton == null || _noselectButton == null)
         {
-            Debug.LogError("インスペクターにボタンガイドを格納してください。");
+            Debug.LogError("インスペクターに格納してください。");
             return;
         }
         _button = GetComponent<Button>();
         _image　= GetComponent<Image>();
-        _text = transform.GetChild(0).GetComponent<Text>();
-
+        _button.image.sprite = _noselectButton;
         // 選択されていないときはボタンを暗くする
         Color disabledColor = Button.colors.disabledColor;
         Button.image.color = disabledColor;
@@ -54,17 +61,15 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         _image.enabled = false;
         _text.enabled = false;
     }
-    /// <summary>選択されてるときはボタンを明るくする </summary>
+    /// <summary>選択されてるときはボタンを明るくする</summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
         _buttonGuide.ChangeText(_buttonType);
-        Color normalColor = Button.colors.normalColor;
-        Button.image.color = normalColor;
+        _button.image.sprite = _selectButton;
     }
-    /// <summary>選択されていないときはボタンを暗くする </summary>
+    /// <summary>選択されていないときはボタンを暗くする</summary>
     public void OnPointerExit(PointerEventData eventData)
     {
-        Color disabledColor = Button.colors.disabledColor;
-        Button.image.color = disabledColor;
+        _button.image.sprite = _noselectButton;
     }
 }
