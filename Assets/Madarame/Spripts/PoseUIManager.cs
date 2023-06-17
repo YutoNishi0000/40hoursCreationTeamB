@@ -45,9 +45,10 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         _button = GetComponent<Button>();
         _image　= GetComponent<Image>();
         _button.image.sprite = _noselectButton;
+
         // 選択されていないときはボタンを暗くする
-        Color disabledColor = Button.colors.disabledColor;
-        Button.image.color = disabledColor;
+        //Color disabledColor = Button.colors.disabledColor;
+        //Button.image.color = disabledColor;
     }
     /// <summary>UI表示</summary>
     public void ShowUI()

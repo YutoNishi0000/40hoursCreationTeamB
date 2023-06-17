@@ -30,6 +30,10 @@ public class Pose : MonoBehaviour
     [Header("オプションシーンのインデックス番号"), SerializeField]
     private int OptionSceneIndex;
 
+    /// <summary>ボタン説明 </summary>  
+    [Header("ボタン説明"), SerializeField]
+    private ButtonGuide _buttonGuide;
+
     //子オブジェクトの数
     private const int childNum = 8;   
     
@@ -66,19 +70,20 @@ public class Pose : MonoBehaviour
         // ===== ポーズ中の処理 =====
         if (IsPosing)
         {
-            ShowUI();
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                HideUI();
                 Cursor.lockState = CursorLockMode.Locked;
                 GameManager.Instance.IsPlayGame = true;
                 IsPosing = false;
+                _buttonGuide.ResetSelect();
             }
             return;
         }
         // ===== ポーズじゃないときの処理 =====
-        HideUI();
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            ShowUI();
             Cursor.lockState = CursorLockMode.None;
             GameManager.Instance.IsPlayGame = false;
             IsPosing = true;
