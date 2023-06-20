@@ -72,7 +72,7 @@ public class HeterogeneousSetter : MonoBehaviour
 
             if (objSpawnPos[rnd[i]].GetComponentInChildren<MetalonController>())
             {
-                SetMetalonConfig(rnd[i], parentWonderPoints).Forget();
+                SetMetalonConfig(rnd[i], parentWonderPoints);
             }
         }
     }
@@ -115,16 +115,16 @@ public class HeterogeneousSetter : MonoBehaviour
 
             if (objSpawnPos[rand].GetComponent<MetalonController>())
             {
-                SetMetalonConfig(rand, parentWonderPoints).Forget();
+                SetMetalonConfig(rand, parentWonderPoints);
             }
         }
 
         fieldObjectsNum = 0;
     }
 
-    private async UniTask SetMetalonConfig(int num, List<GameObject> parentPoints)
+    private void SetMetalonConfig(int num, List<GameObject> parentPoints)
     {
-        await UniTask.Delay(3000);
+        //await UniTask.Delay(3000);
         Debug.Log("セット");
         MetalonController metaron = objSpawnPos[num].GetComponent<MetalonController>();
         //ルート情報が入った親オブジェクトをセット

@@ -28882,6 +28882,7 @@ GameObject:
   - component: {fileID: 889012888}
   - component: {fileID: 889012892}
   - component: {fileID: 889012891}
+  - component: {fileID: 889012893}
   m_Layer: 0
   m_Name: GameNessesaryComponent
   m_TagString: Untagged
@@ -29039,6 +29040,23 @@ MonoBehaviour:
   - {fileID: 1622129262}
   - {fileID: 583060704}
   objSpawnPos: []
+--- !u!114 &889012893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889012882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec39afb9c87ebb41a7b6ddab877fb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImageUI: {fileID: 1757762414}
+  Texture1: {fileID: 2800000, guid: 22421c9d6a1447545b38ae11efb9cafd, type: 3}
+  Texture2: {fileID: 2800000, guid: 0f8392764569ba04a84fe7fbba6c33c5, type: 3}
+  Texture3: {fileID: 2800000, guid: e8494b7831e67f24a8076f53c114d992, type: 3}
+  Speed: 2
 --- !u!1001 &889016145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55796,7 +55814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b5022db6f4d0bf347ad52940bb7fd8ca, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
