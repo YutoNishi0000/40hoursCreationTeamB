@@ -66,7 +66,7 @@ float GetFogHeightParameter(float3 objectPos, float3 cameraPos, float fogDensity
 	return parameter;
 }
 
-//カメラの位置までループして減衰されたカラー情報を取得するための関数
+//カメラの位置までループして減衰されたカラー情報を取得するための関数（多分この計算論理的ではないから後々修正する予定）
 float GetForHeightFogParameter(float3 objectPos, float3 cameraPos, float densityY0, float densityAttenuation)
 {
 	// 高さが高くなるごとに霧を薄くする
@@ -105,7 +105,7 @@ float GetForHeightFogParameter(float3 objectPos, float3 cameraPos, float density
 	return ret;
 }
 
-//指定した高さになるまでループして減衰されたカラー情報を取得するための関数
+//霧の高さ依存の関数
 float GetForHeightFogParameter2(float3 objectPos, float3 cameraPos, float densityY0, float densityAttenuation, float fogHeight)
 {
 	// 高さが高くなるごとに霧を薄くする
