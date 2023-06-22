@@ -69,9 +69,8 @@ float GetFogHeightParameter(float3 objectPos, float3 cameraPos, float fogDensity
 //オブジェクト一つ一つに対する光の減衰率を表す媒介変数を取得する関数（多分この計算論理的ではないから後々修正する予定）
 float GetForHeightFogParameter(float3 objectPos, float3 cameraPos, float densityY0, float densityAttenuation)
 {
-	// 高さが高くなるごとに霧を薄くする
-	// 高さに応じた霧の濃さによる光の減衰量を算出すればよい　
-	// 高さをy、地上での霧の濃さをd0、定数をk（実数）とし、カメラの所で0、物の所で100になるような変数をsとする
+	// 高さが高くなるごとに指数関数のように霧を薄くする
+	// 高さをy、地上での霧の濃さをd0、定数をk（実数）とし、カメラと物の距離が100ある状態でカメラの所で0、物の所で100になるような変数をsとする
 	// sで微分すると、微分されたcの値が求まる->積分すればオブジェクトの光の減衰率がわかる->ds分大きくなるとdc分光が減衰されるイメージ
 	// dc / ds = -c * d0 * exp(-k * y);
 	// ここでyが邪魔なのでyをsで表す
@@ -85,7 +84,7 @@ float GetForHeightFogParameter(float3 objectPos, float3 cameraPos, float density
 	// dc / c = -A * exp(B * s) * ds
 	// これを積分する
 	// log|c| = -A / B * exp(B * s) + C (Cは積分定数)
-	// ここで、cを求めたいため、定積分（指定した範囲）(0 ～ |v|)を求める
+	// ここで、cを求めたいため、定積分（指定した範囲(0 ～ |v|)）を求める
 	// |c| = exp(-A/B * (exp(-k * v.y) - 1))
 	// c = exp(d0 * |v| / (k * v.y) * exp(-k * y0) * (exp(-k * v.y) - 1))
 	// これはまとめると指定した高さになるまで積分（ループ）して減衰されたカラー情報を返すことになる
