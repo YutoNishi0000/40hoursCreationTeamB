@@ -70,9 +70,10 @@ public class Pose : MonoBehaviour
         // ===== ポーズ中の処理 =====
         if (IsPosing)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
                 HideUI();
+                // カーソル非表示
                 Cursor.lockState = CursorLockMode.Locked;
                 GameManager.Instance.IsPlayGame = true;
                 IsPosing = false;
@@ -81,9 +82,10 @@ public class Pose : MonoBehaviour
             return;
         }
         // ===== ポーズじゃないときの処理 =====
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
             ShowUI();
+            // カーソル非表示
             Cursor.lockState = CursorLockMode.None;
             GameManager.Instance.IsPlayGame = false;
             IsPosing = true;
