@@ -14,6 +14,7 @@ public class TargetVisibilityController : MonoBehaviour
     [SerializeField] private Texture Texture3;    //テクスチャ3枚目
     private bool lockVisibilityLevel1;
     private bool lockVisibilityLevel2;
+    private CancellationToken token;
 
     private void Start()
     {
@@ -44,7 +45,7 @@ public class TargetVisibilityController : MonoBehaviour
                     return;
                 }
 
-                BlendManager(Texture1, Texture2).Forget();
+                BlendManager(Texture1, Texture2, token).Forget();
                 lockVisibilityLevel1 = true;
                 break;
             case 2:
@@ -53,7 +54,7 @@ public class TargetVisibilityController : MonoBehaviour
                     return;
                 }
 
-                BlendManager(Texture2, Texture3).Forget();
+                BlendManager(Texture2, Texture3, token).Forget();
                 lockVisibilityLevel2 = true;
                 break;
         }
@@ -65,8 +66,11 @@ public class TargetVisibilityController : MonoBehaviour
     /// <param name="before"></param>
     /// <param name="after"></param>
     /// <returns></returns>
-    private async UniTask BlendManager(Texture before, Texture after)
-    { 
+    private async UniTask BlendManager(Texture before, Texture after, CancellationToken token)
+    {
+        //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
+        SetCancelToken(ref token);
+
         float alpha = 0.0f;
         // Imageのマテリアルを取得
         Material material = ImageUI.material;
@@ -86,8 +90,17 @@ public class TargetVisibilityController : MonoBehaviour
             }
 
             //1フレーム待つ
-            await UniTask.DelayFrame(1);
+            await UniTask.DelayFrame(1, PlayerLoopTiming.Update, token);
         }
+    }
+
+    private void SetCancelToken(ref CancellationToken token)
+    {
+        //毎回新しいインスタンスを生成しないようにするため参照型を引数として受け取っている
+        //メリット：キャンセルトークンをGetSetする必要がなくなる
+
+        //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
+        token = this.GetCancellationTokenOnDestroy();
     }
 
     /// <summary>

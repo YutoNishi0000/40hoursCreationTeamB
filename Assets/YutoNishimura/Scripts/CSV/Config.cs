@@ -78,6 +78,12 @@ public class Config : MonoBehaviour
 
     public static float TimeActivationUI;
 
+    public static int targetVisibilityFirstPhase;
+
+    public static int targetVisibilitySecondPhase;
+
+    public static float subTargetJudgeLength;
+
     private void Start()
     {
         gameInfo = CSVReader.CsvData;
@@ -154,29 +160,10 @@ public class Config : MonoBehaviour
 
         TimeActivationUI = float.Parse(gameInfo[35][1]);
 
-        Debug.Log(playerSpeed);
-        Debug.Log(targetSpeed);
-        Debug.Log(subTargetSpeed);
-        Debug.Log(mouseHorizon);
-        Debug.Log(mouseVertical);
-        Debug.Log(gravity);
-        Debug.Log(numSubTargetInField);
-        Debug.Log(subSubTargetGenerationCoolTime);
-        Debug.Log(skillLevel1);
-        Debug.Log(skillLevel2);
-        Debug.Log(skillLevel3);
-        Debug.Log(raisePlayerSpeed);
-        Debug.Log(intervalActiveTargetMInimap);
-        Debug.Log(targetShutterPlusCount);
-        Debug.Log(airShutterMinusCount);
-        Debug.Log(easyModeTime);
-        Debug.Log(nomalModeTime);
-        Debug.Log(hardModeTime);
-        Debug.Log(easyTargetScore);
-        Debug.Log(nomalTargetScore);
-        Debug.Log(hardTargetScore);
-        Debug.Log(popSpeed);
-        Debug.Log(popUpSize);
-        Debug.Log(moveBarSpeed);
+        targetVisibilityFirstPhase = int.Parse(gameInfo[36][1]);
+
+        targetVisibilitySecondPhase = int.Parse(gameInfo[37][1]);
+
+        subTargetJudgeLength = float.Parse(gameInfo[38][1]);
     }
 }

@@ -10,9 +10,9 @@ public class JudgeScreenShot : MonoBehaviour
     public JudgeSubTarget judgeSubTarget;
 
     //コンストラクタ
-    public JudgeScreenShot()
+    public JudgeScreenShot(ParticleSystem targetEffect)
     {
-        judgeTarget = new JudgeTarget();
+        judgeTarget = new JudgeTarget(targetEffect);
         judgeSubTarget = new JudgeSubTarget();
     }
 }
@@ -20,6 +20,14 @@ public class JudgeScreenShot : MonoBehaviour
 //ターゲット判定だけを行うクラス
 public class JudgeTarget : MonoBehaviour
 {
+    private EffectController effectController;
+
+    //コンストラクタ
+    public JudgeTarget(ParticleSystem particle)
+    {
+        effectController = new EffectController(particle);
+    }
+
     //それぞれのスコアの値
     public enum ScoreType
     {
@@ -92,6 +100,8 @@ public class JudgeTarget : MonoBehaviour
         //手動でターゲットが表示される位置を調整
         Vector3 targetPos = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y - 1, targetObj.transform.position.z);
         Instantiate(targetModel, targetPos, targetObj.transform.rotation);
+        //エフェクトを再生
+        effectController.PlayEffect(targetPos);
         //スコア加算
         ScoreManger.Score += GetFinalScore(type, SkillManager.GetAddScoreFlag(), raise);
         //時間を獲得

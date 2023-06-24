@@ -8,6 +8,7 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 [RequireComponent(typeof(TimerUI))]
 public class ScreenShot : MonoBehaviour
@@ -25,6 +26,7 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Image lostTimeImg;
     [SerializeField] private GameObject[] gameUI;     //写真を撮るときに消したいUI
+    [SerializeField] private ParticleSystem particle;
 
     //内部処理で使うもの
     private Camera cam;                                //プレイヤーのカメラ
@@ -41,7 +43,6 @@ public class ScreenShot : MonoBehaviour
     private bool judgeSubTargetFlag;
     private bool judgeTargetFlag;
     private JudgeScreenShot judge;
-    
 
     //シャッターアニメーションの種類
     private enum ShutterAnimationType
@@ -57,7 +58,7 @@ public class ScreenShot : MonoBehaviour
 
     private void Start()
     {
-        judge = new JudgeScreenShot();
+        judge = new JudgeScreenShot(particle);
         judgeSubTargetFlag = false;
         judgeTargetFlag = false;
         setterObj = new List<GameObject>();
@@ -77,18 +78,16 @@ public class ScreenShot : MonoBehaviour
     {
         if (Shutter.isFilming)
         {
-            OffUIShutter();
             InitializeRawImage();
             ClickShootButton();
             Invoke(nameof(FirstMovePreview), Config.movePrevTimeFirst);
 
             judgeTargetFlag = judge.judgeTarget.ShutterTarget(player, mimic, cam, RespawTarget.GetCurrentTargetObj().transform.position, center, areaWidth, areaHeight, Config.raiseScore);
-            judgeSubTargetFlag = judge.judgeSubTarget.ShutterSubTargets(cam, player, setterObj, 7.0f);
+            judgeSubTargetFlag = judge.judgeSubTarget.ShutterSubTargets(cam, player, setterObj, Config.subTargetJudgeLength);
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
             if (!judgeTargetFlag && !judgeSubTargetFlag)
             {
-                Debug.Log("ないああああああああああああああああああああああああああああああああああああああああ");
                 ShutterNone();
             }
 
@@ -98,9 +97,6 @@ public class ScreenShot : MonoBehaviour
             judgeTargetFlag = false;
             judgeSubTargetFlag = false;
 
-            //シャッターアニメーションを遅れて表示させる
-            //消していたUIをオンに
-            Invoke(nameof(OnUIShutter), Config.TimeActivationUI);
             Shutter.isFilming = false;
         }
     }
@@ -130,22 +126,22 @@ public class ScreenShot : MonoBehaviour
         //異質な物だけ撮影した場合
         if (subTargetFlag && !targetFlag)
         {
-            ShutterAnimationmanager(ShutterAnimationType.Other, invokeTime).Forget();
+            ShutterAnimationmanager(ShutterAnimationType.Other);
         }
         //ターゲットだけ撮影した場合
         else if (!subTargetFlag && targetFlag)
         {
-            ShutterAnimationmanager(ShutterAnimationType.Target, invokeTime).Forget();
+            ShutterAnimationmanager(ShutterAnimationType.Target);
         }
         //どちらも撮影した場合
         else if (subTargetFlag && targetFlag)
         {
-            ShutterAnimationmanager(ShutterAnimationType.Target, invokeTime).Forget();
+            ShutterAnimationmanager(ShutterAnimationType.Target);
         }
         //空撮りだった場合
         else
         {
-            ShutterAnimationmanager(ShutterAnimationType.None, invokeTime).Forget();
+            ShutterAnimationmanager(ShutterAnimationType.None);
         }
     }
 
@@ -159,23 +155,27 @@ public class ScreenShot : MonoBehaviour
         return path;
     }
 
-    private IEnumerator CreateScreenShot()
+    private async UniTask CreateScreenShot(CancellationToken cancelToken)
     {
         DateTime date = DateTime.Now;
         timeStamp = date.ToString("yyyy-MM-dd-HH-mm-ss-fff");
-        // レンダリング完了まで待機
-        yield return new WaitForEndOfFrame();
 
-        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        //任意のフレームの描画処理が終わるまで待つ
+        await UniTask.DelayFrame(1, PlayerLoopTiming.Update, cancelToken);
+
+        //Cameraの描画領域をRenderTextureとして取り出す
+        var renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        var preview = cam.targetTexture;
         cam.targetTexture = renderTexture;
+        cam.Render();
+        cam.targetTexture = preview;
+        RenderTexture.active = renderTexture;
 
-        Texture2D texture = new Texture2D(cam.targetTexture.width / 2, cam.targetTexture.height, TextureFormat.RGB24, false);
+        //テクスチャ作成
+        var texture = new Texture2D(cam.pixelWidth, cam.pixelHeight, TextureFormat.RGB24, false);
 
-        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width / 2, cam.targetTexture.height), 0, 0);
+        texture.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
         texture.Apply();
-
-        // 保存する画像のサイズを変えるならResizeTexture()を実行
-        //		texture = ResizeTexture(texture,320,240);
 
         byte[] pngData = texture.EncodeToPNG();
         screenShotPath = GetScreenShotPath();
@@ -192,7 +192,9 @@ public class ScreenShot : MonoBehaviour
     //撮影関数
     public void ClickShootButton()
     {
-        StartCoroutine(CreateScreenShot());
+        //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
+        var token = this.GetCancellationTokenOnDestroy();
+        CreateScreenShot(token).Forget();
     }
 
     //撮影した写真をRawImageに表示
@@ -238,6 +240,7 @@ public class ScreenShot : MonoBehaviour
 
     private void InitializeRawImage()
     {
+        //プレビューを初期化する
         targetImage.texture = null;
         targetImage.enabled = false;
         targetImage.rectTransform.position = InitialPrevPos;
@@ -269,11 +272,8 @@ public class ScreenShot : MonoBehaviour
 
     #region シャッターアニメーション
 
-    private async UniTask ShutterAnimationmanager(ShutterAnimationType type, float delayTime)
+    private void ShutterAnimationmanager(ShutterAnimationType type)
     {
-        int time = (int)(delayTime * 1000);
-        await UniTask.Delay(time);
-
         switch(type)
         {
             case ShutterAnimationType.None:
