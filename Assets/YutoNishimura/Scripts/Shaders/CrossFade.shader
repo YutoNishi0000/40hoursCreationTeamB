@@ -1,21 +1,58 @@
-Shader "Custom/CrossFade" {
-
-    Properties{
-        _Color("Main Color", Color) = (1,1,1,1)
+Shader "Custom/CrossFade"
+{
+    Properties
+    {
+        _Texture1("Texture1", 2D) = "white" {}
+        _Texture2("Texture2", 2D) = "white" {}
         _Blend("Blend", Range(0, 1)) = 0
-        _Texture1("Texture 1", 2D) = ""
-        _Texture2("Texture 2", 2D) = ""
-
     }
+    SubShader
+    {
+        Tags { "RenderType" = "Transparent" "Queue" = "Transparent"}
+        Blend SrcAlpha OneMinusSrcAlpha
+        LOD 100
 
-        SubShader{
-            Pass{
-                SetTexture[_Texture1]
-                SetTexture[_Texture2]{
-                    ConstantColor(1,1,1,[_Blend])
-                    Combine texture Lerp(constant) previous
-                }
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float2 uv : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 vertex : SV_POSITION;
+            };
+
+            sampler2D _Texture1;
+            sampler2D _Texture2;
+            float _Blend;
+            float4 _Texture1_ST;
+
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = TRANSFORM_TEX(v.uv, _Texture1);
+                return o;
             }
-    }
 
+            fixed4 frag (v2f i) : SV_Target
+            {
+                fixed4 main = tex2D(_Texture1, i.uv);
+                fixed4 sub = tex2D(_Texture2, i.uv);
+                fixed4 col = main * (1 - _Blend) + sub * _Blend;
+                return col;
+            }
+            ENDCG
+        }
+    }
 }

@@ -62,8 +62,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FogDensity: 0.3
-    - _FogDensityAttenuation: 1
+    - _FogDensity: 0.08
+    - _FogDensityAttenuation: 0.5
     - _FogHeight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0

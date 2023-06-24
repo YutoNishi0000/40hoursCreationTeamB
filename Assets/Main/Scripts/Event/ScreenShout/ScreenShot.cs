@@ -88,6 +88,7 @@ public class ScreenShot : MonoBehaviour
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
             if (!judgeTargetFlag && !judgeSubTargetFlag)
             {
+                Debug.Log("ないああああああああああああああああああああああああああああああああああああああああ");
                 ShutterNone();
             }
 

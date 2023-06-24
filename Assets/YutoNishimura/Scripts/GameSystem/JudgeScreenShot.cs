@@ -257,7 +257,7 @@ public class JudgeSubTarget : MonoBehaviour
         float fov = camera.fieldOfView;
         float judgeRange = Mathf.Cos(Mathf.PI - (((2 * Mathf.PI) - ((fov / 360) * Mathf.PI * 2)) / 2));
         Vector3 playerForwardVec = camera.transform.forward;   //念のためカメラが向いている方向のベクトルを取得
-        int tempNumSubTargets = GameManager.Instance.numTargetShutter;
+        int tempNumSubTargets = GameManager.Instance.numSubShutter;
 
         for (int i = 0; i < list.Count; i++)
         {

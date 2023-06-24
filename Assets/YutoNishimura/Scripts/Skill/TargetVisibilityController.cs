@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,11 +12,14 @@ public class TargetVisibilityController : MonoBehaviour
     [SerializeField] private Texture Texture1;    // テクスチャ1枚目
     [SerializeField] private Texture Texture2;    // テクスチャ2枚目
     [SerializeField] private Texture Texture3;    //テクスチャ3枚目
+    private bool lockVisibilityLevel1;
+    private bool lockVisibilityLevel2;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         InitializeShader(Texture1, Texture2);
+        lockVisibilityLevel1 = false;
+        lockVisibilityLevel2 = false;
     }
 
     private void Update()
@@ -35,10 +39,22 @@ public class TargetVisibilityController : MonoBehaviour
         switch (subCount)
         {
             case 1:
+                if(lockVisibilityLevel1)
+                {
+                    return;
+                }
+
                 BlendManager(Texture1, Texture2).Forget();
+                lockVisibilityLevel1 = true;
                 break;
             case 2:
+                if (lockVisibilityLevel2)
+                {
+                    return;
+                }
+
                 BlendManager(Texture2, Texture3).Forget();
+                lockVisibilityLevel2 = true;
                 break;
         }
     }
@@ -50,10 +66,10 @@ public class TargetVisibilityController : MonoBehaviour
     /// <param name="after"></param>
     /// <returns></returns>
     private async UniTask BlendManager(Texture before, Texture after)
-    {
+    { 
         float alpha = 0.0f;
         // Imageのマテリアルを取得
-        Material material = ImageUI.GetComponent<Image>().material;
+        Material material = ImageUI.material;
         material.SetTexture("_Texture1", before);
         material.SetTexture("_Texture2", after);
 
@@ -65,9 +81,11 @@ public class TargetVisibilityController : MonoBehaviour
 
             if(alpha >= 1.0f)
             {
+                //ループから抜け出す
                 break;
             }
 
+            //1フレーム待つ
             await UniTask.DelayFrame(1);
         }
     }
@@ -79,7 +97,7 @@ public class TargetVisibilityController : MonoBehaviour
     /// <param name="texture2"></param>
     private void InitializeShader(Texture texture1, Texture texture2)
     {
-        Material material = ImageUI.GetComponent<Image>().material;
+        Material material = ImageUI.material;
         material.SetFloat("_Blend", 0);
         material.SetTexture("_Texture1", texture1);
         material.SetTexture("_Texture2", texture2);
