@@ -107,7 +107,7 @@ public class ScreenShot : MonoBehaviour
     private void ShutterNone()
     {
         CountDownTimer.DecreaceTime();
-        player.GetComponent<Player>().Shake(duration, magnitude);
+        //player.GetComponent<Player>().Shake(duration, magnitude);
         SEManager.Instance.PlayMinusTimeCountSE();
         fadeManager.FadeOut(Config.fadeOutSpeed, minusCount1);
 
@@ -160,24 +160,25 @@ public class ScreenShot : MonoBehaviour
         DateTime date = DateTime.Now;
         timeStamp = date.ToString("yyyy-MM-dd-HH-mm-ss-fff");
 
-        //任意のフレームの描画処理が終わるまで待つ
+        PostEffectController.SetPostEffectFlag(false);
+
+        ////任意のフレームの描画処理が終わるまで待つ
         await UniTask.DelayFrame(1, PlayerLoopTiming.Update, cancelToken);
 
-        //Cameraの描画領域をRenderTextureとして取り出す
-        var renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
-        var preview = cam.targetTexture;
-        cam.targetTexture = renderTexture;
+        // レンダリング完了まで待機
+        //yield return new WaitForEndOfFrame();
+
+        Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        RenderTexture rt = new RenderTexture(screenShot.width, screenShot.height, 24);
+        RenderTexture prev = cam.targetTexture;
+        cam.targetTexture = rt;
         cam.Render();
-        cam.targetTexture = preview;
-        RenderTexture.active = renderTexture;
+        cam.targetTexture = prev;
+        RenderTexture.active = rt;
+        screenShot.ReadPixels(new Rect(0, 0, screenShot.width, screenShot.height), 0, 0);
+        screenShot.Apply();
 
-        //テクスチャ作成
-        var texture = new Texture2D(cam.pixelWidth, cam.pixelHeight, TextureFormat.RGB24, false);
-
-        texture.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
-        texture.Apply();
-
-        byte[] pngData = texture.EncodeToPNG();
+        byte[] pngData = screenShot.EncodeToPNG();
         screenShotPath = GetScreenShotPath();
 
         // ファイルとして保存するならFile.WriteAllBytes()を実行
@@ -187,6 +188,8 @@ public class ScreenShot : MonoBehaviour
 
         //生成したテクスチャファイルから情報を読み込んでRawImageに出力
         ShowSSImage();
+
+        PostEffectController.SetPostEffectFlag(true);
     }
 
     //撮影関数
