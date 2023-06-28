@@ -44,7 +44,7 @@ public class TargetVisibilityController : MonoBehaviour
                 {
                     return;
                 }
-
+                //クロスフェード実行
                 BlendManager(Texture1, Texture2, token).Forget();
                 lockVisibilityLevel1 = true;
                 break;
@@ -53,7 +53,7 @@ public class TargetVisibilityController : MonoBehaviour
                 {
                     return;
                 }
-
+                //クロスフェード実行
                 BlendManager(Texture2, Texture3, token).Forget();
                 lockVisibilityLevel2 = true;
                 break;

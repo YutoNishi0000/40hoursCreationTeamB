@@ -265,17 +265,24 @@ public class JudgeSubTarget : MonoBehaviour
     public bool ShutterSubTargets(Camera camera, GameObject playerPos, List<GameObject> list, float judgeDis)
     {
         float fov = camera.fieldOfView;
+        //fovを用いて内積を取得
         float judgeRange = Mathf.Cos(Mathf.PI - (((2 * Mathf.PI) - ((fov / 360) * Mathf.PI * 2)) / 2));
-        Vector3 playerForwardVec = camera.transform.forward;   //念のためカメラが向いている方向のベクトルを取得
+        //念のためカメラが向いている方向のベクトルを取得
+        Vector3 playerForwardVec = camera.transform.forward;   
         int tempNumSubTargets = GameManager.Instance.numSubShutter;
 
+        //異質なものの個数分判定を行う
         for (int i = 0; i < list.Count; i++)
         {
+            //異質なものが存在していることが条件
             if (list[i] != null)
             {
+                //プレイヤーと異質なものとのベクトルを取得
                 Vector3 playerToSubVec = list[i].transform.position - playerPos.transform.position;
+                //カメラが向いている方向と今さっき求めたプレイヤーと異質なもの間のベクトルの内積を取得
                 float dot = Vector3.Dot(playerToSubVec.normalized, playerForwardVec.normalized);
 
+                //fovを用いて取得した内積と今さっき求めた内積を比較（プレイヤーと異質なもの間のベクトルの内積がfovを用いて取得した内積より大きかったら撮影成功）<=三角関数の概念
                 if (playerToSubVec.magnitude < judgeDis && dot >= judgeRange)
                 {
                     //サブカメラカウントをインクリメント

@@ -9,16 +9,12 @@ public class Target : Actor
     public List<GameObject> points;
     private int destPoint = 0;
     private NavMeshAgent agent;
-    private GameObject targetCamera = null;
     private float initialTargetSpeed;       //ˆÚ“®‘¬“x
-    private GameObject pointParent = null;
     private GameObject rootParent1;
     private GameObject rootParent2;
     private GameObject rootParent3;
     private GameObject rootParent4;
-    private bool isInsideCamera = false;
     private bool enableTakePicFlag;    //ƒ^[ƒQƒbƒgB‰e”»’è
-    private const float disTargetShot = 7.0f;
     private readonly float minDistance = 0.5f;
 
     // Start is called before the first frame update

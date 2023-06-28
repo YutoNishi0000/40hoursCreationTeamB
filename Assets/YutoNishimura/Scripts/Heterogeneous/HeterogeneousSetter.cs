@@ -56,10 +56,12 @@ public class HeterogeneousSetter : MonoBehaviour
     {
         List<int> rnd = new List<int>();
 
+        //最初は指定する分だけ異質なものを生成
         for (int i = 0; i < numStrangeObjInField; i++)
         {
             rnd.Add(Random.Range(0, points.Count()));
 
+            //もしも、ランダムに取得した値が既に出てしまっていたら違う値が出るまで取得し続ける
             for(int j = 0; j < rnd.Count(); j++)
             {
                 while(rnd[i] == rnd[j] && i != j)
@@ -68,8 +70,10 @@ public class HeterogeneousSetter : MonoBehaviour
                 }
             }
 
+            //InstantiateがTemplateを返すのを利用してbool型を取得
             objSpawnPos[rnd[i]] = Instantiate(GetNextObject(), points[rnd[i]].transform.position, Quaternion.identity);
 
+            //動く異質なものには生成場所のアドレスを設定（詳細はMetalonController.csへ）
             if (objSpawnPos[rnd[i]].GetComponentInChildren<MetalonController>())
             {
                 SetMetalonConfig(rnd[i], parentWonderPoints);
@@ -104,6 +108,7 @@ public class HeterogeneousSetter : MonoBehaviour
         //足りない分を補うような形で異質なものを動的に配置する
         for (int j = 0; j < numStrangeObjInField - fieldObjectsNum; j++)
         {
+            //おなし場所に生成しないようにかぶらないランダムな値を取得
             int rand = Random.Range(0, points.Count());
 
             while (objSpawnPos[rand] != null)
@@ -111,8 +116,10 @@ public class HeterogeneousSetter : MonoBehaviour
                 rand = Random.Range(0, points.Count());
             }
 
+            //InstantiateがTemplateを返すのを利用してbool型を取得
             objSpawnPos[rand] = Instantiate(GetNextObject(), points[rand].transform.position, GetNextObject().transform.rotation);
 
+            //動く異質なものには生成場所のアドレスを設定（詳細はMetalonController.csへ）
             if (objSpawnPos[rand].GetComponent<MetalonController>())
             {
                 SetMetalonConfig(rand, parentWonderPoints);
@@ -147,10 +154,13 @@ public class HeterogeneousSetter : MonoBehaviour
             return null;
         }
 
+        //要素を消さずに取得
         GameObject obj  = queue.Peek();
 
+        //要素を取り出す
         queue.Enqueue(obj);
 
+        //取得した要素は廃棄
         return queue.Dequeue();
     }
 

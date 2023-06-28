@@ -39,19 +39,6 @@ public class SkillManager : Actor
         skillBlock_seeTarget = true;
         addScoreFlag = false;
         minimapSkillFlag = false;
-
-        //// Imageのマテリアルを取得
-        //Material material = ImageUI.GetComponent<Image>().material;
-
-        //// ブレンド率を0.0に設定
-        //material.SetFloat("_Blend", 0.0f);
-
-        //// テクスチャを設定する
-        //material.SetTexture("_Texture1", Texture1);
-        //material.SetTexture("_Texture2", Texture2);
-
-        //// ブレンド率を操作する (DoTweenを使用しています)
-        //material.DOFloat(1.0f, "_Blend", Speed).SetLoops(-1, LoopType.Yoyo);
     }
 
     // Update is called once per frame
