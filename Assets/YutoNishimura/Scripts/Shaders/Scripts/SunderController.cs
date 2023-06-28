@@ -24,7 +24,11 @@ public class SunderController : Actor
         SunderUpdate(token).Forget();
     }
 
-    //比較的重い処理なので非同期処理を用いて少しでも軽くする
+    /// <summary>
+    /// 比較的重い処理なので非同期処理を用いて少しでも軽くする
+    /// </summary>
+    /// <param name="token">キャンセルトークン</param>
+    /// <returns></returns>
     private async UniTask SunderUpdate(CancellationToken token)
     {
         //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得

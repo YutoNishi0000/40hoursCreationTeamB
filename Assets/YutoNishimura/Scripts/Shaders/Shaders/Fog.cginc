@@ -66,7 +66,7 @@ float GetFogHeightParameter(float3 objectPos, float3 cameraPos, float fogDensity
 	return parameter;
 }
 
-//オブジェクト一つ一つに対する光の減衰率を表す媒介変数を取得する関数（多分この計算論理的ではないから後々修正する予定）
+//オブジェクト一つ一つに対する光の減衰率を表す媒介変数を取得する関数
 float GetForHeightFogParameter(float3 objectPos, float3 cameraPos, float densityY0, float densityAttenuation)
 {
 	// 高さが高くなるごとに指数関数のように霧を薄くする

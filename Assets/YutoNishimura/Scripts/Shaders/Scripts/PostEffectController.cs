@@ -19,6 +19,7 @@ public class PostEffectController : MonoBehaviour
     [SerializeField] private Material nearTargetetImpact;
     [SerializeField, Range(4, 16)] private int _sampleCount = 8;
     [SerializeField, Range(0.0f, 1.0f)] private float _strength = 0.5f;
+    private readonly float maxDistance = 20;
 
     delegate void PostEffect();
 
@@ -69,7 +70,7 @@ public class PostEffectController : MonoBehaviour
             {
                 float dis = Vector3.Distance(transform.position, targetObject.transform.position);
 
-                SunderManager(dis, 20);
+                SunderManager(dis, maxDistance);
             }
             else
             {
