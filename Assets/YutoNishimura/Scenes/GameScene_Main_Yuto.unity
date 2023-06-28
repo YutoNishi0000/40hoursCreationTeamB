@@ -60901,19 +60901,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 6335008882545010043, guid: 5804bb60d2353f74297eb6fbd26c6f55, type: 3}
   m_PrefabInstance: {fileID: 1937578760}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1937578772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937578762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3e1a15d917a7d41a5fddf22e76aaf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
 --- !u!1 &1939075998
 GameObject:
   m_ObjectHideFlags: 0
@@ -68302,4 +68289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1079e797204b9954e84c825054c669eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectMaterial: {fileID: 2100000, guid: 62fcf90caf5166241af579c8ea0dfe3f, type: 2}
+  nearTargetetEffect: {fileID: 2100000, guid: 62fcf90caf5166241af579c8ea0dfe3f, type: 2}
+  nearTargetetImpact: {fileID: 2100000, guid: f3b53403bdb43d0448eafe6021637234, type: 2}
+  _sampleCount: 8
+  _strength: 0.5

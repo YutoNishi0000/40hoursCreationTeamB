@@ -6,6 +6,9 @@ Shader "Custom/ElectricCurrent"
         _NoiseTex("NoiseTexture", 2D) = "white" {}
         _ElectricColor("ElectricColor", Color) = (1,1,1,1)
         _BackGroundColor("BackGroundColor", Color) = (1, 1, 1, 1)
+        _Blend("Blend", float) = 0
+        _BlurDegree("BlurDegree", float) = 0
+        _SampleCount("SampleCount", int) = 1
     }
     SubShader
     {
@@ -46,6 +49,10 @@ Shader "Custom/ElectricCurrent"
             sampler2D _NoiseTex;
             float4 _ElectricColor;
             float4 _BackGroundColor;
+            float _Blend;
+            float _BlurDegree;
+            uniform float4 _BlurCenter;
+            int _SampleCount;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -62,8 +69,21 @@ Shader "Custom/ElectricCurrent"
                 noise = 1 - noise; //黒白を反転させる -4～1の値に
                 noise = saturate(noise); //-4～1だとで加算したときに変な値になるので 0～1に絞る clamp01と同じ
 
-                //ここで、フラグメントと電流に色をそれぞれ蒸散することで任意の色にすることができる
-                fixed4 color = tex2D(_MainTex, i.uv) * _BackGroundColor + noise * _ElectricColor;
+                //ここで、フラグメントと電流に色をそれぞれ乗算することで任意の色にすることができる
+                fixed4 color = (tex2D(_MainTex, i.uv) * _BackGroundColor + noise * _ElectricColor); //* _Blend;
+
+                //float2 dir = i.uv - _BlurCenter.xy;
+                ////指定した回数だけuvの中心座標からの距離に応じてサンプラーを加算する
+                //for (int j = 0; j < _SampleCount; j++)
+                //{
+                //    float2 uv = i.uv + _BlurDegree * j * dir;
+                //    color += tex2D(_MainTex, uv);
+                //}
+
+                ////平均値を取得
+                //color /= _SampleCount;
+
+                color.a = _Blend;
 
                 return color;
             }

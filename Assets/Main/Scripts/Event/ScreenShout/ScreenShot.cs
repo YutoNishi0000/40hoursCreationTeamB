@@ -189,7 +189,7 @@ public class ScreenShot : MonoBehaviour
         //生成したテクスチャファイルから情報を読み込んでRawImageに出力
         ShowSSImage();
 
-        PostEffectController.SetPostEffectFlag(true);
+        //PostEffectController.SetPostEffectFlag(true);
     }
 
     //撮影関数

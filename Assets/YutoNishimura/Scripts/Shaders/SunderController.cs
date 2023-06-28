@@ -15,11 +15,16 @@ public class SunderController : Actor
 
     private CancellationToken token;
 
+    private float blend;                      //シェーダーでα値を徐々に大きくしていくときに使う変数
+
+    [SerializeField] private Material cameraMaterial;   //カメラが持っているシェーダー付きのマテリアル
+
     private void Start()
     {
         SunderUpdate(token).Forget();
     }
 
+    //比較的重い処理なので非同期処理を用いて少しでも軽くする
     private async UniTask SunderUpdate(CancellationToken token)
     {
         //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
@@ -61,10 +66,14 @@ public class SunderController : Actor
     {
         if(distance <= limit)
         {
+            blend += Time.deltaTime;
+            Material mate = cameraMaterial;
+            mate.SetFloat("_Blend", blend);
             PostEffectController.SetPostEffectFlag(true);
         }
         else
         {
+            blend = 0;
             PostEffectController.SetPostEffectFlag(false);
         }
     }

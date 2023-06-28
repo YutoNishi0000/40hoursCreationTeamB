@@ -4,6 +4,7 @@ Shader "Custom/NoiseDistortion"
     {
         _MainTex("MainTexture", 2D) = "white" {}
         _NoiseTex("NoiseTexture", 2D) = "white" {}
+        _Blend("Blend", float) = 0
     }
 
     SubShader
@@ -39,6 +40,7 @@ Shader "Custom/NoiseDistortion"
 
             float _Border;
             float4 _Color;
+            float _Blend;
 
             v2f vert(appdata v)
             {
