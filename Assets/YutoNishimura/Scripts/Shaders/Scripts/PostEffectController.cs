@@ -70,7 +70,7 @@ public class PostEffectController : MonoBehaviour
             {
                 float dis = Vector3.Distance(transform.position, targetObject.transform.position);
 
-                SunderManager(dis, maxDistance);
+                SunderManager(dis, Config.detectionTargetDistance);
             }
             else
             {

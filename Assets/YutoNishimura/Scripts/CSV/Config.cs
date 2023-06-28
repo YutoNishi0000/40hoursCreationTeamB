@@ -84,6 +84,8 @@ public class Config : MonoBehaviour
 
     public static float subTargetJudgeLength;
 
+    public static float detectionTargetDistance;
+
     private void Start()
     {
         gameInfo = CSVReader.CsvData;
@@ -165,5 +167,7 @@ public class Config : MonoBehaviour
         targetVisibilitySecondPhase = int.Parse(gameInfo[37][1]);
 
         subTargetJudgeLength = float.Parse(gameInfo[38][1]);
+
+        detectionTargetDistance = float.Parse(gameInfo[39][1]);
     }
 }

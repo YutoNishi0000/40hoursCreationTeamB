@@ -37,26 +37,17 @@ public class TargetVisibilityController : MonoBehaviour
     /// <param name="subCount">異質なものを撮影した枚数</param>
     public void LimitVisibilityManager(int subCount)
     {
-        switch (subCount)
+        if(subCount == Config.targetVisibilityFirstPhase && !lockVisibilityLevel1)
         {
-            case 1:
-                if(lockVisibilityLevel1)
-                {
-                    return;
-                }
-                //クロスフェード実行
-                BlendManager(Texture1, Texture2, token).Forget();
-                lockVisibilityLevel1 = true;
-                break;
-            case 2:
-                if (lockVisibilityLevel2)
-                {
-                    return;
-                }
-                //クロスフェード実行
-                BlendManager(Texture2, Texture3, token).Forget();
-                lockVisibilityLevel2 = true;
-                break;
+            //クロスフェード実行
+            BlendManager(Texture1, Texture2, token).Forget();
+            lockVisibilityLevel1 = true;
+        }
+        else if(subCount == Config.targetVisibilitySecondPhase && !lockVisibilityLevel2)
+        {
+            //クロスフェード実行
+            BlendManager(Texture2, Texture3, token).Forget();
+            lockVisibilityLevel2 = true;
         }
     }
 
