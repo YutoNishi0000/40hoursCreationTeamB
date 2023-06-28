@@ -15,19 +15,19 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Madarame/Scenes/Title_hiro.unity
+    path: Assets/Main/Scenes/GameMain_Title.unity
     guid: bf46abe0ec01de84cb0a4be6b2fd3031
   - enabled: 1
-    path: Assets/Madarame/Scenes/Home_hiro.unity
+    path: Assets/Main/Scenes/GameMain_Home.unity
     guid: d20c2c6a6fbe58c4192dce98784826b6
   - enabled: 1
-    path: Assets/Madarame/Scenes/Stage_hiro.unity
+    path: Assets/Main/Scenes/GameMain_Stage.unity
     guid: 786a881d0d950a84a934d080975c7386
   - enabled: 1
-    path: Assets/YutoNishimura/Scenes/GameScene_Main_Yuto.unity
+    path: Assets/Main/Scenes/GameMain_Scene.unity
     guid: 2e7d1d991e34d374c9a2d26f58f08025
   - enabled: 1
-    path: Assets/YutoNishimura/Scenes/OutGame/Result.unity
+    path: Assets/Main/Scenes/GameMain_Result.unity
     guid: 208b4cb329c754146ad00a976edfb403
   - enabled: 1
     path: Assets/YutoNishimura/Scenes/Operation.unity
