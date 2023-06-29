@@ -54,17 +54,17 @@ public class SkillManager : Actor
     /// </summary>
     private void UnLockSkill()
     {
-        if(GameManager.Instance.numSubShutter == Config.skillLevel1)
+        if(GameManager.Instance.numSubShutter == Config.skillLevel1 && skillBlock_player)
         {
             SEManager.Instance.PlaySkill();
             skillBlock_player = false;
         }
-        else if (GameManager.Instance.numSubShutter == Config.skillLevel2)
+        else if (GameManager.Instance.numSubShutter == Config.skillLevel2 && skillBlock_addScore)
         {
             SEManager.Instance.PlaySkill();
             skillBlock_addScore = false;
         }
-        else if (GameManager.Instance.numSubShutter == Config.skillLevel3)
+        else if (GameManager.Instance.numSubShutter == Config.skillLevel3 && skillBlock_seeTarget)
         {
             SEManager.Instance.PlaySkill();
             skillBlock_seeTarget = false;
@@ -90,9 +90,9 @@ public class SkillManager : Actor
         }
 
         //スコアアップ開放
-        AddScore();
+        SetSpiritSenceFlag(true);
 
-        if(skillBlock_seeTarget)
+        if (skillBlock_seeTarget)
         {
             return;
         }

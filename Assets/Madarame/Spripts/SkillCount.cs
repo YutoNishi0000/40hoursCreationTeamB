@@ -28,8 +28,8 @@ public class SkillCount : MonoBehaviour
         _speedOff.enabled = _skillManager.GetPlayerSpeedFlag();
         
         // ƒXƒRƒAUP
-        _score.enabled = SkillManager.GetAddScoreFlag();
-        _scoreOff.enabled = !SkillManager.GetAddScoreFlag();
+        _score.enabled = SkillManager.GetSpiritSenceFlag();
+        _scoreOff.enabled = !SkillManager.GetSpiritSenceFlag();
 
         // ‘ÎÛ‚ª5•bŠÔ‰Â‹‰»
         _vision.enabled = _skillManager.GetTargetMinimapFlag();

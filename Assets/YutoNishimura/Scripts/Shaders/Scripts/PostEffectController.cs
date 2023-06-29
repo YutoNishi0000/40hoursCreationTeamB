@@ -64,17 +64,11 @@ public class PostEffectController : MonoBehaviour
 
         while (true)
         {
-            //スキル２を解放するまではここから先は処理を行わない
-            if(!SkillManager.GetSpiritSenceFlag())
-            {
-                return;
-            }
-
             //対象のオブジェクトを取得
             GameObject targetObject = RespawTarget.GetCurrentTargetObj();
 
             //対象のオブジェクトがnullじゃなかったら
-            if (targetObject != null)
+            if (targetObject != null && SkillManager.GetSpiritSenceFlag())
             {
                 //プレイヤーと対象の距離を取得
                 float dis = Vector3.Distance(transform.position, targetObject.transform.position);

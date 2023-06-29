@@ -42,7 +42,7 @@ public class HeterogeneousSetter : MonoBehaviour
             objSpawnPos.Add(null);
         }
 
-        InitialSetObjects();
+        //InitialSetObjects();
     }
 
     void LateUpdate()
@@ -116,7 +116,7 @@ public class HeterogeneousSetter : MonoBehaviour
                 rand = Random.Range(0, points.Count());
             }
 
-            //InstantiateがTemplateを返すのを利用してbool型を取得
+            //InstantiateがTemplateを返すのを利用してGameObject型を取得
             objSpawnPos[rand] = Instantiate(GetNextObject(), points[rand].transform.position, GetNextObject().transform.rotation);
 
             //動く異質なものには生成場所のアドレスを設定（詳細はMetalonController.csへ）
@@ -131,7 +131,6 @@ public class HeterogeneousSetter : MonoBehaviour
 
     private void SetMetalonConfig(int num, List<GameObject> parentPoints)
     {
-        //await UniTask.Delay(3000);
         Debug.Log("セット");
         MetalonController metaron = objSpawnPos[num].GetComponent<MetalonController>();
         //ルート情報が入った親オブジェクトをセット
