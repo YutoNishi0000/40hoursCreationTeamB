@@ -106,7 +106,7 @@ public class SkillManager : Actor
     /// </summary>
     private void AddScore()
     {
-        SetAddScoreFlag(true);
+        SetSpiritSenceFlag(true);
     }
 
     /// <summary>
@@ -151,9 +151,9 @@ public class SkillManager : Actor
     public bool GetTargetMinimapFlag() { return targetMinimapFlag; }
 
     //スコア加算フラグ
-    public static void SetAddScoreFlag(bool flag) { addScoreFlag = flag; }
+    public static void SetSpiritSenceFlag(bool flag) { addScoreFlag = flag; }
 
-    public static bool GetAddScoreFlag() { return addScoreFlag; }
+    public static bool GetSpiritSenceFlag() { return addScoreFlag; }
 
     // スピード
     public bool GetPlayerSpeedFlag() { return skillBlock_player; }

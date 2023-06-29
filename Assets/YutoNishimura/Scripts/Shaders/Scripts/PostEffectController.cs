@@ -64,14 +64,25 @@ public class PostEffectController : MonoBehaviour
 
         while (true)
         {
+            //スキル２を解放するまではここから先は処理を行わない
+            if(!SkillManager.GetSpiritSenceFlag())
+            {
+                return;
+            }
+
+            //対象のオブジェクトを取得
             GameObject targetObject = RespawTarget.GetCurrentTargetObj();
 
+            //対象のオブジェクトがnullじゃなかったら
             if (targetObject != null)
             {
+                //プレイヤーと対象の距離を取得
                 float dis = Vector3.Distance(transform.position, targetObject.transform.position);
 
+                //ポストエフェクト再生
                 SunderManager(dis, Config.detectionTargetDistance);
             }
+            //対象のオブジェクトがnullだったら
             else
             {
                 SetPostEffectFlag(false);
@@ -100,6 +111,7 @@ public class PostEffectController : MonoBehaviour
     {
         if (distance <= limit)
         {
+            //α値を増やす
             blend += Time.deltaTime;
             nearTargetetEffect.SetFloat("_Blend", ((blend >= 1) ? 1 : blend));
             nearTargetetImpact.SetFloat("_BlurDegree", 0.05f);

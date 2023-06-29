@@ -103,7 +103,7 @@ public class JudgeTarget : MonoBehaviour
         //エフェクトを再生
         effectController.PlayEffect(targetPos);
         //スコア加算
-        ScoreManger.Score += GetFinalScore(type, SkillManager.GetAddScoreFlag(), raise);
+        ScoreManger.Score += GetFinalScore(type);
         //時間を獲得
         CountDownTimer.IncreaceTime();
         //対象を撮影した回数をインクリメント
@@ -122,19 +122,19 @@ public class JudgeTarget : MonoBehaviour
     /// <param name="flag">スコアアップフラグ</param>
     /// <param name="raise">スコアアップ倍率</param>
     /// <returns></returns>
-    public float GetFinalScore(ScoreType type, bool flag, float raise)
+    public float GetFinalScore(ScoreType type)
     {
         switch (type)
         {
             case ScoreType.low:
                 GameManager.Instance.numLowScore++;
-                return flag ? (float)ScoreType.low * raise : (float)ScoreType.low;
+                return (float)ScoreType.low;
             case ScoreType.midle:
                 GameManager.Instance.numMiddleScore++;
-                return flag ? (float)ScoreType.midle * raise : (float)ScoreType.midle;
+                return (float)ScoreType.midle;
             case ScoreType.high:
                 GameManager.Instance.numHighScore++;
-                return flag ? (float)ScoreType.high * raise : (float)ScoreType.high;
+                return (float)ScoreType.high;
             default:
                 return 0;
         }
