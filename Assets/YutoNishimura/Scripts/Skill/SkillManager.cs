@@ -18,8 +18,6 @@ public class SkillManager : Actor
     private bool skillBlock_seeTarget;
     private float time;
     [SerializeField] private readonly float interval = Config.intervalActiveTargetMInimap;
-    private int shutterTimeStamp;
-    private bool minimapSkillFlag;         //ターゲットのミニマップの表示フラグのために使う
     private float playerAccelSpeed;
     private readonly float accelerationSpeed = Config.raisePlayerSpeed;   //プレイヤーのスキル獲得時の速度倍率
     private readonly int minimapTargetShutterNum = 5;   //何枚おきにスキルが発動するか
@@ -38,7 +36,6 @@ public class SkillManager : Actor
         skillBlock_addScore = true;
         skillBlock_seeTarget = true;
         addScoreFlag = false;
-        minimapSkillFlag = false;
     }
 
     // Update is called once per frame

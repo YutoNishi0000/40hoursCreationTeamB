@@ -67,7 +67,7 @@ public class PostEffectController : MonoBehaviour
             //対象のオブジェクトを取得
             GameObject targetObject = RespawTarget.GetCurrentTargetObj();
 
-            //対象のオブジェクトがnullじゃなかったら
+            //対象のオブジェクトがnullじゃなくてスキル２が発動していたら
             if (targetObject != null && SkillManager.GetSpiritSenceFlag())
             {
                 //プレイヤーと対象の距離を取得
