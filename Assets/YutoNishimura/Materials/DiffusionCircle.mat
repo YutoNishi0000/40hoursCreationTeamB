@@ -61,7 +61,7 @@ Material:
     - _BumpScale: 1
     - _CenterPosX: 0.5
     - _CenterPosY: 0.5
-    - _ColorBlend: 0.3
+    - _ColorBlend: 0.1
     - _ColorRate: 0.97
     - _Cutoff: 0.5
     - _Cycle: 10
@@ -75,9 +75,15 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _SinColorDistant: 0.2
+    - _SinSpeed: 4
+    - _SinStrength: 10
+    - _SinWave: 20
+    - _SinWidth: 0.05
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Trigger: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

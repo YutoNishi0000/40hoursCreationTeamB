@@ -18,4 +18,12 @@ public class TargetPicturedEffectController : MonoBehaviour
             Graphics.Blit(source, destination, diffusionCircleMaterial);
         }
     }
+
+    private void Update()
+    {
+        if(RespawTarget.GetCurrentTargetObj() == null)
+        {
+            Debug.Log("‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ");
+        }
+    }
 }
