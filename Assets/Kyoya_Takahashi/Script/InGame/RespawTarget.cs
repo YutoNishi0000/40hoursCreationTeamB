@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,19 +25,22 @@ public class RespawTarget : MonoBehaviour
 
     private void Start()
     {
-        SetTarget();
+        SetTarget().Forget();
     }
 
     private void Update()
     {
         if(tempTarget == null)
         {
-            SetTarget();
+            SetTarget().Forget();
         }
     }
 
-    public void SetTarget()
+    public async UniTask SetTarget()
     {
+        //1フレーム待つ（リスポーンの時にポストエフェクトをかけるため）
+        await UniTask.DelayFrame(1);
+
         int rootType = Random.Range(0, 4);
 
         SEManager.Instance.PlayRespawn();

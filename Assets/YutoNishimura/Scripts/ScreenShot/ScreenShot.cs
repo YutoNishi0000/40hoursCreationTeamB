@@ -27,6 +27,7 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private Image lostTimeImg;
     [SerializeField] private GameObject[] gameUI;     //写真を撮るときに消したいUI
     [SerializeField] private ParticleSystem particle;
+    [SerializeField] private GameObject animationManager;
 
     //内部処理で使うもの
     private Camera cam;                                //プレイヤーのカメラ
@@ -278,13 +279,13 @@ public class ScreenShot : MonoBehaviour
         switch(type)
         {
             case ShutterAnimationType.None:
-                ShutterAnimation.NoneAnimationStart();
+                GetComponent<ShutterAnimation>().StartAnimation(GameManager.ShutterAnimationState.None);
                 break;
             case ShutterAnimationType.Target:
-                ShutterAnimation.TargetAnimationStart();
+                GetComponent<ShutterAnimation>().StartAnimation(GameManager.ShutterAnimationState.Target);
                 break;
             case ShutterAnimationType.Other:
-                ShutterAnimation.OtherAnimationStart();
+                GetComponent<ShutterAnimation>().StartAnimation(GameManager.ShutterAnimationState.Other);
                 break;
         }
     }
