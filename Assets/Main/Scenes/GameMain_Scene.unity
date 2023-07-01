@@ -201,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4363578991983522480, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6924745a509f7b746bc74f3d4548b1aa, type: 3}
@@ -29563,8 +29563,6 @@ MonoBehaviour:
   mimic: {fileID: 4484111761750686190, guid: 472eda4c7fef9044098f07d1125affaf, type: 3}
   player: {fileID: 1937578762}
   lostTimeImg: {fileID: 0}
-  gameUI:
-  - {fileID: 124973368}
   particle: {fileID: 8255215019295333939, guid: ace114c897fe4c54caf8e25071340178, type: 3}
   animationManager: {fileID: 0}
 --- !u!114 &889012887
@@ -42768,7 +42766,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -45424,6 +45422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diffusionCircleMaterial: {fileID: 2100000, guid: 426edfbf9663d184d828b7ae589e5d89, type: 2}
+  effectTime: 1
+  fadeTime: 0.5
 --- !u!20 &1359354028
 Camera:
   m_ObjectHideFlags: 0

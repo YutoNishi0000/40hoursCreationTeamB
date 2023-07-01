@@ -25,7 +25,6 @@ public class ScreenShot : MonoBehaviour
     [SerializeField]private GameObject mimic = null;    //‘ÎÛ‚Ìƒ‚ƒfƒ‹
     [SerializeField] private GameObject player;
     [SerializeField] private Image lostTimeImg;
-    [SerializeField] private GameObject[] gameUI;     //Ê^‚ğB‚é‚Æ‚«‚ÉÁ‚µ‚½‚¢UI
     [SerializeField] private ParticleSystem particle;
     [SerializeField] private GameObject animationManager;
 
@@ -221,24 +220,6 @@ public class ScreenShot : MonoBehaviour
     #endregion
 
     #region UIŒn
-
-    //B‰e‚·‚éuŠÔ”ñ•\¦‚É‚³‚ê‚½UI‚ğ•\¦‚·‚éŠÖ”iInvoke‚ÅŒÄ‚Ôj
-    public void OnUIShutter()
-    {
-        for (int i = 0; i < gameUI.Length; i++)
-        {
-            gameUI[i].SetActive(true);
-        }
-    }
-    
-    //B‰e‚·‚éuŠÔ”ñ•\¦‚É‚³‚ê‚½UI‚ğ•\¦‚·‚éŠÖ”iInvoke‚ÅŒÄ‚Ôj
-    public void OffUIShutter()
-    {
-        for (int i = 0; i < gameUI.Length; i++)
-        {
-            gameUI[i].SetActive(false);
-        }
-    }
 
     private void InitializeRawImage()
     {

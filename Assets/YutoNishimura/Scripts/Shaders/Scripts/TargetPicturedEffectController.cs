@@ -9,8 +9,8 @@ public class TargetPicturedEffectController : MonoBehaviour
 {
     //円状に拡散するシェーダを持つマテリアル
     [SerializeField] private Material diffusionCircleMaterial;
-    [SerializeField] private float effectTime = 2;
-    [SerializeField] private float fadeTime = 1;
+    [SerializeField] private float effectTime = 1;
+    [SerializeField] private float fadeTime = 0.5f;
     private float totalPrevTime;
     private CancellationToken token;
 
@@ -36,7 +36,6 @@ public class TargetPicturedEffectController : MonoBehaviour
         //ここはリスポーンの際UniTaskを使って、１フレームしか呼ばれないようになっているため、ここでリスポーンエフェクトを発動させる
         if(RespawTarget.GetCurrentTargetObj() == null)
         {
-            Debug.Log("ああああああああああああああああああああああああああああああああああああああああああ");
             RespawnTargetEffect(diffusionCircleMaterial).Forget();
         }
     }
