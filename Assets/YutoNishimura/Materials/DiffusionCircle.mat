@@ -83,7 +83,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Trigger: 0.34413123
+    - _Trigger: -0.007815123
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

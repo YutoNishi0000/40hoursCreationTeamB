@@ -24,7 +24,7 @@ Shader "Custom/PicturedTarget"
     {
         // No culling or depth
         Cull Off ZWrite Off ZTest Always
-        Tags { "RenderType" = "Transparent" "Queue" = "Transparent"}
+        Tags { "RenderType" = "Background" "Queue" = "Background"}
         Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
