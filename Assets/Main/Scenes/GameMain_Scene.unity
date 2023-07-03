@@ -29537,7 +29537,7 @@ MonoBehaviour:
   lostTimeImg: {fileID: 0}
   gameUI:
   - {fileID: 124973368}
-  particle: {fileID: 8255215019295333939, guid: ace114c897fe4c54caf8e25071340178, type: 3}
+  particle: {fileID: 5220669179837964191, guid: 8b0c52cf853c1d742939847b90332631, type: 3}
 --- !u!114 &889012887
 MonoBehaviour:
   m_ObjectHideFlags: 0
