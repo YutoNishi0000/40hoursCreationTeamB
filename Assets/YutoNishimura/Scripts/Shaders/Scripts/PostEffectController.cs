@@ -43,7 +43,11 @@ public class PostEffectController : MonoBehaviour
             Graphics.Blit(src, dest, nearTargetetImpact);
             //ぼかした後ポストエフェクトをかける
             Graphics.Blit(src, dest, nearTargetetEffect);
+
+            //ポストエフェクトかける順番を順番をこのようにすることで、後から帯電のポストエフェクトがかかるようになる
         }
+
+        //ここで、ガウシアンブラーを適用したテクスチャと元のテクスチャの合成を行う->空気感を出すため
     }
 
     /// <summary>
