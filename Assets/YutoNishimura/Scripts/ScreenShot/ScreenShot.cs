@@ -26,7 +26,7 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Image lostTimeImg;
     [SerializeField] private ParticleSystem particle;
-    [SerializeField] private GameObject animationManager;
+    //[SerializeField] private GameObject animationManager;
 
     //内部処理で使うもの
     private Camera cam;                                //プレイヤーのカメラ
