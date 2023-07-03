@@ -30447,7 +30447,6 @@ MonoBehaviour:
   player: {fileID: 1937578762}
   lostTimeImg: {fileID: 0}
   particle: {fileID: 8255215019295333939, guid: ace114c897fe4c54caf8e25071340178, type: 3}
-  animationManager: {fileID: 0}
 --- !u!114 &889012887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30586,7 +30585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74017696455355848a439b8a4b930e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentAnimationObject: {fileID: 0}
+  parentAnimationObject: {fileID: 2078087024}
 --- !u!1001 &889016145
 PrefabInstance:
   m_ObjectHideFlags: 0
