@@ -44,6 +44,10 @@ public class CountDownTimer : UIController
 		{
 			return;
 		}
+		if(Pose.IsPosing)
+        {
+			return;
+        }
 
 		//　制限時間が0秒以下なら何もしない
 		//　制限時間以下になったらコンソールに『制限時間終了』という文字列を表示する

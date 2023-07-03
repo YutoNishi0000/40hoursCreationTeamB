@@ -25,8 +25,8 @@ public class ScreenShot : MonoBehaviour
     [SerializeField]private GameObject mimic = null;    //対象のモデル
     [SerializeField] private GameObject player;
     [SerializeField] private Image lostTimeImg;
-    [SerializeField] private GameObject[] gameUI;     //写真を撮るときに消したいUI
     [SerializeField] private ParticleSystem particle;
+    [SerializeField] private GameObject animationManager;
 
     //内部処理で使うもの
     private Camera cam;                                //プレイヤーのカメラ
@@ -221,24 +221,6 @@ public class ScreenShot : MonoBehaviour
 
     #region UI系
 
-    //撮影する瞬間非表示にされたUIを表示する関数（Invokeで呼ぶ）
-    public void OnUIShutter()
-    {
-        for (int i = 0; i < gameUI.Length; i++)
-        {
-            gameUI[i].SetActive(true);
-        }
-    }
-    
-    //撮影する瞬間非表示にされたUIを表示する関数（Invokeで呼ぶ）
-    public void OffUIShutter()
-    {
-        for (int i = 0; i < gameUI.Length; i++)
-        {
-            gameUI[i].SetActive(false);
-        }
-    }
-
     private void InitializeRawImage()
     {
         //プレビューを初期化する
@@ -278,13 +260,13 @@ public class ScreenShot : MonoBehaviour
         switch(type)
         {
             case ShutterAnimationType.None:
-                ShutterAnimation.NoneAnimationStart();
+                GetComponent<ShutterAnimation>().StartAnimation(GameManager.ShutterAnimationState.None);
                 break;
             case ShutterAnimationType.Target:
-                ShutterAnimation.TargetAnimationStart();
+                GetComponent<ShutterAnimation>().StartAnimation(GameManager.ShutterAnimationState.Target);
                 break;
             case ShutterAnimationType.Other:
-                ShutterAnimation.OtherAnimationStart();
+                GetComponent<ShutterAnimation>().StartAnimation(GameManager.ShutterAnimationState.Other);
                 break;
         }
     }
