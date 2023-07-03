@@ -1,70 +1,59 @@
 #include "UnityCG.cginc"
+#include "AutoLight.cginc"
 #include "Fog.cginc"
 
-struct appdata
+struct vertex_input 
 {
     float4 vertex : POSITION;
-    float2 uv : TEXCOORD0;
-    half3 normal : NORMAL;
+    float3 normal : NORMAL;
+    float4 texcoord  : TEXCOORD0;
 };
 
-struct v2f
+struct vertex_output 
 {
-    float2 uv : TEXCOORD0;
-    half3 normal : NORMAL;
-    float3 viewDir : TEXCOORD1;
-    float3 lightDir : TEXCOORD2;
-    float4 vertex : SV_POSITION;
-    float3 worldPosition : TEXCOORD3;
+    float4 pos : SV_POSITION;
+    float2 uv  : TEXCOORD0;
+    float3 lightDir : TEXCOORD1;
+    float3 normal   : TEXCOORD2;
+    LIGHTING_COORDS(3, 4)
+    float3 worldPosition : TEXCOORD5;
 };
 
-half _SpecularPow;
 sampler2D _MainTex;
 float4 _MainTex_ST;
-// ライトの色を取得する
-half4 _LightColor0;
+fixed4 _LightColor0;
 float _FogDensity;
 float _FogDensityAttenuation;
 
-v2f vert(appdata v)
-{
-    v2f o;
-    o.vertex = UnityObjectToClipPos(v.vertex);
+
+vertex_output vert(vertex_input v) {
+    vertex_output o;
+
+    o.pos = UnityObjectToClipPos(v.vertex);
+    o.uv = v.texcoord.xy;
+    o.lightDir = ObjSpaceLightDir(v.vertex);
+    o.normal = v.normal;
     float4 worldPos = mul(unity_ObjectToWorld, v.vertex);
     o.worldPosition = worldPos;
-    o.viewDir = normalize(_WorldSpaceCameraPos - worldPos.xyz);
-    o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-    float isDirectional = step(1, _WorldSpaceLightPos0.w);
-    o.lightDir = normalize(_WorldSpaceLightPos0.xyz - (worldPos.xyz * isDirectional));
+    TRANSFER_VERTEX_TO_FRAGMENT(o);
 
-    o.normal = UnityObjectToWorldNormal(v.normal);
     return o;
 }
 
-fixed4 frag(v2f i) : SV_Target
-{
-    fixed4 texCol = tex2D(_MainTex, i.uv);
-    fixed4 finalColor = (1, 1, 1, 1);
+fixed4 frag(vertex_output i) : COLOR{
+    i.lightDir = normalize(i.lightDir);
+    fixed atten = LIGHT_ATTENUATION(i);
+    fixed4 tex = tex2D(_MainTex, i.uv);
+    fixed3 normal = i.normal;
+    fixed diff = saturate(dot(normal, i.lightDir));
 
-    // 拡散反射
-    float3 diffuse = saturate(dot(i.normal, i.lightDir)) * _LightColor0;
-    // 環境光
-    float3 ambient = ShadeSH9(float4(i.normal, 1));
-
-    // _WorldSpaceLightPos0.wはディレクショナルライトだったら0、それ以外は1となるのでそれぞれの場合に応じた色を返す
-    if (_WorldSpaceLightPos0.w > 0)
-    {
-        float3 lightCol = max(normalize(dot(i.normal, i.lightDir)) * _LightColor0, 0);
-
-        finalColor = fixed4(texCol.rgb * lightCol, 1);
-    }
-    else
-    {
-        finalColor = fixed4(texCol.rgb * (ambient + diffuse), texCol.a);
-    }
+    fixed4 c;
+    c.rgb = (tex.rgb * _LightColor0.rgb * diff) * (atten);
+    c.a = tex.a;
 
     float fog = GetForHeightFogParameter(i.worldPosition, _WorldSpaceCameraPos, _FogDensity, _FogDensityAttenuation);
     //取得した媒介変数をもとにフォグの色情報とフラグメントの色情報を補間
-    finalColor.xyz = lerp(unity_FogColor.xyz, finalColor.xyz, fog);
-    return finalColor;
+    c.xyz = lerp(unity_FogColor.xyz, c.xyz, fog);
+
+    return c;
 }
