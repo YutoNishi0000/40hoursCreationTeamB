@@ -9,8 +9,6 @@ Shader "Custom/ElectricCurrent"
         _Blend("Blend", float) = 0
         _BlurDegree("BlurDegree", float) = 0
         _SampleCount("SampleCount", int) = 1
-        _NoiseMagnification("NoiseMagnification", Range(0, 1)) = 0.005
-        _NoiseMoveSpeed("NoiseMoveSpeed", float) = 1.2
     }
     SubShader
     {
@@ -55,20 +53,18 @@ Shader "Custom/ElectricCurrent"
             float _BlurDegree;
             uniform float4 _BlurCenter;
             int _SampleCount;
-            float _NoiseMagnification;
-            float _NoiseMoveSpeed;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 //一つ目のuv値を取得（時間経過とともに取得位置が横にずれる）
-                fixed2 noiseUv1 = fixed2(i.uv.x + _Time.y * _NoiseMoveSpeed, i.uv.y);
+                fixed2 noiseUv1 = fixed2(i.uv.x + _Time.y * 1.2, i.uv.y);
                 //ノイズ画像を拡大
-                fixed4 noise1 = tex2D(_NoiseTex, noiseUv1 * _NoiseMagnification);
+                fixed4 noise1 = tex2D(_NoiseTex, noiseUv1 * 0.005); 
 
                 //二つ目のuv値を取得（時間経過とともに取得位置が横にずれる）
-                fixed2 noiseUv2 = fixed2(i.uv.x + _Time.y * -_NoiseMagnification, i.uv.y);
+                fixed2 noiseUv2 = fixed2(i.uv.x + _Time.y * -1.5, i.uv.y);
                 //ノイズ画像を拡大
-                fixed4 noise2 = tex2D(_NoiseTex, noiseUv2 * _NoiseMagnification);
+                fixed4 noise2 = tex2D(_NoiseTex, noiseUv2 * 0.005);
 
                 //取得した二つのuv値を加算することで取得するuv座標が電流のようになる
                 fixed4 noise = noise1 + noise2;
