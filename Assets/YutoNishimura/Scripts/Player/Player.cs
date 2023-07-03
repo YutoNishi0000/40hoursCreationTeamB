@@ -8,13 +8,13 @@ public class Player : Actor
     Vector3 moveDirection = Vector3.zero;
     Vector3 targetDirection;        //移動する方向のベクトル
     private CharacterController controller;
-    private float speed = Config.playerSpeed;
+    private float speed = 6f;
     float minX = -40f, maxX = 40f;
-    float Xsensityvity = Config.mouseHorizon, Ysensityvity = Config.mouseVertical;
+    float Xsensityvity = 3f, Ysensityvity = 3f;
     public GameObject cam;
     Quaternion cameraRot, characterRot;
     public bool _moveLock;                           //行動を制限するかどうか
-    private float gravity = Config.gravity;
+    private float gravity = 20f;
     private AudioSource audioSource;
     Vector3 initialCamPos;    //変数の宣言(角度の制限用)
     private float initialPlayerSpeed;   //ゲーム開始時のプレイヤーのデフォルトスピード
@@ -57,8 +57,8 @@ public class Player : Actor
         float h = Input.GetAxisRaw("Horizontal");       //InputManagerの←→の入力 
 
         //カメラの正面方向ベクトルからY成分を除き、正規化してキャラが走る方向を取得
-        Vector3 forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-        Vector3 right = Camera.main.transform.right; //カメラの右方向を取得
+        Vector3 forward = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 right = cam.transform.right; //カメラの右方向を取得
 
         //カメラの方向を考慮したキャラの進行方向を計算
         targetDirection = h * right + v * forward;
@@ -135,7 +135,7 @@ public class Player : Actor
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Target"))
+        if (other.gameObject.CompareTag("Target"))
         {
             audioSource.Play();
         }

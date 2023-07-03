@@ -6,45 +6,59 @@ using UnityEditor;
 
 public class ShutterAnimation : MonoBehaviour
 {
-    string addressOther = "Assets/Kyoya_Takahashi/Prefabs/Ingame/Animation/OtherAnimation.prefab";
-    string addressTarget = "Assets/Kyoya_Takahashi/Prefabs/Ingame/Animation/TargetAnimation.prefab";
-    string addressNone = "Assets/Kyoya_Takahashi/Prefabs/Ingame/Animation/NoneAnimation.prefab";
-       //E:\school\40hour\Assets\Kyoya_Takahashi\Prefabs\Ingame\Animation
-    //0:other, 1:target, 2:other
-    static GameObject[] Animation = new GameObject[3];
+    private static GameManager.ShutterAnimationState animationState;
+    [SerializeField] private GameObject parentAnimationObject;
+
     private void Start()
     {
-#if UNITY_EDITOR
-        Animation[0] = AssetDatabase.LoadAssetAtPath<GameObject>(addressOther);
-        Animation[1] = AssetDatabase.LoadAssetAtPath<GameObject>(addressTarget);
-        Animation[2] = AssetDatabase.LoadAssetAtPath<GameObject>(addressNone);
-#endif
+        animationState = new GameManager.ShutterAnimationState();
     }
 
+    public void StartAnimation(GameManager.ShutterAnimationState state)
+    {
+        GameObject animation = new GameObject();
 
+        switch (state)
+        {
+            case GameManager.ShutterAnimationState.None:
+                animation = Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.None], parentAnimationObject.transform);
+                animation.GetComponent<Image>().rectTransform.localPosition = Vector3.zero;
+                break;
+            case GameManager.ShutterAnimationState.Target:
+                animation = Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.Target], parentAnimationObject.transform);
+                animation.GetComponent<Image>().rectTransform.localPosition = Vector3.zero;
+                break;
+            case GameManager.ShutterAnimationState.Other:
+                animation = Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.Other], parentAnimationObject.transform);
+                animation.GetComponent<Image>().rectTransform.localPosition = Vector3.zero;
+                break;
+        }
+    }
 
-    /// <summary>
-    /// 異質なもの撮影アニメーション開始
-    /// </summary>
-    public static void OtherAnimationStart()
-    {
-        Debug.Log("異質");
-        Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.Other]);
-    }
-    /// <summary>
-    /// ターゲット撮影アニメーション開始
-    /// </summary>
-    public static void TargetAnimationStart()
-    {
-        Debug.Log("ターゲット");
-        Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.Target]);
-    }
-    /// <summary>
-    /// 何も撮影できなかったアニメーション開始
-    /// </summary>
-    public static void NoneAnimationStart()
-    {
-        Debug.Log("何も");
-        Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.None]);
-    }
+    ///// <summary>
+    ///// 異質なもの撮影アニメーション開始
+    ///// </summary>
+    //public static void OtherAnimationStart() 
+    //{
+    //    Debug.Log("異質");
+    //    Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.Other]);
+    //}
+
+    ///// <summary>
+    ///// ターゲット撮影アニメーション開始
+    ///// </summary>
+    //public static void TargetAnimationStart()
+    //{
+    //    Debug.Log("ターゲット");
+    //    Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.Target]);
+    //}
+
+    ///// <summary>
+    ///// 何も撮影できなかったアニメーション開始
+    ///// </summary>
+    //public static void NoneAnimationStart()
+    //{
+    //    Debug.Log("何も");
+    //    Instantiate(GameManager.Instance.animations[(int)GameManager.ShutterAnimationState.None]);
+    //}
 }

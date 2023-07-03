@@ -41,7 +41,7 @@ public class Pose : MonoBehaviour
     private GameObject[] poseUI = new GameObject[childNum];
 
     //É|Å[ÉYíÜÇ©Ç«Ç§Ç©
-    private bool IsPosing = false;
+    public static bool IsPosing = false;
 
     private void Start()
     {
