@@ -14691,7 +14691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &481768407
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29661,9 +29661,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ImageUI: {fileID: 1757762414}
-  Texture1: {fileID: 2800000, guid: 35ca894f188fe184a9cbc68ebf03faae, type: 3}
-  Texture2: {fileID: 2800000, guid: 26b99990d6a949748a6363eaee800cc5, type: 3}
-  Texture3: {fileID: 2800000, guid: 3ee9e86dbbc46ba48b9dc14f5ed26d4d, type: 3}
+  Texture1: {fileID: 2800000, guid: 561c6b8d1fdfb2341980a2d7d0358b38, type: 3}
+  Texture2: {fileID: 2800000, guid: 4afb21894cd81674fb836b9214fd5fdc, type: 3}
+  Texture3: {fileID: 2800000, guid: 0026aa5fd65774143b1d6128e7fa03ca, type: 3}
 --- !u!1001 &889016145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55584,6 +55584,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2eabbe94be0ad14a8becf769f32dd00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldParam: {x: 216, y: 228}
+  minimapParam: {x: 145, y: 145}
+  fieldObj: {fileID: 1913648536}
+  target: {fileID: 663879404}
 --- !u!114 &1709488825
 MonoBehaviour:
   m_ObjectHideFlags: 0
