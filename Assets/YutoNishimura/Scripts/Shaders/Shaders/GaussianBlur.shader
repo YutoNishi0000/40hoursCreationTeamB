@@ -65,12 +65,12 @@ Shader "Custom/GaussianBlur"
             {
                 float2 dir = _Direction * _MainTex_TexelSize.xy; //サンプリングの方向を決定
 
-                //////ウェイトを動的に導出する場合
+                //ウェイトを動的に導出する場合
                 fixed4 color = 0;
                 for (int j = 0; j < _SamplingTexelAmount; j++)
                 {
                     float2 offset = dir * ((j + 1) * _TexelInterval - 1); //_TexelIntervalでサンプリング距離を調整
-                    float weight = GetGaussianWeight(j + 1); //ウェイトを計算
+                    float weight = GetGaussianWeight(j + 1);              //ウェイトを計算
                     color.rgb += tex2D(_MainTex, i.uv + offset) * weight; //順方向をサンプリング＆重みづけして加算
                     color.rgb += tex2D(_MainTex, i.uv - offset) * weight; //逆方向をサンプリング＆重みづけして加算
                 }

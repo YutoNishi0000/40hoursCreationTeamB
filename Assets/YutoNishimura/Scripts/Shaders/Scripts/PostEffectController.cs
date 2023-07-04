@@ -30,16 +30,15 @@ public class PostEffectController : UniTaskController
     {
         var finalTexture = RenderTexture.GetTemporary(src.width, src.height);
         var mixTexture = RenderTexture.GetTemporary(src.width, src.height);
-        /////////横幅を半分にしたレンダーテスクチャを作成（まだ、なにも描かれていない）
+        //横幅を半分にしたレンダーテスクチャを作成（まだ、なにも描かれていない）
         var rth = RenderTexture.GetTemporary(src.width / 2, src.height);
 
         var h = new Vector2(1, 0); //ブラー方向のベクトル(U方向)
         gaussianBlurMaterial.SetVector(_Direction, h); //シェーダー内の変数にブラー方向を設定
 
         Graphics.Blit(src, rth, gaussianBlurMaterial);
-        /////////
 
-        /////////先のテクスチャサイズから、さらに縦半分にしたレンダーテスクチャを作成（まだ、なにも描かれていない）
+        //先のテクスチャサイズから、さらに縦半分にしたレンダーテスクチャを作成（まだ、なにも描かれていない）
         var rtv = RenderTexture.GetTemporary(rth.width, rth.height / 2);
 
         var v = new Vector2(0, 1);　//ブラー方向のベクトル(V方向)        
@@ -83,29 +82,6 @@ public class PostEffectController : UniTaskController
     {
         postEffectFlag = flag;
     }
-
-    //private void OnRenderImage(RenderTexture src, RenderTexture dest)
-    //{
-    //    //// ポストエフェクトをかけない場合
-    //    //if(!postEffectFlag || nearTargetetImpact == null || nearTargetetEffect == null)
-    //    //{
-    //    //    Graphics.Blit(src, dest);
-    //    //    return;
-    //    //}
-    //    //else if(postEffectFlag)
-    //    //{
-    //    //    //まず最初に画面をぼかす
-    //    //    Graphics.Blit(src, dest, nearTargetetImpact);
-    //    //    //ぼかした後ポストエフェクトをかける
-    //    //    Graphics.Blit(src, dest, nearTargetetEffect);
-
-    //    //    //ポストエフェクトかける順番を順番をこのようにすることで、後から帯電のポストエフェクトがかかるようになる
-    //    //}
-
-    //    //ここで、ガウシアンブラーを適用したテクスチャと元のテクスチャの合成を行う->空気感を出すため
-    //    //ぼかした後ポストエフェクトをかける
-    //    Graphics.Blit(src, dest, gaussianBlurMaterial);
-    //}
 
     /// <summary>
     /// 毎フレーム飛び出される

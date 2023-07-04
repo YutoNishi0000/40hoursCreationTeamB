@@ -26,9 +26,9 @@ float _FogDensity;
 float _FogDensityAttenuation;
 
 
-vertex_output vert(vertex_input v) {
+vertex_output vert(vertex_input v) 
+{
     vertex_output o;
-
     o.pos = UnityObjectToClipPos(v.vertex);
     o.uv = v.texcoord.xy;
     o.lightDir = ObjSpaceLightDir(v.vertex);
@@ -40,7 +40,8 @@ vertex_output vert(vertex_input v) {
     return o;
 }
 
-fixed4 frag(vertex_output i) : COLOR{
+fixed4 frag(vertex_output i) : COLOR
+{
     i.lightDir = normalize(i.lightDir);
     fixed atten = LIGHT_ATTENUATION(i);
     fixed4 tex = tex2D(_MainTex, i.uv);
@@ -51,6 +52,7 @@ fixed4 frag(vertex_output i) : COLOR{
     c.rgb = (tex.rgb * _LightColor0.rgb * diff) * (atten);
     c.a = tex.a;
 
+    //フォグの濃度を取得
     float fog = GetForHeightFogParameter(i.worldPosition, _WorldSpaceCameraPos, _FogDensity, _FogDensityAttenuation);
     //取得した媒介変数をもとにフォグの色情報とフラグメントの色情報を補間
     c.xyz = lerp(unity_FogColor.xyz, c.xyz, fog);

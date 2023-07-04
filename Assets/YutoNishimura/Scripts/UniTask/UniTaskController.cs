@@ -54,7 +54,7 @@ public class UniTaskController : MonoBehaviour
 
         while (true)
         {
-            //UniTaskExecute‚ªnullo‚È‚¯‚ê‚ÎÀs‚·‚é
+            //UniTaskExecute‚ªnull‚È‚¯‚ê‚ÎÀs‚·‚é
             UniTaskExecute?.Invoke();
 
             if(unlockFunc.Invoke() && unlockFunc != null)

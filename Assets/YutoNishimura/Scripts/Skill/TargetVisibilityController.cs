@@ -41,14 +41,12 @@ public class TargetVisibilityController : UniTaskController
         if(subCount == Config.targetVisibilityFirstPhase && !lockVisibilityLevel1)
         {
             //クロスフェード実行
-            //BlendManager(Texture1, Texture2, token).Forget();
             UniTaskUpdate(() => SetTexture(Texture1, Texture2, ImageUI.material), () => UpdateUniTask(ImageUI.material), () => { return (alpha >= 1.0f); }, token, UniTaskCancellMode.Auto).Forget();
             lockVisibilityLevel1 = true;
         }
         else if(subCount == Config.targetVisibilitySecondPhase && !lockVisibilityLevel2)
         {
             //クロスフェード実行
-            //BlendManager(Texture2, Texture3, token).Forget();
             UniTaskUpdate(() => SetTexture(Texture2, Texture3, ImageUI.material), () => UpdateUniTask(ImageUI.material), () => { return (alpha >= 1.0f); }, token, UniTaskCancellMode.Auto).Forget();
             lockVisibilityLevel2 = true;
         }
