@@ -4857,7 +4857,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 5
   m_Range: 30.6
   m_SpotAngle: 63
   m_InnerSpotAngle: 21.80208
@@ -5334,7 +5334,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 5
   m_Range: 30.6
   m_SpotAngle: 63
   m_InnerSpotAngle: 21.80208
@@ -7602,7 +7602,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 5
   m_Range: 21.19
   m_SpotAngle: 63
   m_InnerSpotAngle: 21.80208
@@ -14088,7 +14088,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 5
   m_Range: 30.6
   m_SpotAngle: 63
   m_InnerSpotAngle: 21.80208
@@ -36456,7 +36456,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 5
   m_Range: 30.6
   m_SpotAngle: 63
   m_InnerSpotAngle: 21.80208
@@ -45764,7 +45764,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 5
   m_Range: 30.6
   m_SpotAngle: 63
   m_InnerSpotAngle: 21.80208
@@ -48348,7 +48348,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 5
   m_Range: 30.6
   m_SpotAngle: 63
   m_InnerSpotAngle: 21.80208
@@ -62705,7 +62705,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
+  m_Intensity: 5
   m_Range: 21.19
   m_SpotAngle: 63
   m_InnerSpotAngle: 21.80208
@@ -70203,4 +70203,4 @@ MonoBehaviour:
   nearTargetetImpact: {fileID: 2100000, guid: f3b53403bdb43d0448eafe6021637234, type: 2}
   gaussianBlurMaterial: {fileID: 2100000, guid: 115d179c816946046857921608781055, type: 2}
   mixMaterial: {fileID: 2100000, guid: c38ac35042e062c43ad3f24d8a807699, type: 2}
-  blendTex: 0.2
+  blendTex: 0.15

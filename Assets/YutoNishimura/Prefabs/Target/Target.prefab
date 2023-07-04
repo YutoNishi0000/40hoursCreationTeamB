@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4671941127821832372}
   - component: {fileID: 7638768125084529929}
-  - component: {fileID: 1103689407288100296}
+  - component: {fileID: 2193557889016270610}
   m_Layer: 0
   m_Name: TargetCamera
   m_TagString: MainCamera
@@ -76,19 +76,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1103689407288100296
+--- !u!114 &2193557889016270610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855382933980015837}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2520a95485eee844b85acbb8fdcdd300, type: 3}
+  m_Script: {fileID: 11500000, guid: 37498c8a49b02c646b22dc88a043ac10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diffusionCircleMaterial: {fileID: 2100000, guid: 426edfbf9663d184d828b7ae589e5d89, type: 2}
+  gaussianBlurMaterial: {fileID: 2100000, guid: 5467b2147df380c41885a91dc42cc3ac, type: 2}
+  mixMaterial: {fileID: 2100000, guid: 0db37db593feeec48b4e37e043b0e732, type: 2}
 --- !u!1 &6335008882168220187
 GameObject:
   m_ObjectHideFlags: 0
