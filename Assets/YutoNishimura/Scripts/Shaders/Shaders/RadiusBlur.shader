@@ -4,8 +4,6 @@ Shader "Custom/RadiusBlur"
     Properties
     {
         _MainTex("Texture", 2D) = "white" {}
-        //_SampleCount("Sample Count", Range(4, 16)) = 8
-        //_Strength("Strength", Range(0.0, 1.0)) = 0.5
         _BlurDegree("BlurDegree", float) = 0
         _SampleCount("SampleCount", int) = 5
     }
@@ -44,8 +42,6 @@ Shader "Custom/RadiusBlur"
             }
 
             sampler2D _MainTex;
-            //half _SampleCount;
-            //half _Strength;
             float _BlurDegree;
             uniform float4 _BlurCenter;
             int _SampleCount;

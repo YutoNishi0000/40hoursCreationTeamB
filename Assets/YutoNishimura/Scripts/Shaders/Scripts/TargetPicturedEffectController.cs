@@ -7,13 +7,12 @@ using UnityEngine;
 
 public class TargetPicturedEffectController : UniTaskController
 {
-    //円状に拡散するシェーダを持つマテリアル
-    [SerializeField] private Material diffusionCircleMaterial;
-    [SerializeField] private float effectTime = 1;
-    [SerializeField] private float fadeTime = 0.5f;
-    private float totalPrevTime;
-    private CancellationToken token;
-    private float trigger;
+    [SerializeField] private Material diffusionCircleMaterial;    //円状に拡散するシェーダを持つマテリアル
+    [SerializeField] private float effectTime = 1;                //ポストエフェクトを表示する時間
+    [SerializeField] private float fadeTime = 0.5f;               //フェード時間
+    private float totalPrevTime;                                  //ポストエフェクトが表示されてから消えるまでの総時間
+    private CancellationToken token;                              //キャンセルトークン
+    private float trigger;                                        //ポストエフェクトをかけるための値
 
     private void Start()
     {
@@ -37,7 +36,6 @@ public class TargetPicturedEffectController : UniTaskController
         //ここはリスポーンの際UniTaskを使って、１フレームしか呼ばれないようになっているため、ここでリスポーンエフェクトを発動させる
         if(RespawTarget.GetCurrentTargetObj() == null)
         {
-            //RespawnTargetEffect(diffusionCircleMaterial).Forget();
             UniTaskUpdate(() => StartUniTask(), () => UpdateUniTask(diffusionCircleMaterial, fadeTime), () => { return ((totalPrevTime - trigger) <= 0); }, token, UniTaskCancellMode.Auto).Forget();
         }
     }
@@ -47,7 +45,6 @@ public class TargetPicturedEffectController : UniTaskController
     /// </summary>
     public override void StartUniTask()
     {
-        Debug.Log("対象視界start");
         trigger = 0;
     }
 
@@ -58,7 +55,6 @@ public class TargetPicturedEffectController : UniTaskController
     /// <param name="fadeTime">フェード時間</param>
     public void UpdateUniTask(Material material, float fadeTime)
     {
-        Debug.Log("対象視界update");
         trigger += Time.deltaTime;
 
         if (trigger >= fadeTime)

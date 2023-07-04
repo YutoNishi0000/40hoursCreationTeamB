@@ -34881,6 +34881,18 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 274773765788907090, guid: c2d3e2dfc6e732a47a2163fd9a446486, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 274773765788907090, guid: c2d3e2dfc6e732a47a2163fd9a446486, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 274773765788907090, guid: c2d3e2dfc6e732a47a2163fd9a446486, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.7
+      objectReference: {fileID: 0}
     - target: {fileID: 504736549334778440, guid: c2d3e2dfc6e732a47a2163fd9a446486, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -70189,5 +70201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nearTargetetEffect: {fileID: 2100000, guid: 62fcf90caf5166241af579c8ea0dfe3f, type: 2}
   nearTargetetImpact: {fileID: 2100000, guid: f3b53403bdb43d0448eafe6021637234, type: 2}
-  _sampleCount: 8
-  _strength: 0.5
+  gaussianBlurMaterial: {fileID: 2100000, guid: 115d179c816946046857921608781055, type: 2}
+  mixMaterial: {fileID: 2100000, guid: c38ac35042e062c43ad3f24d8a807699, type: 2}
+  blendTex: 0.2

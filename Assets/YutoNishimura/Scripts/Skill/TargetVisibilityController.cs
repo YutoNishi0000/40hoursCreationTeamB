@@ -8,14 +8,14 @@ using UnityEngine.UI;
 
 public class TargetVisibilityController : UniTaskController
 {
-    [SerializeField] private Image ImageUI;    // クロスフェードに使用するImageオブジェクト
+    [SerializeField] private Image ImageUI;       // クロスフェードに使用するImageオブジェクト
     [SerializeField] private Texture Texture1;    // テクスチャ1枚目
     [SerializeField] private Texture Texture2;    // テクスチャ2枚目
     [SerializeField] private Texture Texture3;    //テクスチャ3枚目
-    private bool lockVisibilityLevel1;
-    private bool lockVisibilityLevel2;
-    private CancellationToken token;
-    private float alpha;
+    private bool lockVisibilityLevel1;            //一回目のクロスフェードをかける時に使うフラグ
+    private bool lockVisibilityLevel2;            //二回目のクロスフェードをかける時に使うフラグ
+    private CancellationToken token;              //キャンセルトークン
+    private float alpha;                          //ポストエフェクトのアルファ値
 
     private void Start()
     {
@@ -60,7 +60,6 @@ public class TargetVisibilityController : UniTaskController
     /// <param name="material">調整したいマテリアル</param>
     public void UpdateUniTask(Material material)
     {
-        Debug.Log("視界update");
         alpha += Time.deltaTime;
 
         material.SetFloat("_Blend", alpha);
@@ -73,7 +72,6 @@ public class TargetVisibilityController : UniTaskController
     /// <param name="after">変更後のテクスチャ</param>
     private void SetTexture(Texture before, Texture after, Material material)
     {
-        Debug.Log("視界start");
         alpha = 0;
         material.SetTexture("_Texture1", before);
         material.SetTexture("_Texture2", after);
