@@ -6,7 +6,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TargetVisibilityController : MonoBehaviour
+public class TargetVisibilityController : UniTaskController
 {
     [SerializeField] private Image ImageUI;    // クロスフェードに使用するImageオブジェクト
     [SerializeField] private Texture Texture1;    // テクスチャ1枚目
@@ -15,6 +15,7 @@ public class TargetVisibilityController : MonoBehaviour
     private bool lockVisibilityLevel1;
     private bool lockVisibilityLevel2;
     private CancellationToken token;
+    private float alpha;
 
     private void Start()
     {
@@ -40,58 +41,41 @@ public class TargetVisibilityController : MonoBehaviour
         if(subCount == Config.targetVisibilityFirstPhase && !lockVisibilityLevel1)
         {
             //クロスフェード実行
-            BlendManager(Texture1, Texture2, token).Forget();
+            //BlendManager(Texture1, Texture2, token).Forget();
+            UniTaskUpdate(() => SetTexture(Texture1, Texture2, ImageUI.material), () => UpdateUniTask(ImageUI.material), () => { return (alpha >= 1.0f); }, token, UniTaskCancellMode.Auto).Forget();
             lockVisibilityLevel1 = true;
         }
         else if(subCount == Config.targetVisibilitySecondPhase && !lockVisibilityLevel2)
         {
             //クロスフェード実行
-            BlendManager(Texture2, Texture3, token).Forget();
+            //BlendManager(Texture2, Texture3, token).Forget();
+            UniTaskUpdate(() => SetTexture(Texture2, Texture3, ImageUI.material), () => UpdateUniTask(ImageUI.material), () => { return (alpha >= 1.0f); }, token, UniTaskCancellMode.Auto).Forget();
             lockVisibilityLevel2 = true;
         }
     }
 
     /// <summary>
-    /// テクスチャのブレンドを行う
+    /// UniTaskControllerのUpdate関数
+    /// </summary>
+    public void UpdateUniTask(Material material)
+    {
+        Debug.Log("視界update");
+        alpha += Time.deltaTime;
+
+        material.SetFloat("_Blend", alpha);
+    }
+
+    /// <summary>
+    /// マテリアルにテクスチャを設定する
     /// </summary>
     /// <param name="before"></param>
     /// <param name="after"></param>
-    /// <returns></returns>
-    private async UniTask BlendManager(Texture before, Texture after, CancellationToken token)
+    private void SetTexture(Texture before, Texture after, Material material)
     {
-        //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
-        SetCancelToken(ref token);
-
-        float alpha = 0.0f;
-        // Imageのマテリアルを取得
-        Material material = ImageUI.material;
+        Debug.Log("視界start");
+        alpha = 0;
         material.SetTexture("_Texture1", before);
         material.SetTexture("_Texture2", after);
-
-        while (true)
-        {
-            alpha += Time.deltaTime;
-
-            material.SetFloat("_Blend", alpha);
-
-            if(alpha >= 1.0f)
-            {
-                //ループから抜け出す
-                break;
-            }
-
-            //1フレーム待つ
-            await UniTask.DelayFrame(1, PlayerLoopTiming.Update, token);
-        }
-    }
-
-    private void SetCancelToken(ref CancellationToken token)
-    {
-        //毎回新しいインスタンスを生成しないようにするため参照型を引数として受け取っている
-        //メリット：キャンセルトークンをGetSetする必要がなくなる
-
-        //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
-        token = this.GetCancellationTokenOnDestroy();
     }
 
     /// <summary>
