@@ -17,9 +17,6 @@ public class PostEffectController : UniTaskController
     private CancellationToken token;
 
     [SerializeField] private Material nearTargetetImpact;
-    [SerializeField, Range(4, 16)] private int _sampleCount = 8;
-    [SerializeField, Range(0.0f, 1.0f)] private float _strength = 0.5f;
-    private readonly float maxDistance = 20;
 
     delegate void PostEffect();
 
@@ -51,6 +48,9 @@ public class PostEffectController : UniTaskController
         //ここで、ガウシアンブラーを適用したテクスチャと元のテクスチャの合成を行う->空気感を出すため
     }
 
+    /// <summary>
+    /// 毎フレーム飛び出される
+    /// </summary>
     public override void UpdateUniTask()
     {
         Debug.Log("電流update");
@@ -76,52 +76,12 @@ public class PostEffectController : UniTaskController
     /// <summary>
     /// ポストエフェクトを実行するかのフラグをセットするための関数
     /// </summary>
-    /// <param name="flag"></param>
+    /// <param name="flag">フラグ</param>
     public static void SetPostEffectFlag(bool flag)
     {
         Debug.Log("電流start");
         postEffectFlag = flag;
     }
-
-    ////比較的重い処理なので非同期処理を用いて少しでも軽くする
-    //private async UniTask SunderUpdate(CancellationToken token)
-    //{
-    //    //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
-    //    SetCancelToken(ref token);
-
-    //    while (true)
-    //    {
-    //        //対象のオブジェクトを取得
-    //        GameObject targetObject = RespawTarget.GetCurrentTargetObj();
-
-    //        //対象のオブジェクトがnullじゃなくてスキル２が発動していたら
-    //        if (targetObject != null && SkillManager.GetSpiritSenceFlag())
-    //        {
-    //            //プレイヤーと対象の距離を取得
-    //            float dis = Vector3.Distance(transform.position, targetObject.transform.position);
-
-    //            //ポストエフェクト再生
-    //            SunderManager(dis, Config.detectionTargetDistance);
-    //        }
-    //        //対象のオブジェクトがnullだったら
-    //        else
-    //        {
-    //            SetPostEffectFlag(false);
-    //        }
-
-    //        //1フレーム待つ
-    //        await UniTask.DelayFrame(1, PlayerLoopTiming.Update, token);
-    //    }
-    //}
-
-    //private void SetCancelToken(ref CancellationToken token)
-    //{
-    //    //毎回新しいインスタンスを生成しないようにするため参照型を引数として受け取っている
-    //    //メリット：キャンセルトークンをGetSetする必要がなくなる
-
-    //    //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
-    //    token = this.GetCancellationTokenOnDestroy();
-    //}
 
     /// <summary>
     /// 画面に電流を流すための関数
@@ -134,12 +94,15 @@ public class PostEffectController : UniTaskController
         {
             //α値を増やす
             blend += Time.deltaTime;
+            //blendが1より大きかったら1を返す
             nearTargetetEffect.SetFloat("_Blend", ((blend >= 1) ? 1 : blend));
+            //ブラーをかける
             nearTargetetImpact.SetFloat("_BlurDegree", 0.05f);
             SetPostEffectFlag(true);
         }
         else
         {
+            //全ての値をリセット
             blend = 0;
             nearTargetetEffect.SetFloat("_Blend", 0);
             nearTargetetImpact.SetFloat("_BlurDegree", 0);

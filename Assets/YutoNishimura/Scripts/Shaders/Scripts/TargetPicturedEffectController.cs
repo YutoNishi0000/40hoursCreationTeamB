@@ -42,6 +42,9 @@ public class TargetPicturedEffectController : UniTaskController
         }
     }
 
+    /// <summary>
+    /// UniTaskUpdateが呼ばれた春寒に実行される
+    /// </summary>
     public override void StartUniTask()
     {
         Debug.Log("対象視界start");
@@ -51,8 +54,8 @@ public class TargetPicturedEffectController : UniTaskController
     /// <summary>
     /// UniTaskController内で毎フレーム呼び出される
     /// </summary>
-    /// <param name="material"></param>
-    /// <param name="fadeTime"></param>
+    /// <param name="material">マテリアル</param>
+    /// <param name="fadeTime">フェード時間</param>
     public void UpdateUniTask(Material material, float fadeTime)
     {
         Debug.Log("対象視界update");
@@ -67,40 +70,4 @@ public class TargetPicturedEffectController : UniTaskController
             material.SetFloat("_Trigger", trigger);
         }
     }
-
-    //private async UniTask RespawnTargetEffect(Material material)
-    //{
-    //    float trigger = 0;   //ポストエフェクトを発動するための値
-
-    //    SetCancelToken(ref token);
-
-    //    while(true)
-    //    {
-    //        trigger += Time.deltaTime;
-
-    //        if(trigger >= fadeTime)
-    //        {
-    //            material.SetFloat("_Trigger", (totalPrevTime - trigger));
-    //            if((totalPrevTime - trigger) <= 0)
-    //            {
-    //                break;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            material.SetFloat("_Trigger", trigger);
-    //        }
-
-    //        await UniTask.DelayFrame(1, PlayerLoopTiming.Update, token);
-    //    }
-    //}
-
-    //private void SetCancelToken(ref CancellationToken token)
-    //{
-    //    //毎回新しいインスタンスを生成しないようにするため参照型を引数として受け取っている
-    //    //メリット：キャンセルトークンをGetSetする必要がなくなる
-
-    //    //自身が破棄されるときにUnitaskを中止するためのキャンセルトークンを取得
-    //    token = this.GetCancellationTokenOnDestroy();
-    //}
 }

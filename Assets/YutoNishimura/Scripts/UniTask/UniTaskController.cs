@@ -41,15 +41,6 @@ public class UniTaskController : MonoBehaviour
     /// <returns></returns>
     protected async UniTask UniTaskUpdate(UnityAction start, UnityAction update, Func<bool> unlockFunc, CancellationToken token, UniTaskCancellMode mode)
     {
-        if(start == null)
-        {
-            Debug.Log("startがnullです");
-        }
-        else if (update == null)
-        {
-            Debug.Log("updateがnullです");
-        }
-
         //キャンセルトークンをセット
         SetCancellToken(ref token, mode);
 
@@ -71,7 +62,8 @@ public class UniTaskController : MonoBehaviour
                 Debug.Log("抜け出す");
                 //関数をリセット
                 UniTaskExecute?.RemoveAllListeners();
-                CancelUniTask(mode);
+                //Unitaskを強制的に中止
+                CancelUniTask();
                 break;
             }
 
@@ -99,14 +91,11 @@ public class UniTaskController : MonoBehaviour
     }
 
     /// <summary>
-    /// Unitaskをキャンセル
+    /// Unitaskを強制的にキャンセルする関数
     /// </summary>
-    protected void CancelUniTask(UniTaskCancellMode mode)
+    protected void CancelUniTask()
     {
-        if(mode == UniTaskCancellMode.Manual)
-        {
-            cts.Cancel();
-        }
+        cts.Cancel();
     }
 
     /// <summary>

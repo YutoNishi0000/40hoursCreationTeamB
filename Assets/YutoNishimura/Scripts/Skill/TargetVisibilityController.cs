@@ -57,6 +57,7 @@ public class TargetVisibilityController : UniTaskController
     /// <summary>
     /// UniTaskControllerのUpdate関数
     /// </summary>
+    /// <param name="material">調整したいマテリアル</param>
     public void UpdateUniTask(Material material)
     {
         Debug.Log("視界update");
@@ -68,8 +69,8 @@ public class TargetVisibilityController : UniTaskController
     /// <summary>
     /// マテリアルにテクスチャを設定する
     /// </summary>
-    /// <param name="before"></param>
-    /// <param name="after"></param>
+    /// <param name="before">変更前のテクスチャ</param>
+    /// <param name="after">変更後のテクスチャ</param>
     private void SetTexture(Texture before, Texture after, Material material)
     {
         Debug.Log("視界start");
@@ -79,10 +80,10 @@ public class TargetVisibilityController : UniTaskController
     }
 
     /// <summary>
-    /// シェーダーを初期化する関数
+    /// シェーダーを初期化する関数（永久的に変更が保存されてしまうため、ここで初期化をしておく）
     /// </summary>
-    /// <param name="texture1"></param>
-    /// <param name="texture2"></param>
+    /// <param name="texture1">最初に表示したいテクスチャ</param>
+    /// <param name="texture2">2番目に表示したいテクスチャ</param>
     private void InitializeShader(Texture texture1, Texture texture2)
     {
         Material material = ImageUI.material;
