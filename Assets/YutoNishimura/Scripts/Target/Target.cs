@@ -10,10 +10,10 @@ public class Target : Actor
     private int destPoint = 0;
     private NavMeshAgent agent;
     private float initialTargetSpeed;       //移動速度
-    private GameObject rootParent1;
-    private GameObject rootParent2;
-    private GameObject rootParent3;
-    private GameObject rootParent4;
+    private GameObject rootParent1;         //ルート１
+    private GameObject rootParent2;         //ルート２
+    private GameObject rootParent3;         //ルート３
+    private GameObject rootParent4;         //ルート４
     private bool enableTakePicFlag;    //ターゲット撮影判定
     private readonly float minDistance = 0.5f;
 
