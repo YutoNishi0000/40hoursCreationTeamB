@@ -63,8 +63,6 @@ public class PostEffectController : UniTaskController
             Graphics.Blit(mixTexture, dest, nearTargetetImpact);
             //ぼかした後ポストエフェクトをかける
             Graphics.Blit(mixTexture, dest, nearTargetetEffect);
-
-            //ポストエフェクトかける順番を順番をこのようにすることで、後から帯電のポストエフェクトがかかるようになる
         }
 
         RenderTexture.ReleaseTemporary(rtv); //テンポラリレンダーテスクチャの開放

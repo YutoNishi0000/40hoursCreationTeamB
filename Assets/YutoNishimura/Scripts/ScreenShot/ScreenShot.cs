@@ -32,16 +32,14 @@ public class ScreenShot : MonoBehaviour
     private Camera cam;                                //プレイヤーのカメラ
     private string screenShotPath;                     //スクリーンショットして生成されたテクスチャのファイルパス
     private string timeStamp;                          //現在時刻を表すためのもの
-    private Vector3 InitialPrevPos;                    //RawImageの初期位置
-    private Vector3 InitialPrevscale;                  //RawImageの初期スケール
-    internal List<GameObject> setterObj;          //毎フレーム送られてくる異質なものの情報を取得するためのもの
-    private bool noneStrangeFlag;                      //異質なものが撮影されていたらfalse 撮影されていなかったらtrue
-    public static bool noneTargetFlag;                 //ターゲットが撮影されていたらfalse 撮影されていなかったらtrue
-    private Vector3 center = Vector3.zero;             //画面の中心
-    private SkillManager skillManager;
-    private TimerUI fadeManager;
     private bool judgeSubTargetFlag;
     private bool judgeTargetFlag;
+    private Vector3 InitialPrevPos;                    //RawImageの初期位置
+    private Vector3 InitialPrevscale;                  //RawImageの初期スケール
+    private Vector3 center = Vector3.zero;             //画面の中心
+    internal List<GameObject> setterObj;          //毎フレーム送られてくる異質なものの情報を取得するためのもの
+    private SkillManager skillManager;
+    private TimerUI fadeManager;
     private JudgeScreenShot judge;
 
     //シャッターアニメーションの種類
@@ -66,8 +64,6 @@ public class ScreenShot : MonoBehaviour
         InitialPrevscale = targetImage.rectTransform.localScale;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         targetImage.enabled = false;
-        noneStrangeFlag = true;
-        noneTargetFlag = true;
         skillManager = GetComponent<SkillManager>();
         fadeManager = GetComponent<TimerUI>();
         //画面の中心を求める
