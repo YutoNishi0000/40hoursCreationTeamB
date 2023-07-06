@@ -166,9 +166,6 @@ public class ScreenShot : MonoBehaviour
         ////任意のフレームの描画処理が終わるまで待つ
         await UniTask.DelayFrame(1, PlayerLoopTiming.Update, cancelToken);
 
-        // レンダリング完了まで待機
-        //yield return new WaitForEndOfFrame();
-
         Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         RenderTexture rt = new RenderTexture(screenShot.width, screenShot.height, 24);
         RenderTexture prev = cam.targetTexture;

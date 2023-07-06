@@ -33,7 +33,7 @@ public class TargetPicturedEffectController : UniTaskController
 
     private void Update()
     {
-        //ここはリスポーンの際UniTaskを使って、１フレームしか呼ばれないようになっているため、ここでリスポーンエフェクトを発動させる
+        //ここはリスポーンの際UniTaskを使って１フレーム待ってリスポーンされるようになっているため、ここでリスポーンエフェクトを発動させる
         if(RespawTarget.GetCurrentTargetObj() == null)
         {
             UniTaskUpdate(() => StartUniTask(), () => UpdateUniTask(diffusionCircleMaterial, fadeTime), () => { return ((totalPrevTime - trigger) <= 0); }, token, UniTaskCancellMode.Auto).Forget();

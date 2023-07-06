@@ -75,9 +75,6 @@ public class Player : Actor
         else        //空中操作の処理（重力加速度等）
         {
             float tempy = moveDirection.y;
-            //(↓の２文の処理があると空中でも入力方向に動けるようになる)
-            //moveDirection = Vector3.Scale(targetDirection, new Vector3(1, 0, 1)).normalized;
-            //moveDirection *= speed;
             moveDirection.y = tempy - gravity * Time.deltaTime;
         }
 
