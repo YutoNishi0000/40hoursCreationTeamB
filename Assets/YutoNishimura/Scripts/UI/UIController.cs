@@ -35,8 +35,8 @@ public class UIController : MonoBehaviour
     {
         if (!GameManager.Instance.blockSwithScene)
         {
-            GameManager.Instance.GameAdministrator();
             SceneManager.LoadScene(index);
+            BGMManager.Instance.BGMAdministrator(index);
         }
         GameManager.Instance.blockSwithScene = true;         
     }

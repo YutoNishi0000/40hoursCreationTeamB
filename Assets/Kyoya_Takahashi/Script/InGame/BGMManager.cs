@@ -7,7 +7,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     //0:タイトルからステージ選択まで
     //1:インゲーム中
     //2:リザルト画面
-    public enum BGMTyoe
+    public enum BGMType
     {
         OutGame,
         Ingame,
@@ -15,48 +15,45 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     }
 
     public AudioClip[] BGM = new AudioClip[3];
-    private bool playBGMFlag;         //既にBGMを再生しているか
 
     public AudioSource audioSource = null;
     private void Start()
     {
-        playBGMFlag = false;
         audioSource = this.GetComponent<AudioSource>();
     }
-    public void PlayOutGameBGM()
+
+    public void BGMAdministrator(int sceneIndex)
     {
-        audioSource.Stop();
-        audioSource.clip = BGM[(int)BGMTyoe.OutGame];
-        audioSource.Play();
-        audioSource.loop = true;
-        playBGMFlag = true;
+        switch (sceneIndex)
+        {
+            case (int)GameManager.GameState.MainGame:
+                PlayBGM(BGMType.Ingame);
+                break;
+            case (int)GameManager.GameState.Result:
+                PlayBGM(BGMType.ResultGame);
+                break;
+            case (int)GameManager.GameState.Operator:
+                StopBGM();
+                break;
+            default:
+                if (!Instance.audioSource.isPlaying || Instance.audioSource.clip != Instance.BGM[(int)BGMType.OutGame])
+                {
+                    PlayBGM(BGMType.OutGame);
+                }
+                break;
+        }
     }
-    public void PlayInGameBGM()
-    {
-        Debug.Log("インゲーム");
-        audioSource.Stop();
-        audioSource.clip = BGM[(int)BGMTyoe.Ingame];
-        audioSource.Play();
-        audioSource.loop = true;
-        playBGMFlag = true;
-    }
-    
-    public void PlayResultBGM()
+
+    public void PlayBGM(BGMType type)
     {
         audioSource.Stop();
-        audioSource.clip = BGM[(int)BGMTyoe.ResultGame];
+        audioSource.clip = BGM[(int)type];
         audioSource.Play();
         audioSource.loop = true;
-        playBGMFlag = true;
     }
 
     public void StopBGM()
     {
         audioSource.Stop();
-        playBGMFlag = false;
     }
-
-    public bool GetPlayBGMFLag() { return playBGMFlag; }
-
-    public void SetPlayBGMFLag(bool flag) { playBGMFlag = true; }
 }

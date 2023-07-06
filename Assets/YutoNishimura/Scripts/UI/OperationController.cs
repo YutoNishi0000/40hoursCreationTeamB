@@ -9,7 +9,7 @@ public class OperationController : UIController
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            BGMManager.Instance.SetPlayBGMFLag(false);
+            //BGMManager.Instance.SetPlayBGMFLag(false);
             HomeScene();
             InstantAnimation();
         }

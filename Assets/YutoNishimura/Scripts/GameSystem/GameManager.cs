@@ -67,13 +67,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private void Start()
     {
         sceneIndex = 0;
-        GameAdministrator();
+        //GameAdministrator();
         filePathes = new List<string>();
         gameMode = new GameMode();
         gameState = new GameState();
 
         BGMManager.Instance.audioSource.Stop();
-        BGMManager.Instance.PlayOutGameBGM();
+        BGMManager.Instance.PlayBGM(BGMManager.BGMType.OutGame);
     }
 
     private void Update()
@@ -89,18 +89,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             case (int)GameState.MainGame:
                 InitializeGame();
-                BGMManager.Instance.PlayInGameBGM();
+                BGMManager.Instance.PlayBGM(BGMManager.BGMType.OutGame);
                 break;
             case (int)GameState.Result:
-                BGMManager.Instance.PlayResultBGM();
+                BGMManager.Instance.PlayBGM(BGMManager.BGMType.OutGame);
                 break;
             case (int)GameState.Operator:
                 BGMManager.Instance.StopBGM();
                 break;
             default:
-                if (!BGMManager.Instance.audioSource.isPlaying || BGMManager.Instance.audioSource.clip != BGMManager.Instance.BGM[(int)BGMManager.BGMTyoe.OutGame])
+                if (!BGMManager.Instance.audioSource.isPlaying || BGMManager.Instance.audioSource.clip != BGMManager.Instance.BGM[(int)BGMManager.BGMType.OutGame])
                 {
-                    BGMManager.Instance.PlayOutGameBGM();
+                    BGMManager.Instance.PlayBGM(BGMManager.BGMType.OutGame);
                 }
                 break;
         }

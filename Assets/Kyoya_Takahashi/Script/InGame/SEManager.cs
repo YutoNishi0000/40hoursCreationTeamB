@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SEManager : SingletonMonoBehaviour<SEManager>
 {
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource[] audioSources;
     [SerializeField] private AudioClip respawn;
     [SerializeField] private AudioClip shot;
     [SerializeField] private AudioClip skill;
@@ -17,10 +17,45 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     [SerializeField] private AudioClip decision;
     [SerializeField] private AudioClip back;
 
+    [SerializeField] private readonly int maxAudioSources = 10;     //生成するオーディオソースの最大数
+
     private bool isTimeLimit = false;
+
+    private void Start()
+    {
+        audioSources = new AudioSource[maxAudioSources];
+        for (int i = 0; i < audioSources.Length; ++i)
+        {
+            audioSources[i] = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
+    /// <summary>
+    /// 利用可能なオーディオソースを取得する
+    /// </summary>
+    /// <returns></returns>
+    private AudioSource GetAvailableAudioSource()
+    {
+        for(int i = 0; i < audioSources.Length; i++)
+        {
+            if (audioSources[i] == null)
+            {
+                Debug.Log("合うぢおそーすがnullです");
+            }
+
+            if (!audioSources[i].isPlaying)
+            {
+                return audioSources[i];
+            }
+        }
+
+        return null;
+    }
+
     private void oneShot(AudioClip ac)
     {
-        audioSource.PlayOneShot(ac);
+        AudioSource ad = GetAvailableAudioSource();
+        ad.PlayOneShot(ac);
     }
     /// <summary>
     /// ターゲットリスポーン時のSE
