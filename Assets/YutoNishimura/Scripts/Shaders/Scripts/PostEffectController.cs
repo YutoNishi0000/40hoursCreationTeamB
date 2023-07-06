@@ -45,7 +45,6 @@ public class PostEffectController : UniTaskController
         gaussianBlurMaterial.SetVector(_Direction, v); //シェーダー内の変数にブラー方向を設定
 
         Graphics.Blit(rth, rtv, gaussianBlurMaterial); // ブラー処理を行う
-        /////////
 
         Graphics.Blit(rtv, finalTexture, gaussianBlurMaterial); //元サイズから1/4になったレンダーテクスチャを、元のサイズに戻す
 

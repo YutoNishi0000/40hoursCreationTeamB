@@ -155,6 +155,11 @@ public class ScreenShot : MonoBehaviour
         return path;
     }
 
+    /// <summary>
+    /// 撮影を実際に行う関数
+    /// </summary>
+    /// <param name="cancelToken">キャンセルトークン</param>
+    /// <returns></returns>
     private async UniTask CreateScreenShot(CancellationToken cancelToken)
     {
         DateTime date = DateTime.Now;
@@ -177,6 +182,8 @@ public class ScreenShot : MonoBehaviour
         RenderTexture.active = rt;
         screenShot.ReadPixels(new Rect(0, 0, screenShot.width, screenShot.height), 0, 0);
         screenShot.Apply();
+
+        //screenShot = ResizeTexture(screenShot, 960, 1080);
 
         byte[] pngData = screenShot.EncodeToPNG();
         screenShotPath = GetScreenShotPath();
@@ -215,6 +222,23 @@ public class ScreenShot : MonoBehaviour
             //テクスチャ情報を読み込んだ後でRawImageを表示する
             targetImage.enabled = true;
         }
+    }
+
+    Texture2D ResizeTexture(Texture2D src, int dst_w, int dst_h)
+    {
+        Texture2D dst = new Texture2D(dst_w, dst_h, src.format, false);
+
+        float inv_w = 1f / dst_w;
+        float inv_h = 1f / dst_h;
+
+        for (int y = 0; y < dst_h; ++y)
+        {
+            for (int x = 0; x < dst_w; ++x)
+            {
+                dst.SetPixel(x, y, src.GetPixelBilinear((float)x * inv_w, (float)y * inv_h));
+            }
+        }
+        return dst;
     }
 
     #endregion

@@ -69,7 +69,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FogDensity: 0.02
-    - _FogDensityAttenuation: 1.8
+    - _FogDensityAttenuation: 1
     - _FogHeight: 0
     - _GlossMapScale: 1
     - _Glossiness: 0

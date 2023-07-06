@@ -15,7 +15,7 @@ public class DEmoUnitask : UniTaskController
     void Start()
     {
         //unitask = new UniTaskController();
-        UniTaskUpdate(E, () => R(), () => { return (t >= 1); }, token,  UniTaskController.UniTaskCancellMode.Auto).Forget();
+        //UniTaskUpdate(E, () => R(), () => { return (t >= 1); }, token,  UniTaskController.UniTaskCancellMode.Auto).Forget();
     }
 
     // Update is called once per frame
