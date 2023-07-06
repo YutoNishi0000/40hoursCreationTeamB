@@ -18,7 +18,6 @@ public class UniTaskController : MonoBehaviour
         Manual        //手動
     }
 
-    protected UnityEvent UniTaskExecute;
     protected CancellationTokenSource cts;
 
     /// <summary>
@@ -26,7 +25,6 @@ public class UniTaskController : MonoBehaviour
     /// </summary>
     protected void Awake()
     {
-        UniTaskExecute = new UnityEvent();
         cts = new CancellationTokenSource();
     }
 
@@ -43,6 +41,9 @@ public class UniTaskController : MonoBehaviour
     {
         //キャンセルトークンをセット
         SetCancellToken(ref token, mode);
+
+        //UnityEventのインスタンスを生成
+        UnityEvent UniTaskExecute = new UnityEvent();
 
         //startで受け渡された関数を実行
         UniTaskExecute?.AddListener(start);

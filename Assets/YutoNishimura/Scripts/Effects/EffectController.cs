@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 //エフェクト基底クラス
 public class EffectController : MonoBehaviour
 {
-    public ParticleSystem effect;
+    public static ParticleSystem effect;
 
     //コンストラクタ
     public EffectController(ParticleSystem particle)
@@ -19,8 +20,9 @@ public class EffectController : MonoBehaviour
     /// 指定した場所でエフェクトを再生する
     /// </summary>
     /// <param name="particlePos"></param>
-    public void PlayEffect(Vector3 particlePos)
+    public static async UniTask PlayEffect(Vector3 particlePos)
     {
+        await UniTask.Delay(1500);
         effect.gameObject.SetActive(true);
         effect.transform.position = particlePos;
         effect.Play();
