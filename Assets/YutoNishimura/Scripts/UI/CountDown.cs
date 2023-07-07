@@ -49,7 +49,7 @@ public class CountDown : MonoBehaviour
         CountDownControl();
     }
 
-    void CountDownControl()
+    public void CountDownControl()
     {
         if(time < -1)
         {

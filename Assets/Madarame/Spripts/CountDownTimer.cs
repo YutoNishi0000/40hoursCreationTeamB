@@ -17,7 +17,8 @@ public class CountDownTimer : UIController
 	//増やす時間
 	private static float _increaceTime = Config.targetShutterPlusCount;
 	//アラーム鳴らす時間
-	private float alertTime = 60;
+	private const float alertTime = 60;
+	//
 
 	void Start()
 	{
@@ -51,12 +52,14 @@ public class CountDownTimer : UIController
 			return;
         }
 
-		if(_totalTime <= )
+		if(_totalTime <= alertTime)
+        {
+			SEManager.Instance.PlayTimeLimit(2f);
+		}
 		//　制限時間が0秒以下なら何もしない
 		//　制限時間以下になったらコンソールに『制限時間終了』という文字列を表示する
 		if (_totalTime <= 0f)
-		{
-			SEManager.Instance.PlayTimeLimit(2f);
+		{			
 			Debug.Log("制限時間終了");
 			InstantAnimation();
 			MoveScene(GameManager.Instance.sceneIndex);
