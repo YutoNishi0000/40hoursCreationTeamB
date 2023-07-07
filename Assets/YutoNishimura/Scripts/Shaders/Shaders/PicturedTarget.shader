@@ -3,15 +3,15 @@ Shader "Custom/PicturedTarget"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _CircleColor1("CircleColor1", Color) = (0, 0, 0, 0)
-        _CircleColor2("CircleColor2", Color) = (0, 0, 0, 0)
-        _CircleColor3("CircleColor3", Color) = (0, 0, 0, 0)
-        _DiffuseSpeed("DiffuseSpeed", float) = 1
-        _Cycle("Cycle", float) = 1
+        _CircleColor1("CircleColor1", Color) = (0, 0, 0, 1)
+        _CircleColor2("CircleColor2", Color) = (1, 0, 0, 1)
+        _CircleColor3("CircleColor3", Color) = (0, 0, 1, 1)
+        _DiffuseSpeed("DiffuseSpeed", float) = 5
+        _Cycle("Cycle", float) = 10
         _CenterPosX("CenterPosX", float) = 0.5
         _CenterPosY("CenterPosY", float) = 0.5
-        _ColorRate("ColorRate", float) = 0.9
-        _ColorBlend("ColorBlend", Range(0, 1)) = 0.3
+        _ColorRate("ColorRate", float) = 0.97
+        _ColorBlend("ColorBlend", Range(0, 1)) = 0.1
 
         _SinWave("SinWave", int) = 20
         _SinWidth("SinWidth", Range(0, 0.1)) = 0.05
