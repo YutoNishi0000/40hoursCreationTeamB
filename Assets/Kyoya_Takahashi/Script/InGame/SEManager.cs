@@ -125,4 +125,6 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
         oneShot(back);
     }
 
+    public AudioSource[] GetSEAudioSources() { return audioSources; }
+
 }

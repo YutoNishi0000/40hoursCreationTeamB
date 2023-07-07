@@ -72,7 +72,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         gameMode = new GameMode();
         gameState = new GameState();
 
-        BGMManager.Instance.audioSource.Stop();
+        BGMManager.Instance.GetBGMAudioSource().Stop();
         BGMManager.Instance.PlayBGM(BGMManager.BGMType.OutGame);
     }
 
@@ -98,7 +98,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 BGMManager.Instance.StopBGM();
                 break;
             default:
-                if (!BGMManager.Instance.audioSource.isPlaying || BGMManager.Instance.audioSource.clip != BGMManager.Instance.BGM[(int)BGMManager.BGMType.OutGame])
+                if (!BGMManager.Instance.GetBGMAudioSource().isPlaying || BGMManager.Instance.GetBGMAudioSource().clip != BGMManager.Instance.BGM[(int)BGMManager.BGMType.OutGame])
                 {
                     BGMManager.Instance.PlayBGM(BGMManager.BGMType.OutGame);
                 }

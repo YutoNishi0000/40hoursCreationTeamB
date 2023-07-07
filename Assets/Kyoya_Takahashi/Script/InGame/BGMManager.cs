@@ -16,7 +16,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
 
     public AudioClip[] BGM = new AudioClip[3];
 
-    public AudioSource audioSource = null;
+    private AudioSource audioSource;
     private void Start()
     {
         audioSource = this.GetComponent<AudioSource>();
@@ -28,6 +28,7 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
         {
             case (int)GameManager.GameState.MainGame:
                 PlayBGM(BGMType.Ingame);
+                GameManager.Instance.InitializeGame();
                 break;
             case (int)GameManager.GameState.Result:
                 PlayBGM(BGMType.ResultGame);
@@ -56,4 +57,6 @@ public class BGMManager : SingletonMonoBehaviour<BGMManager>
     {
         audioSource.Stop();
     }
+
+    public AudioSource GetBGMAudioSource() { return audioSource; }
 }
