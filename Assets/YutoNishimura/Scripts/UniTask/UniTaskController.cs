@@ -42,27 +42,16 @@ public class UniTaskController : MonoBehaviour
         //キャンセルトークンをセット
         SetCancellToken(ref token, mode);
 
-        //UnityEventのインスタンスを生成
-        UnityEvent UniTaskExecute = new UnityEvent();
-
-        //startで受け渡された関数を実行
-        UniTaskExecute?.AddListener(start);
-        UniTaskExecute?.Invoke();
-        //関数をリセット
-        UniTaskExecute?.RemoveAllListeners();
-        //引数で渡されたupdateを実行
-        UniTaskExecute?.AddListener(update);
+        start?.Invoke();
 
         while (true)
         {
             //UniTaskExecuteがnullなければ実行する
-            UniTaskExecute?.Invoke();
+            update?.Invoke();
 
             if(unlockFunc.Invoke() && unlockFunc != null)
             {
                 Debug.Log("抜け出す");
-                //関数をリセット
-                UniTaskExecute?.RemoveAllListeners();
                 //Unitaskを強制的に中止
                 CancelUniTask();
                 break;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class OptionManager : MonoBehaviour
 {
     private AudioSource audioSource_BGM;
-    private AudioSource[] audioSource_SE;
+    private AudioSource audioSource_SE;
 
     private void Start()
     {
@@ -28,10 +28,7 @@ public class OptionManager : MonoBehaviour
     /// <param name="newSliderValue">スライドバーの値(自動的に引数に値が入る)</param>
     public void SoundSliderOnValueChange_SE(float sliderValue)
     {
-        for(int i = 0; i < audioSource_SE.Length; i++)
-        {
-            audioSource_SE[i].volume = sliderValue;
-        }
+        audioSource_SE.volume = sliderValue;
     }
 
     public void MouseSensitivityOnValueChange(float sensitivity)

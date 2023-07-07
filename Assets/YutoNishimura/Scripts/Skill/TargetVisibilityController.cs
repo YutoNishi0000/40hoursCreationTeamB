@@ -19,7 +19,14 @@ public class TargetVisibilityController : UniTaskController
 
     private void Start()
     {
-        InitializeShader(Texture1, Texture2);
+        if(GameManager.Instance.GetGameMode() != GameManager.GameMode.Easy)
+        {
+            InitializeShader(Texture1, Texture2);
+        }
+        else
+        {
+            InitializeShader(Texture2, Texture3);
+        }
         lockVisibilityLevel1 = false;
         lockVisibilityLevel2 = false;
     }
@@ -40,11 +47,18 @@ public class TargetVisibilityController : UniTaskController
     {
         if(subCount == Config.targetVisibilityFirstPhase && !lockVisibilityLevel1)
         {
-            //クロスフェード実行
-            UniTaskUpdate(() => SetTexture(Texture1, Texture2, ImageUI.material), () => UpdateUniTask(ImageUI.material), () => { return (alpha >= 1.0f); }, token, UniTaskCancellMode.Auto).Forget();
+            if (GameManager.Instance.GetGameMode() != GameManager.GameMode.Easy)
+            {
+                //クロスフェード実行
+                UniTaskUpdate(() => SetTexture(Texture1, Texture2, ImageUI.material), () => UpdateUniTask(ImageUI.material), () => { return (alpha >= 1.0f); }, token, UniTaskCancellMode.Auto).Forget();
+            }
+            else
+            {
+                UniTaskUpdate(() => SetTexture(Texture2, Texture3, ImageUI.material), () => UpdateUniTask(ImageUI.material), () => { return (alpha >= 1.0f); }, token, UniTaskCancellMode.Auto).Forget();
+            }
             lockVisibilityLevel1 = true;
         }
-        else if(subCount == Config.targetVisibilitySecondPhase && !lockVisibilityLevel2)
+        else if(subCount == Config.targetVisibilitySecondPhase && !lockVisibilityLevel2 && GameManager.Instance.GetGameMode() != GameManager.GameMode.Easy)
         {
             //クロスフェード実行
             UniTaskUpdate(() => SetTexture(Texture2, Texture3, ImageUI.material), () => UpdateUniTask(ImageUI.material), () => { return (alpha >= 1.0f); }, token, UniTaskCancellMode.Auto).Forget();

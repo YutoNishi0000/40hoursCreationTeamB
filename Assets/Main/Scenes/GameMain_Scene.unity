@@ -30401,6 +30401,7 @@ GameObject:
   - component: {fileID: 889012891}
   - component: {fileID: 889012893}
   - component: {fileID: 889012894}
+  - component: {fileID: 889012895}
   m_Layer: 0
   m_Name: GameNessesaryComponent
   m_TagString: Untagged
@@ -30447,6 +30448,7 @@ MonoBehaviour:
   player: {fileID: 1937578762}
   lostTimeImg: {fileID: 0}
   particle: {fileID: 3805722957356481417, guid: 06efc8db4639f9c40a3daf79aeb8b469, type: 3}
+  raticle: {fileID: 0}
 --- !u!114 &889012887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30586,6 +30588,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentAnimationObject: {fileID: 2078087024}
+--- !u!114 &889012895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889012882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3990d32f578c144cab713dac51e72a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raticle: {fileID: 1683324135}
+  rotation: -90
 --- !u!1001 &889016145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54505,7 +54521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f279e8322292234bbbb9042072b697a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSources: []
+  audioSource: {fileID: 0}
   respawn: {fileID: 8300000, guid: 7cf8001a18aecd84381c7c436be0e6a4, type: 3}
   shot: {fileID: 8300000, guid: 3f94a5b3c73bdea449aafdc10c2d2976, type: 3}
   skill: {fileID: 8300000, guid: 1aa8df8a699eed64f8411e6d63d01eb6, type: 3}
@@ -55785,7 +55801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 649337ecdb2694b44aa33b58715b8bd9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -55793,7 +55809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e28ef7c9c0857649a28a730df921e17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e2845b73d5f64a47b2b0ad04c729041, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

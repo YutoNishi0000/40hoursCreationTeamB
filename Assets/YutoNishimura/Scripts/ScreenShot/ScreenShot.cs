@@ -11,7 +11,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 
 [RequireComponent(typeof(TimerUI))]
-public class ScreenShot : MonoBehaviour
+public class ScreenShot : UniTaskController
 {
     //入力が必要なもの
     [SerializeField] private RawImage targetImage;     //テクスチャを表示するためのRawImage
@@ -26,13 +26,14 @@ public class ScreenShot : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Image lostTimeImg;
     [SerializeField] private ParticleSystem particle;
+    [SerializeField] private Image raticle;            //レティクルUI
     //[SerializeField] private GameObject animationManager;
 
     //内部処理で使うもの
     private Camera cam;                                //プレイヤーのカメラ
     private string screenShotPath;                     //スクリーンショットして生成されたテクスチャのファイルパス
     private string timeStamp;                          //現在時刻を表すためのもの
-    private bool judgeSubTargetFlag;
+    private static JudgeSubTarget.Judge judgeSubTargetFlag;
     private bool judgeTargetFlag;
     private Vector3 InitialPrevPos;                    //RawImageの初期位置
     private Vector3 InitialPrevscale;                  //RawImageの初期スケール
@@ -57,7 +58,7 @@ public class ScreenShot : MonoBehaviour
     private void Start()
     {
         judge = new JudgeScreenShot(particle);
-        judgeSubTargetFlag = false;
+        judgeSubTargetFlag = new JudgeSubTarget.Judge();
         judgeTargetFlag = false;
         setterObj = new List<GameObject>();
         InitialPrevPos = targetImage.rectTransform.position;
@@ -72,6 +73,8 @@ public class ScreenShot : MonoBehaviour
 
     private void Update()
     {
+        judgeSubTargetFlag = judge.judgeSubTarget.ShutterSubTargets(cam, player, setterObj, Config.subTargetJudgeLength);
+
         if (Shutter.isFilming)
         {
             InitializeRawImage();
@@ -79,19 +82,18 @@ public class ScreenShot : MonoBehaviour
             Invoke(nameof(FirstMovePreview), Config.movePrevTimeFirst);
 
             judgeTargetFlag = judge.judgeTarget.ShutterTarget(player, mimic, cam, RespawTarget.GetCurrentTargetObj().transform.position, center, areaWidth, areaHeight, Config.raiseScore);
-            judgeSubTargetFlag = judge.judgeSubTarget.ShutterSubTargets(cam, player, setterObj, Config.subTargetJudgeLength);
 
             //空撮り（異質なもの、ターゲットが撮影されていない）していたら
-            if (!judgeTargetFlag && !judgeSubTargetFlag)
+            if (!judgeTargetFlag && !judgeSubTargetFlag.shutterFlag)
             {
                 ShutterNone();
             }
 
-            ShutterAnimationController(Config.delayTimeShutterAnimation, judgeTargetFlag, judgeSubTargetFlag);
+            ShutterAnimationController(Config.delayTimeShutterAnimation, judgeTargetFlag, judgeSubTargetFlag.shutterFlag);
 
             //フラグを初期化
             judgeTargetFlag = false;
-            judgeSubTargetFlag = false;
+            //judgeSubTargetFlag = false;
 
             Shutter.isFilming = false;
         }
@@ -293,6 +295,8 @@ public class ScreenShot : MonoBehaviour
     #region ゲッター、セッター
 
     public void SetList(List<GameObject> list) { setterObj = list; }
+
+    public static bool GetJudgeSubTargetFlag() { return judgeSubTargetFlag.enableShutterFlag; }
 
     #endregion
 }

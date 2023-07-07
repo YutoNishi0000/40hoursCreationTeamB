@@ -262,9 +262,24 @@ public class JudgeTarget : MonoBehaviour
 //異質なものの判定だけを行うクラス
 public class JudgeSubTarget : MonoBehaviour
 {
-    //これ使う
-    public bool ShutterSubTargets(Camera camera, GameObject playerPos, List<GameObject> list, float judgeDis)
+    public struct Judge
     {
+        public bool shutterFlag;                //異質なものを撮影したかどうかを表すフラグ
+        public bool enableShutterFlag;          //異質なものが射程圏内に入っているかどうかを表すフラグ
+    }
+
+    public Judge judge;
+
+    public JudgeSubTarget()
+    {
+        judge = new Judge();
+    }
+
+    //これ使う
+    public Judge ShutterSubTargets(Camera camera, GameObject playerPos, List<GameObject> list, float judgeDis)
+    {
+        judge.shutterFlag = false;
+        judge.enableShutterFlag = false;
         float fov = camera.fieldOfView;
         //fovを用いて内積を取得
         float judgeRange = Mathf.Cos(Mathf.PI - (((2 * Mathf.PI) - ((fov / 360) * Mathf.PI * 2)) / 2));
@@ -286,24 +301,34 @@ public class JudgeSubTarget : MonoBehaviour
                 //fovを用いて取得した内積と今さっき求めた内積を比較（プレイヤーと異質なもの間のベクトルの内積がfovを用いて取得した内積より大きかったら撮影成功）<=三角関数の概念
                 if (playerToSubVec.magnitude < judgeDis && dot >= judgeRange)
                 {
-                    //サブカメラカウントをインクリメント
-                    GameManager.Instance.numSubShutter++;
-                    //スコアを加算
-                    ScoreManger.Score += 10;
-                    //tempList[i]のオブジェクトの消滅フラグをオンにす 
-                    list[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                    if (Shutter.isFilming)
+                    {
+                        judge.shutterFlag = true;
+                        //サブカメラカウントをインクリメント
+                        GameManager.Instance.numSubShutter++;
+                        //スコアを加算
+                        ScoreManger.Score += 10;
+                        //tempList[i]のオブジェクトの消滅フラグをオンにす 
+                        list[i].GetComponent<HeterogeneousController>().SetTakenPicFlag(true);
+                    }
+                    else
+                    {
+                        judge.enableShutterFlag = true;
+                    }
                 }
             }
         }
 
-        //上の処理を通して、撮影した異質なものの個数が増えていたら
-        if ((GameManager.Instance.numSubShutter - tempNumSubTargets) > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return judge;
+
+        ////上の処理を通して、撮影した異質なものの個数が増えていたら
+        //if ((GameManager.Instance.numSubShutter - tempNumSubTargets) > 0)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
     }
 }

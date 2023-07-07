@@ -561,6 +561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SEManger
       objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552026, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
 --- !u!1 &854622178
@@ -628,10 +632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f197dbf0d04b4384288d594e0c9090ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGM_MainGame: {fileID: 0}
-  SE_Button: {fileID: 0}
-  source: []
-  BGM_Source: {fileID: 0}
 --- !u!4 &927256829
 Transform:
   m_ObjectHideFlags: 0
