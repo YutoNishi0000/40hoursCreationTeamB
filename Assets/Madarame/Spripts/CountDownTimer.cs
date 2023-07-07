@@ -18,7 +18,10 @@ public class CountDownTimer : UIController
 	private static float _increaceTime = Config.targetShutterPlusCount;
 	//アラーム鳴らす時間
 	private const float alertTime = 60;
-	//
+	//制限時間の残り時間のカウントダウンを開始するかどうか
+	public static bool startFinishCountDown = false;
+	//制限時間の残り時間のカウントダウンを開始する時間(秒)
+	private const float startFinishCountTime = 3;
 
 	void Start()
 	{
@@ -51,7 +54,10 @@ public class CountDownTimer : UIController
         {
 			return;
         }
-
+		if(_totalTime <= startFinishCountTime)
+        {
+			startFinishCountDown = true;
+		}
 		if(_totalTime <= alertTime)
         {
 			SEManager.Instance.PlayTimeLimit(2f);
