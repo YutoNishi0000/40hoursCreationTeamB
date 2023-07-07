@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/YutoNishimura/Scenes/Operation.unity
     guid: 85cb6e18e31782b44937139872c27dcf
+  - enabled: 1
+    path: Assets/Main/Scenes/GameMain_Option.unity
+    guid: ffa9bfede84cf824cb40c6c31b235461
   m_configObjects: {}
