@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SEManager : SingletonMonoBehaviour<SEManager>
 {
-    [SerializeField] private AudioSource audioSource;
+    private AudioSource audioSource;
     [SerializeField] private AudioClip respawn;
     [SerializeField] private AudioClip shot;
     [SerializeField] private AudioClip skill;
