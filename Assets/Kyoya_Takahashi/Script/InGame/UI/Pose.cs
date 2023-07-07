@@ -115,6 +115,7 @@ public class Pose : MonoBehaviour
     /// <summary> リスタートする </summary>
     private void ReStartMove()
     {
+        GameManager.Instance.IsPlayGame = false;
         SceneManager.LoadScene(ReStartSceneIndex);
     }
     /// <summary> オプション画面に移動 </summary>
