@@ -83,12 +83,6 @@ public class ScreenShot : UniTaskController
 
             judgeTargetFlag = judge.judgeTarget.ShutterTarget(player, mimic, cam, RespawTarget.GetCurrentTargetObj().transform.position, center, areaWidth, areaHeight, Config.raiseScore);
 
-            //空撮り（異質なもの、ターゲットが撮影されていない）していたら
-            if (!judgeTargetFlag && !judgeSubTargetFlag.shutterFlag)
-            {
-                ShutterNone();
-            }
-
             ShutterAnimationController(Config.delayTimeShutterAnimation, judgeTargetFlag, judgeSubTargetFlag.shutterFlag);
 
             //フラグを初期化
@@ -118,6 +112,14 @@ public class ScreenShot : UniTaskController
         }
     }
 
+    //空撮りしたときの処理
+    private void ShutterTraget()
+    {
+        CountDownTimer.IncreaceTime();
+        SEManager.Instance.PlayPlusTimeCountSE();
+        fadeManager.FadeOut(Config.fadeOutSpeed, plusCount);
+    }
+
     //シャッターアニメーションを管理する関数
     private void ShutterAnimationController(float invokeTime, bool targetFlag, bool subTargetFlag)
     {
@@ -130,6 +132,7 @@ public class ScreenShot : UniTaskController
         else if (!subTargetFlag && targetFlag)
         {
             ShutterAnimationmanager(ShutterAnimationType.Target);
+            ShutterTraget();
         }
         //どちらも撮影した場合
         else if (subTargetFlag && targetFlag)
@@ -140,6 +143,7 @@ public class ScreenShot : UniTaskController
         else
         {
             ShutterAnimationmanager(ShutterAnimationType.None);
+            ShutterNone();
         }
     }
 
