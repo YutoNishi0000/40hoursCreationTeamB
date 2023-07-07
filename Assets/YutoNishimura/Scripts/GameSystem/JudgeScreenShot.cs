@@ -29,7 +29,7 @@ public class JudgeTarget : MonoBehaviour
         effectController = new EffectController(particle);
     }
 
-    //それぞれのスコアの値
+    //それぞれのスコアの値:::::::
     public enum ScoreType
     {
         high = 50,
