@@ -30443,7 +30443,7 @@ MonoBehaviour:
   minusCount2: {fileID: 312160544}
   duration: 1.5
   magnitude: 0.5
-  mimic: {fileID: 4484111761750686190, guid: 472eda4c7fef9044098f07d1125affaf, type: 3}
+  mimic: {fileID: 6819129135517264914, guid: 3a5225e2f48573142ab747899d7c4a1d, type: 3}
   player: {fileID: 1937578762}
   lostTimeImg: {fileID: 0}
   particle: {fileID: 3805722957356481417, guid: 06efc8db4639f9c40a3daf79aeb8b469, type: 3}
