@@ -14,13 +14,13 @@ public class Pose : MonoBehaviour
     [Header("リスタートボタン"), SerializeField]
     private PoseUIManager _restartButton;
 
+    /// <summary>オプションボタン </summary>    
+    [Header("オプションボタン"), SerializeField]
+    private PoseUIManager _optionButton;
+
     /// <summary>オプション画面 </summary>    
     [Header("オプション画面"), SerializeField]
-    private Image _option;
-
-    ///// <summary>オプションボタン </summary>    
-    //[Header("オプションボタン"), SerializeField]
-    //private PoseUIManager _optionButton;
+    private GameObject _option;
 
     /// <summary>セレクトシーンのインデックス番号</summary>
     [Header("セレクトシーンのインデックス番号"), SerializeField]
@@ -59,14 +59,13 @@ public class Pose : MonoBehaviour
         {
             poseUI[i] = transform.GetChild(i).gameObject;
         }
-
+        _option.SetActive(false);
         HideUI();
-        _option.enabled = false;
 
         // ボタンクリック時にイベント追加 ---------------------- //
         _selectButton. Button.onClick.AddListener(SelectMove);
         _restartButton.Button.onClick.AddListener(ReStartMove);
-        //_optionButton. Button.onClick.AddListener(OptionMove);
+        _optionButton. Button.onClick.AddListener(OptionMove);
         // ----------------------------------------------------- //
     }
 
@@ -126,6 +125,7 @@ public class Pose : MonoBehaviour
     /// <summary> オプション画面に移動 </summary>
     private void OptionMove()
     {
-        _option.enabled = true;
+        Debug.Log("オプション呼び出し");
+        _option.SetActive(true);
     }
 }
