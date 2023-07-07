@@ -14,9 +14,9 @@ public class Pose : MonoBehaviour
     [Header("リスタートボタン"), SerializeField]
     private PoseUIManager _restartButton;
 
-    /// <summary>オプションボタン </summary>    
-    [Header("オプションボタン"), SerializeField]
-    private PoseUIManager _optionButton;
+    ///// <summary>オプションボタン </summary>    
+    //[Header("オプションボタン"), SerializeField]
+    //private PoseUIManager _optionButton;
 
     /// <summary>セレクトシーンのインデックス番号</summary>
     [Header("セレクトシーンのインデックス番号"), SerializeField]
@@ -26,9 +26,9 @@ public class Pose : MonoBehaviour
     [Header("ゲームシーンのインデックス番号"), SerializeField]
     private int ReStartSceneIndex;
 
-    /// <summary>オプションシーンのインデックス番号</summary>
-    [Header("オプションシーンのインデックス番号"), SerializeField]
-    private int OptionSceneIndex;
+    ///// <summary>オプションシーンのインデックス番号</summary>
+    //[Header("オプションシーンのインデックス番号"), SerializeField]
+    //private int OptionSceneIndex;
 
     /// <summary>ボタン説明 </summary>  
     [Header("ボタン説明"), SerializeField]
@@ -45,7 +45,7 @@ public class Pose : MonoBehaviour
 
     private void Start()
     {
-        if (_selectButton == null || _restartButton == null || _optionButton == null)
+        if (_selectButton == null || _restartButton == null) // || _optionButton == null)
         {
             Debug.LogError("selectUIのインスペクターにButtonを格納してください。");
             return;
@@ -61,7 +61,7 @@ public class Pose : MonoBehaviour
         // ボタンクリック時にイベント追加 ---------------------- //
         _selectButton. Button.onClick.AddListener(SelectMove);
         _restartButton.Button.onClick.AddListener(ReStartMove);
-        _optionButton. Button.onClick.AddListener(OptionMove);
+        //_optionButton. Button.onClick.AddListener(OptionMove);
         // ----------------------------------------------------- //
     }
 
