@@ -1408,10 +1408,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1462535308}
-        m_TargetAssemblyTypeName: ModeManager, Assembly-CSharp
-        m_MethodName: SetModeManager
-        m_Mode: 3
+      - m_Target: {fileID: 975500800}
+        m_TargetAssemblyTypeName: StageSelectManager, Assembly-CSharp
+        m_MethodName: SetGameMode_Hard
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1947,10 +1947,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1915896491}
-        m_TargetAssemblyTypeName: ModeManager, Assembly-CSharp
-        m_MethodName: SetModeManager
-        m_Mode: 3
+      - m_Target: {fileID: 975500800}
+        m_TargetAssemblyTypeName: StageSelectManager, Assembly-CSharp
+        m_MethodName: SetGameMode_Nomal
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2286,10 +2286,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8950593785661598288}
-        m_TargetAssemblyTypeName: ModeManager, Assembly-CSharp
-        m_MethodName: SetModeManager
-        m_Mode: 3
+      - m_Target: {fileID: 975500800}
+        m_TargetAssemblyTypeName: StageSelectManager, Assembly-CSharp
+        m_MethodName: SetGameMode_Easy
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

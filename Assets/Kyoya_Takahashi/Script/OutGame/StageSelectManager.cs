@@ -12,4 +12,19 @@ public class StageSelectManager : UIController
         }
         MoveScene(GameManager.Instance.sceneIndex);
     }
+
+    public void SetGameMode_Easy()
+    {
+        GameManager.Instance.SetGameMode(GameManager.GameMode.Easy);
+    }
+
+    public void SetGameMode_Nomal()
+    {
+        GameManager.Instance.SetGameMode(GameManager.GameMode.Nomal);
+    }
+
+    public void SetGameMode_Hard()
+    {
+        GameManager.Instance.SetGameMode(GameManager.GameMode.Hard);
+    }
 }
