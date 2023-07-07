@@ -26,5 +26,6 @@ public class EffectController : MonoBehaviour
         effect.gameObject.SetActive(true);
         effect.transform.position = particlePos;
         effect.Play();
+        SEManager.Instance.PlayTargetEffectSE();
     }
 }
