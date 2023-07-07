@@ -14,6 +14,10 @@ public class Pose : MonoBehaviour
     [Header("リスタートボタン"), SerializeField]
     private PoseUIManager _restartButton;
 
+    /// <summary>オプション画面 </summary>    
+    [Header("オプション画面"), SerializeField]
+    private Image _option;
+
     ///// <summary>オプションボタン </summary>    
     //[Header("オプションボタン"), SerializeField]
     //private PoseUIManager _optionButton;
@@ -45,7 +49,7 @@ public class Pose : MonoBehaviour
 
     private void Start()
     {
-        if (_selectButton == null || _restartButton == null) // || _optionButton == null)
+        if (_selectButton == null || _restartButton == null || _option == null) // || _optionButton == null)
         {
             Debug.LogError("selectUIのインスペクターにButtonを格納してください。");
             return;
@@ -57,6 +61,7 @@ public class Pose : MonoBehaviour
         }
 
         HideUI();
+        _option.enabled = false;
 
         // ボタンクリック時にイベント追加 ---------------------- //
         _selectButton. Button.onClick.AddListener(SelectMove);
@@ -118,9 +123,9 @@ public class Pose : MonoBehaviour
         GameManager.Instance.IsPlayGame = false;
         SceneManager.LoadScene(ReStartSceneIndex);
     }
-    ///// <summary> オプション画面に移動 </summary>
-    //private void OptionMove()
-    //{
-    //    SceneManager.LoadScene(OptionSceneIndex);
-    //}
+    /// <summary> オプション画面に移動 </summary>
+    private void OptionMove()
+    {
+        _option.enabled = true;
+    }
 }
