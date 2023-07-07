@@ -47,19 +47,26 @@ public class CountDown : MonoBehaviour
     private void FixedUpdate()
     {
         CountDownControl();
-        if(CountDownTimer.startFinishCountDown)
+        if (!CountDownTimer.startFinishCountDown)
         {
-
+            return;
         }
+        if (0 < time)
+        {
+            return ;
+        }
+        time = CountTime;
     }
 
     public void CountDownControl()
     {
-        if(time < -1)
+        if (time < -1)
         {
             return;
         }
 
+        Debug.Log(time);
+        Debug.Log("’Ê‚Á‚Ä‚é‚¯‚ñˆÀS‚µ‚Ä");
         time -= Time.deltaTime;
 
         if(time > 3 && time <= 4)

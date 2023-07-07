@@ -21,23 +21,24 @@ public class CountDownTimer : UIController
 	//制限時間の残り時間のカウントダウンを開始するかどうか
 	public static bool startFinishCountDown = false;
 	//制限時間の残り時間のカウントダウンを開始する時間(秒)
-	private const float startFinishCountTime = 3;
+	private const float startFinishCountTime = 5;
 
 	void Start()
 	{
-		_seconds = 0;
-		switch (GameManager.Instance.GetGameMode())
-		{
-			case GameManager.GameMode.Easy:
-				_minute = Config.easyModeTime;
-				break;
-			case GameManager.GameMode.Nomal:
-				_minute = Config.nomalModeTime;
-				break;
-			case GameManager.GameMode.Hard:
-				_minute = Config.hardModeTime;
-				break;
-		}
+		_seconds = 10;
+		_minute = 0;
+		//switch (GameManager.Instance.GetGameMode())
+		//{
+		//	case GameManager.GameMode.Easy:
+		//		_minute = Config.easyModeTime;
+		//		break;
+		//	case GameManager.GameMode.Nomal:
+		//		_minute = Config.nomalModeTime;
+		//		break;
+		//	case GameManager.GameMode.Hard:
+		//		_minute = Config.hardModeTime;
+		//		break;
+		//}
 		_totalTime = _minute * 60 + _seconds;
 		_oldSeconds = 0f;
 		_timerText = GetComponentInChildren<Text>();
