@@ -47,6 +47,10 @@ public class CountDown : MonoBehaviour
     private void FixedUpdate()
     {
         CountDownControl();
+        if(CountDownTimer.startFinishCountDown)
+        {
+
+        }
     }
 
     public void CountDownControl()
