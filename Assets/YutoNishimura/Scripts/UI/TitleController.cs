@@ -8,7 +8,7 @@ public class TitleController : UIController
     }
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.anyKey)
         {
             //MoveScene(HomeSceneName);
             InstantAnimation();
