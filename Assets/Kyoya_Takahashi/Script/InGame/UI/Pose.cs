@@ -118,9 +118,9 @@ public class Pose : MonoBehaviour
         GameManager.Instance.IsPlayGame = false;
         SceneManager.LoadScene(ReStartSceneIndex);
     }
-    /// <summary> オプション画面に移動 </summary>
-    private void OptionMove()
-    {
-        SceneManager.LoadScene(OptionSceneIndex);
-    }
+    ///// <summary> オプション画面に移動 </summary>
+    //private void OptionMove()
+    //{
+    //    SceneManager.LoadScene(OptionSceneIndex);
+    //}
 }
