@@ -12,30 +12,37 @@ public class CountDown : MonoBehaviour
     [SerializeField] private Image Two;
     [SerializeField] private Image One;
     [SerializeField] private Image StartPanel;
+    [SerializeField] private Image FinishPanel;
     private Vector3 InitialThreeScale;
     private Vector3 InitialTwoScale;
     private Vector3 InitialOneScale;
     private Vector3 InitialStartPanelScale;
+    private Vector3 InitialFinishPanelScale;
     [SerializeField] private float magnification;  //‰½”{‚ÉŠg‘å‚·‚é‚©
     private float time;
     private readonly float CountTime = 5;
-    private static bool finishCountDown; 
+    private static bool finishCountDown;
+    private bool twiceCountDown;
 
     void Start()
     {
+        twiceCountDown = false;
         finishCountDown = false;
         InitialThreeScale = Three.transform.localScale;
         InitialTwoScale = Two.transform.localScale;
         InitialOneScale = One.transform.localScale;
         InitialStartPanelScale = StartPanel.transform.localScale;
+        InitialFinishPanelScale = FinishPanel.transform.localScale;
         Three.transform.localScale *= magnification;
         Two.transform.localScale *= magnification;
         One.transform.localScale *= magnification;
         StartPanel.transform.localScale *= magnification;
+        FinishPanel.transform.localScale *= magnification;
         Three.enabled = false;
         Two.enabled = false;
         One.enabled = false;
         StartPanel.enabled = false;
+        FinishPanel.enabled = false;
         time = CountTime;
     }
 
@@ -60,6 +67,8 @@ public class CountDown : MonoBehaviour
         Two.transform.localScale *= magnification;
         One.transform.localScale *= magnification;
         StartPanel.transform.localScale *= magnification;
+        FinishPanel.transform.localScale *= magnification;
+        twiceCountDown = true;
     }
 
     public void CountDownControl()
@@ -70,7 +79,7 @@ public class CountDown : MonoBehaviour
         }
 
         Debug.Log(time);
-        Debug.Log("’Ê‚Á‚Ä‚é‚¯‚ñˆÀS‚µ‚Ä");
+        Debug.Log("’Ê‚Á‚Ä‚é‚¯‚ñˆÀS‚µ‚È‚Á‚¹");
         time -= Time.deltaTime;
 
         if(time > 3 && time <= 4)
@@ -93,15 +102,21 @@ public class CountDown : MonoBehaviour
         else if(time > 0 && time <= 1)
         {
             One.enabled = false;
-            StartPanel.enabled = true;
-            StartPanel.transform.localScale = Vector3.Lerp(StartPanel.transform.localScale, InitialStartPanelScale, 0.5f);
+            if (!twiceCountDown)
+            {
+                StartPanel.enabled = true;
+                StartPanel.transform.localScale = Vector3.Lerp(StartPanel.transform.localScale, InitialStartPanelScale, 0.5f);
+            }
+            else
+            {
+                FinishPanel.enabled = true;
+                FinishPanel.transform.localScale = Vector3.Lerp(FinishPanel.transform.localScale, InitialFinishPanelScale, 0.5f);
+            }
         }
         else if(time <= 0)
         {
-            //Color color = StartPanel.GetComponent<Image>().color;
-            //color.a = Mathf.Abs(time);
-            //StartPanel.GetComponent<Image>().color = color;
             StartPanel.enabled = false;
+            FinishPanel.enabled = false;
             GameManager.Instance.IsPlayGame = true;
             finishCountDown = true;
         }

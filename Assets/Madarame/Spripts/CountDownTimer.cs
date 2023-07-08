@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CountDownTimer : UIController
 {
@@ -25,18 +26,20 @@ public class CountDownTimer : UIController
 
 	void Start()
 	{
-		switch (GameManager.Instance.GetGameMode())
-		{
-			case GameManager.GameMode.Easy:
-				_minute = Config.easyModeTime;
-				break;
-			case GameManager.GameMode.Nomal:
-				_minute = Config.nomalModeTime;
-				break;
-			case GameManager.GameMode.Hard:
-				_minute = Config.hardModeTime;
-				break;
-		}
+		_minute = 0;
+		_seconds = 10;
+		//switch (GameManager.Instance.GetGameMode())
+		//{
+		//	case GameManager.GameMode.Easy:
+		//		_minute = Config.easyModeTime;
+		//		break;
+		//	case GameManager.GameMode.Nomal:
+		//		_minute = Config.nomalModeTime;
+		//		break;
+		//	case GameManager.GameMode.Hard:
+		//		_minute = Config.hardModeTime;
+		//		break;
+		//}
 		_totalTime = _minute * 60 + _seconds;
 		_oldSeconds = 0f;
 		_timerText = GetComponentInChildren<Text>();
@@ -63,7 +66,7 @@ public class CountDownTimer : UIController
 		}
 		//　制限時間が0秒以下なら何もしない
 		//　制限時間以下になったらコンソールに『制限時間終了』という文字列を表示する
-		if (_totalTime <= 0f)
+		if (_totalTime <= 0f && CountDown.GetFinishCountDown())
 		{			
 			Debug.Log("制限時間終了");
 			InstantAnimation();
