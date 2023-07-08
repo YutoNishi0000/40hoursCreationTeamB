@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static ButtonGuide;
 
-public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class PoseUIManager : MonoBehaviour
 {
     /// <summary>ボタン説明 </summary>  
     [Header("ボタン説明"), SerializeField]
@@ -15,13 +15,9 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("ボタンの種類"), SerializeField]
     private ButtonType _buttonType;
 
-    /// <summary>選択されている時のボタン画像 </summary>  
-    [Header("選択されている時のボタン画像"), SerializeField]
-    private Sprite _selectButton;
-
-    /// <summary>選択されていない時のボタン画像 </summary>  
-    [Header("選択されていない時のボタン画像"), SerializeField]
-    private Sprite _noselectButton;
+    /// <summary>オプションボタン </summary>  
+    [Header("オプションボタン"), SerializeField]
+    private HoverableButton _optionButton;
 
     /// <summary>選択肢ボタン </summary>    
     private Button _button;
@@ -30,25 +26,27 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private Image _image;
 
     /// <summary>テキスト </summary>    
-    private Text _text;
+    private Text _text = null;
 
     /// <summary>ボタンクラスを取得 </summary>
     public Button Button => _button;
-    
+
+    /// <summary>ボタンのテキスト変更</summary>
+    private void ChangeText() => _buttonGuide.ChangeText(_buttonType);
+
     private void Start()
     {
-        if(_buttonGuide == null || _selectButton == null || _noselectButton == null)
+        if(_buttonGuide == null || _optionButton == null)
         {
             Debug.LogError("インスペクターに格納してください。");
             return;
         }
         _button = GetComponent<Button>();
         _image　= GetComponent<Image>();
-        _button.image.sprite = _noselectButton;
 
-        // 選択されていないときはボタンを暗くする
-        //Color disabledColor = Button.colors.disabledColor;
-        //Button.image.color = disabledColor;
+        _optionButton.CancelHover();
+        
+        _optionButton.AddOnPointerEnter(ChangeText);
     }
     /// <summary>UI表示</summary>
     public void ShowUI()
@@ -62,15 +60,5 @@ public class PoseUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         _image.enabled = false;
         _text.enabled = false;
     }
-    /// <summary>選択されてるときはボタンを明るくする</summary>
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        _buttonGuide.ChangeText(_buttonType);
-        _button.image.sprite = _selectButton;
-    }
-    /// <summary>選択されていないときはボタンを暗くする</summary>
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _button.image.sprite = _noselectButton;
-    }
+
 }

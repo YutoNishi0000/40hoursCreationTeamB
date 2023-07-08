@@ -22,6 +22,10 @@ public class Pose : MonoBehaviour
     [Header("オプション画面"), SerializeField]
     private GameObject _option;
 
+    /// <summary>オプションのEXITボタン </summary>  
+    [Header("オプションのEXITボタン"), SerializeField]
+    private HoverableButton _optionExitButton;
+
     /// <summary>セレクトシーンのインデックス番号</summary>
     [Header("セレクトシーンのインデックス番号"), SerializeField]
     private int SelectSceneIndex;
@@ -60,12 +64,13 @@ public class Pose : MonoBehaviour
             poseUI[i] = transform.GetChild(i).gameObject;
         }
         _option.SetActive(false);
+        _optionExitButton.AddOnClick(CloseOption);
         HideUI();
 
         // ボタンクリック時にイベント追加 ---------------------- //
         _selectButton. Button.onClick.AddListener(SelectMove);
         _restartButton.Button.onClick.AddListener(ReStartMove);
-        _optionButton. Button.onClick.AddListener(OptionMove);
+        _optionButton. Button.onClick.AddListener(OpenOption);
         // ----------------------------------------------------- //
     }
 
@@ -122,10 +127,15 @@ public class Pose : MonoBehaviour
         GameManager.Instance.IsPlayGame = false;
         SceneManager.LoadScene(ReStartSceneIndex);
     }
-    /// <summary> オプション画面に移動 </summary>
-    private void OptionMove()
+    /// <summary> オプション画面を開く </summary>
+    private void OpenOption()
     {
-        Debug.Log("オプション呼び出し");
         _option.SetActive(true);
+    }
+    /// <summary> オプション画面を閉じる </summary>
+    private void CloseOption()
+    {
+        _option.SetActive(false);
+        _optionExitButton.CancelHover();
     }
 }
