@@ -29,7 +29,7 @@ public class UniTaskController : MonoBehaviour
     }
 
     /// <summary>
-    /// UniTaskを用いて独自のフレームワークを持つ関数（マルチスレッドでの実行が可能）
+    /// UniTaskを用いて独自のフレームワークを持つ関数
     /// </summary>
     /// <param name="start">この関数が呼ばれた瞬間呼び出す関数</param>
     /// <param name="update">毎フレーム呼び出す関数</param>
@@ -49,9 +49,9 @@ public class UniTaskController : MonoBehaviour
             //UniTaskExecuteがnullなければ実行する
             update?.Invoke();
 
+            //もしも、このループを抜け出す条件を満たしているのなら
             if(unlockFunc.Invoke() && unlockFunc != null)
             {
-                Debug.Log("抜け出す");
                 //Unitaskを強制的に中止
                 CancelUniTask();
                 break;
