@@ -25,20 +25,18 @@ public class CountDownTimer : UIController
 
 	void Start()
 	{
-		_seconds = 10;
-		_minute = 0;
-		//switch (GameManager.Instance.GetGameMode())
-		//{
-		//	case GameManager.GameMode.Easy:
-		//		_minute = Config.easyModeTime;
-		//		break;
-		//	case GameManager.GameMode.Nomal:
-		//		_minute = Config.nomalModeTime;
-		//		break;
-		//	case GameManager.GameMode.Hard:
-		//		_minute = Config.hardModeTime;
-		//		break;
-		//}
+		switch (GameManager.Instance.GetGameMode())
+		{
+			case GameManager.GameMode.Easy:
+				_minute = Config.easyModeTime;
+				break;
+			case GameManager.GameMode.Nomal:
+				_minute = Config.nomalModeTime;
+				break;
+			case GameManager.GameMode.Hard:
+				_minute = Config.hardModeTime;
+				break;
+		}
 		_totalTime = _minute * 60 + _seconds;
 		_oldSeconds = 0f;
 		_timerText = GetComponentInChildren<Text>();

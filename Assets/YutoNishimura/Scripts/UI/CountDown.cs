@@ -56,6 +56,10 @@ public class CountDown : MonoBehaviour
             return ;
         }
         time = CountTime;
+        Three.transform.localScale *= magnification;
+        Two.transform.localScale *= magnification;
+        One.transform.localScale *= magnification;
+        StartPanel.transform.localScale *= magnification;
     }
 
     public void CountDownControl()
