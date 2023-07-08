@@ -553,9 +553,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552021, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: targetShot
+      value: 
+      objectReference: {fileID: 2179297094181169802, guid: 32a0ec9d9c9c3bf4fa86ac16a3303845, type: 3}
+    - target: {fileID: 8350055675308552021, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: plusCountSE
+      value: 
+      objectReference: {fileID: 8300000, guid: b3fcb7f2ea56a2541beaab93018c3f2c, type: 3}
+    - target: {fileID: 8350055675308552021, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: minusCountSE
+      value: 
+      objectReference: {fileID: 8300000, guid: ed0556c898c011b4681b1c7ac7e5906f, type: 3}
+    - target: {fileID: 8350055675308552021, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: targetEffectSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 46ce96eb3a7fd504ab35909f1131b554, type: 3}
     - target: {fileID: 8350055675308552023, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
       propertyPath: m_Volume
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350055675308552023, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8350055675308552026, guid: e681c3de410d4e24db8fed1b97829ced, type: 3}
       propertyPath: m_Name

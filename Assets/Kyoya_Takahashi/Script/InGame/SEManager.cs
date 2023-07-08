@@ -1,14 +1,17 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
 
 public class SEManager : SingletonMonoBehaviour<SEManager>
 {
-    private AudioSource audioSource;
+    private AudioSource[] audioSource;
     [SerializeField] private AudioClip respawn;
     [SerializeField] private AudioClip shot;
     [SerializeField] private AudioClip skill;
-    [SerializeField] private AudioClip targetShot;
+    [SerializeField] private GameObject targetShot;
     [SerializeField] private GameObject timeLimit;
     [SerializeField] private AudioClip plusCountSE;
     [SerializeField] private AudioClip minusCountSE;
@@ -18,18 +21,24 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     [SerializeField] private AudioClip decision;
     [SerializeField] private AudioClip back;
 
-    [SerializeField] private readonly int maxAudioSources = 10;     //生成するオーディオソースの最大数
+    [SerializeField] private readonly int maxAudioSources = 15;     //生成するオーディオソースの最大数
+    private CancellationToken token;
 
     private bool isTimeLimit = false;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = new AudioSource[maxAudioSources];
+        for(int i = 0; i < audioSource.Length; i++)
+        {
+            audioSource[i] = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     private void oneShot(AudioClip ac)
     {
-        audioSource.PlayOneShot(ac);
+        AudioSource ad = GetSEAudioSources();
+        ad.PlayOneShot(ac);
     }
     /// <summary>
     /// ターゲットリスポーン時のSE
@@ -57,7 +66,9 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     /// </summary>
     public void PlayTargetShot()
     {
-        oneShot(targetShot);
+        GameObject se = Instantiate(targetShot);
+        AudioSource ad = se.GetComponent<AudioSource>();
+        UniTaskUpdate(() => { ad.Play(); }, null, () => { ad.Stop(); Destroy(se); }, () => { return (ad.time >= 2); }, token, UniTaskCancellMode.Auto).Forget();
     }
     /// <summary>
     /// タイムカウントがプラスされたときのSE
@@ -107,6 +118,17 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
         oneShot(back);
     }
 
-    public AudioSource GetSEAudioSources() { return audioSource; }
+    public AudioSource GetSEAudioSources()
+    {
+        for(int i = 0; i < audioSource.Length; i++)
+        {
+            if (!audioSource[i].isPlaying)
+            {
+                return audioSource[i];
+            }
+        }
+
+        return null;
+    }
 
 }

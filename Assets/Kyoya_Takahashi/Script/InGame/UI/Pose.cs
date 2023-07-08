@@ -119,13 +119,17 @@ public class Pose : MonoBehaviour
     /// <summary> セレクト画面に移動 </summary>
     private void SelectMove()
     {
+        BGMManager.Instance.BGMAdministrator(SelectSceneIndex);
         SceneManager.LoadScene(SelectSceneIndex);
+        IsPosing = false;
     }
     /// <summary> リスタートする </summary>
     private void ReStartMove()
     {
         GameManager.Instance.IsPlayGame = false;
+        IsPosing = false;
         SceneManager.LoadScene(ReStartSceneIndex);
+        BGMManager.Instance.BGMAdministrator(ReStartSceneIndex);
     }
     /// <summary> オプション画面を開く </summary>
     private void OpenOption()

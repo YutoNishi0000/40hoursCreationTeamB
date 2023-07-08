@@ -73,6 +73,11 @@ public class ScreenShot : UniTaskController
 
     private void Update()
     {
+        if (!GameManager.Instance.IsPlayGame)
+        {
+            return;
+        }
+
         judgeSubTargetFlag = judge.judgeSubTarget.ShutterSubTargets(cam, player, setterObj, Config.subTargetJudgeLength);
 
         if (Shutter.isFilming)

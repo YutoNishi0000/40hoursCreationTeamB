@@ -21,23 +21,16 @@ public class UniTaskController : MonoBehaviour
     protected CancellationTokenSource cts;
 
     /// <summary>
-    /// コンストラクタ
-    /// </summary>
-    protected void Awake()
-    {
-        cts = new CancellationTokenSource();
-    }
-
-    /// <summary>
     /// UniTaskを用いて独自のフレームワークを持つ関数
     /// </summary>
     /// <param name="start">この関数が呼ばれた瞬間呼び出す関数</param>
     /// <param name="update">毎フレーム呼び出す関数</param>
-    /// <param name="unlockUpdate">このループを抜け出す出す条件</param>
+    /// <param name="beforeBreak">このループを抜け出す直前に実行したい関数</param>
+    /// <param name="unlockFunc">このループを抜け出す出す条件</param>
     /// <param name="token">キャンセルトークン</param>
     /// <param name="mode">UniTaskのキャンセル方法</param>
     /// <returns></returns>
-    protected async UniTask UniTaskUpdate(UnityAction start, UnityAction update, Func<bool> unlockFunc, CancellationToken token, UniTaskCancellMode mode)
+    protected async UniTask UniTaskUpdate(UnityAction start, UnityAction update, UnityAction beforeBreak, Func<bool> unlockFunc, CancellationToken token, UniTaskCancellMode mode)
     {
         //キャンセルトークンをセット
         SetCancellToken(ref token, mode);
@@ -52,6 +45,8 @@ public class UniTaskController : MonoBehaviour
             //もしも、このループを抜け出す条件を満たしているのなら
             if(unlockFunc.Invoke() && unlockFunc != null)
             {
+                //breforeBreakに渡された関数を実行
+                beforeBreak?.Invoke();
                 //Unitaskを強制的に中止
                 CancelUniTask();
                 break;
@@ -69,7 +64,10 @@ public class UniTaskController : MonoBehaviour
     /// <param name="mode"></param>
     private void SetCancellToken(ref CancellationToken token, UniTaskCancellMode mode)
     {
-        switch(mode)
+        //ctsに新しいインスタンスを入れる
+        cts = new CancellationTokenSource();
+
+        switch (mode)
         {
             case UniTaskCancellMode.Auto:
                 token = this.GetCancellationTokenOnDestroy();

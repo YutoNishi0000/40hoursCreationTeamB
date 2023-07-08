@@ -4,7 +4,7 @@ using UnityEngine;
 /// MonoBehaviourに対応したシングルトンクラス
 /// （例）public class GameManager : SingletonMonoBehaviour<GameManager>
 /// </summary>
-public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class SingletonMonoBehaviour<T> : UniTaskController where T : UniTaskController
 {
     private static T instance;
 

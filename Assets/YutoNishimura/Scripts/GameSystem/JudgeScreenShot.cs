@@ -99,7 +99,7 @@ public class JudgeTarget : MonoBehaviour
     {
         GameObject targetObj = RespawTarget.GetCurrentTargetObj();
         //手動でターゲットが表示される位置を調整
-        Vector3 targetPos = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y - 1, targetObj.transform.position.z);
+        Vector3 targetPos = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y - 2, targetObj.transform.position.z);
         Instantiate(targetModel, targetPos, targetObj.transform.rotation);
         //エフェクトを再生
         //スコア加算
@@ -109,7 +109,7 @@ public class JudgeTarget : MonoBehaviour
         //対象を撮影した回数をインクリメント
         GameManager.Instance.numTargetShutter++;
         //SE
-        SEManager.Instance.PlayTargetShot();
+        //SEManager.Instance.PlayTargetShot();
         SEManager.Instance.PlayPlusTimeCountSE();
         //ターゲットリスポーン
         RespawTarget.RespawnTarget();

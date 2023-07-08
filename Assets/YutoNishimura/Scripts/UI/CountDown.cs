@@ -22,12 +22,14 @@ public class CountDown : MonoBehaviour
     private float time;
     private readonly float CountTime = 5;
     private static bool finishCountDown;
+    private static bool moveLock;
     private bool twiceCountDown;
 
     void Start()
     {
         twiceCountDown = false;
         finishCountDown = false;
+        moveLock = false;
         InitialThreeScale = Three.transform.localScale;
         InitialTwoScale = Two.transform.localScale;
         InitialOneScale = One.transform.localScale;
@@ -123,4 +125,8 @@ public class CountDown : MonoBehaviour
     }
 
     public static bool GetFinishCountDown() { return finishCountDown; }
+
+    public static bool GetMoveLockFlag() { return moveLock; }
+
+    public static void SetMoveLockFlag(bool flag) { moveLock = flag; }
 }

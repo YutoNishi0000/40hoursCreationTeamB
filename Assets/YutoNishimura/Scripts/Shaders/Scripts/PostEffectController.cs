@@ -23,7 +23,7 @@ public class PostEffectController : UniTaskController
     {
         _Direction = Shader.PropertyToID("_Direction"); //プロパティIDを取得
         postEffectFlag = true;
-        UniTaskUpdate(() => { }, UpdateUniTask, () => { return false; }, token, UniTaskCancellMode.Auto).Forget();
+        UniTaskUpdate(() => { }, UpdateUniTask, null,  () => { return false; }, token, UniTaskCancellMode.Auto).Forget();
     }
 
     private void OnRenderImage(RenderTexture src, RenderTexture dest)

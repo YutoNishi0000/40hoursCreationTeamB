@@ -43,7 +43,7 @@ public class RespawTarget : MonoBehaviour
 
         int rootType = Random.Range(0, 4);
 
-        SEManager.Instance.PlayRespawn();
+        SEManager.Instance.PlayTargetShot();
 
         //ルートタイプによってスポーンする位置が変わる
         switch ((RootType)rootType)

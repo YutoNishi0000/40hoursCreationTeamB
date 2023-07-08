@@ -32,11 +32,11 @@ public class RaticleController : UniTaskController
     {
         if(ScreenShot.GetJudgeSubTargetFlag())
         {
-            UniTaskUpdate(null, () => UpdateUniTask(rotation, raticle, 3, ChangeColorMode.YELLOW), () => { return (ScreenShot.GetJudgeSubTargetFlag() == false); }, token, UniTaskCancellMode.Auto).Forget();
+            UniTaskUpdate(null, () => UpdateUniTask(rotation, raticle, 3, ChangeColorMode.YELLOW), null, () => { return (ScreenShot.GetJudgeSubTargetFlag() == false); }, token, UniTaskCancellMode.Auto).Forget();
         }
         else
         {
-            UniTaskUpdate(null, () => UpdateUniTask(0, raticle, 3, ChangeColorMode.NOMAL), () => { return (ScreenShot.GetJudgeSubTargetFlag() == true); }, token, UniTaskCancellMode.Auto).Forget();
+            UniTaskUpdate(null, () => UpdateUniTask(0, raticle, 3, ChangeColorMode.NOMAL), null, () => { return (ScreenShot.GetJudgeSubTargetFlag() == true); }, token, UniTaskCancellMode.Auto).Forget();
         }
     }
 
