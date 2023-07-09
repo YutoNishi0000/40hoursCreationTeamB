@@ -32,6 +32,7 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
         for(int i = 0; i < audioSource.Length; i++)
         {
             audioSource[i] = gameObject.AddComponent<AudioSource>();
+            audioSource[i].volume = 1.0f;
         }
     }
 
@@ -68,6 +69,7 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
     {
         GameObject se = Instantiate(targetShot);
         AudioSource ad = se.GetComponent<AudioSource>();
+        ad.volume = GetSEAudioSources().volume;
         UniTaskUpdate(() => { ad.Play(); }, null, () => { ad.Stop(); Destroy(se); }, () => { return (ad.time >= 2); }, token, UniTaskCancellMode.Auto).Forget();
     }
     /// <summary>
@@ -131,4 +133,8 @@ public class SEManager : SingletonMonoBehaviour<SEManager>
         return null;
     }
 
+    public AudioSource[] GetAudioSources()
+    {
+        return audioSource;
+    }
 }

@@ -99,7 +99,7 @@ public class JudgeTarget : MonoBehaviour
     {
         GameObject targetObj = RespawTarget.GetCurrentTargetObj();
         //手動でターゲットが表示される位置を調整
-        Vector3 targetPos = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y - 2.5f, targetObj.transform.position.z);
+        Vector3 targetPos = new Vector3(targetObj.transform.position.x, targetObj.transform.position.y - 2f, targetObj.transform.position.z);
         Instantiate(targetModel, targetPos, targetObj.transform.rotation);
         //対象のアニメーション再生
         Animator animator = targetModel.GetComponent<Animator>();
